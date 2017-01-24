@@ -56,12 +56,20 @@
 			children = (
 				31E58F541E37AD7F00CE4FE1 /* AppDelegate.swift */,
 				31E58F561E37AD7F00CE4FE1 /* ViewController.swift */,
+				31E58F661E37ADE200CE4FE1 /* Supporting Files */,
+			);
+			path = CafeTime;
+			sourceTree = "<group>";
+		};
+		31E58F661E37ADE200CE4FE1 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
 				31E58F581E37AD7F00CE4FE1 /* Main.storyboard */,
 				31E58F5B1E37AD7F00CE4FE1 /* Assets.xcassets */,
 				31E58F5D1E37AD7F00CE4FE1 /* LaunchScreen.storyboard */,
 				31E58F601E37AD7F00CE4FE1 /* Info.plist */,
 			);
-			path = CafeTime;
+			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -96,6 +104,7 @@
 				TargetAttributes = {
 					31E58F501E37AD7F00CE4FE1 = {
 						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = 5HYBF2ZF8V;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -260,6 +269,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 5HYBF2ZF8V;
 				INFOPLIST_FILE = CafeTime/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.VV.CafeTime;
@@ -272,6 +282,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 5HYBF2ZF8V;
 				INFOPLIST_FILE = CafeTime/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.VV.CafeTime;
