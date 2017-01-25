@@ -7,11 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		31CC00981E38A03900F68A31 /* SignUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31CC00971E38A03900F68A31 /* SignUpVC.swift */; };
-		31DD52071E38B05500DB9ABC /* SignUpMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31DD52061E38B05500DB9ABC /* SignUpMainView.swift */; };
+		31CC00981E38A03900F68A31 /* LoginAndSignUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31CC00971E38A03900F68A31 /* LoginAndSignUpVC.swift */; };
+		31DD52071E38B05500DB9ABC /* LoginAndSignUpMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31DD52061E38B05500DB9ABC /* LoginAndSignUpMainView.swift */; };
 		31DD520A1E38D4B600DB9ABC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 31DD52091E38D4B600DB9ABC /* GoogleService-Info.plist */; };
 		31DD520C1E38D57900DB9ABC /* AuthenticatedUserVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31DD520B1E38D57900DB9ABC /* AuthenticatedUserVC.swift */; };
-		31DD520E1E38D9F600DB9ABC /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31DD520D1E38D9F600DB9ABC /* LoginVC.swift */; };
+		31DD52131E39028400DB9ABC /* AuthenticatedUserMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31DD52121E39028400DB9ABC /* AuthenticatedUserMainView.swift */; };
 		31E58F551E37AD7F00CE4FE1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31E58F541E37AD7F00CE4FE1 /* AppDelegate.swift */; };
 		31E58F5C1E37AD7F00CE4FE1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 31E58F5B1E37AD7F00CE4FE1 /* Assets.xcassets */; };
 		31E58F5F1E37AD7F00CE4FE1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 31E58F5D1E37AD7F00CE4FE1 /* LaunchScreen.storyboard */; };
@@ -19,11 +19,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		31CC00971E38A03900F68A31 /* SignUpVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpVC.swift; sourceTree = "<group>"; };
-		31DD52061E38B05500DB9ABC /* SignUpMainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpMainView.swift; sourceTree = "<group>"; };
+		31CC00971E38A03900F68A31 /* LoginAndSignUpVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginAndSignUpVC.swift; sourceTree = "<group>"; };
+		31DD52061E38B05500DB9ABC /* LoginAndSignUpMainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginAndSignUpMainView.swift; sourceTree = "<group>"; };
 		31DD52091E38D4B600DB9ABC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		31DD520B1E38D57900DB9ABC /* AuthenticatedUserVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticatedUserVC.swift; sourceTree = "<group>"; };
-		31DD520D1E38D9F600DB9ABC /* LoginVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
+		31DD52121E39028400DB9ABC /* AuthenticatedUserMainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticatedUserMainView.swift; sourceTree = "<group>"; };
 		31E58F511E37AD7F00CE4FE1 /* CafeTime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CafeTime.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		31E58F541E37AD7F00CE4FE1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		31E58F5B1E37AD7F00CE4FE1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -57,11 +57,19 @@
 		31DD52081E38B05900DB9ABC /* SignUp VC */ = {
 			isa = PBXGroup;
 			children = (
-				31CC00971E38A03900F68A31 /* SignUpVC.swift */,
-				31DD52061E38B05500DB9ABC /* SignUpMainView.swift */,
-				31DD520B1E38D57900DB9ABC /* AuthenticatedUserVC.swift */,
+				31CC00971E38A03900F68A31 /* LoginAndSignUpVC.swift */,
+				31DD52061E38B05500DB9ABC /* LoginAndSignUpMainView.swift */,
 			);
 			name = "SignUp VC";
+			sourceTree = "<group>";
+		};
+		31DD52141E39028900DB9ABC /* Authenticated User */ = {
+			isa = PBXGroup;
+			children = (
+				31DD520B1E38D57900DB9ABC /* AuthenticatedUserVC.swift */,
+				31DD52121E39028400DB9ABC /* AuthenticatedUserMainView.swift */,
+			);
+			name = "Authenticated User";
 			sourceTree = "<group>";
 		};
 		31E58F481E37AD7F00CE4FE1 = {
@@ -85,8 +93,8 @@
 		31E58F531E37AD7F00CE4FE1 /* CafeTime */ = {
 			isa = PBXGroup;
 			children = (
-				31DD520D1E38D9F600DB9ABC /* LoginVC.swift */,
 				31DD52081E38B05900DB9ABC /* SignUp VC */,
+				31DD52141E39028900DB9ABC /* Authenticated User */,
 				31E58F661E37ADE200CE4FE1 /* Supporting Files */,
 			);
 			path = CafeTime;
@@ -238,10 +246,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				31E58F551E37AD7F00CE4FE1 /* AppDelegate.swift in Sources */,
-				31CC00981E38A03900F68A31 /* SignUpVC.swift in Sources */,
-				31DD52071E38B05500DB9ABC /* SignUpMainView.swift in Sources */,
+				31DD52131E39028400DB9ABC /* AuthenticatedUserMainView.swift in Sources */,
+				31CC00981E38A03900F68A31 /* LoginAndSignUpVC.swift in Sources */,
+				31DD52071E38B05500DB9ABC /* LoginAndSignUpMainView.swift in Sources */,
 				31DD520C1E38D57900DB9ABC /* AuthenticatedUserVC.swift in Sources */,
-				31DD520E1E38D9F600DB9ABC /* LoginVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

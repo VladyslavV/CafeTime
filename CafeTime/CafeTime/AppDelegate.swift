@@ -23,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //            nav.pushViewController(LoginVC(), animated: true)
             
             window.backgroundColor = UIColor.white
-            window.rootViewController = SignUpVC()
+            window.rootViewController = LoginAndSignUpVC()
             window.makeKeyAndVisible()
         }
         

@@ -11,17 +11,16 @@ import SnapKit
 import Firebase
 import FirebaseAuth
 
-class SignUpVC: UIViewController, SignUpMainViewDelegate {
-
-
-    private let mainView = SignUpMainView()
+class LoginAndSignUpVC: UIViewController, LoginAndSignUpMainViewDelegate {
+    
+    private var mainView = LoginAndSignUpMainView()
     
     override func viewDidLoad() {
         self.setUp()
-        
     }
     
     private func setUp() {
+        self.view.backgroundColor = UIColor.white
         self.view.addSubview(mainView)
         mainView.delegate = self
         
@@ -32,8 +31,13 @@ class SignUpVC: UIViewController, SignUpMainViewDelegate {
     
     //MARK: LoginMainView Delegate
     
-    func signUpButtonPressed(vc: UIViewController) {
-        self.present(vc, animated: true, completion: nil)
+    func loginOrsignUpButtonPressed(vc: UIViewController) {
+        let nav = UINavigationController()
+        nav.pushViewController(vc, animated: true)
+        self.present(nav, animated: true, completion: nil)
     }
+    
+
+    
     
 }
