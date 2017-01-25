@@ -26,6 +26,6 @@ class AuthenticatedUserMainView: UIView {
         
     }
     
-    
+  
     
 }

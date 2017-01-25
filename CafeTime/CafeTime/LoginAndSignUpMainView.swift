@@ -11,7 +11,7 @@ import SnapKit
 import FirebaseAuth
 
 protocol LoginAndSignUpMainViewDelegate : class {
-    func loginOrsignUpButtonPressed(vc : UIViewController)
+    func loginOrSignUpButtonPressed(vc : UIViewController)
 }
 
 class LoginAndSignUpMainView: UIView {
@@ -120,20 +120,20 @@ class LoginAndSignUpMainView: UIView {
             
             let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
             alertController.addAction(defaultAction)
-            self.delegate?.loginOrsignUpButtonPressed(vc: alertController)
+            self.delegate?.loginOrSignUpButtonPressed(vc: alertController)
         }
         else {
             FIRAuth.auth()?.createUser(withEmail: emailTextField.text!, password: passwordTextField.text!) { (user, error) in
                 
                 if error == nil {
                     print("You have successfully signed up")
-                    self.delegate?.loginOrsignUpButtonPressed(vc: AuthenticatedUserVC())
+                    self.delegate?.loginOrSignUpButtonPressed(vc: AuthenticatedUserVC())
                 }
                 else {
                     let alertController = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: .alert)
                     let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
                     alertController.addAction(defaultAction)
-                    self.delegate?.loginOrsignUpButtonPressed(vc: alertController)
+                    self.delegate?.loginOrSignUpButtonPressed(vc: alertController)
                 }
             }
         }
@@ -147,14 +147,14 @@ class LoginAndSignUpMainView: UIView {
             let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
             alertController.addAction(defaultAction)
             
-            self.delegate?.loginOrsignUpButtonPressed(vc: alertController)
+            self.delegate?.loginOrSignUpButtonPressed(vc: alertController)
         }
         else {
             FIRAuth.auth()?.signIn(withEmail: self.emailTextField.text!, password: self.passwordTextField.text!) { (user, error) in
                 
                 if error == nil {
                     print("You have successfully logged in")
-                    self.delegate?.loginOrsignUpButtonPressed(vc: AuthenticatedUserVC())
+                    self.delegate?.loginOrSignUpButtonPressed(vc: AuthenticatedUserVC())
                     
                 }
                 else {
@@ -164,7 +164,7 @@ class LoginAndSignUpMainView: UIView {
                     let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
                     alertController.addAction(defaultAction)
                     
-                    self.delegate?.loginOrsignUpButtonPressed(vc: alertController)
+                    self.delegate?.loginOrSignUpButtonPressed(vc: alertController)
                 }
             }
         }

@@ -36,7 +36,8 @@ class AuthenticatedUserVC: UIViewController {
         if FIRAuth.auth()?.currentUser != nil {
             do {
                 try FIRAuth.auth()?.signOut()
-                present(LoginAndSignUpVC(), animated: true, completion: nil)
+                self.dismiss(animated: true, completion: nil)
+               // present(LoginAndSignUpVC(), animated: true, completion: nil)
                 
             } catch let error as NSError {
                 print(error.localizedDescription)
@@ -44,4 +45,7 @@ class AuthenticatedUserVC: UIViewController {
         }
     }
     
+    deinit {
+        print("Auth VC Deallocced")
+    }
 }

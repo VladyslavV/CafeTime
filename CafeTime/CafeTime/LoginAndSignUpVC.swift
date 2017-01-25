@@ -31,13 +31,14 @@ class LoginAndSignUpVC: UIViewController, LoginAndSignUpMainViewDelegate {
     
     //MARK: LoginMainView Delegate
     
-    func loginOrsignUpButtonPressed(vc: UIViewController) {
-        let nav = UINavigationController()
-        nav.pushViewController(vc, animated: true)
-        self.present(nav, animated: true, completion: nil)
+    func loginOrSignUpButtonPressed(vc: UIViewController) {
+        if vc.isKind(of: UIAlertController.self) {
+            self.present(vc, animated: true, completion: nil)
+        }
+        else {
+            let nav = UINavigationController()
+            nav.pushViewController(vc, animated: true)
+            self.present(nav, animated: true, completion: nil)
+        }
     }
-    
-
-    
-    
 }
