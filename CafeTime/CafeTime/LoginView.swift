@@ -24,7 +24,7 @@ class LoginView : UIView {
     let signUpButton : UIButton = {
         let myVar = UIButton(type: .system)
         myVar.backgroundColor = UIColor.green
-        myVar.setTitle("Sign Up", for: .normal)
+        myVar.setTitle( NSLocalizedString("signUpButton", comment: ""), for: .normal)
         myVar.addTarget(self, action: #selector(signUp), for: .touchUpInside)
         
         return myVar
@@ -40,14 +40,14 @@ class LoginView : UIView {
     let rememberMeLabel : UILabel = {
         let myVar = UILabel()
         myVar.backgroundColor = UIColor.red
-        myVar.text = "Remember me"
+        myVar.text = NSLocalizedString("rememberUserLabel", comment: "")
         return myVar
     }()
     
     let loginButton : UIButton = {
         let myVar = UIButton(type: .system)
         myVar.backgroundColor = UIColor.green
-        myVar.setTitle("Login", for: .normal)
+        myVar.setTitle(NSLocalizedString("loginButton", comment: ""), for: .normal)
         myVar.addTarget(self, action: #selector(login), for: .touchUpInside)
         
         return myVar
@@ -55,8 +55,9 @@ class LoginView : UIView {
     
     let emailTextField : UITextField = {
         let myVar = UITextField()
-        myVar.placeholder = "Email"
+        myVar.placeholder = NSLocalizedString("emailTextField", comment: "")
         myVar.autocapitalizationType = .none
+        myVar.textAlignment = .center
         myVar.backgroundColor = UIColor.lightGray
         return myVar
     }()
@@ -64,8 +65,9 @@ class LoginView : UIView {
     
     let passwordTextField : UITextField = {
         let myVar = UITextField()
-        myVar.placeholder = "Password"
+        myVar.placeholder = NSLocalizedString("passwordTextField", comment: "")
         myVar.autocapitalizationType = .none
+        myVar.textAlignment = .center
         myVar.backgroundColor = UIColor.lightGray
         myVar.isSecureTextEntry = true
         return myVar

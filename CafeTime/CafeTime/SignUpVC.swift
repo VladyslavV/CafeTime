@@ -24,6 +24,8 @@ class SignUpVC: UIViewController, SignUpViewDelegate {
         self.view.addSubview(mainView)
         mainView.delegate = self
         
+        self.navigationItem.title = NSLocalizedString("signUpVCNavigationTitle", comment: "")
+                
         mainView.snp.makeConstraints { (make) -> Void in
             make.left.right.bottom.equalTo(self.view)
             make.top.equalTo(self.topLayoutGuide.snp.bottom)
@@ -33,7 +35,7 @@ class SignUpVC: UIViewController, SignUpViewDelegate {
     //MARK: Delegate
     
     func signUpButtonPressed() {
-
+        
         let authManager = AuthManager.shared
         
         let email = mainView.emailTextField.text!
@@ -49,7 +51,7 @@ class SignUpVC: UIViewController, SignUpViewDelegate {
         AuthManager.shared.createUser(email: email, password: password, rememberUser: mainView.autoLoginCheckBox.isChecked()) { [weak self] (error, success) in
             
             guard let weakSelf = self else { return }
-
+            
             if success {
                 weakSelf.dismiss(animated: true, completion: nil)
             }
@@ -67,7 +69,7 @@ class SignUpVC: UIViewController, SignUpViewDelegate {
         present(alertController, animated: true, completion: nil)
     }
     
-
+    
     deinit {
         print("object \( String(describing: (self))) dealloced")
     }

@@ -1,0 +1,17 @@
+
+
+// login view
+
+"rememberUserLabel" = "Remember Me";
+
+"signUpButton" = "Sign Up";
+
+"passwordTextField" = "Password";
+
+"emailTextField" = "Email";
+
+"loginButton" = "Login";
+
+"loginVCNavigationTitle" = "Login";
+
+"signUpVCNavigationTitle" = "Sign Up";
