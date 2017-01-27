@@ -30,34 +30,41 @@ class SignUpVC: UIViewController, SignUpViewDelegate {
         }
     }
     
+    //MARK: Delegate
+    
     func signUpButtonPressed() {
+
+        let authManager = AuthManager.shared
         
-        guard let email = mainView.emailTextField.text, let password = mainView.passwordTextField.text else {
-            print("enter credentials")
+        let email = mainView.emailTextField.text!
+        let password = mainView.passwordTextField.text!
+        
+        let errorString = authManager.checkEmail(email: email, andPassword: password)
+        
+        if errorString != "" {
+            self.presentAlert(message: errorString)
             return
         }
         
-        FIRAuth.auth()?.createUser(withEmail: email, password: password) {
-            [weak self] (user, error) in
+        AuthManager.shared.createUser(email: email, password: password, rememberUser: mainView.autoLoginCheckBox.isChecked()) { [weak self] (error, success) in
             
             guard let weakSelf = self else { return }
-            
-            if error != nil {
-                let alertController = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: .alert)
-                let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-                alertController.addAction(defaultAction)
-                weakSelf.present(alertController, animated: true, completion: nil)
+
+            if success {
+                weakSelf.dismiss(animated: true, completion: nil)
             }
-            print("You have successfully signed up")
-            
-            // save credentials
-            let save = UserDefaults.standard
-            save.setValue(email, forKey: Globals.savedEmail)
-            save.setValue(password, forKey: Globals.savedPassword)
-            save.synchronize()
-            
-            self?.dismiss(animated: true, completion: nil)
+                
+            else {
+                weakSelf.presentAlert(message: error)
+            }
         }
+    }
+    
+    private func presentAlert(message: String) {
+        let alertController = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
+        let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+        alertController.addAction(defaultAction)
+        present(alertController, animated: true, completion: nil)
     }
     
 

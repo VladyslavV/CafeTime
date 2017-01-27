@@ -20,12 +20,19 @@ class SignUpView: UIView {
     weak var delegate : SignUpViewDelegate?
     
     // MARK: Vars
-    let checkBox : M13Checkbox = {
+    let autoLoginCheckBox : M13Checkbox = {
         let myVar = M13Checkbox(frame: CGRect.zero)
         myVar.boxType = .square
         return myVar
     }()
     
+    let rememberMeLabel : UILabel = {
+        let myVar = UILabel()
+        myVar.backgroundColor = UIColor.red
+        myVar.text = "Remember me"
+        return myVar
+    }()
+
     let cafeLogo : UIImageView = {
         let myVar = UIImageView()
         myVar.image = UIImage(named: "cafe")
@@ -40,7 +47,6 @@ class SignUpView: UIView {
         
         return myVar
     }()
-    
     
     let emailTextField : UITextField = {
         let myVar = UITextField()
@@ -79,8 +85,9 @@ class SignUpView: UIView {
         self.addSubview(emailTextField)
         self.addSubview(passwordTextField)
         self.addSubview(signUpButton)
-        self.addSubview(checkBox)
+        self.addSubview(autoLoginCheckBox)
         self.addSubview(cafeLogo)
+        self.addSubview(rememberMeLabel)
         
         self.setUpConstraints()
     }
@@ -120,6 +127,19 @@ class SignUpView: UIView {
             make.trailing.equalTo(passwordTextField.snp.trailing)
             make.top.equalTo(passwordTextField.snp.bottom).offset(10)
             make.height.equalTo(self.snp.height).multipliedBy(0.05)
+        }
+        
+        rememberMeLabel.snp.remakeConstraints { (make) -> Void in
+            make.leading.equalTo(signUpButton.snp.leading)
+            make.trailing.equalTo(autoLoginCheckBox.snp.leading).offset(-5)
+            make.top.equalTo(signUpButton.snp.bottom).offset(10)
+            make.height.equalTo(signUpButton.snp.height)
+        }
+        
+        autoLoginCheckBox.snp.remakeConstraints { (make) -> Void in
+            make.width.height.equalTo(signUpButton.snp.height)
+            make.trailing.equalTo(signUpButton.snp.trailing)
+            make.centerY.equalTo(rememberMeLabel.snp.centerY)
         }
     }
     

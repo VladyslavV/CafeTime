@@ -9,6 +9,7 @@
 import UIKit
 import SnapKit
 import FirebaseAuth
+import M13Checkbox
 
 protocol LoginViewDelegate : class {
     func loginButtonPressed()
@@ -28,6 +29,20 @@ class LoginView : UIView {
         
         return myVar
     }()
+     
+    let autoLoginCheckBox : M13Checkbox = {
+        let myVar = M13Checkbox()
+        myVar.isUserInteractionEnabled = true
+        myVar.boxType = .square
+        return myVar
+    }()
+    
+    let rememberMeLabel : UILabel = {
+        let myVar = UILabel()
+        myVar.backgroundColor = UIColor.red
+        myVar.text = "Remember me"
+        return myVar
+    }()
     
     let loginButton : UIButton = {
         let myVar = UIButton(type: .system)
@@ -40,20 +55,18 @@ class LoginView : UIView {
     
     let emailTextField : UITextField = {
         let myVar = UITextField()
-        myVar.placeholder = "email"
+        myVar.placeholder = "Email"
         myVar.autocapitalizationType = .none
         myVar.backgroundColor = UIColor.lightGray
-        myVar.textAlignment = .center
         return myVar
     }()
     
     
     let passwordTextField : UITextField = {
         let myVar = UITextField()
-        myVar.placeholder = "password"
+        myVar.placeholder = "Password"
         myVar.autocapitalizationType = .none
         myVar.backgroundColor = UIColor.lightGray
-        myVar.textAlignment = .center
         myVar.isSecureTextEntry = true
         return myVar
     }()
@@ -76,6 +89,8 @@ class LoginView : UIView {
         self.addSubview(emailTextField)
         self.addSubview(passwordTextField)
         self.addSubview(signUpButton)
+        self.addSubview(autoLoginCheckBox)
+        self.addSubview(rememberMeLabel)
         
         self.setUpConstraints()
     }
@@ -99,10 +114,23 @@ class LoginView : UIView {
         }
         
         loginButton.snp.remakeConstraints { (make) -> Void in
-            make.leading.equalTo(passwordTextField.snp.leading)
-            make.trailing.equalTo(passwordTextField.snp.trailing)
+            make.width.equalTo(self.snp.width).multipliedBy(0.7)
+            make.centerX.equalTo(self.snp.centerX)
             make.top.equalTo(passwordTextField.snp.bottom).offset(10)
             make.height.equalTo(self.snp.height).multipliedBy(0.05)
+        }
+        
+        rememberMeLabel.snp.remakeConstraints { (make) -> Void in
+            make.leading.equalTo(loginButton.snp.leading)
+            make.trailing.equalTo(autoLoginCheckBox.snp.leading).offset(-5)
+            make.top.equalTo(loginButton.snp.bottom).offset(10)
+            make.height.equalTo(self.snp.height).multipliedBy(0.05)
+        }
+        
+        autoLoginCheckBox.snp.remakeConstraints { (make) -> Void  in
+            make.width.height.equalTo(loginButton.snp.height)
+            make.trailing.equalTo(loginButton.snp.trailing)
+            make.centerY.equalTo(rememberMeLabel.snp.centerY)
         }
         
         signUpButton.snp.remakeConstraints { (make) -> Void in
@@ -112,7 +140,6 @@ class LoginView : UIView {
             make.bottom.equalTo(self.snp.bottom).offset(-20)
         }
         
-       
     }
     
     //MARK: Actions
@@ -124,6 +151,14 @@ class LoginView : UIView {
     @objc private func login() {
         self.delegate?.loginButtonPressed()
     }
+}
 
-    
+extension M13Checkbox {
+    func isChecked() -> Bool {
+        if self.checkState == .checked {
+            return true
+        } else {
+            return false
+        }
+    }
 }

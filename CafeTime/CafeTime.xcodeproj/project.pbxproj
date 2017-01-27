@@ -12,6 +12,8 @@
 		315828CC1E39F17000EBD20E /* SignUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 315828CB1E39F17000EBD20E /* SignUpVC.swift */; };
 		315828CE1E39F17D00EBD20E /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 315828CD1E39F17D00EBD20E /* LoginVC.swift */; };
 		315828D41E3A3CE400EBD20E /* Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 315828D31E3A3CE400EBD20E /* Globals.swift */; };
+		315828DA1E3A80D700EBD20E /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 315828D91E3A80D700EBD20E /* AuthManager.swift */; };
+		315828E81E3B8CD300EBD20E /* GlobalSaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 315828E71E3B8CD300EBD20E /* GlobalSaver.swift */; };
 		31DD520A1E38D4B600DB9ABC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 31DD52091E38D4B600DB9ABC /* GoogleService-Info.plist */; };
 		31DD520C1E38D57900DB9ABC /* AuthenticatedUserVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31DD520B1E38D57900DB9ABC /* AuthenticatedUserVC.swift */; };
 		31DD52131E39028400DB9ABC /* AuthenticatedUserMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31DD52121E39028400DB9ABC /* AuthenticatedUserMainView.swift */; };
@@ -26,7 +28,9 @@
 		315828C91E39EE5F00EBD20E /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		315828CB1E39F17000EBD20E /* SignUpVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpVC.swift; sourceTree = "<group>"; };
 		315828CD1E39F17D00EBD20E /* LoginVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
-		315828D31E3A3CE400EBD20E /* Globals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Globals.swift; path = CafeTime/Globals.swift; sourceTree = "<group>"; };
+		315828D31E3A3CE400EBD20E /* Globals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Globals.swift; sourceTree = "<group>"; };
+		315828D91E3A80D700EBD20E /* AuthManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
+		315828E71E3B8CD300EBD20E /* GlobalSaver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalSaver.swift; sourceTree = "<group>"; };
 		31DD52091E38D4B600DB9ABC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		31DD520B1E38D57900DB9ABC /* AuthenticatedUserVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticatedUserVC.swift; sourceTree = "<group>"; };
 		31DD52121E39028400DB9ABC /* AuthenticatedUserMainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticatedUserMainView.swift; sourceTree = "<group>"; };
@@ -78,9 +82,20 @@
 			name = Login;
 			sourceTree = "<group>";
 		};
+		315828E91E3B91C200EBD20E /* Globals */ = {
+			isa = PBXGroup;
+			children = (
+				315828D91E3A80D700EBD20E /* AuthManager.swift */,
+				315828D31E3A3CE400EBD20E /* Globals.swift */,
+				315828E71E3B8CD300EBD20E /* GlobalSaver.swift */,
+			);
+			name = Globals;
+			sourceTree = "<group>";
+		};
 		31DD52081E38B05900DB9ABC /* SignUp VC */ = {
 			isa = PBXGroup;
 			children = (
+				315828E91E3B91C200EBD20E /* Globals */,
 				315828CF1E39F28E00EBD20E /* Sign Up */,
 				315828D01E39F29600EBD20E /* Login */,
 			);
@@ -99,7 +114,6 @@
 		31E58F481E37AD7F00CE4FE1 = {
 			isa = PBXGroup;
 			children = (
-				315828D31E3A3CE400EBD20E /* Globals.swift */,
 				31E58F531E37AD7F00CE4FE1 /* CafeTime */,
 				31E58F521E37AD7F00CE4FE1 /* Products */,
 				7275669F55AF6A70F394C50A /* Pods */,
@@ -275,6 +289,8 @@
 				31DD52131E39028400DB9ABC /* AuthenticatedUserMainView.swift in Sources */,
 				315828CA1E39EE5F00EBD20E /* LoginView.swift in Sources */,
 				315828D41E3A3CE400EBD20E /* Globals.swift in Sources */,
+				315828DA1E3A80D700EBD20E /* AuthManager.swift in Sources */,
+				315828E81E3B8CD300EBD20E /* GlobalSaver.swift in Sources */,
 				315828CE1E39F17D00EBD20E /* LoginVC.swift in Sources */,
 				315828C81E39EE5400EBD20E /* SignUpView.swift in Sources */,
 				31DD520C1E38D57900DB9ABC /* AuthenticatedUserVC.swift in Sources */,
@@ -392,6 +408,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 515D5B5F3D01EBF94D0AD4B7 /* Pods-CafeTime.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 5HYBF2ZF8V;
 				INFOPLIST_FILE = CafeTime/Info.plist;
@@ -406,6 +423,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 9966EFA39FE32F5A39F934B5 /* Pods-CafeTime.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 5HYBF2ZF8V;
 				INFOPLIST_FILE = CafeTime/Info.plist;

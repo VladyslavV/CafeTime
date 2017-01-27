@@ -30,43 +30,48 @@ class LoginVC: UIViewController, LoginViewDelegate {
         }
     }
     
+    
+    //MARK: Main View Delegate
+    
     func loginButtonPressed() {
         
-        guard let email = mainView.emailTextField.text, let password = mainView.passwordTextField.text else {
-            print("enter credentials")
+        let authManager = AuthManager.shared
+        
+        let email = mainView.emailTextField.text!
+        let password = mainView.passwordTextField.text!
+        
+        let errorString = authManager.checkEmail(email: email, andPassword: password)
+        
+        if errorString != "" {
+            self.presentAlert(message: errorString)
             return
         }
         
-        FIRAuth.auth()?.signIn(withEmail: email, password: password) { [weak self] (user, error) in
+        authManager.authenticateUser(email: email, password: password, rememberUser: mainView.autoLoginCheckBox.isChecked()) { [weak self] (error, success) in
             
             guard let weakSelf = self else { return }
             
-            if error == nil {
-                print("You have successfully logged in")
-    
-                // save credentials
-                let save = UserDefaults.standard
-                save.setValue(email, forKey: Globals.savedEmail)
-                save.setValue(password, forKey: Globals.savedPassword)
-                save.synchronize()
-                
-                self?.dismiss(animated: true, completion: nil)
+            if success {
+                weakSelf.dismiss(animated: true, completion: nil)
             }
+                
             else {
-                //Tells the user that there is an error and then gets firebase to tell them the error
-                let alertController = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: .alert)
-                
-                let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-                alertController.addAction(defaultAction)
-                
-                weakSelf.present(alertController, animated: true, completion: nil)
+                weakSelf.presentAlert(message: error)
             }
         }
+    }
+    
+    private func presentAlert(message: String) {
+        let alertController = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
+        let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+        alertController.addAction(defaultAction)
+        present(alertController, animated: true, completion: nil)
     }
     
     func signUpButtonPressed() {
         self.navigationController?.pushViewController(SignUpVC(), animated: true)
     }
+    
     
     deinit {
         print("object \( String(describing: (self))) dealloced")

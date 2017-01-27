@@ -14,6 +14,7 @@ class AuthenticatedUserVC: UIViewController, AuthenticatedUserMainViewDelegate {
     
     private let mainView = AuthenticatedUserMainView()
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setUp()
@@ -28,24 +29,10 @@ class AuthenticatedUserVC: UIViewController, AuthenticatedUserMainViewDelegate {
         }
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        // log out if not authenticated
-        print(FIRAuth.auth()?.currentUser?.uid ?? "");
-        if FIRAuth.auth()?.currentUser?.uid == nil {
-            self.logOut()
-        }
-    }
-    
     //MARK: Main View Delegate
     
     func logOut() {
-        if FIRAuth.auth()?.currentUser != nil {
-            do {
-                try FIRAuth.auth()?.signOut()
-            } catch let error as NSError {
-                print(error.localizedDescription)
-            }
-        }
+        AuthManager.shared.logOutUser()
         let nav = UINavigationController(rootViewController: LoginVC())
         self.present(nav, animated: true, completion: nil)
     }

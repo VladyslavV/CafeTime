@@ -9,7 +9,6 @@
 import Foundation
 
 struct Globals {
-    static var savedEmail = "email"
-    static var savedPassword = "password"
-
+    static let savedEmail = "email"
+    static let savedPassword = "password"
 }

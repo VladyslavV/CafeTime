@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import SwiftCop
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -17,12 +18,31 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         FIRApp.configure()
-
+        
         window = UIWindow(frame: UIScreen.main.bounds)
         if let window = window {
             window.rootViewController = AuthenticatedUserVC()
             window.backgroundColor = UIColor.white
             window.makeKeyAndVisible()
+        }
+        
+        let saver = GlobalSaver.shared
+        
+        if let email = saver.getUserCredentials().email, let password = saver.getUserCredentials().password  {
+            
+            FIRAuth.auth()?.signIn(withEmail: email, password: password, completion: { (user, error) in
+                
+                if error == nil {
+                    print("You have successfully logged in")
+                    return
+                }
+            })
+        }
+        else {
+            let nav = UINavigationController()
+            nav.pushViewController(LoginVC(), animated: true)
+            window?.rootViewController?.present(nav, animated: true, completion: nil)
+            
         }
         
         return true

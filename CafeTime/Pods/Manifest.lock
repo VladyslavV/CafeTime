@@ -36,12 +36,16 @@ PODS:
   - GTMSessionFetcher/Core (1.1.8)
   - M13Checkbox (3.1.3)
   - SnapKit (3.1.2)
+  - SwiftCop (1.0.0)
+  - SwiftKeychainWrapper (3.0.1)
 
 DEPENDENCIES:
   - Firebase/Auth
   - Firebase/Core
   - M13Checkbox
   - SnapKit
+  - SwiftCop
+  - SwiftKeychainWrapper
 
 SPEC CHECKSUMS:
   Firebase: 53b2343db1ebfa3eb16bdb4318b8bb65360b2220
@@ -55,7 +59,9 @@ SPEC CHECKSUMS:
   GTMSessionFetcher: 6f8d8b28b7e345549ac471071608170b31cb4977
   M13Checkbox: c132a7e0eb964731855eff67b883a0b21b7c0977
   SnapKit: 12b24f569cb7c143acc9c22b9d91b23e7b1c84a2
+  SwiftCop: 5ae17ee59ea702b662072495588ace8540571bef
+  SwiftKeychainWrapper: 38952a3636320ae61bad3513cadd870929de7a4a
 
-PODFILE CHECKSUM: b624d5fd485e67c88eb80dee9bdbaa22eeeeba60
+PODFILE CHECKSUM: b22cf61b55be9f0d58aa7fcb69343d64ff2de43e
 
 COCOAPODS: 1.1.1
