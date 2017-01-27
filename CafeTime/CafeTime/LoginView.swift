@@ -24,12 +24,12 @@ class LoginView : UIView {
     let signUpButton : UIButton = {
         let myVar = UIButton(type: .system)
         myVar.backgroundColor = UIColor.green
-        myVar.setTitle( NSLocalizedString("signUpButton", comment: ""), for: .normal)
+        myVar.setTitle( NSLocalizedString("loginvc.signup.button", comment: ""), for: .normal)
         myVar.addTarget(self, action: #selector(signUp), for: .touchUpInside)
         
         return myVar
     }()
-     
+    
     let autoLoginCheckBox : M13Checkbox = {
         let myVar = M13Checkbox()
         myVar.isUserInteractionEnabled = true
@@ -40,14 +40,14 @@ class LoginView : UIView {
     let rememberMeLabel : UILabel = {
         let myVar = UILabel()
         myVar.backgroundColor = UIColor.red
-        myVar.text = NSLocalizedString("rememberUserLabel", comment: "")
+        myVar.text = NSLocalizedString("loginvc.remember.user.label", comment: "")
         return myVar
     }()
     
     let loginButton : UIButton = {
         let myVar = UIButton(type: .system)
         myVar.backgroundColor = UIColor.green
-        myVar.setTitle(NSLocalizedString("loginButton", comment: ""), for: .normal)
+        myVar.setTitle(NSLocalizedString("loginvc.login.button", comment: ""), for: .normal)
         myVar.addTarget(self, action: #selector(login), for: .touchUpInside)
         
         return myVar
@@ -55,7 +55,7 @@ class LoginView : UIView {
     
     let emailTextField : UITextField = {
         let myVar = UITextField()
-        myVar.placeholder = NSLocalizedString("emailTextField", comment: "")
+        myVar.placeholder = NSLocalizedString("loginvc.email.textfield", comment: "")
         myVar.autocapitalizationType = .none
         myVar.textAlignment = .center
         myVar.backgroundColor = UIColor.lightGray
@@ -65,7 +65,7 @@ class LoginView : UIView {
     
     let passwordTextField : UITextField = {
         let myVar = UITextField()
-        myVar.placeholder = NSLocalizedString("passwordTextField", comment: "")
+        myVar.placeholder = NSLocalizedString("loginvc.password.textfield", comment: "")
         myVar.autocapitalizationType = .none
         myVar.textAlignment = .center
         myVar.backgroundColor = UIColor.lightGray

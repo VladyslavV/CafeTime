@@ -1,5 +1,5 @@
 //
-//  Extensions.swift
+//  UIView+Extension.swift
 //  CafeTime
 //
 //  Created by Vladysalv Vyshnevksyy on 1/27/17.
@@ -7,25 +7,13 @@
 //
 
 import UIKit
-import M13Checkbox
 
-extension UIView {
-    
+extension UIView {    
     func addSubviews(_ subviews:[UIView]){
         
         for subview in subviews{
             subview.translatesAutoresizingMaskIntoConstraints = false
             self.addSubview(subview)
-        }
-    }
-}
-
-extension M13Checkbox {
-    func isChecked() -> Bool {
-        if self.checkState == .checked {
-            return true
-        } else {
-            return false
         }
     }
 }

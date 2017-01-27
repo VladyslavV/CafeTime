@@ -1,17 +1,32 @@
 
 
-// login view
+// login vc
 
-"rememberUserLabel" = "Remember Me";
+"loginvc.remember.user.label" = "Remember Me";
 
-"signUpButton" = "Sign Up";
+"loginvc.signup.button" = "Sign Up";
 
-"passwordTextField" = "Password";
+"loginvc.password.textfield" = "Password";
 
-"emailTextField" = "Email";
+"loginvc.email.textfield" = "Email";
 
-"loginButton" = "Login";
+"loginvc.login.button" = "Login";
 
-"loginVCNavigationTitle" = "Login";
+"loginvc.navigation.title" = "Login";
 
-"signUpVCNavigationTitle" = "Sign Up";
+
+// signUp vc
+
+"signupvc.navigation.title" = "Sign Up";
+
+"signupvc.remembermy.label" = "Remember Me";
+
+"signupvc.email.textfield" = "Email";
+
+"signupvc.password.textfield" = "Password";
+
+"signupvc.signup.button" = "Sign Up";
+
+// authenticateduser vc
+
+"authenticateduservc.logout.button" = "Log Out";

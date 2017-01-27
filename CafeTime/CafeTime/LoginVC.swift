@@ -23,7 +23,7 @@ class LoginVC: UIViewController, LoginViewDelegate {
         self.view.addSubview(mainView)
         mainView.delegate = self
         
-        self.navigationController?.navigationBar.topItem?.title = NSLocalizedString("loginVCNavigationTitle", comment: "")
+        self.navigationController?.navigationBar.topItem?.title = NSLocalizedString("loginvc.navigation.title", comment: "")
 
         mainView.snp.makeConstraints { (make) -> Void in
             make.edges.equalTo(self.view)

@@ -29,7 +29,7 @@ class SignUpView: UIView {
     let rememberMeLabel : UILabel = {
         let myVar = UILabel()
         myVar.backgroundColor = UIColor.red
-        myVar.text = NSLocalizedString("rememberUserLabel", comment: "")
+        myVar.text = NSLocalizedString("signupvc.remembermy.label", comment: "")
         return myVar
     }()
     
@@ -42,14 +42,14 @@ class SignUpView: UIView {
     let signUpButton : UIButton = {
         let myVar = UIButton(type: .system)
         myVar.backgroundColor = UIColor.green
-        myVar.setTitle(NSLocalizedString("signUpButton", comment: ""), for: .normal)
+        myVar.setTitle(NSLocalizedString("signupvc.signup.button", comment: ""), for: .normal)
         myVar.addTarget(self, action: #selector(signUp), for: .touchUpInside)
         return myVar
     }()
     
     let emailTextField : UITextField = {
         let myVar = UITextField()
-        myVar.placeholder = NSLocalizedString("emailTextField", comment: "")
+        myVar.placeholder = NSLocalizedString("signupvc.email.textfield", comment: "")
         myVar.autocapitalizationType = .none
         myVar.backgroundColor = UIColor.lightGray
         myVar.textAlignment = .center
@@ -59,7 +59,7 @@ class SignUpView: UIView {
     
     let passwordTextField : UITextField = {
         let myVar = UITextField()
-        myVar.placeholder = NSLocalizedString("passwordTextField", comment: "")
+        myVar.placeholder = NSLocalizedString("signupvc.password.textfield", comment: "")
         myVar.autocapitalizationType = .none
         myVar.backgroundColor = UIColor.lightGray
         myVar.textAlignment = .center

@@ -24,7 +24,7 @@ class SignUpVC: UIViewController, SignUpViewDelegate {
         self.view.addSubview(mainView)
         mainView.delegate = self
         
-        self.navigationItem.title = NSLocalizedString("signUpVCNavigationTitle", comment: "")
+        self.navigationItem.title = NSLocalizedString("signupvc.navigation.title", comment: "")
                 
         mainView.snp.makeConstraints { (make) -> Void in
             make.left.right.bottom.equalTo(self.view)
