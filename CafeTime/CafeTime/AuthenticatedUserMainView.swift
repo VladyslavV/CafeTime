@@ -22,7 +22,7 @@ class AuthenticatedUserMainView: UIView {
         let myVar = UIButton(type: .system)
         myVar.addTarget(self, action: #selector(logOut), for: .touchUpInside)
         myVar.backgroundColor = UIColor.red
-        myVar.setTitle("LogOut", for: .normal)
+        myVar.setTitle((NSLocalizedString("authenticateduservc.logout.button", comment: "")), for: .normal)
 
         return myVar
     }()

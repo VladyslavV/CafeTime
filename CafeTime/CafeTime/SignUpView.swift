@@ -29,10 +29,10 @@ class SignUpView: UIView {
     let rememberMeLabel : UILabel = {
         let myVar = UILabel()
         myVar.backgroundColor = UIColor.red
-        myVar.text = "Remember me"
+        myVar.text = NSLocalizedString("signupvc.remembermy.label", comment: "")
         return myVar
     }()
-
+    
     let cafeLogo : UIImageView = {
         let myVar = UIImageView()
         myVar.image = UIImage(named: "cafe")
@@ -42,15 +42,14 @@ class SignUpView: UIView {
     let signUpButton : UIButton = {
         let myVar = UIButton(type: .system)
         myVar.backgroundColor = UIColor.green
-        myVar.setTitle("Sign Up", for: .normal)
+        myVar.setTitle(NSLocalizedString("signupvc.signup.button", comment: ""), for: .normal)
         myVar.addTarget(self, action: #selector(signUp), for: .touchUpInside)
-        
         return myVar
     }()
     
     let emailTextField : UITextField = {
         let myVar = UITextField()
-        myVar.placeholder = "Email"
+        myVar.placeholder = NSLocalizedString("signupvc.email.textfield", comment: "")
         myVar.autocapitalizationType = .none
         myVar.backgroundColor = UIColor.lightGray
         myVar.textAlignment = .center
@@ -60,7 +59,7 @@ class SignUpView: UIView {
     
     let passwordTextField : UITextField = {
         let myVar = UITextField()
-        myVar.placeholder = "Password"
+        myVar.placeholder = NSLocalizedString("signupvc.password.textfield", comment: "")
         myVar.autocapitalizationType = .none
         myVar.backgroundColor = UIColor.lightGray
         myVar.textAlignment = .center
@@ -82,22 +81,11 @@ class SignUpView: UIView {
     private func setUp() {
         self.backgroundColor = UIColor.white
         
-        self.addSubview(emailTextField)
-        self.addSubview(passwordTextField)
-        self.addSubview(signUpButton)
-        self.addSubview(autoLoginCheckBox)
-        self.addSubview(cafeLogo)
-        self.addSubview(rememberMeLabel)
+        self.addSubviews([emailTextField, passwordTextField, signUpButton, autoLoginCheckBox, cafeLogo, rememberMeLabel])
         
         self.setUpConstraints()
     }
     
-    //MARK: Actions
-    
-    @objc private func signUp() {
-        self.delegate?.signUpButtonPressed()
-    }
-        
     private func setUpConstraints() {
         
         cafeLogo.snp.remakeConstraints { (make) -> Void in
@@ -143,6 +131,15 @@ class SignUpView: UIView {
         }
     }
     
+    //MARK: Touches
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        passwordTextField.resignFirstResponder()
+        emailTextField.resignFirstResponder()
+    }
     
+    //MARK: Actions
     
+    @objc private func signUp() {
+        self.delegate?.signUpButtonPressed()
+    }
 }

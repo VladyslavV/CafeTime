@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		313911711E3BBC5500EDAD40 /* M13Checkbox+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313911701E3BBC5500EDAD40 /* M13Checkbox+Extensions.swift */; };
+		313911781E3BBF7A00EDAD40 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 313911761E3BBF1800EDAD40 /* Localizable.strings */; };
+		3139117A1E3BCC1600EDAD40 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313911791E3BCC1600EDAD40 /* UIView+Extension.swift */; };
 		315828C81E39EE5400EBD20E /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 315828C71E39EE5400EBD20E /* SignUpView.swift */; };
 		315828CA1E39EE5F00EBD20E /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 315828C91E39EE5F00EBD20E /* LoginView.swift */; };
 		315828CC1E39F17000EBD20E /* SignUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 315828CB1E39F17000EBD20E /* SignUpVC.swift */; };
@@ -19,11 +22,14 @@
 		31DD52131E39028400DB9ABC /* AuthenticatedUserMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31DD52121E39028400DB9ABC /* AuthenticatedUserMainView.swift */; };
 		31E58F551E37AD7F00CE4FE1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31E58F541E37AD7F00CE4FE1 /* AppDelegate.swift */; };
 		31E58F5C1E37AD7F00CE4FE1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 31E58F5B1E37AD7F00CE4FE1 /* Assets.xcassets */; };
-		31E58F5F1E37AD7F00CE4FE1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 31E58F5D1E37AD7F00CE4FE1 /* LaunchScreen.storyboard */; };
 		424645EE134AA51B61D0F3FA /* Pods_CafeTime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8671B14F3C79AA070C08630 /* Pods_CafeTime.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		313911701E3BBC5500EDAD40 /* M13Checkbox+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "M13Checkbox+Extensions.swift"; sourceTree = "<group>"; };
+		313911751E3BBF1800EDAD40 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
+		313911771E3BBF6000EDAD40 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		313911791E3BCC1600EDAD40 /* UIView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		315828C71E39EE5400EBD20E /* SignUpView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		315828C91E39EE5F00EBD20E /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		315828CB1E39F17000EBD20E /* SignUpVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpVC.swift; sourceTree = "<group>"; };
@@ -37,7 +43,6 @@
 		31E58F511E37AD7F00CE4FE1 /* CafeTime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CafeTime.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		31E58F541E37AD7F00CE4FE1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		31E58F5B1E37AD7F00CE4FE1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		31E58F5E1E37AD7F00CE4FE1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		31E58F601E37AD7F00CE4FE1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		515D5B5F3D01EBF94D0AD4B7 /* Pods-CafeTime.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CafeTime.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CafeTime/Pods-CafeTime.debug.xcconfig"; sourceTree = "<group>"; };
 		9966EFA39FE32F5A39F934B5 /* Pods-CafeTime.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CafeTime.release.xcconfig"; path = "Pods/Target Support Files/Pods-CafeTime/Pods-CafeTime.release.xcconfig"; sourceTree = "<group>"; };
@@ -86,8 +91,8 @@
 			isa = PBXGroup;
 			children = (
 				315828D91E3A80D700EBD20E /* AuthManager.swift */,
-				315828D31E3A3CE400EBD20E /* Globals.swift */,
 				315828E71E3B8CD300EBD20E /* GlobalSaver.swift */,
+				315828D31E3A3CE400EBD20E /* Globals.swift */,
 			);
 			name = Globals;
 			sourceTree = "<group>";
@@ -95,6 +100,8 @@
 		31DD52081E38B05900DB9ABC /* SignUp VC */ = {
 			isa = PBXGroup;
 			children = (
+				313911701E3BBC5500EDAD40 /* M13Checkbox+Extensions.swift */,
+				313911791E3BCC1600EDAD40 /* UIView+Extension.swift */,
 				315828E91E3B91C200EBD20E /* Globals */,
 				315828CF1E39F28E00EBD20E /* Sign Up */,
 				315828D01E39F29600EBD20E /* Login */,
@@ -144,7 +151,7 @@
 			children = (
 				31E58F541E37AD7F00CE4FE1 /* AppDelegate.swift */,
 				31E58F5B1E37AD7F00CE4FE1 /* Assets.xcassets */,
-				31E58F5D1E37AD7F00CE4FE1 /* LaunchScreen.storyboard */,
+				313911761E3BBF1800EDAD40 /* Localizable.strings */,
 				31E58F601E37AD7F00CE4FE1 /* Info.plist */,
 				31DD52091E38D4B600DB9ABC /* GoogleService-Info.plist */,
 			);
@@ -223,8 +230,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				31E58F5F1E37AD7F00CE4FE1 /* LaunchScreen.storyboard in Resources */,
 				31E58F5C1E37AD7F00CE4FE1 /* Assets.xcassets in Resources */,
+				313911781E3BBF7A00EDAD40 /* Localizable.strings in Resources */,
 				31DD520A1E38D4B600DB9ABC /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -290,9 +297,11 @@
 				315828CA1E39EE5F00EBD20E /* LoginView.swift in Sources */,
 				315828D41E3A3CE400EBD20E /* Globals.swift in Sources */,
 				315828DA1E3A80D700EBD20E /* AuthManager.swift in Sources */,
+				3139117A1E3BCC1600EDAD40 /* UIView+Extension.swift in Sources */,
 				315828E81E3B8CD300EBD20E /* GlobalSaver.swift in Sources */,
 				315828CE1E39F17D00EBD20E /* LoginVC.swift in Sources */,
 				315828C81E39EE5400EBD20E /* SignUpView.swift in Sources */,
+				313911711E3BBC5500EDAD40 /* M13Checkbox+Extensions.swift in Sources */,
 				31DD520C1E38D57900DB9ABC /* AuthenticatedUserVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -300,12 +309,13 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		31E58F5D1E37AD7F00CE4FE1 /* LaunchScreen.storyboard */ = {
+		313911761E3BBF1800EDAD40 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				31E58F5E1E37AD7F00CE4FE1 /* Base */,
+				313911751E3BBF1800EDAD40 /* Base */,
+				313911771E3BBF6000EDAD40 /* en */,
 			);
-			name = LaunchScreen.storyboard;
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

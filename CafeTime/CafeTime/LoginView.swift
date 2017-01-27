@@ -24,12 +24,12 @@ class LoginView : UIView {
     let signUpButton : UIButton = {
         let myVar = UIButton(type: .system)
         myVar.backgroundColor = UIColor.green
-        myVar.setTitle("Sign Up", for: .normal)
+        myVar.setTitle( NSLocalizedString("loginvc.signup.button", comment: ""), for: .normal)
         myVar.addTarget(self, action: #selector(signUp), for: .touchUpInside)
         
         return myVar
     }()
-     
+    
     let autoLoginCheckBox : M13Checkbox = {
         let myVar = M13Checkbox()
         myVar.isUserInteractionEnabled = true
@@ -40,14 +40,14 @@ class LoginView : UIView {
     let rememberMeLabel : UILabel = {
         let myVar = UILabel()
         myVar.backgroundColor = UIColor.red
-        myVar.text = "Remember me"
+        myVar.text = NSLocalizedString("loginvc.remember.user.label", comment: "")
         return myVar
     }()
     
     let loginButton : UIButton = {
         let myVar = UIButton(type: .system)
         myVar.backgroundColor = UIColor.green
-        myVar.setTitle("Login", for: .normal)
+        myVar.setTitle(NSLocalizedString("loginvc.login.button", comment: ""), for: .normal)
         myVar.addTarget(self, action: #selector(login), for: .touchUpInside)
         
         return myVar
@@ -55,8 +55,9 @@ class LoginView : UIView {
     
     let emailTextField : UITextField = {
         let myVar = UITextField()
-        myVar.placeholder = "Email"
+        myVar.placeholder = NSLocalizedString("loginvc.email.textfield", comment: "")
         myVar.autocapitalizationType = .none
+        myVar.textAlignment = .center
         myVar.backgroundColor = UIColor.lightGray
         return myVar
     }()
@@ -64,8 +65,9 @@ class LoginView : UIView {
     
     let passwordTextField : UITextField = {
         let myVar = UITextField()
-        myVar.placeholder = "Password"
+        myVar.placeholder = NSLocalizedString("loginvc.password.textfield", comment: "")
         myVar.autocapitalizationType = .none
+        myVar.textAlignment = .center
         myVar.backgroundColor = UIColor.lightGray
         myVar.isSecureTextEntry = true
         return myVar
@@ -85,12 +87,7 @@ class LoginView : UIView {
     private func setUp() {
         self.backgroundColor = UIColor.clear
         
-        self.addSubview(loginButton)
-        self.addSubview(emailTextField)
-        self.addSubview(passwordTextField)
-        self.addSubview(signUpButton)
-        self.addSubview(autoLoginCheckBox)
-        self.addSubview(rememberMeLabel)
+        self.addSubviews([loginButton, emailTextField, passwordTextField, signUpButton, autoLoginCheckBox, rememberMeLabel])
         
         self.setUpConstraints()
     }
@@ -142,7 +139,13 @@ class LoginView : UIView {
         
     }
     
-    //MARK: Actions
+    //MARK: Touches
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        passwordTextField.resignFirstResponder()
+        emailTextField.resignFirstResponder()
+    }
+    
+    //MARK: Delegate Actions
     
     @objc private func signUp() {
         self.delegate?.signUpButtonPressed()
@@ -153,12 +156,3 @@ class LoginView : UIView {
     }
 }
 
-extension M13Checkbox {
-    func isChecked() -> Bool {
-        if self.checkState == .checked {
-            return true
-        } else {
-            return false
-        }
-    }
-}

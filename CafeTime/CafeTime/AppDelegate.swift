@@ -30,14 +30,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         if let email = saver.getUserCredentials().email, let password = saver.getUserCredentials().password  {
             
-            FIRAuth.auth()?.signIn(withEmail: email, password: password, completion: { (user, error) in
+            AuthManager.shared.authenticateUser(email: email, password: password, rememberUser: true, completion: { (error, success) in
                 
-                if error == nil {
-                    print("You have successfully logged in")
+                if success {
                     return
                 }
+                
             })
         }
+            
         else {
             let nav = UINavigationController()
             nav.pushViewController(LoginVC(), animated: true)
