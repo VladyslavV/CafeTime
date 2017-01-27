@@ -32,7 +32,7 @@ class SignUpView: UIView {
         myVar.text = "Remember me"
         return myVar
     }()
-
+    
     let cafeLogo : UIImageView = {
         let myVar = UIImageView()
         myVar.image = UIImage(named: "cafe")
@@ -82,22 +82,11 @@ class SignUpView: UIView {
     private func setUp() {
         self.backgroundColor = UIColor.white
         
-        self.addSubview(emailTextField)
-        self.addSubview(passwordTextField)
-        self.addSubview(signUpButton)
-        self.addSubview(autoLoginCheckBox)
-        self.addSubview(cafeLogo)
-        self.addSubview(rememberMeLabel)
+        self.addSubviews([emailTextField, passwordTextField, signUpButton, autoLoginCheckBox, cafeLogo, rememberMeLabel])
         
         self.setUpConstraints()
     }
     
-    //MARK: Actions
-    
-    @objc private func signUp() {
-        self.delegate?.signUpButtonPressed()
-    }
-        
     private func setUpConstraints() {
         
         cafeLogo.snp.remakeConstraints { (make) -> Void in
@@ -143,6 +132,15 @@ class SignUpView: UIView {
         }
     }
     
+    //MARK: Touches
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        passwordTextField.resignFirstResponder()
+        emailTextField.resignFirstResponder()
+    }
     
+    //MARK: Actions
     
+    @objc private func signUp() {
+        self.delegate?.signUpButtonPressed()
+    }
 }

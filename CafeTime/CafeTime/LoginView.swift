@@ -85,12 +85,7 @@ class LoginView : UIView {
     private func setUp() {
         self.backgroundColor = UIColor.clear
         
-        self.addSubview(loginButton)
-        self.addSubview(emailTextField)
-        self.addSubview(passwordTextField)
-        self.addSubview(signUpButton)
-        self.addSubview(autoLoginCheckBox)
-        self.addSubview(rememberMeLabel)
+        self.addSubviews([loginButton, emailTextField, passwordTextField, signUpButton, autoLoginCheckBox, rememberMeLabel])
         
         self.setUpConstraints()
     }
@@ -142,7 +137,13 @@ class LoginView : UIView {
         
     }
     
-    //MARK: Actions
+    //MARK: Touches
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        passwordTextField.resignFirstResponder()
+        emailTextField.resignFirstResponder()
+    }
+    
+    //MARK: Delegate Actions
     
     @objc private func signUp() {
         self.delegate?.signUpButtonPressed()
@@ -153,12 +154,3 @@ class LoginView : UIView {
     }
 }
 
-extension M13Checkbox {
-    func isChecked() -> Bool {
-        if self.checkState == .checked {
-            return true
-        } else {
-            return false
-        }
-    }
-}

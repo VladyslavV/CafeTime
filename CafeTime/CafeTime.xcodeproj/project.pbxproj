@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		313911711E3BBC5500EDAD40 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313911701E3BBC5500EDAD40 /* Extensions.swift */; };
 		315828C81E39EE5400EBD20E /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 315828C71E39EE5400EBD20E /* SignUpView.swift */; };
 		315828CA1E39EE5F00EBD20E /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 315828C91E39EE5F00EBD20E /* LoginView.swift */; };
 		315828CC1E39F17000EBD20E /* SignUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 315828CB1E39F17000EBD20E /* SignUpVC.swift */; };
@@ -24,6 +25,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		313911701E3BBC5500EDAD40 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		315828C71E39EE5400EBD20E /* SignUpView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		315828C91E39EE5F00EBD20E /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		315828CB1E39F17000EBD20E /* SignUpVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpVC.swift; sourceTree = "<group>"; };
@@ -86,8 +88,8 @@
 			isa = PBXGroup;
 			children = (
 				315828D91E3A80D700EBD20E /* AuthManager.swift */,
-				315828D31E3A3CE400EBD20E /* Globals.swift */,
 				315828E71E3B8CD300EBD20E /* GlobalSaver.swift */,
+				315828D31E3A3CE400EBD20E /* Globals.swift */,
 			);
 			name = Globals;
 			sourceTree = "<group>";
@@ -95,6 +97,7 @@
 		31DD52081E38B05900DB9ABC /* SignUp VC */ = {
 			isa = PBXGroup;
 			children = (
+				313911701E3BBC5500EDAD40 /* Extensions.swift */,
 				315828E91E3B91C200EBD20E /* Globals */,
 				315828CF1E39F28E00EBD20E /* Sign Up */,
 				315828D01E39F29600EBD20E /* Login */,
@@ -293,6 +296,7 @@
 				315828E81E3B8CD300EBD20E /* GlobalSaver.swift in Sources */,
 				315828CE1E39F17D00EBD20E /* LoginVC.swift in Sources */,
 				315828C81E39EE5400EBD20E /* SignUpView.swift in Sources */,
+				313911711E3BBC5500EDAD40 /* Extensions.swift in Sources */,
 				31DD520C1E38D57900DB9ABC /* AuthenticatedUserVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
