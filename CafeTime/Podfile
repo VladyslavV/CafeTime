@@ -8,5 +8,8 @@ target 'CafeTime' do
   pod 'Firebase/Core'
   pod 'Firebase/Auth'
   pod 'SnapKit'
-
+  pod 'M13Checkbox'
+  pod 'SwiftCop'
+  pod 'SwiftKeychainWrapper'
+  
 end
