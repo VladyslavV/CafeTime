@@ -10,42 +10,30 @@ import UIKit
 import SnapKit
 import FirebaseAuth
 
-class AuthenticatedUserVC: UIViewController {
-
-    private lazy var logOutButton : UIBarButtonItem = {
-        let myVar = UIBarButtonItem(title: "Log Out", style: .plain, target: self, action:  #selector(logOut))
-        return myVar
-    }()
+class AuthenticatedUserVC: UIViewController, AuthenticatedUserMainViewDelegate {
     
     private let mainView = AuthenticatedUserMainView()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setUp()
-        self.navigationItem.rightBarButtonItem = self.logOutButton
+        
     }
-
+    
     private func setUp() {
         self.view.addSubview(mainView)
+        mainView.delegate = self
         mainView.snp.remakeConstraints { (make) -> Void in
             make.edges.equalTo(self.view)
         }
     }
     
-    @objc private func logOut() {
-        if FIRAuth.auth()?.currentUser != nil {
-            do {
-                try FIRAuth.auth()?.signOut()
-                self.dismiss(animated: true, completion: nil)
-               // present(LoginAndSignUpVC(), animated: true, completion: nil)
-                
-            } catch let error as NSError {
-                print(error.localizedDescription)
-            }
-        }
-    }
+    //MARK: Main View Delegate
     
-    deinit {
-        print("Auth VC Deallocced")
+    func logOut() {
+        AuthManager.shared.logOutUser()
+        let nav = UINavigationController(rootViewController: LoginVC())
+        self.present(nav, animated: true, completion: nil)
     }
 }

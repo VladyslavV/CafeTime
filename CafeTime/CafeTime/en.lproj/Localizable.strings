@@ -1,0 +1,32 @@
+
+
+// login vc
+
+"loginvc.remember.user.label" = "Remember Me";
+
+"loginvc.signup.button" = "Sign Up";
+
+"loginvc.password.textfield" = "Password";
+
+"loginvc.email.textfield" = "Email";
+
+"loginvc.login.button" = "Login";
+
+"loginvc.navigation.title" = "Login";
+
+
+// signUp vc
+
+"signupvc.navigation.title" = "Sign Up";
+
+"signupvc.remembermy.label" = "Remember Me";
+
+"signupvc.email.textfield" = "Email";
+
+"signupvc.password.textfield" = "Password";
+
+"signupvc.signup.button" = "Sign Up";
+
+// authenticateduser vc
+
+"authenticateduservc.logout.button" = "Log Out";
