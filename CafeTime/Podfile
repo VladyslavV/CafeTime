@@ -7,9 +7,14 @@ target 'CafeTime' do
   
   pod 'Firebase/Core'
   pod 'Firebase/Auth'
+  pod 'Firebase/Database'
+  pod 'Firebase/Storage'
   pod 'SnapKit'
   pod 'M13Checkbox'
   pod 'SwiftCop'
   pod 'SwiftKeychainWrapper'
-  
+  pod 'SDWebImage'
+  pod 'PKHUD'
+  pod 'Jelly'
+
 end

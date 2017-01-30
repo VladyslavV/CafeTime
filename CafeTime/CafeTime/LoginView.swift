@@ -30,6 +30,16 @@ class LoginView : UIView {
         return myVar
     }()
     
+    let cafeLogo : UIImageView = {
+        let myVar = UIImageView()
+        myVar.contentMode = .scaleAspectFit
+        myVar.layer.borderColor = UIColor.black.cgColor
+        myVar.layer.borderWidth = 2.0
+        myVar.layer.cornerRadius = 15
+        myVar.image = UIImage(named: "cafe")
+        return myVar
+    }()
+    
     let autoLoginCheckBox : M13Checkbox = {
         let myVar = M13Checkbox()
         myVar.isUserInteractionEnabled = true
@@ -87,21 +97,25 @@ class LoginView : UIView {
     private func setUp() {
         self.backgroundColor = UIColor.clear
         
-        self.addSubviews([loginButton, emailTextField, passwordTextField, signUpButton, autoLoginCheckBox, rememberMeLabel])
+        self.addSubviews([cafeLogo ,loginButton, emailTextField, passwordTextField, signUpButton, autoLoginCheckBox, rememberMeLabel])
         
         self.setUpConstraints()
     }
     
     private func setUpConstraints() {
         
-        let screenHeight = UIScreen.main.bounds.size.height
-        
-        emailTextField.snp.remakeConstraints { (make) -> Void in
+        cafeLogo.snp.remakeConstraints { (make) -> Void in
             make.width.equalTo(self.snp.width).multipliedBy(0.7)
             make.centerX.equalTo(self.snp.centerX)
-            make.centerY.equalTo(self.snp.centerY).offset(-screenHeight * 0.15)
-            make.height.equalTo(self.snp.height).multipliedBy(0.05)
+            make.height.equalTo(self.snp.height).multipliedBy(0.2)
+            make.top.equalTo(self.snp.top).offset(10)
         }
+        
+        emailTextField.snp.remakeConstraints { (make) -> Void in
+            make.top.equalTo(cafeLogo.snp.bottom).offset(25)
+            make.width.equalTo(self.snp.width).multipliedBy(0.7)
+            make.centerX.equalTo(self.snp.centerX)
+            make.height.equalTo(self.snp.height).multipliedBy(0.05)        }
         
         passwordTextField.snp.remakeConstraints { (make) -> Void in
             make.width.equalTo(self.snp.width).multipliedBy(0.7)

@@ -9,9 +9,41 @@
 import Foundation
 import Firebase
 import SwiftCop
+import FirebaseDatabase
+import FirebaseStorage
+
 
 class AuthManager {
-    static let shared = AuthManager()
+    
+    // MARK: Private
+    
+    static let shared : AuthManager =  {
+        let instance = AuthManager()
+        return instance
+    }()
+    
+    
+    private let storageRef = FIRStorage.storage().reference()
+    
+    private lazy var dataBaseRef : FIRDatabaseReference = {
+        let ref = FIRDatabase.database().reference(fromURL: "https://cafetime-6651e.firebaseio.com/")
+        return ref
+    }()
+    
+    private lazy var usersRef : FIRDatabaseReference = {
+        let ref = self.dataBaseRef.child("Customers")
+        return ref
+    }()
+    
+    private lazy var cafesRef : FIRDatabaseReference = {
+        let ref = self.dataBaseRef.child("Cafes")
+        return ref
+    }()
+    
+    private let currentUser = FIRAuth.auth()?.currentUser
+    
+    
+    // MARK: Public
     
     func authenticateUser(email: String, password: String, rememberUser: Bool, completion: @escaping (_ error: String, _ success: Bool) -> Void) {
         
@@ -25,85 +57,104 @@ class AuthManager {
             print("You have successfully logged in")
             
             if rememberUser {
-                GlobalSaver.shared.saveUser(email: email, password: password)
+                GlobalSaver.shared.saveLocalUserCredentials(email: email, password: password)
             }
             
             completion("", true)
         }
     }
-
-    func createUser(email: String, password: String, rememberUser: Bool, completion: @escaping (_ error: String, _ success: Bool) -> Void)  {
+    
+    func createUser(email: String, name: String, numberOfTables: String, country: String, foodType: String, password: String, rememberUser: Bool, completion: @escaping (_ error: String, _ success: Bool) -> Void)  {
         
-        FIRAuth.auth()?.createUser(withEmail: email, password: password, completion: { (user, error) in
+        FIRAuth.auth()?.createUser(withEmail: email, password: password, completion: { [weak self] (user, error) in
+            
+            guard let weakSelf = self else { return }
             
             if error != nil {
                 completion((error?.localizedDescription)!, false)
                 return
             }
-            
             print("You have successfully signed up")
             
             if rememberUser {
-                GlobalSaver.shared.saveUser(email: email, password: password)
+                GlobalSaver.shared.saveLocalUserCredentials(email: email, password: password)
             }
             
-            completion("", true)
+            weakSelf.saveUserToFirebase(user: user, email: email, name: name, country: country, foodType: foodType, numberOfTables: numberOfTables, completion: { success in
+                if success {
+                    completion("", true)
+                }
+                else {
+                    completion("Could not saved user to the Database", false)
+                }
+            })
         })
     }
     
+    // MARK: Save the user to the server database
     
+    private func saveUserToFirebase(user: FIRUser?, email: String, name:String, country:String, foodType: String, numberOfTables: String, completion: @escaping (Bool) -> Void) {
+        
+        guard let uid = user?.uid else { return }
+        
+        //case cafe
+        if Int(numberOfTables)! > 0 {
+            let userReference = dataBaseRef.child("Cafes").child(uid)
+            let values = ["name" : name, "country" :country, "email" : email, "numberOfTables" : numberOfTables, "foof type" : foodType]
+            userReference.updateChildValues(values) { (err, ref) in
+                
+                if err != nil {
+                    print(err!)
+                    completion(false)
+                    return
+                }
+                
+                completion(true)
+                print("Successflully saved cafe to the Firebase db")
+            }
+        }
+        else {
+            let userReference = dataBaseRef.child("Customers").child(uid)
+            let values = ["name" : name, "country" :country, "email" : email]
+            userReference.updateChildValues(values) { (err, ref) in
+                
+                if err != nil {
+                    print(err!)
+                    completion(false)
+                    return
+                }
+                
+                completion(true)
+                print("Successflully saved customer to the Firebase db")
+            }
+        }
+    }
+    
+    
+    // MARK: User Actions & States
     func logOutUser() {
         if FIRAuth.auth()?.currentUser != nil {
             do {
                 try FIRAuth.auth()?.signOut()
+                GlobalSaver.shared.clearUser()
             } catch let error as NSError {
                 print(error.localizedDescription)
             }
         }
-        GlobalSaver.shared.clearUser()
     }
     
- 
-    func checkEmail(email : String, andPassword password: String) -> String {
-        
-        let emailTrial = Trial.email
-        let validEmail = emailTrial.trial()
-        
-        let lengthTrial = Trial.length(.minimum, 6)
-        let longEnough = lengthTrial.trial()
-        
-        let inclusionTrial = Trial.inclusion([email])
-        let passwordMatchesEmail = inclusionTrial.trial()
-        
-        if email == "" {
-            return "Email cannot be empty\n"
-        }
-        
-        if !validEmail(email) {
-            return  "Invalid email\n"
-        }
-        
-        if password == "" {
-            return "Password field cannot be empty\n"
-        }
-        
-        if !longEnough(password)  {
-            return "Password should be at least 6 characters long\n"
-        }
-        
-        if passwordMatchesEmail(password) {
-            return "Password should not match email\n"
-        }
-        return ""
-    }
-   
-    //    func logOutIfNeeded() {
-    //        // log out if not authenticated
-    //        print(FIRAuth.auth()?.currentUser?.uid ?? "");
-    //        if FIRAuth.auth()?.currentUser?.uid == nil {
-    //            self.logOutUser()
-    //        }
-    //    }
     
+    // MARK: Fetch Users
+    
+    func fetchSelf(completion: @escaping (User) -> Void) {
+        let thisUserRef = usersRef.child((currentUser?.uid)!)
+        thisUserRef.observeSingleEvent(of: .value, with: { (snapshot) in
+            guard let user = User(snapshot: snapshot) else {
+                print("Could not fetch user")
+                return
+            }
+            completion(user)
+        })
+    }
     
 }

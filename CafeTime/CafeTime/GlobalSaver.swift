@@ -13,20 +13,19 @@ class GlobalSaver {
     
     static let shared = GlobalSaver()
     
-    func saveUser(email: String, password: String) {
-        KeychainWrapper.standard.set(email, forKey: Globals.savedEmail)
-        KeychainWrapper.standard.set(password, forKey: Globals.savedPassword)
+    func saveLocalUserCredentials(email: String, password: String) {
+        KeychainWrapper.standard.set(email, forKey: GlobalStrings.savedEmail)
+        KeychainWrapper.standard.set(password, forKey: GlobalStrings.savedPassword)
     }
     
-    func getUserCredentials() -> (email : String?, password: String?) {
-        let email = KeychainWrapper.standard.string(forKey: Globals.savedEmail)
-        let password = KeychainWrapper.standard.string(forKey: Globals.savedPassword)
+    func getLocalUserCredentials() -> (email : String?, password: String?) {
+        let email = KeychainWrapper.standard.string(forKey: GlobalStrings.savedEmail)
+        let password = KeychainWrapper.standard.string(forKey: GlobalStrings.savedPassword)
         return (email, password)
     }
     
     func clearUser() {
-        KeychainWrapper.standard.removeObject(forKey: Globals.savedEmail)
-        KeychainWrapper.standard.removeObject(forKey: Globals.savedPassword)
+        KeychainWrapper.standard.removeObject(forKey: GlobalStrings.savedEmail)
+        KeychainWrapper.standard.removeObject(forKey: GlobalStrings.savedPassword)
     }
-    
 }

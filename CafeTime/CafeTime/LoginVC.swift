@@ -26,7 +26,8 @@ class LoginVC: UIViewController, LoginViewDelegate {
         self.navigationController?.navigationBar.topItem?.title = NSLocalizedString("loginvc.navigation.title", comment: "")
 
         mainView.snp.makeConstraints { (make) -> Void in
-            make.edges.equalTo(self.view)
+            make.left.right.bottom.equalTo(self.view)
+            make.top.equalTo(self.topLayoutGuide.snp.bottom)
         }
     }
     
@@ -34,19 +35,19 @@ class LoginVC: UIViewController, LoginViewDelegate {
     
     func loginButtonPressed() {
         
-        let authManager = AuthManager.shared
-        
         let email = mainView.emailTextField.text!
         let password = mainView.passwordTextField.text!
         
-        let errorString = authManager.checkEmail(email: email, andPassword: password)
+        let stringsChecker = StringsChecker.shared
+        
+        let errorString = stringsChecker.checkLoginDetails(email: email, password: password)
         
         if errorString != "" {
             self.presentAlert(message: errorString)
             return
         }
         
-        authManager.authenticateUser(email: email, password: password, rememberUser: mainView.autoLoginCheckBox.isChecked()) { [weak self] (error, success) in
+        AuthManager.shared.authenticateUser(email: email, password: password, rememberUser: mainView.autoLoginCheckBox.isChecked()) { [weak self] (error, success) in
             
             guard let weakSelf = self else { return }
             

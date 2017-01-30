@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Globals {
+struct GlobalStrings {
     static let savedEmail = "email"
     static let savedPassword = "password"
 }

@@ -14,12 +14,27 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Jelly.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>M13Checkbox.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>PKHUD.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-CafeTime.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>SDWebImage.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -52,27 +67,42 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>3C95C0C6411A3CC52DE202715C556AF2</key>
+		<key>3B7ADD10A28E3CB096E996D893DC929A</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>69442DFF5D4E87AA58B3630F292DBDD2</key>
+		<key>5CC0247F3B913D367834B2AA617EE768</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>8D10A19FADB1763959C8C9B642323DBD</key>
+		<key>7A26B3EE5218EDA002AB31E41ECBBB9E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B017353A05951A92A88A7F8E98CC9B8D</key>
+		<key>80E9FB8A5CA5F9BAEBA9E764030AFCAD</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>B2407EA3F9525E149CC1BE056CEB6DD4</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>C052BEBFBD0AB5218CC64BA3450F6547</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>CB3F286D26C8B91B032CFF2FBB9D40EC</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D7A75F149082140741FC1E0B5B2863C8</key>
 		<dict>
 			<key>primary</key>
 			<true/>
