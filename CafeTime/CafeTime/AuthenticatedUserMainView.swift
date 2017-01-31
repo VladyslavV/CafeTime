@@ -25,14 +25,13 @@ class AuthenticatedUserMainView: UIView {
         myVar.addTarget(self, action: #selector(logOut), for: .touchUpInside)
         myVar.backgroundColor = UIColor.red
         myVar.setTitle((NSLocalizedString("authenticateduservc.logout.button", comment: "")), for: .normal)
-        
         return myVar
     }()
     
     let userProfileInfoView: UserProfileInfoView = {
-       let myVar = UserProfileInfoView()
+        let myVar = UserProfileInfoView()
         myVar.backgroundColor = UIColor.purple
-       return myVar
+        return myVar
     }()
     
     
@@ -69,8 +68,8 @@ class AuthenticatedUserMainView: UIView {
             make.centerX.equalTo(self.snp.centerX)
             make.bottom.equalTo(self.snp.bottom).offset(-150)
         }
-        
     }
+    
     
     @objc private func logOut() {
         self.delegate?.logOutButtonPressed()

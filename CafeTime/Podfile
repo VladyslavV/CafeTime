@@ -12,9 +12,11 @@ target 'CafeTime' do
   pod 'SnapKit'
   pod 'M13Checkbox'
   pod 'SwiftCop'
-  pod 'SwiftKeychainWrapper'
+  pod 'RealmSwift'
   pod 'SDWebImage'
   pod 'PKHUD'
   pod 'Jelly'
+  pod 'RxRealm'
+
 
 end

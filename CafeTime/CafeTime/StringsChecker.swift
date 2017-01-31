@@ -20,32 +20,30 @@ class StringsChecker {
         
         var errorString = self.checkEmptyStrings(strings: [email, password])
         
-        if errorString != "" { return errorString }
+        if !errorString.isEmpty { return errorString }
         
         errorString = self.checkBasicCredentials(email: email, password: password)
         
-        if errorString != "" { return errorString }
+        if !errorString.isEmpty { return errorString }
         
         return ""
     }
     
-    // sign up details
- 
-    
+    // sign up details    
     func checkCommonDetails(email: String, name: String, password: String) -> String {
         
         var errorString = self.checkEmptyStrings(strings: [email, password, name])
         
-        if errorString != "" { return errorString }
+        if !errorString.isEmpty { return errorString }
         
         errorString  = self.checkBasicCredentials(email: email, password: password)
         
-        if errorString != "" { return errorString }
+        if !errorString.isEmpty { return errorString }
         
         errorString = self.checkUserName(name: name)
         
-        if errorString != "" { return errorString }
-
+        if !errorString.isEmpty { return errorString }
+        
         return ""
     }
     
@@ -53,7 +51,7 @@ class StringsChecker {
         
         let errorString = self.checkNumberOfTables(number: numberOfTables)
         
-        if errorString != "" { return errorString }
+        if !errorString.isEmpty { return errorString }
         
         return ""
     }
@@ -67,11 +65,11 @@ class StringsChecker {
         
         errorString = self.checkEmail(email: email)
         
-        if errorString != "" { return errorString }
+        if !errorString.isEmpty { return errorString }
         
         errorString = self.checkPassword(email: email, password: password)
         
-        if errorString != "" { return errorString }
+        if !errorString.isEmpty { return errorString }
         
         return ""
     }
@@ -101,7 +99,7 @@ class StringsChecker {
     
     private func checkEmptyStrings(strings: [String]) -> String {
         for string in strings {
-            if string == "" {
+            if string.isEmpty {
                 return "Required fields cannot be empty"
             }
         }

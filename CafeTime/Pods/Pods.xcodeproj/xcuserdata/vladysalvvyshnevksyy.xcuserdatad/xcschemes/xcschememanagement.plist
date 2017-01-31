@@ -34,6 +34,26 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Realm.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>RealmSwift.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>RxRealm.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>RxSwift.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>SDWebImage.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -45,11 +65,6 @@
 			<false/>
 		</dict>
 		<key>SwiftCop.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>SwiftKeychainWrapper.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -67,27 +82,37 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>3B7ADD10A28E3CB096E996D893DC929A</key>
+		<key>44147F3ACAEEB438758F3EC8E9153736</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>5CC0247F3B913D367834B2AA617EE768</key>
+		<key>4F7E624F8F58F83AE65DCF667CE48F60</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>7A26B3EE5218EDA002AB31E41ECBBB9E</key>
+		<key>55FB33FEF97C61412E01886F7F339C70</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>80E9FB8A5CA5F9BAEBA9E764030AFCAD</key>
+		<key>8280E10FC975627525D668798F0B3366</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B2407EA3F9525E149CC1BE056CEB6DD4</key>
+		<key>83FD6D9963C4F02BDB152043AE696B30</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>9F1DF915EBF233D8405EF8E84EBD118D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>B56E963596D7B923F47B6855994764F4</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -103,6 +128,11 @@
 			<true/>
 		</dict>
 		<key>D7A75F149082140741FC1E0B5B2863C8</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E576D3E9E8E8971C1E73DB777B25B97C</key>
 		<dict>
 			<key>primary</key>
 			<true/>

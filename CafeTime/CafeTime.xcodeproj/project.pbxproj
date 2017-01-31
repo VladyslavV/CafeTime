@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		310B75371E4088C9008ADF62 /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310B75361E4088C9008ADF62 /* RealmManager.swift */; };
+		310B753A1E4088E6008ADF62 /* UserRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310B75391E4088E6008ADF62 /* UserRealm.swift */; };
+		310B753C1E40B5B5008ADF62 /* CurrentUserCredentialsRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310B753B1E40B5B5008ADF62 /* CurrentUserCredentialsRealm.swift */; };
+		310B753E1E40BD2B008ADF62 /* AuthenticatedUserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310B753D1E40BD2B008ADF62 /* AuthenticatedUserViewModel.swift */; };
 		313911711E3BBC5500EDAD40 /* M13Checkbox+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313911701E3BBC5500EDAD40 /* M13Checkbox+Extensions.swift */; };
 		313911781E3BBF7A00EDAD40 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 313911761E3BBF1800EDAD40 /* Localizable.strings */; };
 		3139117A1E3BCC1600EDAD40 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313911791E3BCC1600EDAD40 /* UIView+Extension.swift */; };
@@ -35,6 +39,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		310B75361E4088C9008ADF62 /* RealmManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
+		310B75391E4088E6008ADF62 /* UserRealm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserRealm.swift; sourceTree = "<group>"; };
+		310B753B1E40B5B5008ADF62 /* CurrentUserCredentialsRealm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentUserCredentialsRealm.swift; sourceTree = "<group>"; };
+		310B753D1E40BD2B008ADF62 /* AuthenticatedUserViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticatedUserViewModel.swift; sourceTree = "<group>"; };
 		313911701E3BBC5500EDAD40 /* M13Checkbox+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "M13Checkbox+Extensions.swift"; sourceTree = "<group>"; };
 		313911751E3BBF1800EDAD40 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		313911771E3BBF6000EDAD40 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -87,6 +95,33 @@
 				B8671B14F3C79AA070C08630 /* Pods_CafeTime.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		310B75381E4088CD008ADF62 /* Realm */ = {
+			isa = PBXGroup;
+			children = (
+				310B75361E4088C9008ADF62 /* RealmManager.swift */,
+				310B75391E4088E6008ADF62 /* UserRealm.swift */,
+				310B753B1E40B5B5008ADF62 /* CurrentUserCredentialsRealm.swift */,
+			);
+			name = Realm;
+			sourceTree = "<group>";
+		};
+		310B753F1E40BD63008ADF62 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				310B753D1E40BD2B008ADF62 /* AuthenticatedUserViewModel.swift */,
+			);
+			name = ViewModel;
+			sourceTree = "<group>";
+		};
+		310B75401E40BD6B008ADF62 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				31DD52121E39028400DB9ABC /* AuthenticatedUserMainView.swift */,
+				319DB38C1E3FAC280036640D /* UserProfileInfoView.swift */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 		3139117F1E3E186700EDAD40 /* Helper Classes */ = {
@@ -197,8 +232,8 @@
 			isa = PBXGroup;
 			children = (
 				31DD520B1E38D57900DB9ABC /* AuthenticatedUserVC.swift */,
-				31DD52121E39028400DB9ABC /* AuthenticatedUserMainView.swift */,
-				319DB38C1E3FAC280036640D /* UserProfileInfoView.swift */,
+				310B753F1E40BD63008ADF62 /* ViewModel */,
+				310B75401E40BD6B008ADF62 /* Views */,
 			);
 			name = "Authenticated User";
 			sourceTree = "<group>";
@@ -226,8 +261,9 @@
 			children = (
 				3139117F1E3E186700EDAD40 /* Helper Classes */,
 				313911971E3F927100EDAD40 /* VCs */,
-				313911951E3F919200EDAD40 /* Model */,
 				313911961E3F922600EDAD40 /* Network */,
+				313911951E3F919200EDAD40 /* Model */,
+				310B75381E4088CD008ADF62 /* Realm */,
 				31E58F661E37ADE200CE4FE1 /* Supporting Files */,
 			);
 			path = CafeTime;
@@ -386,12 +422,16 @@
 				313911881E3E190600EDAD40 /* UITraitCollection+MKAdditions.m in Sources */,
 				31DD52131E39028400DB9ABC /* AuthenticatedUserMainView.swift in Sources */,
 				315828CA1E39EE5F00EBD20E /* LoginView.swift in Sources */,
+				310B753E1E40BD2B008ADF62 /* AuthenticatedUserViewModel.swift in Sources */,
 				313911941E3F918F00EDAD40 /* User.swift in Sources */,
 				315828D41E3A3CE400EBD20E /* GlobalStrings.swift in Sources */,
 				313911911E3F78BB00EDAD40 /* CountriesPickerView.swift in Sources */,
 				3139117C1E3E12AA00EDAD40 /* UIAlertAction+Extension.swift in Sources */,
 				315828DA1E3A80D700EBD20E /* AuthManager.swift in Sources */,
 				3139117A1E3BCC1600EDAD40 /* UIView+Extension.swift in Sources */,
+				310B75371E4088C9008ADF62 /* RealmManager.swift in Sources */,
+				310B753A1E4088E6008ADF62 /* UserRealm.swift in Sources */,
+				310B753C1E40B5B5008ADF62 /* CurrentUserCredentialsRealm.swift in Sources */,
 				315828E81E3B8CD300EBD20E /* GlobalSaver.swift in Sources */,
 				3139118D1E3F642B00EDAD40 /* Countries.swift in Sources */,
 				315828CE1E39F17D00EBD20E /* LoginVC.swift in Sources */,

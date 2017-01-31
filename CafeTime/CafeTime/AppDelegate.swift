@@ -34,20 +34,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             window.makeKeyAndVisible()
         }
         
-        let saver = GlobalSaver.shared
+        let realm = RealmManager()
         
-        if let email = saver.getLocalUserCredentials().email, let password = saver.getLocalUserCredentials().password  {
-            
-            AuthManager.shared.authenticateUser(email: email, password: password, rememberUser: true, completion: { (error, success) in
-                if success {
-                    return
-                }
-            })
-        }
-        else {
+        guard let localCredentials = realm.localUserCredentials else {
             perform(#selector(presentLoginVC), with: nil, afterDelay: 0.01)
+            return true
         }
-
+        
+        AuthManager.shared.authenticateUser(email: localCredentials.email, password: localCredentials.password, rememberUser: true, completion: { (error, success) in
+            if success {
+                return
+            }
+        })
+        
         return true
     }
     

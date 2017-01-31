@@ -42,7 +42,7 @@ class LoginVC: UIViewController, LoginViewDelegate {
         
         let errorString = stringsChecker.checkLoginDetails(email: email, password: password)
         
-        if errorString != "" {
+        if !errorString.isEmpty {
             self.presentAlert(message: errorString)
             return
         }

@@ -17,11 +17,9 @@ class AuthManager {
     
     // MARK: Private
     
-    static let shared : AuthManager =  {
-        let instance = AuthManager()
-        return instance
-    }()
+    static let shared = AuthManager()
     
+    private init() { }
     
     private let storageRef = FIRStorage.storage().reference()
     
@@ -40,6 +38,7 @@ class AuthManager {
         return ref
     }()
     
+    
     private let currentUser = FIRAuth.auth()?.currentUser
     
     
@@ -47,19 +46,22 @@ class AuthManager {
     
     func authenticateUser(email: String, password: String, rememberUser: Bool, completion: @escaping (_ error: String, _ success: Bool) -> Void) {
         
+        
         FIRAuth.auth()?.signIn(withEmail: email, password: password) { (user, error) in
             
-            if error != nil {
-                completion((error?.localizedDescription)!, false)
+            if let err = error {
+                completion((err.localizedDescription), false)
                 return
             }
             
             print("You have successfully logged in")
             
-            if rememberUser {
-                GlobalSaver.shared.saveLocalUserCredentials(email: email, password: password)
-            }
             
+            if rememberUser {
+                let realm = RealmManager()
+                realm.saveCredentials(email: email, password: password)
+            }
+
             completion("", true)
         }
     }
@@ -70,16 +72,19 @@ class AuthManager {
             
             guard let weakSelf = self else { return }
             
-            if error != nil {
-                completion((error?.localizedDescription)!, false)
+            if let err = error {
+                completion(err.localizedDescription, false)
                 return
             }
             print("You have successfully signed up")
             
+            // save locally
             if rememberUser {
-                GlobalSaver.shared.saveLocalUserCredentials(email: email, password: password)
+                let realm = RealmManager()
+                realm.saveCredentials(email: email, password: password)
             }
             
+            // save on the server
             weakSelf.saveUserToFirebase(user: user, email: email, name: name, country: country, foodType: foodType, numberOfTables: numberOfTables, completion: { success in
                 if success {
                     completion("", true)
@@ -101,10 +106,10 @@ class AuthManager {
         if Int(numberOfTables)! > 0 {
             let userReference = dataBaseRef.child("Cafes").child(uid)
             let values = ["name" : name, "country" :country, "email" : email, "numberOfTables" : numberOfTables, "foof type" : foodType]
-            userReference.updateChildValues(values) { (err, ref) in
+            userReference.updateChildValues(values) { (error, ref) in
                 
-                if err != nil {
-                    print(err!)
+                if let err = error {
+                    print(err)
                     completion(false)
                     return
                 }
@@ -116,10 +121,10 @@ class AuthManager {
         else {
             let userReference = dataBaseRef.child("Customers").child(uid)
             let values = ["name" : name, "country" :country, "email" : email]
-            userReference.updateChildValues(values) { (err, ref) in
+            userReference.updateChildValues(values) { (error, ref) in
                 
-                if err != nil {
-                    print(err!)
+                if let err = error {
+                    print(err)
                     completion(false)
                     return
                 }
@@ -136,7 +141,8 @@ class AuthManager {
         if FIRAuth.auth()?.currentUser != nil {
             do {
                 try FIRAuth.auth()?.signOut()
-                GlobalSaver.shared.clearUser()
+                let realm = RealmManager()
+                realm.clearLocalUserCredentials()
             } catch let error as NSError {
                 print(error.localizedDescription)
             }
@@ -147,14 +153,19 @@ class AuthManager {
     // MARK: Fetch Users
     
     func fetchSelf(completion: @escaping (User) -> Void) {
-        let thisUserRef = usersRef.child((currentUser?.uid)!)
-        thisUserRef.observeSingleEvent(of: .value, with: { (snapshot) in
-            guard let user = User(snapshot: snapshot) else {
-                print("Could not fetch user")
-                return
-            }
-            completion(user)
-        })
+        if let user = currentUser?.uid {
+            usersRef.child(user).observeSingleEvent(of: .value, with: { (snapshot) in
+                guard let user = User(snapshot: snapshot) else {
+                    print("Could not fetch user")
+                    return
+                }
+                //SAVE to realm
+                let realm = RealmManager()
+                realm.saveUser(user: user)
+            
+                completion(user)
+            })
+        }
     }
     
 }

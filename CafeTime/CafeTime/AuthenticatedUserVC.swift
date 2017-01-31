@@ -10,14 +10,19 @@ import UIKit
 import SnapKit
 import FirebaseAuth
 import Jelly
+import RealmSwift
+import RxRealm
+import RxSwift
 
 class AuthenticatedUserVC: UIViewController, AuthenticatedUserMainViewDelegate, UserProfileInfoViewDelegate {
     
     private var jellyAnimator: JellyAnimator?
+    private let viewModel = AuthenticatedUserViewModel()
     private let mainView = AuthenticatedUserMainView()
     private let authManager = AuthManager.shared
-    
     private var userProfileView: UserProfileInfoView?
+    
+    var realmUserObserver: Disposable?
     
     private lazy var navBarButtonRight : UIBarButtonItem = {
         let myVar = UIBarButtonItem(image: UIImage.init(named: "editprofilebutton_image"), style: .plain, target: self, action: #selector(AuthenticatedUserVC.editProfile))
@@ -32,7 +37,7 @@ class AuthenticatedUserVC: UIViewController, AuthenticatedUserMainViewDelegate, 
     private func setUp() {
         self.view.addSubview(mainView)
         userProfileView = mainView.userProfileInfoView
-        self.userProfileView?.delegate = self
+        userProfileView?.delegate = self
         
         mainView.delegate = self
         mainView.snp.remakeConstraints { (make) -> Void in
@@ -46,14 +51,23 @@ class AuthenticatedUserVC: UIViewController, AuthenticatedUserMainViewDelegate, 
         
         self.navigationItem.rightBarButtonItem = navBarButtonRight
         
+        
+        //Need to work on this still ...
+        
+//        let realmManager = RealmManager()
+//        if let user = realmManager.localUser {
+//            realmUserObserver = Observable.from(object: user).subscribe { (event) in
+//                self.navigationItem.title =  user.name
+//            }
+//        }
     }
     
-    
-    override func viewWillAppear(_ animated: Bool) {
-        authManager.fetchSelf { (user) in
-            self.navigationItem.title = user.name
-        }
-    }
+//    override func viewWillAppear(_ animated: Bool) {
+//        authManager.fetchSelf { [weak self] (user) in
+//            guard let weakSelf = self else { return }
+//            weakSelf.navigationItem.title =  user.name
+//        }
+//    }
     
     //MARK: Main View Delegate
     
@@ -78,12 +92,12 @@ class AuthenticatedUserVC: UIViewController, AuthenticatedUserMainViewDelegate, 
     }
     
     //MARK: User Profile View Delegate
-
+    
     func imageTapped() {
         guard let image = userProfileView?.userImageView.image else { return }
-
+        
         let imageVC = ImageVC(withImage: image)
-
+        
         let customPresentation = JellySlideInPresentation(dismissCurve: .linear,
                                                           presentationCurve: .linear,
                                                           cornerRadius: 15,
@@ -104,5 +118,11 @@ class AuthenticatedUserVC: UIViewController, AuthenticatedUserMainViewDelegate, 
         self.jellyAnimator?.prepare(viewController: imageVC)
         
         self.present(imageVC, animated: true, completion: nil)
+    }
+    
+    //MARK: Remove Observers
+    
+    deinit {
+        realmUserObserver?.dispose()
     }
 }

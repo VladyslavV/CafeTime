@@ -37,7 +37,7 @@ class SignUpVC: UIViewController, SignUpViewDelegate, UIImagePickerControllerDel
     //action sheet
     private lazy var logoActionSheet : UIAlertController = {
         let myVar = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-      
+        
         let viewPhoto = UIAlertAction(title: NSLocalizedString("sighnpvc.actionsheet.viewphoto", comment: ""), style: .default, handler: { [weak self] (action) in
             guard let weakSelf = self else { return }
             let image = weakSelf.mainView.cafeLogo.image
@@ -75,7 +75,7 @@ class SignUpVC: UIViewController, SignUpViewDelegate, UIImagePickerControllerDel
         super.viewDidLoad()
         self.setUp()
         
-
+        
     }
     
     private func setUp() {
@@ -104,15 +104,15 @@ class SignUpVC: UIViewController, SignUpViewDelegate, UIImagePickerControllerDel
         
         let errorString = stringsChecker.checkCommonDetails(email: email, name: name, password: password)
         
-        if errorString != "" {
+        if !errorString.isEmpty {
             self.presentAlert(message: errorString)
             return
         }
         
         if mainView.segmentedControl.selectedSegmentIndex == UserType.customer.rawValue {
-    
+            
             AuthManager.shared.createUser(email: email, name: name, numberOfTables: "0", country: country, foodType: "", password: password, rememberUser: mainView.autoLoginCheckBox.isChecked(), completion: { [weak self] (error, success) in
-               
+                
                 guard let weakSelf = self else { return }
                 
                 if success {
@@ -129,10 +129,10 @@ class SignUpVC: UIViewController, SignUpViewDelegate, UIImagePickerControllerDel
             
             let numberOfTables = mainView.numberOfTablesTextField.text!
             let foodType = mainView.foodTypeTextField.text!
-
+            
             let errorString = stringsChecker.checkCafeAdditionalDetails(numberOfTables: numberOfTables)
             
-            if errorString != "" {
+            if !errorString.isEmpty {
                 self.presentAlert(message: errorString)
                 return
             }
@@ -157,7 +157,7 @@ class SignUpVC: UIViewController, SignUpViewDelegate, UIImagePickerControllerDel
     }
     
     //MARK: Image Picker Delegate
-
+    
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         if let image = info[UIImagePickerControllerEditedImage] as? UIImage {
             mainView.cafeLogo.image = image

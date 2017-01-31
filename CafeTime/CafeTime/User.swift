@@ -10,6 +10,7 @@ import FirebaseDatabase
 
 struct User {
     
+    var uid: String? = ""
     var name: String? = ""
     var email: String? = ""
     var country: String? = ""
@@ -18,6 +19,7 @@ struct User {
     
     init?(snapshot: FIRDataSnapshot) {
         if let firebaseDic = snapshot.value as? [String: AnyObject] {
+            uid = snapshot.key
             name = firebaseDic["name"] as? String
             email = firebaseDic["email"] as? String
             country = firebaseDic["country"] as? String
