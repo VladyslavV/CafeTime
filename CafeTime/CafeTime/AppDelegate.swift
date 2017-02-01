@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import SwiftCop
+import RealmSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -34,14 +35,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             window.makeKeyAndVisible()
         }
         
-        let realm = RealmManager()
+        let authManager = AuthManager.shared
         
-        guard let localCredentials = realm.localUserCredentials else {
+        guard let localCredentials = authManager.userCredentials() else {
             perform(#selector(presentLoginVC), with: nil, afterDelay: 0.01)
             return true
         }
         
-        AuthManager.shared.authenticateUser(email: localCredentials.email, password: localCredentials.password, rememberUser: true, completion: { (error, success) in
+        authManager.authenticateUser(email: localCredentials.email, password: localCredentials.password, rememberUser: true, completion: { (error, success) in
             if success {
                 return
             }

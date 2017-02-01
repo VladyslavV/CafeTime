@@ -38,10 +38,6 @@ class AuthManager {
         return ref
     }()
     
-    
-    private let currentUser = FIRAuth.auth()?.currentUser
-    
-    
     // MARK: Public
     
     func authenticateUser(email: String, password: String, rememberUser: Bool, completion: @escaping (_ error: String, _ success: Bool) -> Void) {
@@ -58,10 +54,10 @@ class AuthManager {
             
             
             if rememberUser {
-                let realm = RealmManager()
-                realm.saveCredentials(email: email, password: password)
+                let dao = AuthDAO()
+                dao.saveCredentials(email: email, password: password)
             }
-
+            
             completion("", true)
         }
     }
@@ -80,8 +76,8 @@ class AuthManager {
             
             // save locally
             if rememberUser {
-                let realm = RealmManager()
-                realm.saveCredentials(email: email, password: password)
+                let dao = AuthDAO()
+                dao.saveCredentials(email: email, password: password)
             }
             
             // save on the server
@@ -135,14 +131,20 @@ class AuthManager {
         }
     }
     
+    // MARK: Getters
+    
+    func userCredentials() -> CurrentUserCredentialsRealm? {
+        return AuthDAO().localUserCredentials
+    }
+    
     
     // MARK: User Actions & States
     func logOutUser() {
         if FIRAuth.auth()?.currentUser != nil {
             do {
                 try FIRAuth.auth()?.signOut()
-                let realm = RealmManager()
-                realm.clearLocalUserCredentials()
+                let dao = AuthDAO()
+                dao.deleteLocalUserCredentials()
             } catch let error as NSError {
                 print(error.localizedDescription)
             }
@@ -152,20 +154,27 @@ class AuthManager {
     
     // MARK: Fetch Users
     
-    func fetchSelf(completion: @escaping (User) -> Void) {
-        if let user = currentUser?.uid {
-            usersRef.child(user).observeSingleEvent(of: .value, with: { (snapshot) in
-                guard let user = User(snapshot: snapshot) else {
-                    print("Could not fetch user")
-                    return
-                }
-                //SAVE to realm
-                let realm = RealmManager()
-                realm.saveUser(user: user)
+    func getCurrentUser(completion: @escaping (UserRealm?) -> Void) {
+        
+        if let user = FIRAuth.auth()?.currentUser {
             
-                completion(user)
+            let dao = AuthDAO()
+            if let existingUser = dao.getUserByUid(uid: user.uid) {
+                completion(existingUser)
+            }
+            
+            //single event (updates once)
+            usersRef.child(user.uid).observeSingleEvent(of: .value, with: { (snapshot) in
+                
+                if snapshot.exists() {
+                    
+                    let dao = AuthDAO()
+                    dao.saveUserFromSnapshot(snapshot: snapshot)
+                    let userDao = dao.getUserByUid(uid: user.uid)
+                    
+                    completion(userDao)
+                }
             })
         }
     }
-    
 }

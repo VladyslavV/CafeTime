@@ -16,9 +16,7 @@ class UserRealm: Object {
     dynamic var email: String? = ""
     dynamic var country: String? = ""
 
-    dynamic var localID = 0
     override static func primaryKey() -> String? {
-        return "localID"
+        return "uid"
     }
-
 }

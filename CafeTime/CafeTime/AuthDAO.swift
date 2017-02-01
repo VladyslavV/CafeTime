@@ -8,8 +8,9 @@
 
 import Foundation
 import RealmSwift
+import FirebaseDatabase
 
-class RealmManager {
+class AuthDAO {
     
     private let realm = try! Realm()
     
@@ -18,28 +19,33 @@ class RealmManager {
     //    }()
     
     // MARK: User
-    lazy var localUser : UserRealm? = {
-        self.realm.objects(UserRealm.self).first
-    }()
     
-    func saveUser(user: User) {
+    func getUserByUid(uid: String) -> UserRealm? {
+        return self.realm.object(ofType: UserRealm.self, forPrimaryKey: uid)
+    }
+    
+    func saveUserFromSnapshot(snapshot: FIRDataSnapshot) {
         try! realm.write {
-            let userRealm = UserRealm()
-            userRealm.name = user.name
-            userRealm.email = user.email
-            userRealm.country = user.country
-            userRealm.uid = user.uid
-            realm.add(userRealm, update: true)
+            let user = UserRealm()
+            if let firebaseDic = snapshot.value as? [String: AnyObject] {
+                user.uid = snapshot.key
+                user.name = firebaseDic["name"] as? String
+                user.email = firebaseDic["email"] as? String
+                user.country = firebaseDic["country"] as? String
+                realm.add(user, update: true)
+            }
         }
     }
     
-   // MARK: User Credentials
+    // MARK: User Credentials
+    
     lazy var localUserCredentials : CurrentUserCredentialsRealm? = {
         self.realm.objects(CurrentUserCredentialsRealm.self).first
     }()
     
+    
     func saveCredentials(email: String, password: String) {
-        self.clearLocalUserCredentials()
+        self.deleteLocalUserCredentials()
         try! realm.write {
             let localCredentials = CurrentUserCredentialsRealm()
             localCredentials.email = email
@@ -48,19 +54,19 @@ class RealmManager {
         }
     }
     
+    func deleteLocalUserCredentials() {
+        if let localCredentials = localUserCredentials {
+            try! realm.write {
+                realm.delete(localCredentials)
+            }
+        }
+    }
+    
     // MARK: Clear
     
     func clearRealm() {
         try! realm.write {
             realm.deleteAll()
-        }
-    }
-    
-    func clearLocalUserCredentials() {
-        if let localCredentials = localUserCredentials {
-            try! realm.write {
-                realm.delete(localCredentials)
-            }
         }
     }
 }

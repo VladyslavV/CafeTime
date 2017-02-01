@@ -55,7 +55,6 @@ class AuthenticatedUserMainView: UIView {
     }
     
     private func setUpConstraints() {
-        
         userProfileInfoView.snp.remakeConstraints { (make) in
             make.leading.trailing.equalTo(self)
             make.top.equalTo(self.snp.top)

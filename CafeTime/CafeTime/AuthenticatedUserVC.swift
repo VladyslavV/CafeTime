@@ -10,9 +10,6 @@ import UIKit
 import SnapKit
 import FirebaseAuth
 import Jelly
-import RealmSwift
-import RxRealm
-import RxSwift
 
 class AuthenticatedUserVC: UIViewController, AuthenticatedUserMainViewDelegate, UserProfileInfoViewDelegate {
     
@@ -21,8 +18,6 @@ class AuthenticatedUserVC: UIViewController, AuthenticatedUserMainViewDelegate, 
     private let mainView = AuthenticatedUserMainView()
     private let authManager = AuthManager.shared
     private var userProfileView: UserProfileInfoView?
-    
-    var realmUserObserver: Disposable?
     
     private lazy var navBarButtonRight : UIBarButtonItem = {
         let myVar = UIBarButtonItem(image: UIImage.init(named: "editprofilebutton_image"), style: .plain, target: self, action: #selector(AuthenticatedUserVC.editProfile))
@@ -48,40 +43,26 @@ class AuthenticatedUserVC: UIViewController, AuthenticatedUserMainViewDelegate, 
         let tabBarImage = UIImage.init(named: "profile_tabbarimage")
         self.tabBarItem = UITabBarItem(title: NSLocalizedString("authenticateduservc.tabbar.name", comment: ""), image: tabBarImage , selectedImage: tabBarImage)
         
-        
         self.navigationItem.rightBarButtonItem = navBarButtonRight
-        
-        
-        //Need to work on this still ...
-        
-//        let realmManager = RealmManager()
-//        if let user = realmManager.localUser {
-//            realmUserObserver = Observable.from(object: user).subscribe { (event) in
-//                self.navigationItem.title =  user.name
-//            }
-//        }
     }
     
-//    override func viewWillAppear(_ animated: Bool) {
-//        authManager.fetchSelf { [weak self] (user) in
-//            guard let weakSelf = self else { return }
-//            weakSelf.navigationItem.title =  user.name
-//        }
-//    }
+    override func viewWillAppear(_ animated: Bool) {
+        authManager.getCurrentUser { [weak self] (user) in
+            guard let weakSelf = self else { return }
+            weakSelf.navigationItem.title =  user?.name
+        }
+    }
     
     //MARK: Main View Delegate
     
     func logOutButtonPressed() {
-        self.logOutUser()
-    }
-    
-    // MARK: Private Funcs
-    
-    @objc private func logOutUser() {
         authManager.logOutUser()
         self.presentLoginController()
     }
     
+    // MARK: Private Funcs
+    
+ 
     @objc private func editProfile() {
         print("touched")
     }
@@ -118,11 +99,5 @@ class AuthenticatedUserVC: UIViewController, AuthenticatedUserMainViewDelegate, 
         self.jellyAnimator?.prepare(viewController: imageVC)
         
         self.present(imageVC, animated: true, completion: nil)
-    }
-    
-    //MARK: Remove Observers
-    
-    deinit {
-        realmUserObserver?.dispose()
     }
 }

@@ -27,7 +27,5 @@ struct User {
         else {
             print("Error retrieving data")
         }
-        
     }
-    
 }
