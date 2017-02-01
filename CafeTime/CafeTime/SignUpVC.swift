@@ -9,14 +9,73 @@
 import UIKit
 import SnapKit
 import FirebaseAuth
+import PKHUD
 
-class SignUpVC: UIViewController, SignUpViewDelegate {
+class SignUpVC: UIViewController, SignUpViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    // MARK: Vars
     
     private let mainView = SignUpView()
+    
+    //image picker
+    private lazy var libraryImagePicker : UIImagePickerController = {
+        let myVar = UIImagePickerController()
+        myVar.delegate = self
+        myVar.sourceType = .photoLibrary
+        myVar.allowsEditing = true
+        return myVar
+    }()
+    
+    private lazy var cameraImagePicker : UIImagePickerController = {
+        let myVar = UIImagePickerController()
+        myVar.delegate = self
+        myVar.sourceType = .camera
+        myVar.allowsEditing = true
+        return myVar
+    }()
+    
+    //action sheet
+    private lazy var logoActionSheet : UIAlertController = {
+        let myVar = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        
+        let viewPhoto = UIAlertAction(title: NSLocalizedString("sighnpvc.actionsheet.viewphoto", comment: ""), style: .default, handler: { [weak self] (action) in
+            guard let weakSelf = self else { return }
+            let image = weakSelf.mainView.cafeLogo.image
+            if image != nil {
+                let imageVC = ImageVC(withImage: image!)
+                weakSelf.present(imageVC, animated: true, completion: nil)
+            }
+        })
+        
+        let choosePhotoAction = UIAlertAction(title: NSLocalizedString("sighnpvc.actionsheet.choosephoto", comment: ""), style: .default, handler: { [weak self] (action) in
+            guard let weakSelf = self else { return }
+            weakSelf.present(weakSelf.libraryImagePicker, animated: true, completion: nil)
+        })
+        
+        let pickPhotoFromCameraAction = UIAlertAction(title: NSLocalizedString("sighnpvc.actionsheet.takephoto", comment: ""), style: .default, handler: { [weak self] (action) in
+            guard let weakSelf = self else { return }
+            if UIImagePickerController.isSourceTypeAvailable(.camera){
+                weakSelf.present(weakSelf.cameraImagePicker, animated: true, completion: nil)
+            } else {
+                return
+            }
+        })
+        
+        
+        let cancelAction = UIAlertAction(title: NSLocalizedString("sighnpvc.actionsheet.cancel", comment: ""), style: .cancel, handler: nil)
+        
+        myVar.addActions([viewPhoto, choosePhotoAction, pickPhotoFromCameraAction, cancelAction])
+        
+        return myVar
+    }()
+    
+    // MARK: Init
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setUp()
+        
+        
     }
     
     private func setUp() {
@@ -25,42 +84,88 @@ class SignUpVC: UIViewController, SignUpViewDelegate {
         mainView.delegate = self
         
         self.navigationItem.title = NSLocalizedString("signupvc.navigation.title", comment: "")
-                
+        
         mainView.snp.makeConstraints { (make) -> Void in
             make.left.right.bottom.equalTo(self.view)
             make.top.equalTo(self.topLayoutGuide.snp.bottom)
         }
     }
     
-    //MARK: Delegate
+    //MARK: Main View Delegate
     
     func signUpButtonPressed() {
         
-        let authManager = AuthManager.shared
+        let stringsChecker = StringsChecker.shared
         
         let email = mainView.emailTextField.text!
         let password = mainView.passwordTextField.text!
+        let name = mainView.nameTextField.text!
+        let country = mainView.countryTextField.text!
         
-        let errorString = authManager.checkEmail(email: email, andPassword: password)
+        let errorString = stringsChecker.checkCommonDetails(email: email, name: name, password: password)
         
-        if errorString != "" {
+        if !errorString.isEmpty {
             self.presentAlert(message: errorString)
             return
         }
         
-        AuthManager.shared.createUser(email: email, password: password, rememberUser: mainView.autoLoginCheckBox.isChecked()) { [weak self] (error, success) in
+        if mainView.segmentedControl.selectedSegmentIndex == UserType.customer.rawValue {
             
-            guard let weakSelf = self else { return }
-            
-            if success {
-                weakSelf.dismiss(animated: true, completion: nil)
-            }
+            AuthManager.shared.createUser(email: email, name: name, numberOfTables: "0", country: country, foodType: "", password: password, rememberUser: mainView.autoLoginCheckBox.isChecked(), completion: { [weak self] (error, success) in
                 
-            else {
-                weakSelf.presentAlert(message: error)
+                guard let weakSelf = self else { return }
+                
+                if success {
+                    weakSelf.dismiss(animated: true, completion: nil)
+                }
+                    
+                else {
+                    weakSelf.presentAlert(message: error)
+                }
+            })
+        }
+            
+        else if mainView.segmentedControl.selectedSegmentIndex == UserType.cafe.rawValue {
+            
+            let numberOfTables = mainView.numberOfTablesTextField.text!
+            let foodType = mainView.foodTypeTextField.text!
+            
+            let errorString = stringsChecker.checkCafeAdditionalDetails(numberOfTables: numberOfTables)
+            
+            if !errorString.isEmpty {
+                self.presentAlert(message: errorString)
+                return
             }
+            
+            AuthManager.shared.createUser(email: email, name: name, numberOfTables: numberOfTables, country: country,  foodType: foodType, password: password, rememberUser: mainView.autoLoginCheckBox.isChecked(), completion: { [weak self] (error, success) in
+                
+                guard let weakSelf = self else { return }
+                
+                if success {
+                    weakSelf.dismiss(animated: true, completion: nil)
+                }
+                else {
+                    weakSelf.presentAlert(message: error)
+                }
+            })
         }
     }
+    
+    
+    func chooseLogoTapped() {
+        self.present(logoActionSheet, animated: true, completion: nil)
+    }
+    
+    //MARK: Image Picker Delegate
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        if let image = info[UIImagePickerControllerEditedImage] as? UIImage {
+            mainView.cafeLogo.image = image
+        }
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    //MARK: Private Funcs
     
     private func presentAlert(message: String) {
         let alertController = UIAlertController(title: "Error", message: message, preferredStyle: .alert)

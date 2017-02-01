@@ -9,31 +9,95 @@
 import UIKit
 import SnapKit
 import FirebaseAuth
+import Jelly
 
-class AuthenticatedUserVC: UIViewController, AuthenticatedUserMainViewDelegate {
+class AuthenticatedUserVC: UIViewController, AuthenticatedUserMainViewDelegate, UserProfileInfoViewDelegate {
     
+    private var jellyAnimator: JellyAnimator?
+    private let viewModel = AuthenticatedUserViewModel()
     private let mainView = AuthenticatedUserMainView()
+    private let authManager = AuthManager.shared
+    private var userProfileView: UserProfileInfoView?
     
+    private lazy var navBarButtonRight : UIBarButtonItem = {
+        let myVar = UIBarButtonItem(image: UIImage.init(named: "editprofilebutton_image"), style: .plain, target: self, action: #selector(AuthenticatedUserVC.editProfile))
+        return myVar
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setUp()
-        
     }
     
     private func setUp() {
         self.view.addSubview(mainView)
+        userProfileView = mainView.userProfileInfoView
+        userProfileView?.delegate = self
+        
         mainView.delegate = self
         mainView.snp.remakeConstraints { (make) -> Void in
-            make.edges.equalTo(self.view)
+            make.left.right.bottom.equalTo(self.view)
+            make.top.equalTo(self.topLayoutGuide.snp.bottom)
+        }
+        
+        let tabBarImage = UIImage.init(named: "profile_tabbarimage")
+        self.tabBarItem = UITabBarItem(title: NSLocalizedString("authenticateduservc.tabbar.name", comment: ""), image: tabBarImage , selectedImage: tabBarImage)
+        
+        self.navigationItem.rightBarButtonItem = navBarButtonRight
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        authManager.getCurrentUser { [weak self] (user) in
+            guard let weakSelf = self else { return }
+            weakSelf.navigationItem.title =  user?.name
         }
     }
     
     //MARK: Main View Delegate
     
-    func logOut() {
-        AuthManager.shared.logOutUser()
+    func logOutButtonPressed() {
+        authManager.logOutUser()
+        self.presentLoginController()
+    }
+    
+    // MARK: Private Funcs
+    
+ 
+    @objc private func editProfile() {
+        print("touched")
+    }
+    
+    private func presentLoginController() {
         let nav = UINavigationController(rootViewController: LoginVC())
         self.present(nav, animated: true, completion: nil)
+    }
+    
+    //MARK: User Profile View Delegate
+    
+    func imageTapped() {
+        guard let image = userProfileView?.userImageView.image else { return }
+        
+        let imageVC = ImageVC(withImage: image)
+        
+        let customPresentation = JellySlideInPresentation(dismissCurve: .linear,
+                                                          presentationCurve: .linear,
+                                                          cornerRadius: 15,
+                                                          backgroundStyle: .blur(effectStyle: .light),
+                                                          jellyness: .jellier,
+                                                          duration: .normal,
+                                                          directionShow: .top,
+                                                          directionDismiss: .top,
+                                                          widthForViewController: .fullscreen,
+                                                          heightForViewController: .fullscreen ,
+                                                          horizontalAlignment: .center,
+                                                          verticalAlignment: .center,
+                                                          marginGuards: UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5),
+                                                          corners: .allCorners)
+        
+        
+        self.jellyAnimator = JellyAnimator(presentation:customPresentation)
+        self.jellyAnimator?.prepare(viewController: imageVC)
+        
+        self.present(imageVC, animated: true, completion: nil)
     }
 }

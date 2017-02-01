@@ -23,10 +23,35 @@
 
 "signupvc.email.textfield" = "Email";
 
+"signupvc.customer.name.textfield" = "Customer Name";
+
+"signupvc.cafe.name.textfield" = "Your Cafe Name";
+
+"signupvc.cafe.foodtype.textfield" = "Food Type (optional)";
+
+"signupvc.numberoftables.textfield" = "Number Of Tables";
+
 "signupvc.password.textfield" = "Password";
 
 "signupvc.signup.button" = "Sign Up";
 
+"sighnpvc.actionsheet.viewphoto" = "View Photo";
+
+"sighnpvc.actionsheet.choosephoto" = "Choose Photo";
+
+"sighnpvc.actionsheet.takephoto" = "Take Photo";
+
+"sighnpvc.actionsheet.cancel" = "Cancel";
+
+"sighnpvc.segmentedcontrol.cafe.item" = "Cafe";
+
+"sighnpvc.segmentedcontrol.customer.item" = "Customer";
+
+"signupvc.country.textfield" = "Country (optional)";
+
 // authenticateduser vc
 
 "authenticateduservc.logout.button" = "Log Out";
+
+"authenticateduservc.tabbar.name" = "Profile";
+

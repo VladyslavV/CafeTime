@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import SwiftCop
+import RealmSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -19,34 +20,40 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         FIRApp.configure()
         
+        let authVC = AuthenticatedUserVC()
+        let nav = UINavigationController(rootViewController: authVC)
+        
+        let vcs = [nav, UIViewController()]
+        
+        let tabBarVC = UITabBarController()
+        tabBarVC.setViewControllers(vcs, animated: true)
+        
         window = UIWindow(frame: UIScreen.main.bounds)
         if let window = window {
-            window.rootViewController = AuthenticatedUserVC()
+            window.rootViewController = tabBarVC
             window.backgroundColor = UIColor.white
             window.makeKeyAndVisible()
         }
         
-        let saver = GlobalSaver.shared
+        let authManager = AuthManager.shared
         
-        if let email = saver.getUserCredentials().email, let password = saver.getUserCredentials().password  {
-            
-            AuthManager.shared.authenticateUser(email: email, password: password, rememberUser: true, completion: { (error, success) in
-                
-                if success {
-                    return
-                }
-                
-            })
+        guard let localCredentials = authManager.userCredentials() else {
+            perform(#selector(presentLoginVC), with: nil, afterDelay: 0.01)
+            return true
         }
-            
-        else {
-            let nav = UINavigationController()
-            nav.pushViewController(LoginVC(), animated: true)
-            window?.rootViewController?.present(nav, animated: true, completion: nil)
-            
-        }
+        
+        authManager.authenticateUser(email: localCredentials.email, password: localCredentials.password, rememberUser: true, completion: { (error, success) in
+            if success {
+                return
+            }
+        })
         
         return true
+    }
+    
+    @objc private func presentLoginVC() {
+        let nav = UINavigationController(rootViewController: LoginVC())
+        window?.rootViewController?.present(nav, animated: true, completion: nil)
     }
     
     func applicationWillResignActive(_ application: UIApplication) {

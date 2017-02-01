@@ -14,12 +14,47 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Jelly.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>M13Checkbox.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>PKHUD.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-CafeTime.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Realm.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>RealmSwift.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>RxRealm.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>RxSwift.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>SDWebImage.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -30,11 +65,6 @@
 			<false/>
 		</dict>
 		<key>SwiftCop.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>SwiftKeychainWrapper.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -52,27 +82,57 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>3C95C0C6411A3CC52DE202715C556AF2</key>
+		<key>44147F3ACAEEB438758F3EC8E9153736</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>69442DFF5D4E87AA58B3630F292DBDD2</key>
+		<key>4F7E624F8F58F83AE65DCF667CE48F60</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>8D10A19FADB1763959C8C9B642323DBD</key>
+		<key>55FB33FEF97C61412E01886F7F339C70</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B017353A05951A92A88A7F8E98CC9B8D</key>
+		<key>8280E10FC975627525D668798F0B3366</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>83FD6D9963C4F02BDB152043AE696B30</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>9F1DF915EBF233D8405EF8E84EBD118D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>B56E963596D7B923F47B6855994764F4</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>C052BEBFBD0AB5218CC64BA3450F6547</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>CB3F286D26C8B91B032CFF2FBB9D40EC</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D7A75F149082140741FC1E0B5B2863C8</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E576D3E9E8E8971C1E73DB777B25B97C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
