@@ -20,11 +20,11 @@ class StringsChecker {
         
         var errorString = self.checkEmptyFieldsForUser(fields: [email, password])
         
-        if (errorString != nil) { return errorString }
+        if let err = errorString  { return err }
         
         errorString = self.checkBasicCredentials(email: email, password: password)
         
-        if (errorString != nil) { return errorString }
+        if let err = errorString  { return err }
         
         return nil
     }
@@ -33,23 +33,22 @@ class StringsChecker {
     func checkSignUpFieldsForUser(user: User) -> String? {
         
         var errorString = self.checkEmptyFieldsForUser(fields: user.requiredFields)
-        if (errorString != nil) { return errorString }
+        if let err = errorString  { return err }
     
         errorString = checkBasicCredentials(email: user.email, password: user.password)
-        if (errorString != nil) { return errorString }
+        if let err = errorString  { return err }
         
         errorString = self.checkUserName(name: user.name)
-        if (errorString != nil) { return errorString }
+        if let err = errorString  { return err }
         
         if user.isKind(of: Cafe.self) {
             if let cafe = user as? Cafe {
                 errorString = self.checkNumberOfTables(number: cafe.numberOfTables)
-                if (errorString != nil) { return errorString }
+                if let err = errorString  { return err }
             }
         }
         return nil
     }
-    
     
     // MARK: Private Funcs
     
@@ -59,7 +58,7 @@ class StringsChecker {
         
         let errorString = self.checkPassword(email: email, password: password)
         
-       if (errorString != nil) { return errorString }
+        if let err = errorString  { return err }
         
         return nil
     }
