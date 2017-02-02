@@ -1,47 +1,42 @@
-//
-//  AuthLogicShared.swift
-//  CafeTime
-//
-//  Created by Vladysalv Vyshnevksyy on 1/26/17.
-//  Copyright © 2017 Vladysalv Vyshnevksyy. All rights reserved.
-//
-
-import Foundation
-import Firebase
-import SwiftCop
-import FirebaseDatabase
-import FirebaseStorage
-
-
-class AuthManager {
+ //
+ //  AuthLogicShared.swift
+ //  CafeTime
+ //
+ //  Created by Vladysalv Vyshnevksyy on 1/26/17.
+ //  Copyright © 2017 Vladysalv Vyshnevksyy. All rights reserved.
+ //
+ 
+ import Foundation
+ import Firebase
+ import SwiftCop
+ import FirebaseDatabase
+ import FirebaseStorage
+ 
+ 
+ class AuthManager {
     
     // MARK: Private
     
     static let shared = AuthManager()
-    
     private init() { }
+    
+    private let dao = AuthDAO()
     
     private let storageRef = FIRStorage.storage().reference()
     
-    private lazy var dataBaseRef : FIRDatabaseReference = {
-        let ref = FIRDatabase.database().reference(fromURL: "https://cafetime-6651e.firebaseio.com/")
-        return ref
-    }()
+    private var dataBaseRef : FIRDatabaseReference {
+        return FIRDatabase.database().reference(fromURL: "https://cafetime-6651e.firebaseio.com/")
+    }
     
-    private lazy var usersRef : FIRDatabaseReference = {
-        let ref = self.dataBaseRef.child("Customers")
-        return ref
-    }()
+    private var customersRef : FIRDatabaseReference { return self.dataBaseRef.child("Customers")     }
     
-    private lazy var cafesRef : FIRDatabaseReference = {
-        let ref = self.dataBaseRef.child("Cafes")
-        return ref
-    }()
+    private var cafesRef : FIRDatabaseReference { return self.dataBaseRef.child("Cafes") }
+    
+    private var currentUserObserver: FIRDatabaseHandle?
     
     // MARK: Public
     
     func authenticateUser(email: String, password: String, rememberUser: Bool, completion: @escaping (_ error: String, _ success: Bool) -> Void) {
-        
         
         FIRAuth.auth()?.signIn(withEmail: email, password: password) { (user, error) in
             
@@ -62,9 +57,10 @@ class AuthManager {
         }
     }
     
-    func createUser(email: String, name: String, numberOfTables: String, country: String, foodType: String, password: String, rememberUser: Bool, completion: @escaping (_ error: String, _ success: Bool) -> Void)  {
+    // MARK: Create and save user
+    func createUser(user : User, rememberUser: Bool, completion: @escaping (_ error: String, _ success: Bool) -> Void) {
         
-        FIRAuth.auth()?.createUser(withEmail: email, password: password, completion: { [weak self] (user, error) in
+        FIRAuth.auth()?.createUser(withEmail: user.email, password: user.password, completion: { [weak self] (firUser, error) in
             
             guard let weakSelf = self else { return }
             
@@ -77,72 +73,65 @@ class AuthManager {
             // save locally
             if rememberUser {
                 let dao = AuthDAO()
-                dao.saveCredentials(email: email, password: password)
+                dao.saveCredentials(email: user.email, password: user.password)
             }
             
             // save on the server
-            weakSelf.saveUserToFirebase(user: user, email: email, name: name, country: country, foodType: foodType, numberOfTables: numberOfTables, completion: { success in
-                if success {
-                    completion("", true)
-                }
-                else {
-                    completion("Could not saved user to the Database", false)
-                }
-            })
+            if let uid = firUser?.uid {
+                weakSelf.saveUserToFirebase(user: user, uid: uid, completion: { (success) in
+                    if success {
+                        completion("", true)
+                    }
+                    else {
+                        completion("Could not saved user to the Database", false)
+                    }
+                })
+            }
         })
     }
     
-    // MARK: Save the user to the server database
-    
-    private func saveUserToFirebase(user: FIRUser?, email: String, name:String, country:String, foodType: String, numberOfTables: String, completion: @escaping (Bool) -> Void) {
+    private func saveUserToFirebase(user: User, uid: String ,completion: @escaping (Bool) -> Void) {
         
-        guard let uid = user?.uid else { return }
+        var userReference: FIRDatabaseReference?
+        var values: [AnyHashable : Any]?
         
-        //case cafe
-        if Int(numberOfTables)! > 0 {
-            let userReference = dataBaseRef.child("Cafes").child(uid)
-            let values = ["name" : name, "country" :country, "email" : email, "numberOfTables" : numberOfTables, "foof type" : foodType]
-            userReference.updateChildValues(values) { (error, ref) in
-                
-                if let err = error {
-                    print(err)
-                    completion(false)
-                    return
-                }
-                
-                completion(true)
-                print("Successflully saved cafe to the Firebase db")
+        if user.isKind(of: Cafe.self) {
+            if let cafe = user as? Cafe {
+                userReference = dataBaseRef.child("Cafe").child(uid)
+                values = ["name" : cafe.name, "country" : cafe.country, "email" : cafe.email, "numberOfTables" : cafe.numberOfTables,
+                          "foodTpye" : cafe.foodtype]
             }
         }
         else {
-            let userReference = dataBaseRef.child("Customers").child(uid)
-            let values = ["name" : name, "country" :country, "email" : email]
-            userReference.updateChildValues(values) { (error, ref) in
-                
+            userReference = dataBaseRef.child("Customers").child(uid)
+            values = ["name" : user.name, "country" : user.country, "email" : user.email]
+        }
+        
+        if let val = values, let ref = userReference {
+            ref.updateChildValues(val) { (error, ref) in
                 if let err = error {
                     print(err)
                     completion(false)
                     return
                 }
-                
                 completion(true)
                 print("Successflully saved customer to the Firebase db")
             }
         }
     }
     
-    // MARK: Getters
+    
+    // MARK: User
     
     func userCredentials() -> CurrentUserCredentialsRealm? {
         return AuthDAO().localUserCredentials
     }
     
     
-    // MARK: User Actions & States
     func logOutUser() {
-        if FIRAuth.auth()?.currentUser != nil {
+        if let auth = FIRAuth.auth() {
             do {
-                try FIRAuth.auth()?.signOut()
+                try auth.signOut()
                 let dao = AuthDAO()
                 dao.deleteLocalUserCredentials()
             } catch let error as NSError {
@@ -151,30 +140,26 @@ class AuthManager {
         }
     }
     
-    
-    // MARK: Fetch Users
-    
     func getCurrentUser(completion: @escaping (UserRealm?) -> Void) {
         
         if let user = FIRAuth.auth()?.currentUser {
             
-            let dao = AuthDAO()
             if let existingUser = dao.getUserByUid(uid: user.uid) {
                 completion(existingUser)
             }
-            
-            //single event (updates once)
-            usersRef.child(user.uid).observeSingleEvent(of: .value, with: { (snapshot) in
+            currentUserObserver = customersRef.child(user.uid).observe(.value , with: { [weak self] (snapshot) in
                 
+                guard let weakSelf = self else { return }
                 if snapshot.exists() {
-                    
-                    let dao = AuthDAO()
-                    dao.saveUserFromSnapshot(snapshot: snapshot)
-                    let userDao = dao.getUserByUid(uid: user.uid)
-                    
-                    completion(userDao)
+                    completion(weakSelf.dao.saveUserFromSnapshot(snapshot: snapshot, uid: user.uid))
                 }
             })
         }
     }
-}
+    
+    func removeUserObserver() {
+        if let obs = currentUserObserver {
+            customersRef.removeObserver(withHandle: obs)
+        }
+    }
+ }

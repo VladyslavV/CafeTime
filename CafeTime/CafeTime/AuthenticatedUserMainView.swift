@@ -55,12 +55,13 @@ class AuthenticatedUserMainView: UIView {
     }
     
     private func setUpConstraints() {
+        
         userProfileInfoView.snp.remakeConstraints { (make) in
             make.leading.trailing.equalTo(self)
             make.top.equalTo(self.snp.top)
             make.bottom.equalTo(self.snp.centerY)
         }
-        
+                
         logOutButton.snp.remakeConstraints { (make) -> Void in
             make.height.equalTo(self.snp.height).multipliedBy(0.05)
             make.width.equalTo(self.snp.width).multipliedBy(0.7)

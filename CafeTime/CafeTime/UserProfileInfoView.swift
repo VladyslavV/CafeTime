@@ -14,16 +14,27 @@ protocol UserProfileInfoViewDelegate: class {
     func imageTapped()
 }
 
-class UserProfileInfoView: UIView, UIGestureRecognizerDelegate {
+class UserProfileInfoView: UIView {
     
     weak var delegate: UserProfileInfoViewDelegate?
     
     let userImagePercentOfWidth: CGFloat = 0.4
     
-    lazy var tapGesture: UITapGestureRecognizer = {
-        let myVar = UITapGestureRecognizer()
-        myVar.delegate = self
-        myVar.addTarget(self, action: #selector(imageTapped(_ :)))
+    let userNameLabel : UILabel = {
+        let myVar = UILabel()
+        myVar.backgroundColor = UIColor.red
+        myVar.textAlignment = .center
+        myVar.text = NSLocalizedString("authenticateduservc.username.label", comment: "")
+        myVar.layer.cornerRadius = cornerRadius
+        return myVar
+    }()
+    
+    let userCountryLabel : UILabel = {
+        let myVar = UILabel()
+        myVar.backgroundColor = UIColor.red
+        myVar.textAlignment = .center
+        myVar.text = NSLocalizedString("authenticateduservc.country.label", comment: "")
+        myVar.layer.cornerRadius = cornerRadius
         return myVar
     }()
     
@@ -35,7 +46,10 @@ class UserProfileInfoView: UIView, UIGestureRecognizerDelegate {
         myVar.contentMode = .scaleAspectFit
         myVar.layer.borderColor = UIColor.orange.cgColor
         myVar.layer.borderWidth = 1.0
-        myVar.addGestureRecognizer(self.tapGesture)
+        
+        myVar.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(imageTapped)))
+        
+        //myVar.addGestureRecognizer(self.tapGesture)
         return myVar
     }()
         
@@ -52,15 +66,15 @@ class UserProfileInfoView: UIView, UIGestureRecognizerDelegate {
     override init(frame: CGRect) {
         super.init(frame: CGRect.zero)
         
-        self.addSubviews([userImageView])
+        self.addSubviews([userImageView, userNameLabel, userCountryLabel])
 
         self.setUp()
-        
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
     
     private func setUp() {
         
@@ -70,11 +84,26 @@ class UserProfileInfoView: UIView, UIGestureRecognizerDelegate {
             make.width.equalTo(self.snp.width).multipliedBy(userImagePercentOfWidth)
             make.height.equalTo(self.snp.width).multipliedBy(userImagePercentOfWidth)
         }
+        
+        userNameLabel.snp.remakeConstraints { (make) in
+            make.top.equalTo(userImageView.snp.bottom).offset(5)
+            make.width.equalTo(self.snp.width).multipliedBy(0.6)
+            make.height.equalTo(self.snp.height).multipliedBy(0.1)
+            make.centerX.equalTo(userImageView.snp.centerX)
+        }
+        
+        userCountryLabel.snp.remakeConstraints { (make) in
+            make.top.equalTo(userNameLabel.snp.bottom).offset(5)
+            make.width.equalTo(self.snp.width).multipliedBy(0.6)
+            make.height.equalTo(self.snp.height).multipliedBy(0.1)
+            make.centerX.equalTo(userImageView.snp.centerX)
+        }
+        
     }
     
     // MARK: Actions
     
-    @objc private func imageTapped(_ tap: UITapGestureRecognizer) {
+    @objc private func imageTapped() {
         self.delegate?.imageTapped()
     }
     

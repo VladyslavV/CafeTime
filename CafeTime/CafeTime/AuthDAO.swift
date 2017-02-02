@@ -24,17 +24,20 @@ class AuthDAO {
         return self.realm.object(ofType: UserRealm.self, forPrimaryKey: uid)
     }
     
-    func saveUserFromSnapshot(snapshot: FIRDataSnapshot) {
+    func saveUserFromSnapshot(snapshot: FIRDataSnapshot, uid: String) -> UserRealm? {
+        
         try! realm.write {
             let user = UserRealm()
             if let firebaseDic = snapshot.value as? [String: AnyObject] {
-                user.uid = snapshot.key
+                user.uid = uid
                 user.name = firebaseDic["name"] as? String
                 user.email = firebaseDic["email"] as? String
                 user.country = firebaseDic["country"] as? String
                 realm.add(user, update: true)
             }
         }
+        
+        return self.getUserByUid(uid: uid)
     }
     
     // MARK: User Credentials
@@ -43,8 +46,8 @@ class AuthDAO {
         self.realm.objects(CurrentUserCredentialsRealm.self).first
     }()
     
-    
     func saveCredentials(email: String, password: String) {
+        
         self.deleteLocalUserCredentials()
         try! realm.write {
             let localCredentials = CurrentUserCredentialsRealm()

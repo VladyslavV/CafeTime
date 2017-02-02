@@ -15,66 +15,55 @@ class StringsChecker {
     
     // MARK: Pulic Funcs
     
-    // login details
-    func checkLoginDetails(email : String, password: String) -> String {
+    // login credentials details
+    func checkLoginDetails(email : String, password: String) -> String? {
         
-        var errorString = self.checkEmptyStrings(strings: [email, password])
+        var errorString = self.checkEmptyFieldsForUser(fields: [email, password])
         
-        if !errorString.isEmpty { return errorString }
+        if let err = errorString  { return err }
         
         errorString = self.checkBasicCredentials(email: email, password: password)
         
-        if !errorString.isEmpty { return errorString }
+        if let err = errorString  { return err }
         
-        return ""
+        return nil
     }
     
-    // sign up details    
-    func checkCommonDetails(email: String, name: String, password: String) -> String {
+    // sign up details
+    func checkSignUpFieldsForUser(user: User) -> String? {
         
-        var errorString = self.checkEmptyStrings(strings: [email, password, name])
-        
-        if !errorString.isEmpty { return errorString }
-        
-        errorString  = self.checkBasicCredentials(email: email, password: password)
-        
-        if !errorString.isEmpty { return errorString }
-        
-        errorString = self.checkUserName(name: name)
-        
-        if !errorString.isEmpty { return errorString }
-        
-        return ""
-    }
+        var errorString = self.checkEmptyFieldsForUser(fields: user.requiredFields)
+        if let err = errorString  { return err }
     
-    func checkCafeAdditionalDetails(numberOfTables: String) -> String {
+        errorString = checkBasicCredentials(email: user.email, password: user.password)
+        if let err = errorString  { return err }
         
-        let errorString = self.checkNumberOfTables(number: numberOfTables)
+        errorString = self.checkUserName(name: user.name)
+        if let err = errorString  { return err }
         
-        if !errorString.isEmpty { return errorString }
-        
-        return ""
+        if user.isKind(of: Cafe.self) {
+            if let cafe = user as? Cafe {
+                errorString = self.checkNumberOfTables(number: cafe.numberOfTables)
+                if let err = errorString  { return err }
+            }
+        }
+        return nil
     }
-    
     
     // MARK: Private Funcs
     
-    private func checkBasicCredentials(email: String, password: String) -> String {
+    private func checkBasicCredentials(email: String, password: String) -> String? {
         
-        var errorString = self.checkEmptyStrings(strings: [email, password])
+        if !Utils.shared.isValidEmail(email: email) { return "Invalid Email" }
         
-        errorString = self.checkEmail(email: email)
+        let errorString = self.checkPassword(email: email, password: password)
         
-        if !errorString.isEmpty { return errorString }
+        if let err = errorString  { return err }
         
-        errorString = self.checkPassword(email: email, password: password)
-        
-        if !errorString.isEmpty { return errorString }
-        
-        return ""
+        return nil
     }
     
-    private func checkNumberOfTables(number: String) -> String {
+    private func checkNumberOfTables(number: String) -> String? {
         
         if let num = Int(number) {
             if num < 1 || num > 1000 { return "Invalid number of tables" }
@@ -82,32 +71,11 @@ class StringsChecker {
         else {
             return "Invalid number of tables"
         }
-        
-        
-        return ""
+        return nil
     }
     
-    private func checkEmail(email: String) -> String {
-        let emailTrial = Trial.email
-        let validEmail = emailTrial.trial()
-        
-        if !validEmail(email) {
-            return  "Invalid email\n"
-        }
-        return ""
-    }
-    
-    private func checkEmptyStrings(strings: [String]) -> String {
-        for string in strings {
-            if string.isEmpty {
-                return "Required fields cannot be empty"
-            }
-        }
-        return ""
-    }
-    
-    
-    private func checkPassword(email: String, password: String) -> String{
+    //password
+    private func checkPassword(email: String, password: String) -> String? {
         
         let lengthTrial = Trial.length(.minimum, 6)
         let longEnough = lengthTrial.trial()
@@ -130,19 +98,27 @@ class StringsChecker {
             return "Password should not contain spaces"
         }
         
-        return ""
+        return nil
     }
     
-    func checkUserName(name: String) -> String {
+    // empty fields
+    private func checkEmptyFieldsForUser(fields: [String]) -> String? {
+        for field in fields {
+            if field.isEmpty {
+                return "Required fields cannot be empty"
+            }
+        }
+        return nil
+    }
+    
+    private func checkUserName(name: String) -> String? {
         do {
             let regex = try NSRegularExpression(pattern: "^[0-9a-zA-Z\\_]{2,18}$", options: .caseInsensitive)
             if regex.matches(in: name, options: [], range: NSMakeRange(0, name.characters.count)).count > 0 {
-                return ""
+                return nil
             }
         }
         catch {}
-        return "Invalid user name"
+        return "Invalid Name\n"
     }
-    
-    
 }
