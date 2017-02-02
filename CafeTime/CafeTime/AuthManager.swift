@@ -129,9 +129,9 @@
     
     
     func logOutUser() {
-        if FIRAuth.auth()?.currentUser != nil {
+        if let auth = FIRAuth.auth() {
             do {
-                try FIRAuth.auth()?.signOut()
+                try auth.signOut()
                 let dao = AuthDAO()
                 dao.deleteLocalUserCredentials()
             } catch let error as NSError {

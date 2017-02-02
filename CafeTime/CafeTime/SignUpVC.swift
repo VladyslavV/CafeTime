@@ -41,9 +41,8 @@ class SignUpVC: UIViewController, SignUpViewDelegate, UIImagePickerControllerDel
         
         let viewPhoto = UIAlertAction(title: NSLocalizedString("sighnpvc.actionsheet.viewphoto", comment: ""), style: .default, handler: { [weak self] (action) in
             guard let weakSelf = self else { return }
-            let image = weakSelf.mainView.cafeLogo.image
-            if image != nil {
-                let imageVC = ImageVC(withImage: image!)
+            if let image = weakSelf.mainView.cafeLogo.image {
+                let imageVC = ImageVC(withImage: image)
                 weakSelf.present(imageVC, animated: true, completion: nil)
             }
         })
@@ -95,8 +94,8 @@ class SignUpVC: UIViewController, SignUpViewDelegate, UIImagePickerControllerDel
     
         let errorString = stringsChecker.checkSignUpFieldsForUser(user: user)
         
-        if errorString != nil {
-            self.presentAlert(message: errorString!)
+        if let err = errorString {
+            self.presentAlert(message: err)
             return
         }
         
