@@ -25,7 +25,7 @@ class AuthDAO {
     }
     
     func saveUserFromSnapshot(snapshot: FIRDataSnapshot, uid: String) -> UserRealm? {
-  
+        
         try! realm.write {
             let user = UserRealm()
             if let firebaseDic = snapshot.value as? [String: AnyObject] {
@@ -46,8 +46,8 @@ class AuthDAO {
         self.realm.objects(CurrentUserCredentialsRealm.self).first
     }()
     
-    
     func saveCredentials(email: String, password: String) {
+        
         self.deleteLocalUserCredentials()
         try! realm.write {
             let localCredentials = CurrentUserCredentialsRealm()

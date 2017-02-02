@@ -13,6 +13,7 @@
 		310B75471E414201008ADF62 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 313911761E3BBF1800EDAD40 /* Localizable.strings */; };
 		310B754C1E425768008ADF62 /* Cafe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310B754B1E425768008ADF62 /* Cafe.swift */; };
 		310B754F1E428B8F008ADF62 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310B754E1E428B8F008ADF62 /* User.swift */; };
+		310B75511E4387FF008ADF62 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310B75501E4387FF008ADF62 /* Utils.swift */; };
 		313911711E3BBC5500EDAD40 /* M13Checkbox+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313911701E3BBC5500EDAD40 /* M13Checkbox+Extensions.swift */; };
 		3139117A1E3BCC1600EDAD40 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313911791E3BCC1600EDAD40 /* UIView+Extension.swift */; };
 		3139117C1E3E12AA00EDAD40 /* UIAlertAction+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3139117B1E3E12AA00EDAD40 /* UIAlertAction+Extension.swift */; };
@@ -44,6 +45,7 @@
 		310B753B1E40B5B5008ADF62 /* CurrentUserCredentialsRealm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentUserCredentialsRealm.swift; sourceTree = "<group>"; };
 		310B754B1E425768008ADF62 /* Cafe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cafe.swift; sourceTree = "<group>"; };
 		310B754E1E428B8F008ADF62 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		310B75501E4387FF008ADF62 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		313911701E3BBC5500EDAD40 /* M13Checkbox+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "M13Checkbox+Extensions.swift"; sourceTree = "<group>"; };
 		313911751E3BBF1800EDAD40 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		313911771E3BBF6000EDAD40 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -142,6 +144,7 @@
 				3139118B1E3EA6E000EDAD40 /* Extensions */,
 				3139117D1E3E182D00EDAD40 /* ImageVC.swift */,
 				313911891E3E4FC500EDAD40 /* StringsChecker.swift */,
+				310B75501E4387FF008ADF62 /* Utils.swift */,
 			);
 			name = "Helper Classes";
 			sourceTree = "<group>";
@@ -412,6 +415,7 @@
 				315828CC1E39F17000EBD20E /* SignUpVC.swift in Sources */,
 				31E58F551E37AD7F00CE4FE1 /* AppDelegate.swift in Sources */,
 				3139117E1E3E182D00EDAD40 /* ImageVC.swift in Sources */,
+				310B75511E4387FF008ADF62 /* Utils.swift in Sources */,
 				313911881E3E190600EDAD40 /* UITraitCollection+MKAdditions.m in Sources */,
 				31DD52131E39028400DB9ABC /* AuthenticatedUserMainView.swift in Sources */,
 				315828CA1E39EE5F00EBD20E /* LoginView.swift in Sources */,

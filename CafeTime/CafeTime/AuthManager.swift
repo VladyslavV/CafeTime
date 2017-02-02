@@ -28,7 +28,7 @@
         return FIRDatabase.database().reference(fromURL: "https://cafetime-6651e.firebaseio.com/")
     }
     
-    private var usersRef : FIRDatabaseReference { return self.dataBaseRef.child("Customers")     }
+    private var customersRef : FIRDatabaseReference { return self.dataBaseRef.child("Customers")     }
     
     private var cafesRef : FIRDatabaseReference { return self.dataBaseRef.child("Cafes") }
     
@@ -140,7 +140,6 @@
         }
     }
     
-    
     func getCurrentUser(completion: @escaping (UserRealm?) -> Void) {
         
         if let user = FIRAuth.auth()?.currentUser {
@@ -148,20 +147,19 @@
             if let existingUser = dao.getUserByUid(uid: user.uid) {
                 completion(existingUser)
             }
-            
-            currentUserObserver = usersRef.child(user.uid).observe(.value , with: { [weak self] (snapshot) in
+            currentUserObserver = customersRef.child(user.uid).observe(.value , with: { [weak self] (snapshot) in
+                
                 guard let weakSelf = self else { return }
                 if snapshot.exists() {
                     completion(weakSelf.dao.saveUserFromSnapshot(snapshot: snapshot, uid: user.uid))
                 }
-                
             })
         }
     }
     
     func removeUserObserver() {
         if let obs = currentUserObserver {
-            usersRef.removeObserver(withHandle: obs)
+            customersRef.removeObserver(withHandle: obs)
         }
     }
  }

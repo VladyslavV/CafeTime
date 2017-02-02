@@ -95,8 +95,8 @@ class SignUpVC: UIViewController, SignUpViewDelegate, UIImagePickerControllerDel
     
         let errorString = stringsChecker.checkSignUpFieldsForUser(user: user)
         
-        if !errorString.isEmpty {
-            self.presentAlert(message: errorString)
+        if errorString != nil {
+            self.presentAlert(message: errorString!)
             return
         }
         
@@ -106,12 +106,12 @@ class SignUpVC: UIViewController, SignUpViewDelegate, UIImagePickerControllerDel
             guard let weakSelf = self else { return }
             
             if success {
-                HUD.show(.success)
+                HUD.flash(.success,delay: 1)
                 weakSelf.dismiss(animated: true, completion:nil)
                 
             }
             else {
-                HUD.show(.error)
+                HUD.flash(.error, delay: 1)
                 weakSelf.presentAlert(message: error)
             }
         }

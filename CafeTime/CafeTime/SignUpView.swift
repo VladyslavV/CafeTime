@@ -30,7 +30,7 @@ class SignUpView: UIView, UITextFieldDelegate {
     
     var user = User()
     var cafe = Cafe()
-
+    
     
     weak var delegate : SignUpViewDelegate?
     
@@ -425,11 +425,11 @@ class SignUpView: UIView, UITextFieldDelegate {
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         if textField == numberOfTablesTextField {
-            let invalidCharacters = CharacterSet(charactersIn: "0123456789").inverted
-            return string.rangeOfCharacter(from: invalidCharacters, options: [], range: string.startIndex ..< string.endIndex) == nil
+            return Utils.shared.isNumberString(string: string)
         }
         return true
     }
+    
     
     
 }
