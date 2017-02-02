@@ -55,3 +55,8 @@
 
 "authenticateduservc.tabbar.name" = "Profile";
 
+"authenticateduservc.username.label" = "Name";
+
+"authenticateduservc.country.label" = "Country";
+
+

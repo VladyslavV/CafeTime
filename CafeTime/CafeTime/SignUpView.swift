@@ -17,16 +17,20 @@ enum UserType: Int {
 }
 
 protocol SignUpViewDelegate : class {
-    func signUpButtonPressed()
+    func signUpUser(user: User)
     func chooseLogoTapped()
 }
 
 
 let cornerRadius : CGFloat = 5.0
 
-class SignUpView: UIView, UIGestureRecognizerDelegate, UITextFieldDelegate {
+class SignUpView: UIView, UITextFieldDelegate {
     
     let countries = Countries().countries
+    
+    var user = User()
+    var cafe = Cafe()
+
     
     weak var delegate : SignUpViewDelegate?
     
@@ -34,13 +38,6 @@ class SignUpView: UIView, UIGestureRecognizerDelegate, UITextFieldDelegate {
     let autoLoginCheckBox : M13Checkbox = {
         let myVar = M13Checkbox(frame: CGRect.zero)
         myVar.boxType = .square
-        return myVar
-    }()
-    
-    private lazy var tapLogoGestureRecognizer : UITapGestureRecognizer = {
-        let myVar = UITapGestureRecognizer()
-        myVar.delegate = self
-        myVar.addTarget(self, action: #selector(chooseLogoImage(_ :)))
         return myVar
     }()
     
@@ -52,9 +49,11 @@ class SignUpView: UIView, UIGestureRecognizerDelegate, UITextFieldDelegate {
         myVar.layer.borderColor = UIColor.black.cgColor
         myVar.layer.borderWidth = 2.0
         myVar.layer.cornerRadius = 15
-        myVar.addGestureRecognizer(self.tapLogoGestureRecognizer)
+        myVar.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(chooseLogoImage)))
         return myVar
     }()
+    
+    
     
     let rememberMeLabel : UILabel = {
         let myVar = UILabel()
@@ -74,13 +73,24 @@ class SignUpView: UIView, UIGestureRecognizerDelegate, UITextFieldDelegate {
         return myVar
     }()
     
-    let emailTextField : UITextField = {
+    lazy var nameTextField : UITextField = {
+        let myVar = UITextField()
+        myVar.autocapitalizationType = .words
+        myVar.backgroundColor = UIColor.lightGray
+        myVar.textAlignment = .center
+        myVar.layer.cornerRadius = cornerRadius
+        myVar.delegate = self
+        return myVar
+    }()
+    
+    lazy var emailTextField : UITextField = {
         let myVar = UITextField()
         myVar.placeholder = NSLocalizedString("signupvc.email.textfield", comment: "")
         myVar.autocapitalizationType = .none
         myVar.backgroundColor = UIColor.lightGray
         myVar.textAlignment = .center
         myVar.layer.cornerRadius = cornerRadius
+        myVar.delegate = self
         return myVar
     }()
     
@@ -90,27 +100,20 @@ class SignUpView: UIView, UIGestureRecognizerDelegate, UITextFieldDelegate {
         myVar.backgroundColor = UIColor.lightGray
         myVar.textAlignment = .center
         myVar.layer.cornerRadius = cornerRadius
-        let pickerView = CountriesPickerView(textField: myVar)        
+        let pickerView = CountriesPickerView(textField: myVar)
         myVar.inputView = pickerView
+        myVar.delegate = self
         return myVar
     }()
     
-    let foodTypeTextField : UITextField = {
+    lazy var foodTypeTextField : UITextField = {
         let myVar = UITextField()
         myVar.placeholder = NSLocalizedString("signupvc.cafe.foodtype.textfield", comment: "")
         myVar.autocapitalizationType = .none
         myVar.backgroundColor = UIColor.lightGray
         myVar.textAlignment = .center
         myVar.layer.cornerRadius = cornerRadius;
-        return myVar
-    }()
-    
-    let nameTextField : UITextField = {
-        let myVar = UITextField()
-        myVar.autocapitalizationType = .words
-        myVar.backgroundColor = UIColor.lightGray
-        myVar.textAlignment = .center
-        myVar.layer.cornerRadius = cornerRadius
+        myVar.delegate = self
         return myVar
     }()
     
@@ -121,12 +124,12 @@ class SignUpView: UIView, UIGestureRecognizerDelegate, UITextFieldDelegate {
         myVar.backgroundColor = UIColor.lightGray
         myVar.textAlignment = .center
         myVar.layer.cornerRadius = cornerRadius
-        myVar.delegate = self
         myVar.keyboardType = .numberPad
+        myVar.delegate = self
         return myVar
     }()
     
-    let passwordTextField : UITextField = {
+    lazy var passwordTextField : UITextField = {
         let myVar = UITextField()
         myVar.placeholder = NSLocalizedString("signupvc.password.textfield", comment: "")
         myVar.autocapitalizationType = .none
@@ -134,6 +137,7 @@ class SignUpView: UIView, UIGestureRecognizerDelegate, UITextFieldDelegate {
         myVar.textAlignment = .center
         myVar.layer.cornerRadius = cornerRadius
         myVar.isSecureTextEntry = true
+        myVar.delegate = self
         return myVar
     }()
     
@@ -352,10 +356,48 @@ class SignUpView: UIView, UIGestureRecognizerDelegate, UITextFieldDelegate {
     //MARK: Actions
     
     @objc private func signUp() {
-        self.delegate?.signUpButtonPressed()
+        switch segmentedControl.selectedSegmentIndex {
+        case UserType.customer.rawValue:
+            if let text = nameTextField.text {
+                user.name = text
+            }
+            if let text = countryTextField.text {
+                user.country = text
+            }
+            if let text = passwordTextField.text {
+                user.password = text
+            }
+            if let text = emailTextField.text {
+                user.email = text
+            }
+            self.delegate?.signUpUser(user: user)
+            break
+        case UserType.cafe.rawValue:
+            if let text = nameTextField.text {
+                cafe.name = text
+            }
+            if let text = countryTextField.text {
+                cafe.country = text
+            }
+            if let text = passwordTextField.text {
+                cafe.password = text
+            }
+            if let text = emailTextField.text {
+                cafe.email = text
+            }
+            if let text = numberOfTablesTextField.text {
+                cafe.numberOfTables = text
+            }
+            if let text = foodTypeTextField.text {
+                cafe.foodtype = text
+            }
+            self.delegate?.signUpUser(user: cafe)
+            break
+        default: break
+        }
     }
     
-    @objc private func chooseLogoImage(_ tap: UITapGestureRecognizer) {
+    @objc private func chooseLogoImage() {
         self.delegate?.chooseLogoTapped()
     }
     
@@ -378,10 +420,16 @@ class SignUpView: UIView, UIGestureRecognizerDelegate, UITextFieldDelegate {
         UITextField.cleanFields([passwordTextField,emailTextField,nameTextField,foodTypeTextField,numberOfTablesTextField, countryTextField])
     }
     
+    
     // MARK: TextField Delegate
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        let invalidCharacters = CharacterSet(charactersIn: "0123456789").inverted
-        return string.rangeOfCharacter(from: invalidCharacters, options: [], range: string.startIndex ..< string.endIndex) == nil
+        if textField == numberOfTablesTextField {
+            let invalidCharacters = CharacterSet(charactersIn: "0123456789").inverted
+            return string.rangeOfCharacter(from: invalidCharacters, options: [], range: string.startIndex ..< string.endIndex) == nil
+        }
+        return true
     }
+    
+    
 }

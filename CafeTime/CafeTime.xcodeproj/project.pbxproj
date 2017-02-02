@@ -10,8 +10,9 @@
 		310B75371E4088C9008ADF62 /* AuthDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310B75361E4088C9008ADF62 /* AuthDAO.swift */; };
 		310B753A1E4088E6008ADF62 /* UserRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310B75391E4088E6008ADF62 /* UserRealm.swift */; };
 		310B753C1E40B5B5008ADF62 /* CurrentUserCredentialsRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310B753B1E40B5B5008ADF62 /* CurrentUserCredentialsRealm.swift */; };
-		310B75451E413BEA008ADF62 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 31E58F601E37AD7F00CE4FE1 /* Info.plist */; };
 		310B75471E414201008ADF62 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 313911761E3BBF1800EDAD40 /* Localizable.strings */; };
+		310B754C1E425768008ADF62 /* Cafe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310B754B1E425768008ADF62 /* Cafe.swift */; };
+		310B754F1E428B8F008ADF62 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310B754E1E428B8F008ADF62 /* User.swift */; };
 		313911711E3BBC5500EDAD40 /* M13Checkbox+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313911701E3BBC5500EDAD40 /* M13Checkbox+Extensions.swift */; };
 		3139117A1E3BCC1600EDAD40 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313911791E3BCC1600EDAD40 /* UIView+Extension.swift */; };
 		3139117C1E3E12AA00EDAD40 /* UIAlertAction+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3139117B1E3E12AA00EDAD40 /* UIAlertAction+Extension.swift */; };
@@ -21,7 +22,6 @@
 		3139118D1E3F642B00EDAD40 /* Countries.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3139118C1E3F642B00EDAD40 /* Countries.swift */; };
 		3139118F1E3F6C5100EDAD40 /* UITextField+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3139118E1E3F6C5100EDAD40 /* UITextField+Extensions.swift */; };
 		313911911E3F78BB00EDAD40 /* CountriesPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313911901E3F78BB00EDAD40 /* CountriesPickerView.swift */; };
-		313911941E3F918F00EDAD40 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313911931E3F918F00EDAD40 /* User.swift */; };
 		315828C81E39EE5400EBD20E /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 315828C71E39EE5400EBD20E /* SignUpView.swift */; };
 		315828CA1E39EE5F00EBD20E /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 315828C91E39EE5F00EBD20E /* LoginView.swift */; };
 		315828CC1E39F17000EBD20E /* SignUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 315828CB1E39F17000EBD20E /* SignUpVC.swift */; };
@@ -42,6 +42,8 @@
 		310B75361E4088C9008ADF62 /* AuthDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthDAO.swift; sourceTree = "<group>"; };
 		310B75391E4088E6008ADF62 /* UserRealm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserRealm.swift; sourceTree = "<group>"; };
 		310B753B1E40B5B5008ADF62 /* CurrentUserCredentialsRealm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentUserCredentialsRealm.swift; sourceTree = "<group>"; };
+		310B754B1E425768008ADF62 /* Cafe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cafe.swift; sourceTree = "<group>"; };
+		310B754E1E428B8F008ADF62 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		313911701E3BBC5500EDAD40 /* M13Checkbox+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "M13Checkbox+Extensions.swift"; sourceTree = "<group>"; };
 		313911751E3BBF1800EDAD40 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		313911771E3BBF6000EDAD40 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -55,7 +57,6 @@
 		3139118C1E3F642B00EDAD40 /* Countries.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Countries.swift; sourceTree = "<group>"; };
 		3139118E1E3F6C5100EDAD40 /* UITextField+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextField+Extensions.swift"; sourceTree = "<group>"; };
 		313911901E3F78BB00EDAD40 /* CountriesPickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountriesPickerView.swift; sourceTree = "<group>"; };
-		313911931E3F918F00EDAD40 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		315828C71E39EE5400EBD20E /* SignUpView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		315828C91E39EE5F00EBD20E /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		315828CB1E39F17000EBD20E /* SignUpVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpVC.swift; sourceTree = "<group>"; };
@@ -100,7 +101,6 @@
 			isa = PBXGroup;
 			children = (
 				315828D91E3A80D700EBD20E /* AuthManager.swift */,
-				313911931E3F918F00EDAD40 /* User.swift */,
 				310B75481E41FAC5008ADF62 /* Realm */,
 			);
 			name = "Network + DAO";
@@ -123,6 +123,16 @@
 				310B753B1E40B5B5008ADF62 /* CurrentUserCredentialsRealm.swift */,
 			);
 			name = Realm;
+			sourceTree = "<group>";
+		};
+		310B754D1E4257A9008ADF62 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				310B754E1E428B8F008ADF62 /* User.swift */,
+				310B754B1E425768008ADF62 /* Cafe.swift */,
+				3139118C1E3F642B00EDAD40 /* Countries.swift */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 		3139117F1E3E186700EDAD40 /* Helper Classes */ = {
@@ -179,7 +189,7 @@
 			children = (
 				315828CB1E39F17000EBD20E /* SignUpVC.swift */,
 				315828C71E39EE5400EBD20E /* SignUpView.swift */,
-				3139118C1E3F642B00EDAD40 /* Countries.swift */,
+				310B754D1E4257A9008ADF62 /* Model */,
 			);
 			name = "Sign Up";
 			sourceTree = "<group>";
@@ -207,8 +217,8 @@
 			children = (
 				313911921E3F7B2300EDAD40 /* Reusable Views */,
 				315828E91E3B91C200EBD20E /* Globals */,
-				315828CF1E39F28E00EBD20E /* Sign Up */,
 				315828D01E39F29600EBD20E /* Login */,
+				315828CF1E39F28E00EBD20E /* Sign Up */,
 			);
 			name = "SignUp + Login";
 			sourceTree = "<group>";
@@ -336,9 +346,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				310B75471E414201008ADF62 /* Localizable.strings in Resources */,
-				310B75451E413BEA008ADF62 /* Info.plist in Resources */,
 				31E58F5C1E37AD7F00CE4FE1 /* Assets.xcassets in Resources */,
+				310B75471E414201008ADF62 /* Localizable.strings in Resources */,
 				31DD520A1E38D4B600DB9ABC /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -398,6 +407,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				310B754F1E428B8F008ADF62 /* User.swift in Sources */,
 				319DB38D1E3FAC280036640D /* UserProfileInfoView.swift in Sources */,
 				315828CC1E39F17000EBD20E /* SignUpVC.swift in Sources */,
 				31E58F551E37AD7F00CE4FE1 /* AppDelegate.swift in Sources */,
@@ -405,7 +415,6 @@
 				313911881E3E190600EDAD40 /* UITraitCollection+MKAdditions.m in Sources */,
 				31DD52131E39028400DB9ABC /* AuthenticatedUserMainView.swift in Sources */,
 				315828CA1E39EE5F00EBD20E /* LoginView.swift in Sources */,
-				313911941E3F918F00EDAD40 /* User.swift in Sources */,
 				315828D41E3A3CE400EBD20E /* GlobalStrings.swift in Sources */,
 				313911911E3F78BB00EDAD40 /* CountriesPickerView.swift in Sources */,
 				3139117C1E3E12AA00EDAD40 /* UIAlertAction+Extension.swift in Sources */,
@@ -416,6 +425,7 @@
 				310B753C1E40B5B5008ADF62 /* CurrentUserCredentialsRealm.swift in Sources */,
 				315828E81E3B8CD300EBD20E /* GlobalSaver.swift in Sources */,
 				3139118D1E3F642B00EDAD40 /* Countries.swift in Sources */,
+				310B754C1E425768008ADF62 /* Cafe.swift in Sources */,
 				315828CE1E39F17D00EBD20E /* LoginVC.swift in Sources */,
 				315828C81E39EE5400EBD20E /* SignUpView.swift in Sources */,
 				313911711E3BBC5500EDAD40 /* M13Checkbox+Extensions.swift in Sources */,

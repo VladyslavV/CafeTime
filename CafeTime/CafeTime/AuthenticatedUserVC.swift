@@ -13,11 +13,20 @@ import Jelly
 
 class AuthenticatedUserVC: UIViewController, AuthenticatedUserMainViewDelegate, UserProfileInfoViewDelegate {
     
-    private var jellyAnimator: JellyAnimator?
-    private let viewModel = AuthenticatedUserViewModel()
-    private let mainView = AuthenticatedUserMainView()
     private let authManager = AuthManager.shared
-    private var userProfileView: UserProfileInfoView?
+    private var jellyAnimator: JellyAnimator?
+    
+    private lazy var mainView: AuthenticatedUserMainView = {
+        let myVar = AuthenticatedUserMainView()
+        myVar.delegate = self
+        return myVar
+    }()
+    
+    private lazy var userProfileView: UserProfileInfoView = {
+        let myVar = self.mainView.userProfileInfoView
+        myVar.delegate = self
+        return myVar
+    }()
     
     private lazy var navBarButtonRight : UIBarButtonItem = {
         let myVar = UIBarButtonItem(image: UIImage.init(named: "editprofilebutton_image"), style: .plain, target: self, action: #selector(AuthenticatedUserVC.editProfile))
@@ -31,10 +40,7 @@ class AuthenticatedUserVC: UIViewController, AuthenticatedUserMainViewDelegate, 
     
     private func setUp() {
         self.view.addSubview(mainView)
-        userProfileView = mainView.userProfileInfoView
-        userProfileView?.delegate = self
         
-        mainView.delegate = self
         mainView.snp.remakeConstraints { (make) -> Void in
             make.left.right.bottom.equalTo(self.view)
             make.top.equalTo(self.topLayoutGuide.snp.bottom)
@@ -44,13 +50,23 @@ class AuthenticatedUserVC: UIViewController, AuthenticatedUserMainViewDelegate, 
         self.tabBarItem = UITabBarItem(title: NSLocalizedString("authenticateduservc.tabbar.name", comment: ""), image: tabBarImage , selectedImage: tabBarImage)
         
         self.navigationItem.rightBarButtonItem = navBarButtonRight
+        
+      
     }
     
+    // update view
     override func viewWillAppear(_ animated: Bool) {
         authManager.getCurrentUser { [weak self] (user) in
             guard let weakSelf = self else { return }
             weakSelf.navigationItem.title =  user?.name
+            weakSelf.userProfileView.userNameLabel.text = user?.name
+            weakSelf.userProfileView.userCountryLabel.text = user?.country
         }
+    }
+    
+    //remove observer
+    override func viewWillDisappear(_ animated: Bool) {
+        authManager.removeUserObserver()
     }
     
     //MARK: Main View Delegate
@@ -62,7 +78,7 @@ class AuthenticatedUserVC: UIViewController, AuthenticatedUserMainViewDelegate, 
     
     // MARK: Private Funcs
     
- 
+    
     @objc private func editProfile() {
         print("touched")
     }
@@ -75,7 +91,7 @@ class AuthenticatedUserVC: UIViewController, AuthenticatedUserMainViewDelegate, 
     //MARK: User Profile View Delegate
     
     func imageTapped() {
-        guard let image = userProfileView?.userImageView.image else { return }
+        guard let image = userProfileView.userImageView.image else { return }
         
         let imageVC = ImageVC(withImage: image)
         
@@ -94,10 +110,8 @@ class AuthenticatedUserVC: UIViewController, AuthenticatedUserMainViewDelegate, 
                                                           marginGuards: UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5),
                                                           corners: .allCorners)
         
-        
         self.jellyAnimator = JellyAnimator(presentation:customPresentation)
         self.jellyAnimator?.prepare(viewController: imageVC)
-        
         self.present(imageVC, animated: true, completion: nil)
     }
 }

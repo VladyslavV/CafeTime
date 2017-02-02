@@ -16,7 +16,8 @@ class SignUpVC: UIViewController, SignUpViewDelegate, UIImagePickerControllerDel
     // MARK: Vars
     
     private let mainView = SignUpView()
-    
+    private let stringsChecker = StringsChecker.shared
+
     //image picker
     private lazy var libraryImagePicker : UIImagePickerController = {
         let myVar = UIImagePickerController()
@@ -61,7 +62,6 @@ class SignUpVC: UIViewController, SignUpViewDelegate, UIImagePickerControllerDel
             }
         })
         
-        
         let cancelAction = UIAlertAction(title: NSLocalizedString("sighnpvc.actionsheet.cancel", comment: ""), style: .cancel, handler: nil)
         
         myVar.addActions([viewPhoto, choosePhotoAction, pickPhotoFromCameraAction, cancelAction])
@@ -74,8 +74,6 @@ class SignUpVC: UIViewController, SignUpViewDelegate, UIImagePickerControllerDel
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setUp()
-        
-        
     }
     
     private func setUp() {
@@ -93,64 +91,31 @@ class SignUpVC: UIViewController, SignUpViewDelegate, UIImagePickerControllerDel
     
     //MARK: Main View Delegate
     
-    func signUpButtonPressed() {
-        
-        let stringsChecker = StringsChecker.shared
-        
-        let email = mainView.emailTextField.text!
-        let password = mainView.passwordTextField.text!
-        let name = mainView.nameTextField.text!
-        let country = mainView.countryTextField.text!
-        
-        let errorString = stringsChecker.checkCommonDetails(email: email, name: name, password: password)
+    func signUpUser(user: User) {
+    
+        let errorString = stringsChecker.checkSignUpFieldsForUser(user: user)
         
         if !errorString.isEmpty {
             self.presentAlert(message: errorString)
             return
         }
         
-        if mainView.segmentedControl.selectedSegmentIndex == UserType.customer.rawValue {
+        HUD.flash(.progress)
+        AuthManager.shared.createUser(user: user, rememberUser: mainView.autoLoginCheckBox.isChecked()) { [weak self] (error, success) in
             
-            AuthManager.shared.createUser(email: email, name: name, numberOfTables: "0", country: country, foodType: "", password: password, rememberUser: mainView.autoLoginCheckBox.isChecked(), completion: { [weak self] (error, success) in
+            guard let weakSelf = self else { return }
+            
+            if success {
+                HUD.show(.success)
+                weakSelf.dismiss(animated: true, completion:nil)
                 
-                guard let weakSelf = self else { return }
-                
-                if success {
-                    weakSelf.dismiss(animated: true, completion: nil)
-                }
-                    
-                else {
-                    weakSelf.presentAlert(message: error)
-                }
-            })
-        }
-            
-        else if mainView.segmentedControl.selectedSegmentIndex == UserType.cafe.rawValue {
-            
-            let numberOfTables = mainView.numberOfTablesTextField.text!
-            let foodType = mainView.foodTypeTextField.text!
-            
-            let errorString = stringsChecker.checkCafeAdditionalDetails(numberOfTables: numberOfTables)
-            
-            if !errorString.isEmpty {
-                self.presentAlert(message: errorString)
-                return
             }
-            
-            AuthManager.shared.createUser(email: email, name: name, numberOfTables: numberOfTables, country: country,  foodType: foodType, password: password, rememberUser: mainView.autoLoginCheckBox.isChecked(), completion: { [weak self] (error, success) in
-                
-                guard let weakSelf = self else { return }
-                
-                if success {
-                    weakSelf.dismiss(animated: true, completion: nil)
-                }
-                else {
-                    weakSelf.presentAlert(message: error)
-                }
-            })
+            else {
+                HUD.show(.error)
+                weakSelf.presentAlert(message: error)
+            }
         }
     }
-    
     
     func chooseLogoTapped() {
         self.present(logoActionSheet, animated: true, completion: nil)
