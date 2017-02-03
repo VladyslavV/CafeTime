@@ -43,7 +43,7 @@ class UserProfileInfoView: UIView {
         let myVar = UIImageView()
         myVar.isUserInteractionEnabled = true
         myVar.image = UIImage.init(named: "image_placeholder")
-        myVar.contentMode = .scaleAspectFit
+        myVar.contentMode = .scaleAspectFill
         myVar.layer.borderColor = UIColor.orange.cgColor
         myVar.layer.borderWidth = 1.0
         

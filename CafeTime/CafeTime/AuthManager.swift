@@ -22,15 +22,16 @@
     
     private let dao = AuthDAO()
     
-    private let storageRef = FIRStorage.storage().reference()
+    internal let storageRef = FIRStorage.storage().reference()
     
     private var dataBaseRef : FIRDatabaseReference {
         return FIRDatabase.database().reference(fromURL: "https://cafetime-6651e.firebaseio.com/")
     }
     
-    private var customersRef : FIRDatabaseReference { return self.dataBaseRef.child("Customers")     }
+    internal var customersRef : FIRDatabaseReference { return self.dataBaseRef.child("Customers") }
+    internal var cafesRef : FIRDatabaseReference { return self.dataBaseRef.child("Cafes") }
     
-    private var cafesRef : FIRDatabaseReference { return self.dataBaseRef.child("Cafes") }
+    internal var dataBaseStorageRef = FIRStorage.storage().reference(forURL: "gs://cafetime-6651e.appspot.com/")
     
     private var currentUserObserver: FIRDatabaseHandle?
     
@@ -57,70 +58,6 @@
         }
     }
     
-    // MARK: Create and save user
-    func createUser(user : User, rememberUser: Bool, completion: @escaping (_ error: String, _ success: Bool) -> Void) {
-        
-        FIRAuth.auth()?.createUser(withEmail: user.email, password: user.password, completion: { [weak self] (firUser, error) in
-            
-            guard let weakSelf = self else { return }
-            
-            if let err = error {
-                completion(err.localizedDescription, false)
-                return
-            }
-            print("You have successfully signed up")
-            
-            // save locally
-            if rememberUser {
-                let dao = AuthDAO()
-                dao.saveCredentials(email: user.email, password: user.password)
-            }
-            
-            // save on the server
-            if let uid = firUser?.uid {
-                weakSelf.saveUserToFirebase(user: user, uid: uid, completion: { (success) in
-                    if success {
-                        completion("", true)
-                    }
-                    else {
-                        completion("Could not saved user to the Database", false)
-                    }
-                })
-            }
-        })
-    }
-    
-    private func saveUserToFirebase(user: User, uid: String ,completion: @escaping (Bool) -> Void) {
-        
-        var userReference: FIRDatabaseReference?
-        var values: [AnyHashable : Any]?
-        
-        if user.isKind(of: Cafe.self) {
-            if let cafe = user as? Cafe {
-                userReference = dataBaseRef.child("Cafe").child(uid)
-                values = ["name" : cafe.name, "country" : cafe.country, "email" : cafe.email, "numberOfTables" : cafe.numberOfTables,
-                          "foodTpye" : cafe.foodtype]
-            }
-        }
-        else {
-            userReference = dataBaseRef.child("Customers").child(uid)
-            values = ["name" : user.name, "country" : user.country, "email" : user.email]
-        }
-        
-        if let val = values, let ref = userReference {
-            ref.updateChildValues(val) { (error, ref) in
-                if let err = error {
-                    print(err)
-                    completion(false)
-                    return
-                }
-                completion(true)
-                print("Successflully saved customer to the Firebase db")
-            }
-        }
-    }
-    
-    
     // MARK: User
     
     func userCredentials() -> CurrentUserCredentialsRealm? {
@@ -140,18 +77,23 @@
         }
     }
     
-    func getCurrentUser(completion: @escaping (UserRealm?) -> Void) {
+    func observeCurrentUser(completion: @escaping (UserRealm?) -> Void) {
         
         if let user = FIRAuth.auth()?.currentUser {
             
             if let existingUser = dao.getUserByUid(uid: user.uid) {
                 completion(existingUser)
             }
+            
             currentUserObserver = customersRef.child(user.uid).observe(.value , with: { [weak self] (snapshot) in
-                
+            
                 guard let weakSelf = self else { return }
-                if snapshot.exists() {
+                
+                if snapshot.key == user.uid {
                     completion(weakSelf.dao.saveUserFromSnapshot(snapshot: snapshot, uid: user.uid))
+                }
+                else {
+                    weakSelf.dao.deleteUser(withUID: user.uid)
                 }
             })
         }
@@ -162,4 +104,5 @@
             customersRef.removeObserver(withHandle: obs)
         }
     }
+    
  }

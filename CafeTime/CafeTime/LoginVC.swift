@@ -8,6 +8,7 @@
 
 import UIKit
 import FirebaseAuth
+import PKHUD
 
 class LoginVC: UIViewController, LoginViewDelegate {
     
@@ -47,16 +48,21 @@ class LoginVC: UIViewController, LoginViewDelegate {
             return
         }
         
+        HUD.show(.progress)
+
         AuthManager.shared.authenticateUser(email: email, password: password, rememberUser: mainView.autoLoginCheckBox.isChecked()) { [weak self] (error, success) in
             
             guard let weakSelf = self else { return }
             
             if success {
+                HUD.flash(.success,delay: 1)
                 weakSelf.dismiss(animated: true, completion: nil)
             }
                 
             else {
-                weakSelf.presentAlert(message: error)
+                HUD.flash(.error, onView: self?.view, delay: 0.2, completion: { (end) in
+                    weakSelf.presentAlert(message: error)
+                })
             }
         }
     }
