@@ -99,7 +99,10 @@ class SignUpVC: UIViewController, SignUpViewDelegate, UIImagePickerControllerDel
             return
         }
         
-        HUD.flash(.progress)
+        HUD.show(.progress)
+    
+        user.myImageData = Utils.shared.imageToJpegCompressed(image: mainView.cafeLogo.image)
+                
         AuthManager.shared.createUser(user: user, rememberUser: mainView.autoLoginCheckBox.isChecked()) { [weak self] (error, success) in
             
             guard let weakSelf = self else { return }
@@ -107,11 +110,12 @@ class SignUpVC: UIViewController, SignUpViewDelegate, UIImagePickerControllerDel
             if success {
                 HUD.flash(.success,delay: 1)
                 weakSelf.dismiss(animated: true, completion:nil)
-                
             }
             else {
-                HUD.flash(.error, delay: 1)
-                weakSelf.presentAlert(message: error)
+               // HUD.flash(.error, delay: 0.2)
+                HUD.flash(.error, onView: self?.view, delay: 0.2, completion: { (end) in
+                    weakSelf.presentAlert(message: error)
+                })
             }
         }
     }

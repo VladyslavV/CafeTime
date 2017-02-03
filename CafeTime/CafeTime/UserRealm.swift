@@ -15,6 +15,7 @@ class UserRealm: Object {
     dynamic var name: String? = ""
     dynamic var email: String? = ""
     dynamic var country: String? = ""
+    dynamic var profileImageURL: String? = ""
 
     override static func primaryKey() -> String? {
         return "uid"

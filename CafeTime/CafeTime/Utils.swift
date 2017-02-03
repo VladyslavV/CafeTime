@@ -31,4 +31,15 @@ class Utils: NSObject {
         }
         return true
     }
+
+    
+    // compress image to jpeg and return data
+    
+    func imageToJpegCompressed(image: UIImage?) -> Data? {
+        if let newImage = image, let imageData = UIImageJPEGRepresentation(newImage, 0.1) {
+            return imageData
+        }
+        return nil
+    }
+    
 }

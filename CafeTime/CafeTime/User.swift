@@ -20,8 +20,7 @@ class User: NSObject {
 
     
     //image
-    var myImage: UIImage? = nil
-
+    var myImageData: Data? = nil
     
     var requiredFields : [String] {
         return [name, email, password]

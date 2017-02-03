@@ -10,6 +10,7 @@ import UIKit
 import SnapKit
 import FirebaseAuth
 import Jelly
+import SDWebImage
 
 class AuthenticatedUserVC: UIViewController, AuthenticatedUserMainViewDelegate, UserProfileInfoViewDelegate {
     
@@ -50,17 +51,20 @@ class AuthenticatedUserVC: UIViewController, AuthenticatedUserMainViewDelegate, 
         self.tabBarItem = UITabBarItem(title: NSLocalizedString("authenticateduservc.tabbar.name", comment: ""), image: tabBarImage , selectedImage: tabBarImage)
         
         self.navigationItem.rightBarButtonItem = navBarButtonRight
-        
-      
     }
     
     // update view
     override func viewWillAppear(_ animated: Bool) {
-        authManager.getCurrentUser { [weak self] (user) in
+        authManager.observeCurrentUser { [weak self] (user) in
             guard let weakSelf = self else { return }
+        
             weakSelf.navigationItem.title =  user?.name
             weakSelf.userProfileView.userNameLabel.text = user?.name
             weakSelf.userProfileView.userCountryLabel.text = user?.country
+            
+            if let imageURLString = user?.profileImageURL {
+                weakSelf.userProfileView.userImageView.sd_setImage(with: URL(string: imageURLString), placeholderImage: UIImage.init(named: "image_placeholder"))
+            }
         }
     }
     
@@ -77,7 +81,6 @@ class AuthenticatedUserVC: UIViewController, AuthenticatedUserMainViewDelegate, 
     }
     
     // MARK: Private Funcs
-    
     
     @objc private func editProfile() {
         print("touched")

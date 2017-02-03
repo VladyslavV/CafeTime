@@ -26,20 +26,32 @@ class AuthDAO {
     
     func saveUserFromSnapshot(snapshot: FIRDataSnapshot, uid: String) -> UserRealm? {
         
-        try! realm.write {
-            let user = UserRealm()
-            if let firebaseDic = snapshot.value as? [String: AnyObject] {
+        if let firebaseDic = snapshot.value as? [String: AnyObject] {
+            try! realm.write {
+                let user = UserRealm()
                 user.uid = uid
+                user.profileImageURL = firebaseDic["profileImageURL"] as? String
                 user.name = firebaseDic["name"] as? String
                 user.email = firebaseDic["email"] as? String
                 user.country = firebaseDic["country"] as? String
                 realm.add(user, update: true)
             }
+        } else {
+            self.deleteUser(withUID: uid)
         }
-        
         return self.getUserByUid(uid: uid)
     }
     
+    
+    func deleteUser(withUID uid: String) {
+        self.deleteLocalUserCredentials()
+        if let userToDelete = realm.object(ofType: UserRealm.self, forPrimaryKey: uid) {
+            try! realm.write {
+                realm.delete(userToDelete)
+            }
+        }
+    }
+        
     // MARK: User Credentials
     
     lazy var localUserCredentials : CurrentUserCredentialsRealm? = {
