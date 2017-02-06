@@ -67,13 +67,6 @@ class LoginVC: UIViewController, LoginViewDelegate {
         }
     }
     
-    private func presentAlert(message: String) {
-        let alertController = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
-        let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-        alertController.addAction(defaultAction)
-        present(alertController, animated: true, completion: nil)
-    }
-    
     func signUpButtonPressed() {
         self.navigationController?.pushViewController(SignUpVC(), animated: true)
     }

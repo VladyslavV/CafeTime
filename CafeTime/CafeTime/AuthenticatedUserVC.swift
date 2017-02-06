@@ -55,6 +55,7 @@ class AuthenticatedUserVC: UIViewController, AuthenticatedUserMainViewDelegate, 
     
     // update view
     override func viewWillAppear(_ animated: Bool) {
+        self.tabBarController?.tabBar.isHidden = false
         authManager.observeCurrentUser { [weak self] (user) in
             guard let weakSelf = self else { return }
         
@@ -68,27 +69,37 @@ class AuthenticatedUserVC: UIViewController, AuthenticatedUserMainViewDelegate, 
         }
     }
     
-    //remove observer
-    override func viewWillDisappear(_ animated: Bool) {
-        authManager.removeUserObserver()
-    }
-    
+  
     //MARK: Main View Delegate
     
     func logOutButtonPressed() {
-        authManager.logOutUser()
-        self.presentLoginController()
+        self.logOutUser()
+    }
+    
+    func deleteUserButtonPressed() {
+        authManager.deleteCurrentUser { (error, success) in
+            
+            if !success {
+                self.presentAlert(message: error)
+            }
+            else {
+                self.logOutUser()
+            }
+        }
     }
     
     // MARK: Private Funcs
     
-    @objc private func editProfile() {
-        print("touched")
-    }
-    
-    private func presentLoginController() {
+    private func logOutUser() {
+        authManager.logOutUser()
         let nav = UINavigationController(rootViewController: LoginVC())
         self.present(nav, animated: true, completion: nil)
+    }
+    
+    // MARK: Actions
+    
+    @objc private func editProfile() {
+        self.navigationController?.pushViewController(ChatVC(), animated: true)
     }
     
     //MARK: User Profile View Delegate
