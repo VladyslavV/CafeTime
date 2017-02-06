@@ -113,7 +113,7 @@ class SignUpVC: UIViewController, SignUpViewDelegate, UIImagePickerControllerDel
             }
             else {
                // HUD.flash(.error, delay: 0.2)
-                HUD.flash(.error, onView: self?.view, delay: 0.2, completion: { (end) in
+                HUD.flash(.error, onView: self?.view, delay: 0.1, completion: { (end) in
                     weakSelf.presentAlert(message: error)
                 })
             }
@@ -132,16 +132,7 @@ class SignUpVC: UIViewController, SignUpViewDelegate, UIImagePickerControllerDel
         }
         self.dismiss(animated: true, completion: nil)
     }
-    
-    //MARK: Private Funcs
-    
-    private func presentAlert(message: String) {
-        let alertController = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
-        let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-        alertController.addAction(defaultAction)
-        present(alertController, animated: true, completion: nil)
-    }
-    
+        
     
     deinit {
         print("object \( String(describing: (self))) dealloced")

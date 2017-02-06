@@ -7,13 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		310B75371E4088C9008ADF62 /* AuthDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310B75361E4088C9008ADF62 /* AuthDAO.swift */; };
+		310B75371E4088C9008ADF62 /* DAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310B75361E4088C9008ADF62 /* DAO.swift */; };
 		310B753A1E4088E6008ADF62 /* UserRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310B75391E4088E6008ADF62 /* UserRealm.swift */; };
 		310B753C1E40B5B5008ADF62 /* CurrentUserCredentialsRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310B753B1E40B5B5008ADF62 /* CurrentUserCredentialsRealm.swift */; };
 		310B75471E414201008ADF62 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 313911761E3BBF1800EDAD40 /* Localizable.strings */; };
 		310B754C1E425768008ADF62 /* Cafe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310B754B1E425768008ADF62 /* Cafe.swift */; };
 		310B754F1E428B8F008ADF62 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310B754E1E428B8F008ADF62 /* User.swift */; };
 		310B75511E4387FF008ADF62 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310B75501E4387FF008ADF62 /* Utils.swift */; };
+		313532A51E474E8A00BA039C /* ChatVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313532A41E474E8A00BA039C /* ChatVC.swift */; };
+		313532A81E47519400BA039C /* ChatMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313532A71E47519400BA039C /* ChatMainView.swift */; };
+		313532AA1E4752A500BA039C /* ChatInputComponentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313532A91E4752A500BA039C /* ChatInputComponentsView.swift */; };
+		313532AC1E48ACDB00BA039C /* AuthManager+Extension_DeleteObjectsFromServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313532AB1E48ACDB00BA039C /* AuthManager+Extension_DeleteObjectsFromServer.swift */; };
+		313532AE1E48E62B00BA039C /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313532AD1E48E62B00BA039C /* UIViewController+Extension.swift */; };
 		313911711E3BBC5500EDAD40 /* M13Checkbox+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313911701E3BBC5500EDAD40 /* M13Checkbox+Extensions.swift */; };
 		3139117A1E3BCC1600EDAD40 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313911791E3BCC1600EDAD40 /* UIView+Extension.swift */; };
 		3139117C1E3E12AA00EDAD40 /* UIAlertAction+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3139117B1E3E12AA00EDAD40 /* UIAlertAction+Extension.swift */; };
@@ -43,12 +48,17 @@
 /* Begin PBXFileReference section */
 		1D8D817E0BDFBA2A6E70BA43 /* Pods_CafeTime.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CafeTime.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B3BEDDD52F16FA96C91297A /* Pods-CafeTime.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CafeTime.release.xcconfig"; path = "Pods/Target Support Files/Pods-CafeTime/Pods-CafeTime.release.xcconfig"; sourceTree = "<group>"; };
-		310B75361E4088C9008ADF62 /* AuthDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthDAO.swift; sourceTree = "<group>"; };
+		310B75361E4088C9008ADF62 /* DAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DAO.swift; sourceTree = "<group>"; };
 		310B75391E4088E6008ADF62 /* UserRealm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserRealm.swift; sourceTree = "<group>"; };
 		310B753B1E40B5B5008ADF62 /* CurrentUserCredentialsRealm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentUserCredentialsRealm.swift; sourceTree = "<group>"; };
 		310B754B1E425768008ADF62 /* Cafe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cafe.swift; sourceTree = "<group>"; };
 		310B754E1E428B8F008ADF62 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		310B75501E4387FF008ADF62 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		313532A41E474E8A00BA039C /* ChatVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatVC.swift; sourceTree = "<group>"; };
+		313532A71E47519400BA039C /* ChatMainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatMainView.swift; sourceTree = "<group>"; };
+		313532A91E4752A500BA039C /* ChatInputComponentsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatInputComponentsView.swift; sourceTree = "<group>"; };
+		313532AB1E48ACDB00BA039C /* AuthManager+Extension_DeleteObjectsFromServer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AuthManager+Extension_DeleteObjectsFromServer.swift"; sourceTree = "<group>"; };
+		313532AD1E48E62B00BA039C /* UIViewController+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		313911701E3BBC5500EDAD40 /* M13Checkbox+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "M13Checkbox+Extensions.swift"; sourceTree = "<group>"; };
 		313911751E3BBF1800EDAD40 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		313911771E3BBF6000EDAD40 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -107,6 +117,7 @@
 			children = (
 				315828D91E3A80D700EBD20E /* AuthManager.swift */,
 				31F024B91E4486E900A3B7EC /* AuthManager+Extension_SaveUserOnServer.swift */,
+				313532AB1E48ACDB00BA039C /* AuthManager+Extension_DeleteObjectsFromServer.swift */,
 				310B75481E41FAC5008ADF62 /* Realm */,
 			);
 			name = "Network + DAO";
@@ -124,7 +135,7 @@
 		310B75481E41FAC5008ADF62 /* Realm */ = {
 			isa = PBXGroup;
 			children = (
-				310B75361E4088C9008ADF62 /* AuthDAO.swift */,
+				310B75361E4088C9008ADF62 /* DAO.swift */,
 				310B75391E4088E6008ADF62 /* UserRealm.swift */,
 				310B753B1E40B5B5008ADF62 /* CurrentUserCredentialsRealm.swift */,
 			);
@@ -139,6 +150,16 @@
 				3139118C1E3F642B00EDAD40 /* Countries.swift */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		313532A61E474F7700BA039C /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				313532A41E474E8A00BA039C /* ChatVC.swift */,
+				313532A71E47519400BA039C /* ChatMainView.swift */,
+				313532A91E4752A500BA039C /* ChatInputComponentsView.swift */,
+			);
+			name = Chat;
 			sourceTree = "<group>";
 		};
 		3139117F1E3E186700EDAD40 /* Helper Classes */ = {
@@ -167,6 +188,7 @@
 			isa = PBXGroup;
 			children = (
 				313911701E3BBC5500EDAD40 /* M13Checkbox+Extensions.swift */,
+				313532AD1E48E62B00BA039C /* UIViewController+Extension.swift */,
 				3139118E1E3F6C5100EDAD40 /* UITextField+Extensions.swift */,
 				313911791E3BCC1600EDAD40 /* UIView+Extension.swift */,
 				3139117B1E3E12AA00EDAD40 /* UIAlertAction+Extension.swift */,
@@ -187,6 +209,7 @@
 			children = (
 				31DD52081E38B05900DB9ABC /* SignUp + Login */,
 				31DD52141E39028900DB9ABC /* Authenticated User */,
+				313532A61E474F7700BA039C /* Chat */,
 			);
 			name = VCs;
 			sourceTree = "<group>";
@@ -413,22 +436,26 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				313532AE1E48E62B00BA039C /* UIViewController+Extension.swift in Sources */,
 				31F024BA1E4486E900A3B7EC /* AuthManager+Extension_SaveUserOnServer.swift in Sources */,
 				310B754F1E428B8F008ADF62 /* User.swift in Sources */,
 				319DB38D1E3FAC280036640D /* UserProfileInfoView.swift in Sources */,
+				313532AA1E4752A500BA039C /* ChatInputComponentsView.swift in Sources */,
 				315828CC1E39F17000EBD20E /* SignUpVC.swift in Sources */,
 				31E58F551E37AD7F00CE4FE1 /* AppDelegate.swift in Sources */,
 				3139117E1E3E182D00EDAD40 /* ImageVC.swift in Sources */,
 				310B75511E4387FF008ADF62 /* Utils.swift in Sources */,
 				313911881E3E190600EDAD40 /* UITraitCollection+MKAdditions.m in Sources */,
 				31DD52131E39028400DB9ABC /* AuthenticatedUserMainView.swift in Sources */,
+				313532A51E474E8A00BA039C /* ChatVC.swift in Sources */,
 				315828CA1E39EE5F00EBD20E /* LoginView.swift in Sources */,
 				315828D41E3A3CE400EBD20E /* GlobalStrings.swift in Sources */,
 				313911911E3F78BB00EDAD40 /* CountriesPickerView.swift in Sources */,
 				3139117C1E3E12AA00EDAD40 /* UIAlertAction+Extension.swift in Sources */,
 				315828DA1E3A80D700EBD20E /* AuthManager.swift in Sources */,
+				313532A81E47519400BA039C /* ChatMainView.swift in Sources */,
 				3139117A1E3BCC1600EDAD40 /* UIView+Extension.swift in Sources */,
-				310B75371E4088C9008ADF62 /* AuthDAO.swift in Sources */,
+				310B75371E4088C9008ADF62 /* DAO.swift in Sources */,
 				310B753A1E4088E6008ADF62 /* UserRealm.swift in Sources */,
 				310B753C1E40B5B5008ADF62 /* CurrentUserCredentialsRealm.swift in Sources */,
 				315828E81E3B8CD300EBD20E /* GlobalSaver.swift in Sources */,
@@ -437,6 +464,7 @@
 				315828CE1E39F17D00EBD20E /* LoginVC.swift in Sources */,
 				315828C81E39EE5400EBD20E /* SignUpView.swift in Sources */,
 				313911711E3BBC5500EDAD40 /* M13Checkbox+Extensions.swift in Sources */,
+				313532AC1E48ACDB00BA039C /* AuthManager+Extension_DeleteObjectsFromServer.swift in Sources */,
 				3139118F1E3F6C5100EDAD40 /* UITextField+Extensions.swift in Sources */,
 				3139118A1E3E4FC500EDAD40 /* StringsChecker.swift in Sources */,
 				31DD520C1E38D57900DB9ABC /* AuthenticatedUserVC.swift in Sources */,

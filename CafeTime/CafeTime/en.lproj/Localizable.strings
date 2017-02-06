@@ -60,3 +60,11 @@
 "authenticateduservc.country.label" = "Country";
 
 
+// chat vc
+
+"chatvc.send.button" = "Send";
+
+"chatvc.input.textfield" = "Enter text...";
+
+
+

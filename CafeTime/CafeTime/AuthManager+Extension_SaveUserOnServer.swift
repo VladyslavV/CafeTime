@@ -14,6 +14,11 @@ extension AuthManager {
     // MARK: Create and Save user
     func createUser(user : User, rememberUser: Bool, completion: @escaping (_ error: String, _ success: Bool) -> Void) {
         
+        if !isFirebaseConnectionActive {
+            completion("No connection", false)
+            return
+        }
+        
         self.checkUserExistsWithName(name: user.name) { (exists) in
             
             if exists {
@@ -32,7 +37,7 @@ extension AuthManager {
                     
                     // save locally
                     if rememberUser {
-                        let dao = AuthDAO()
+                        let dao = DAO()
                         dao.saveCredentials(email: user.email, password: user.password)
                     }
                     
@@ -116,21 +121,6 @@ extension AuthManager {
                     completion(imageURL)
                 }
             })
-        }
-    }
-    
-    
-    // MARK: Delete
-    func deleteFileAtPath(path: String, completion: @escaping (Bool) -> () ){
-        
-        let objectToDeletePath = FIRStorage.storage().reference(forURL: path)
-        objectToDeletePath.delete { (error) in
-            if let err = error {
-                print(err)
-                completion(false)
-                return
-            }
-            completion(true)
         }
     }
 }

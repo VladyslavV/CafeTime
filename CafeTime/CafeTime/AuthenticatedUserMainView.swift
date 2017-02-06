@@ -12,6 +12,7 @@ import FirebaseAuth
 
 protocol AuthenticatedUserMainViewDelegate : class {
     func logOutButtonPressed()
+    func deleteUserButtonPressed()
 }
 
 class AuthenticatedUserMainView: UIView {
@@ -25,6 +26,14 @@ class AuthenticatedUserMainView: UIView {
         myVar.addTarget(self, action: #selector(logOut), for: .touchUpInside)
         myVar.backgroundColor = UIColor.red
         myVar.setTitle((NSLocalizedString("authenticateduservc.logout.button", comment: "")), for: .normal)
+        return myVar
+    }()
+    
+    private lazy var deleteUserButton : UIButton = {
+        let myVar = UIButton(type: .system)
+        myVar.addTarget(self, action: #selector(deleteUser), for: .touchUpInside)
+        myVar.backgroundColor = UIColor.red
+        myVar.setTitle( "Delete User" , for: .normal)
         return myVar
     }()
     
@@ -49,7 +58,7 @@ class AuthenticatedUserMainView: UIView {
     private func setUp() {
         //self.backgroundColor = UIColor.blue
         
-        self.addSubviews([logOutButton, userProfileInfoView])
+        self.addSubviews([logOutButton, userProfileInfoView, deleteUserButton])
         
         self.setUpConstraints()
     }
@@ -61,18 +70,28 @@ class AuthenticatedUserMainView: UIView {
             make.top.equalTo(self.snp.top)
             make.bottom.equalTo(self.snp.centerY)
         }
-                
+        
         logOutButton.snp.remakeConstraints { (make) -> Void in
             make.height.equalTo(self.snp.height).multipliedBy(0.05)
             make.width.equalTo(self.snp.width).multipliedBy(0.7)
             make.centerX.equalTo(self.snp.centerX)
             make.bottom.equalTo(self.snp.bottom).offset(-150)
         }
+        
+        deleteUserButton.snp.remakeConstraints { (make) -> Void in
+            make.leading.trailing.equalTo(logOutButton)
+            make.top.equalTo(logOutButton.snp.bottom).offset(10)
+            make.height.equalTo(self.snp.height).multipliedBy(0.05)
+        }
     }
     
     
     @objc private func logOut() {
         self.delegate?.logOutButtonPressed()
+    }
+    
+    @objc private func deleteUser() {
+        self.delegate?.deleteUserButtonPressed()
     }
     
 }

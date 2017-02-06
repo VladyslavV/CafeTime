@@ -10,7 +10,7 @@ import Foundation
 import RealmSwift
 import FirebaseDatabase
 
-class AuthDAO {
+class DAO {
     
     private let realm = try! Realm()
     
@@ -42,21 +42,24 @@ class AuthDAO {
         return self.getUserByUid(uid: uid)
     }
     
-    
     func deleteUser(withUID uid: String) {
         self.deleteLocalUserCredentials()
-        if let userToDelete = realm.object(ofType: UserRealm.self, forPrimaryKey: uid) {
+        if let userToDelete = self.getUserByUid(uid: uid) {
             try! realm.write {
-                realm.delete(userToDelete)
+                self.realm.delete(userToDelete)
             }
         }
     }
-        
+    
+    func printStoredUsers() {
+        print(realm.objects(UserRealm.self))
+    }
+    
     // MARK: User Credentials
     
-    lazy var localUserCredentials : CurrentUserCredentialsRealm? = {
-        self.realm.objects(CurrentUserCredentialsRealm.self).first
-    }()
+    func getLocalUserCredentials() -> CurrentUserCredentialsRealm?  {
+        return self.realm.objects(CurrentUserCredentialsRealm.self).first
+    }
     
     func saveCredentials(email: String, password: String) {
         
@@ -70,7 +73,7 @@ class AuthDAO {
     }
     
     func deleteLocalUserCredentials() {
-        if let localCredentials = localUserCredentials {
+        if let localCredentials = getLocalUserCredentials() {
             try! realm.write {
                 realm.delete(localCredentials)
             }
