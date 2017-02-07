@@ -32,9 +32,9 @@ class Remote {
     }
     
     // MARK: Private
-    private var dataBaseRef : FIRDatabaseReference {
-        return FIRDatabase.database().reference(fromURL: "https://cafetime-6651e.firebaseio.com/")
-    }
+//    private var dataBaseRef : FIRDatabaseReference {
+//        return FIRDatabase.database().reference(fromURL: "https://cafetime-6651e.firebaseio.com/")
+//    }
     
     private var stateListener: FIRAuthStateDidChangeListenerHandle?
     private var connectionStateListener: FIRDatabaseHandle?

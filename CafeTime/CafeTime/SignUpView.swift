@@ -28,7 +28,7 @@ class SignUpView: UIView, UITextFieldDelegate {
     
     let countries = Countries().countries
     
-    var user = User()
+    var customer = Customer()
     var cafe = Cafe()
     
     
@@ -359,18 +359,18 @@ class SignUpView: UIView, UITextFieldDelegate {
         switch segmentedControl.selectedSegmentIndex {
         case UserType.customer.rawValue:
             if let text = nameTextField.text {
-                user.name = text
+                customer.name = text
             }
             if let text = countryTextField.text {
-                user.country = text
+                customer.country = text
             }
             if let text = passwordTextField.text {
-                user.password = text
+                customer.password = text
             }
             if let text = emailTextField.text {
-                user.email = text
+                customer.email = text
             }
-            self.delegate?.signUpUser(user: user)
+            self.delegate?.signUpUser(user: customer)
             break
         case UserType.cafe.rawValue:
             if let text = nameTextField.text {

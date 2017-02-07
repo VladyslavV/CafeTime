@@ -27,6 +27,7 @@
 		313532BC1E49E17300BA039C /* CustomerDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313532BB1E49E17300BA039C /* CustomerDAO.swift */; };
 		313532BE1E49E18500BA039C /* CafeDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313532BD1E49E18500BA039C /* CafeDAO.swift */; };
 		313532C31E49E7E100BA039C /* CredentialsDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313532C21E49E7E100BA039C /* CredentialsDAO.swift */; };
+		313532C51E49EF5B00BA039C /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313532C41E49EF5B00BA039C /* Customer.swift */; };
 		313911711E3BBC5500EDAD40 /* M13Checkbox+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313911701E3BBC5500EDAD40 /* M13Checkbox+Extensions.swift */; };
 		3139117A1E3BCC1600EDAD40 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313911791E3BCC1600EDAD40 /* UIView+Extension.swift */; };
 		3139117C1E3E12AA00EDAD40 /* UIAlertAction+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3139117B1E3E12AA00EDAD40 /* UIAlertAction+Extension.swift */; };
@@ -73,6 +74,7 @@
 		313532BB1E49E17300BA039C /* CustomerDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomerDAO.swift; sourceTree = "<group>"; };
 		313532BD1E49E18500BA039C /* CafeDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CafeDAO.swift; sourceTree = "<group>"; };
 		313532C21E49E7E100BA039C /* CredentialsDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CredentialsDAO.swift; sourceTree = "<group>"; };
+		313532C41E49EF5B00BA039C /* Customer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Customer.swift; sourceTree = "<group>"; };
 		313911701E3BBC5500EDAD40 /* M13Checkbox+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "M13Checkbox+Extensions.swift"; sourceTree = "<group>"; };
 		313911751E3BBF1800EDAD40 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		313911771E3BBF6000EDAD40 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -128,10 +130,10 @@
 			isa = PBXGroup;
 			children = (
 				313532AF1E49BEFE00BA039C /* Remote.swift */,
+				313532B11E49BFD800BA039C /* RemoteAuth.swift */,
 				313532B31E49BFED00BA039C /* RemoteCustomer.swift */,
 				313532B71E49DF1F00BA039C /* RemoteCafe.swift */,
 				313532B51E49C64E00BA039C /* RemoteUtils.swift */,
-				313532B11E49BFD800BA039C /* RemoteAuth.swift */,
 				310B75481E41FAC5008ADF62 /* Realm */,
 			);
 			name = "Network + DAO";
@@ -162,6 +164,7 @@
 			isa = PBXGroup;
 			children = (
 				310B754E1E428B8F008ADF62 /* User.swift */,
+				313532C41E49EF5B00BA039C /* Customer.swift */,
 				310B754B1E425768008ADF62 /* Cafe.swift */,
 				3139118C1E3F642B00EDAD40 /* Countries.swift */,
 			);
@@ -498,6 +501,7 @@
 				313911711E3BBC5500EDAD40 /* M13Checkbox+Extensions.swift in Sources */,
 				3139118F1E3F6C5100EDAD40 /* UITextField+Extensions.swift in Sources */,
 				3139118A1E3E4FC500EDAD40 /* StringsChecker.swift in Sources */,
+				313532C51E49EF5B00BA039C /* Customer.swift in Sources */,
 				31DD520C1E38D57900DB9ABC /* AuthenticatedUserVC.swift in Sources */,
 				313532C31E49E7E100BA039C /* CredentialsDAO.swift in Sources */,
 			);

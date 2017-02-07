@@ -17,7 +17,7 @@ class ManagerDAO {
     private let realm = try! Realm()
     
     var customer = CustomerDAO()
-    var cafe = Cafe()
+    var cafe = CafeDAO()
     var credentials = CredentialsDAO()
     
     //    lazy var allNews: Results<NewsItemRealm> = {

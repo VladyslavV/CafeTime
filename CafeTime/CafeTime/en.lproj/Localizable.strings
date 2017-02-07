@@ -66,5 +66,7 @@
 
 "chatvc.input.textfield" = "Enter text...";
 
+// vc extenstion
 
+"vc.extenstion.allert" = "Error";
 

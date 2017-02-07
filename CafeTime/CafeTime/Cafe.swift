@@ -17,4 +17,5 @@ class Cafe: User {
         return [name, email, password, numberOfTables]
     }
 
+
 }

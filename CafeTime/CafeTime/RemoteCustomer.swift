@@ -12,7 +12,7 @@ import FirebaseDatabase
 
 class RemoteCustomer {
     
-    private let dao = ManagerDAO.access
+    private let daoCustomer = ManagerDAO.access.customer
     
     // MARK: Server References
     
@@ -26,19 +26,19 @@ class RemoteCustomer {
         
         if let user = FIRAuth.auth()?.currentUser {
             
-            if let existingUser = dao.customer.getByUid(uid: user.uid) {
+            if let existingUser = daoCustomer.getByUid(uid: user.uid) {
                 completion(existingUser)
             }
             
             customersRef.child(user.uid).observeSingleEvent(of: .value , with: { [weak self] (snapshot) in
                 
                 guard let weakSelf = self else { return }
-                
+                                
                 if snapshot.key == user.uid {
-                    completion(weakSelf.dao.customer.saveFromSnapshot(snapshot: snapshot, uid: user.uid))
+                    completion(weakSelf.daoCustomer.saveFromSnapshot(snapshot: snapshot, uid: user.uid))
                 }
                 else {
-                    weakSelf.dao.customer.delete(withUID: user.uid)
+                    weakSelf.daoCustomer.delete(withUID: user.uid)
                 }
             })
         }
@@ -46,18 +46,18 @@ class RemoteCustomer {
     
     // MARK: Save user
     
-    func saveUserToFirebase(user: User, uid: String ,completion: @escaping (Bool) -> Void) {
+    func saveCustomerToFirebase(customer: Customer, uid: String ,completion: @escaping (Bool) -> Void) {
         
         var userReference: FIRDatabaseReference?
         var values: [AnyHashable : Any]?
         
         //upload media to server
-        RemoteUtils.shared.saveImageToFirebase(storageRef: dataBaseStorageRef.child("profile_images"), data: user.myImageData) { [weak self] (imageURL) in
+        RemoteUtils.shared.saveImageToFirebase(storageRef: dataBaseStorageRef.child("profile_images"), data: customer.myImageData) { [weak self] (imageURL) in
             
             guard let weakSelf = self else { return }
             
             userReference = weakSelf.customersRef.child(uid)
-            values = ["name" : user.name, "country" : user.country, "email" : user.email, "profileImageURL" : imageURL.absoluteString]
+            values = ["name" : customer.name, "country" : customer.country, "email" : customer.email, "profileImageURL" : imageURL.absoluteString]
             
             if let val = values, let ref = userReference {
                 ref.updateChildValues(val) { (error, ref) in
@@ -72,39 +72,4 @@ class RemoteCustomer {
             }
         }
     }
-    
-    // MARK: Delete User
-    
-    // delete self ... need to relogin
-    func deleteCurrentUser(completion: @escaping (String,Bool) -> () ) {
-        
-        if let currentUser = FIRAuth.auth()?.currentUser {
-            
-            //delete from Realm
-            dao.customer.delete(withUID: currentUser.uid)
-            
-            let ref = self.customersRef.child(currentUser.uid)
-            
-            RemoteUtils.shared.deleteNodeFromFirebaseWithReference(ref: ref, completion: { (success) in
-                
-                if !success {
-                    completion("Couldn't delete users data", false)
-                    return
-                }
-                
-                // auth sensitive --- requires recent login
-                currentUser.delete(completion: { (error) in
-                    
-                    if let err = error {
-                        print(err.localizedDescription)
-                        completion(err.localizedDescription, false)
-                        return
-                    }
-                    
-                    completion("", true)
-                })
-            })
-        }
-    }
-    
 }

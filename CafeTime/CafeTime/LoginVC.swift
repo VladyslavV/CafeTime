@@ -39,17 +39,7 @@ class LoginVC: UIViewController, LoginViewDelegate {
         let email = mainView.emailTextField.text!
         let password = mainView.passwordTextField.text!
         
-        let stringsChecker = StringsChecker.shared
-        
-        let errorString = stringsChecker.checkLoginDetails(email: email, password: password)
-        
-        if let error = errorString {
-            self.presentAlert(message: error)
-            return
-        }
-        
         HUD.show(.progress)
-        
         
         if let auth = Remote.onlineAccess()?.auth {
             auth.authenticateUser(email: email, password: password, rememberUser: mainView.autoLoginCheckBox.isChecked()) { [weak self] (error, success) in

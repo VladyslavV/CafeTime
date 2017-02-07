@@ -11,6 +11,7 @@ import SnapKit
 import FirebaseAuth
 import Jelly
 import SDWebImage
+import PKHUD
 
 class AuthenticatedUserVC: UIViewController, AuthenticatedUserMainViewDelegate, UserProfileInfoViewDelegate {
     
@@ -57,14 +58,14 @@ class AuthenticatedUserVC: UIViewController, AuthenticatedUserMainViewDelegate, 
         self.tabBarController?.tabBar.isHidden = false
         
         let remoteCustomer = Remote.anyAccess().customer
-        remoteCustomer.fetchCurrentCustomer { [weak self] (user) in
+        remoteCustomer.fetchCurrentCustomer { [weak self] (customer) in
             guard let weakSelf = self else { return }
             
-            weakSelf.navigationItem.title =  user?.name
-            weakSelf.userProfileView.userNameLabel.text = user?.name
-            weakSelf.userProfileView.userCountryLabel.text = user?.country
+            weakSelf.navigationItem.title =  customer?.name
+            weakSelf.userProfileView.userNameLabel.text = customer?.name
+            weakSelf.userProfileView.userCountryLabel.text = customer?.country
             
-            if let imageURLString = user?.profileImageURL {
+            if let imageURLString = customer?.profileImageURL {
                 weakSelf.userProfileView.userImageView.sd_setImage(with: URL(string: imageURLString), placeholderImage: UIImage.init(named: "image_placeholder"))
             }
         }
@@ -77,14 +78,33 @@ class AuthenticatedUserVC: UIViewController, AuthenticatedUserMainViewDelegate, 
     }
     
     func deleteUserButtonPressed() {
-        if let remoteCustomer = Remote.onlineAccess()?.customer {
-            remoteCustomer.deleteCurrentUser { (error, success) in
-                if !success {
-                    self.presentAlert(message: error)
-                }
-                else {
-                    self.logOutUser()
-                }
+        
+        if let auth = Remote.onlineAccess()?.auth {
+            
+            self.presenetAlertWithCredentialFields { (email, password) in
+                HUD.show(.progress)
+                
+                auth.authenticateUser(email: email, password: password, rememberUser: false, completion: { (error, success) in
+                    
+                    
+                    if success {
+                        if let auth = Remote.onlineAccess()?.auth {
+                            auth.deleteCurrentUser(customer: true) { (error, success) in
+                                if !success {
+                                    self.presentAlert(message: error)
+                                }
+                                else {
+                                    HUD.flash(.success, delay: 0.4)
+                                    self.logOutUser()
+                                }
+                            }
+                        }
+                    }
+                    else {
+                        HUD.hide()
+                        self.presentAlert(message: error)
+                    }
+                })
             }
         }
     }

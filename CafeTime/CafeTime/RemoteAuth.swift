@@ -16,9 +16,21 @@ class RemoteAuth {
     private var customersRef: FIRDatabaseReference {
         return FIRDatabase.database().reference(fromURL: "https://cafetime-6651e.firebaseio.com/").child("Customers")
     }
+    private var cafesRef: FIRDatabaseReference {
+        return FIRDatabase.database().reference(fromURL: "https://cafetime-6651e.firebaseio.com/").child("Cafes")
+    }
     
     // MARK: Create
-    func createUser(user : User, rememberUser: Bool, completion: @escaping (_ error: String, _ uid: String?) -> Void) {
+    func createUser(user : User, rememberUser: Bool, completion: @escaping (_ error: String?, _ uid: String?) -> Void) {
+        
+        let stringsChecker = StringsChecker.shared
+
+        let errorString = stringsChecker.checkSignUpFieldsForUser(user: user)
+        
+        if let err = errorString {
+            completion(err,nil)
+            return
+        }
         
         RemoteUtils.shared.checkUserExists(ref: customersRef, name: user.name, orderBy: "name") { [weak self] (exists) in
             
@@ -31,7 +43,7 @@ class RemoteAuth {
                 FIRAuth.auth()?.createUser(withEmail: user.email, password: user.password, completion: { (firUser, error) in
                     
                     if let err = error {
-                        completion(err.localizedDescription, "")
+                        completion(err.localizedDescription, nil)
                         return
                     }
                     print("You have successfully signed up")
@@ -41,7 +53,7 @@ class RemoteAuth {
                         weakSelf.dao.credentials.saveCredentials(email: user.email, password: user.password)
                     }
                     
-                    completion("", firUser?.uid)
+                    completion(nil, firUser?.uid)
                 })
             }
         }
@@ -51,6 +63,15 @@ class RemoteAuth {
     // MARK: Sign In
     
     func authenticateUser(email: String, password: String, rememberUser: Bool, completion: @escaping (_ error: String, _ success: Bool) -> Void) {
+        
+        let stringsChecker = StringsChecker.shared
+        
+        let errorString = stringsChecker.checkLoginDetails(email: email, password: password)
+        
+        if let error = errorString {
+            completion(error,false)
+            return
+        }
         
         FIRAuth.auth()?.signIn(withEmail: email, password: password) { (user, error) in
             
@@ -86,5 +107,50 @@ class RemoteAuth {
     // MARK: Get Credentials
     func userCredentials() -> CurrentUserCredentialsRealm? {
         return dao.credentials.getLocalUserCredentials()
+    }
+    
+    
+    // MARK: Delete User
+    
+    // delete self ... need to relogin
+    func deleteCurrentUser(customer:Bool, completion: @escaping (String,Bool) -> () ) {
+        
+        if let currentUser = FIRAuth.auth()?.currentUser {
+            
+            //delete from Realm
+            
+            var reference: FIRDatabaseReference?
+            if customer {
+                ManagerDAO.access.customer.delete(withUID: currentUser.uid)
+                reference = self.customersRef.child(currentUser.uid)
+                
+            }
+            else {
+                ManagerDAO.access.cafe.delete(withUID: currentUser.uid)
+                reference = self.cafesRef.child(currentUser.uid)
+            }
+            
+            if let ref = reference {
+                RemoteUtils.shared.deleteNodeFromFirebaseWithReference(ref: ref, completion: { (success) in
+                    
+                    if !success {
+                        completion("Couldn't delete users data", false)
+                        return
+                    }
+                    
+                    // auth sensitive --- requires recent login
+                    currentUser.delete(completion: { (error) in
+                        
+                        if let err = error {
+                            print(err.localizedDescription)
+                            completion(err.localizedDescription, false)
+                            return
+                        }
+                        
+                        completion("", true)
+                    })
+                })
+            }
+        }
     }
 }

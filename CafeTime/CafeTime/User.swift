@@ -18,7 +18,6 @@ class User: NSObject {
     // optional
     var country: String = ""
 
-    
     //image
     var myImageData: Data? = nil
     
@@ -26,10 +25,5 @@ class User: NSObject {
         return [name, email, password]
     }
     
-    
-    var optionalFields : [String] {
-        return [country]
-    }
-  
     
 }
