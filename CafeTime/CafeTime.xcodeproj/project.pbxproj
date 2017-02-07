@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		310B75371E4088C9008ADF62 /* UserDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310B75361E4088C9008ADF62 /* UserDAO.swift */; };
-		310B753A1E4088E6008ADF62 /* UserRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310B75391E4088E6008ADF62 /* UserRealm.swift */; };
+		310B75371E4088C9008ADF62 /* ManagerDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310B75361E4088C9008ADF62 /* ManagerDAO.swift */; };
+		310B753A1E4088E6008ADF62 /* CustomerRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310B75391E4088E6008ADF62 /* CustomerRealm.swift */; };
 		310B753C1E40B5B5008ADF62 /* CurrentUserCredentialsRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310B753B1E40B5B5008ADF62 /* CurrentUserCredentialsRealm.swift */; };
 		310B75471E414201008ADF62 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 313911761E3BBF1800EDAD40 /* Localizable.strings */; };
 		310B754C1E425768008ADF62 /* Cafe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310B754B1E425768008ADF62 /* Cafe.swift */; };
@@ -22,6 +22,11 @@
 		313532B21E49BFD800BA039C /* RemoteAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313532B11E49BFD800BA039C /* RemoteAuth.swift */; };
 		313532B41E49BFED00BA039C /* RemoteCustomer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313532B31E49BFED00BA039C /* RemoteCustomer.swift */; };
 		313532B61E49C64E00BA039C /* RemoteUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313532B51E49C64E00BA039C /* RemoteUtils.swift */; };
+		313532B81E49DF1F00BA039C /* RemoteCafe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313532B71E49DF1F00BA039C /* RemoteCafe.swift */; };
+		313532BA1E49E04E00BA039C /* CafeRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313532B91E49E04E00BA039C /* CafeRealm.swift */; };
+		313532BC1E49E17300BA039C /* CustomerDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313532BB1E49E17300BA039C /* CustomerDAO.swift */; };
+		313532BE1E49E18500BA039C /* CafeDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313532BD1E49E18500BA039C /* CafeDAO.swift */; };
+		313532C31E49E7E100BA039C /* CredentialsDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313532C21E49E7E100BA039C /* CredentialsDAO.swift */; };
 		313911711E3BBC5500EDAD40 /* M13Checkbox+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313911701E3BBC5500EDAD40 /* M13Checkbox+Extensions.swift */; };
 		3139117A1E3BCC1600EDAD40 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313911791E3BCC1600EDAD40 /* UIView+Extension.swift */; };
 		3139117C1E3E12AA00EDAD40 /* UIAlertAction+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3139117B1E3E12AA00EDAD40 /* UIAlertAction+Extension.swift */; };
@@ -49,8 +54,8 @@
 /* Begin PBXFileReference section */
 		1D8D817E0BDFBA2A6E70BA43 /* Pods_CafeTime.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CafeTime.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B3BEDDD52F16FA96C91297A /* Pods-CafeTime.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CafeTime.release.xcconfig"; path = "Pods/Target Support Files/Pods-CafeTime/Pods-CafeTime.release.xcconfig"; sourceTree = "<group>"; };
-		310B75361E4088C9008ADF62 /* UserDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDAO.swift; sourceTree = "<group>"; };
-		310B75391E4088E6008ADF62 /* UserRealm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserRealm.swift; sourceTree = "<group>"; };
+		310B75361E4088C9008ADF62 /* ManagerDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManagerDAO.swift; sourceTree = "<group>"; };
+		310B75391E4088E6008ADF62 /* CustomerRealm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomerRealm.swift; sourceTree = "<group>"; };
 		310B753B1E40B5B5008ADF62 /* CurrentUserCredentialsRealm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentUserCredentialsRealm.swift; sourceTree = "<group>"; };
 		310B754B1E425768008ADF62 /* Cafe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cafe.swift; sourceTree = "<group>"; };
 		310B754E1E428B8F008ADF62 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -63,6 +68,11 @@
 		313532B11E49BFD800BA039C /* RemoteAuth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteAuth.swift; sourceTree = "<group>"; };
 		313532B31E49BFED00BA039C /* RemoteCustomer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteCustomer.swift; sourceTree = "<group>"; };
 		313532B51E49C64E00BA039C /* RemoteUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteUtils.swift; sourceTree = "<group>"; };
+		313532B71E49DF1F00BA039C /* RemoteCafe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteCafe.swift; sourceTree = "<group>"; };
+		313532B91E49E04E00BA039C /* CafeRealm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CafeRealm.swift; sourceTree = "<group>"; };
+		313532BB1E49E17300BA039C /* CustomerDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomerDAO.swift; sourceTree = "<group>"; };
+		313532BD1E49E18500BA039C /* CafeDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CafeDAO.swift; sourceTree = "<group>"; };
+		313532C21E49E7E100BA039C /* CredentialsDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CredentialsDAO.swift; sourceTree = "<group>"; };
 		313911701E3BBC5500EDAD40 /* M13Checkbox+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "M13Checkbox+Extensions.swift"; sourceTree = "<group>"; };
 		313911751E3BBF1800EDAD40 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		313911771E3BBF6000EDAD40 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -119,6 +129,7 @@
 			children = (
 				313532AF1E49BEFE00BA039C /* Remote.swift */,
 				313532B31E49BFED00BA039C /* RemoteCustomer.swift */,
+				313532B71E49DF1F00BA039C /* RemoteCafe.swift */,
 				313532B51E49C64E00BA039C /* RemoteUtils.swift */,
 				313532B11E49BFD800BA039C /* RemoteAuth.swift */,
 				310B75481E41FAC5008ADF62 /* Realm */,
@@ -138,9 +149,11 @@
 		310B75481E41FAC5008ADF62 /* Realm */ = {
 			isa = PBXGroup;
 			children = (
-				310B75361E4088C9008ADF62 /* UserDAO.swift */,
-				310B75391E4088E6008ADF62 /* UserRealm.swift */,
-				310B753B1E40B5B5008ADF62 /* CurrentUserCredentialsRealm.swift */,
+				310B75361E4088C9008ADF62 /* ManagerDAO.swift */,
+				313532C21E49E7E100BA039C /* CredentialsDAO.swift */,
+				313532BB1E49E17300BA039C /* CustomerDAO.swift */,
+				313532BD1E49E18500BA039C /* CafeDAO.swift */,
+				313532C11E49E3E000BA039C /* Model */,
 			);
 			name = Realm;
 			sourceTree = "<group>";
@@ -163,6 +176,16 @@
 				313532A91E4752A500BA039C /* ChatInputComponentsView.swift */,
 			);
 			name = Chat;
+			sourceTree = "<group>";
+		};
+		313532C11E49E3E000BA039C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				310B753B1E40B5B5008ADF62 /* CurrentUserCredentialsRealm.swift */,
+				310B75391E4088E6008ADF62 /* CustomerRealm.swift */,
+				313532B91E49E04E00BA039C /* CafeRealm.swift */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 		3139117F1E3E186700EDAD40 /* Helper Classes */ = {
@@ -441,6 +464,7 @@
 			files = (
 				313532AE1E48E62B00BA039C /* UIViewController+Extension.swift in Sources */,
 				310B754F1E428B8F008ADF62 /* User.swift in Sources */,
+				313532BC1E49E17300BA039C /* CustomerDAO.swift in Sources */,
 				313532B41E49BFED00BA039C /* RemoteCustomer.swift in Sources */,
 				319DB38D1E3FAC280036640D /* UserProfileInfoView.swift in Sources */,
 				313532AA1E4752A500BA039C /* ChatInputComponentsView.swift in Sources */,
@@ -450,21 +474,24 @@
 				310B75511E4387FF008ADF62 /* Utils.swift in Sources */,
 				313911881E3E190600EDAD40 /* UITraitCollection+MKAdditions.m in Sources */,
 				31DD52131E39028400DB9ABC /* AuthenticatedUserMainView.swift in Sources */,
+				313532BA1E49E04E00BA039C /* CafeRealm.swift in Sources */,
 				313532B01E49BEFE00BA039C /* Remote.swift in Sources */,
 				313532A51E474E8A00BA039C /* ChatVC.swift in Sources */,
 				315828CA1E39EE5F00EBD20E /* LoginView.swift in Sources */,
 				315828D41E3A3CE400EBD20E /* GlobalStrings.swift in Sources */,
 				313911911E3F78BB00EDAD40 /* CountriesPickerView.swift in Sources */,
+				313532B81E49DF1F00BA039C /* RemoteCafe.swift in Sources */,
 				3139117C1E3E12AA00EDAD40 /* UIAlertAction+Extension.swift in Sources */,
 				313532A81E47519400BA039C /* ChatMainView.swift in Sources */,
 				3139117A1E3BCC1600EDAD40 /* UIView+Extension.swift in Sources */,
 				313532B61E49C64E00BA039C /* RemoteUtils.swift in Sources */,
-				310B75371E4088C9008ADF62 /* UserDAO.swift in Sources */,
-				310B753A1E4088E6008ADF62 /* UserRealm.swift in Sources */,
+				310B75371E4088C9008ADF62 /* ManagerDAO.swift in Sources */,
+				310B753A1E4088E6008ADF62 /* CustomerRealm.swift in Sources */,
 				310B753C1E40B5B5008ADF62 /* CurrentUserCredentialsRealm.swift in Sources */,
 				313532B21E49BFD800BA039C /* RemoteAuth.swift in Sources */,
 				315828E81E3B8CD300EBD20E /* GlobalSaver.swift in Sources */,
 				3139118D1E3F642B00EDAD40 /* Countries.swift in Sources */,
+				313532BE1E49E18500BA039C /* CafeDAO.swift in Sources */,
 				310B754C1E425768008ADF62 /* Cafe.swift in Sources */,
 				315828CE1E39F17D00EBD20E /* LoginVC.swift in Sources */,
 				315828C81E39EE5400EBD20E /* SignUpView.swift in Sources */,
@@ -472,6 +499,7 @@
 				3139118F1E3F6C5100EDAD40 /* UITextField+Extensions.swift in Sources */,
 				3139118A1E3E4FC500EDAD40 /* StringsChecker.swift in Sources */,
 				31DD520C1E38D57900DB9ABC /* AuthenticatedUserVC.swift in Sources */,
+				313532C31E49E7E100BA039C /* CredentialsDAO.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

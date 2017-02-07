@@ -17,6 +17,7 @@ class Remote {
     private static let shared = Remote()
     
     var customer = RemoteCustomer()
+    var cafe = RemoteCafe()
     var auth = RemoteAuth()
     
     class func onlineAccess() -> Remote? {

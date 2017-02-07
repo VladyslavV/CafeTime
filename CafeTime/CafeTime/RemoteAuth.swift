@@ -12,7 +12,7 @@ import FirebaseDatabase
 
 class RemoteAuth {
     
-    private let dao = UserDAO()
+    private let dao = ManagerDAO.access
     private var customersRef: FIRDatabaseReference {
         return FIRDatabase.database().reference(fromURL: "https://cafetime-6651e.firebaseio.com/").child("Customers")
     }
@@ -20,7 +20,9 @@ class RemoteAuth {
     // MARK: Create
     func createUser(user : User, rememberUser: Bool, completion: @escaping (_ error: String, _ uid: String?) -> Void) {
         
-        RemoteUtils.shared.checkUserExists(ref: customersRef, name: user.name, orderBy: "name") { (exists) in
+        RemoteUtils.shared.checkUserExists(ref: customersRef, name: user.name, orderBy: "name") { [weak self] (exists) in
+            
+            guard let weakSelf = self else { return }
             
             if exists {
                 completion("User with this name already exists", "")
@@ -36,8 +38,7 @@ class RemoteAuth {
                     
                     // save locally
                     if rememberUser {
-                        let dao = UserDAO()
-                        dao.saveCredentials(email: user.email, password: user.password)
+                        weakSelf.dao.credentials.saveCredentials(email: user.email, password: user.password)
                     }
                     
                     completion("", firUser?.uid)
@@ -62,8 +63,8 @@ class RemoteAuth {
             
             
             if rememberUser {
-                let dao = UserDAO()
-                dao.saveCredentials(email: email, password: password)
+                let dao = ManagerDAO.access
+                dao.credentials.saveCredentials(email: email, password: password)
             }
             
             completion("", true)
@@ -75,8 +76,7 @@ class RemoteAuth {
         if let auth = FIRAuth.auth() {
             do {
                 try auth.signOut()
-                let dao = UserDAO()
-                dao.deleteLocalUserCredentials()
+                dao.credentials.deleteLocalUserCredentials()
             } catch let error as NSError {
                 print(error.localizedDescription)
             }
@@ -85,6 +85,6 @@ class RemoteAuth {
     
     // MARK: Get Credentials
     func userCredentials() -> CurrentUserCredentialsRealm? {
-        return UserDAO().getLocalUserCredentials()
+        return dao.credentials.getLocalUserCredentials()
     }
 }

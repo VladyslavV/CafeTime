@@ -28,6 +28,26 @@ class RemoteUtils {
         }
     }
     
+    // MARK: Save Media
+    func saveImageToFirebase(storageRef:FIRStorageReference, data: Data?, completion: @escaping (URL) -> () ) {
+        
+        if let newData = data {
+            
+            let imageName = NSUUID().uuidString
+            storageRef.child("\(imageName).jpg").put(newData, metadata: nil, completion: { (metadata, error) in
+                
+                if let err = error {
+                    print(err)
+                    return
+                }
+                
+                if let imageURL = metadata?.downloadURL() {
+                    completion(imageURL)
+                }
+            })
+        }
+    }
+    
     // MARK: Delete file from firebase Storage
     func deleteFileAtPath(path: String, completion: @escaping (Bool) -> () ){
         
