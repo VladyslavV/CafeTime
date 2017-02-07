@@ -66,7 +66,18 @@
 
 "chatvc.input.textfield" = "Enter text...";
 
-// vc extenstion
+// allert
 
-"vc.extenstion.allert" = "Error";
+//general
+"allert.title.error" = "Error";
+
+"allert.button.ok" = "OK";
+
+"allert.button.cancel" = "Cancel";
+
+"allert.enter.credentials" = "Enter Credentials";
+
+"allert.email.textfield" = "Email";
+
+"allert.password.textfield" = "Password";
 
