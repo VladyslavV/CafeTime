@@ -17,7 +17,7 @@ class SignUpVC: UIViewController, SignUpViewDelegate, UIImagePickerControllerDel
     
     private let mainView = SignUpView()
     private let stringsChecker = StringsChecker.shared
-
+    
     //image picker
     private lazy var libraryImagePicker : UIImagePickerController = {
         let myVar = UIImagePickerController()
@@ -91,7 +91,7 @@ class SignUpVC: UIViewController, SignUpViewDelegate, UIImagePickerControllerDel
     //MARK: Main View Delegate
     
     func signUpUser(user: User) {
-    
+        
         let errorString = stringsChecker.checkSignUpFieldsForUser(user: user)
         
         if let err = errorString {
@@ -100,22 +100,31 @@ class SignUpVC: UIViewController, SignUpViewDelegate, UIImagePickerControllerDel
         }
         
         HUD.show(.progress)
-    
+        
         user.myImageData = Utils.shared.imageToJpegCompressed(image: mainView.cafeLogo.image)
+        
+        if let auth = Remote.onlineAccess()?.auth {
+            auth.createUser(user: user, rememberUser: mainView.autoLoginCheckBox.isChecked()) { [weak self] (error, userUID) in
                 
-        AuthManager.shared.createUser(user: user, rememberUser: mainView.autoLoginCheckBox.isChecked()) { [weak self] (error, success) in
-            
-            guard let weakSelf = self else { return }
-            
-            if success {
-                HUD.flash(.success,delay: 1)
-                weakSelf.dismiss(animated: true, completion:nil)
-            }
-            else {
-               // HUD.flash(.error, delay: 0.2)
-                HUD.flash(.error, onView: self?.view, delay: 0.1, completion: { (end) in
-                    weakSelf.presentAlert(message: error)
-                })
+                guard let weakSelf = self else { return }
+                
+                if let uid = userUID {
+                    if let remoteCustomer = Remote.onlineAccess()?.customer {
+                        remoteCustomer.saveUserToFirebase(user: user, uid: uid, completion: { (success) in
+                            if success {
+                                HUD.flash(.success,delay: 1)
+                                weakSelf.dismiss(animated: true, completion:nil)
+                            }
+                            else {
+                                // HUD.flash(.error, delay: 0.2)
+                                HUD.flash(.error, onView: self?.view, delay: 0.1, completion: { (end) in
+                                    weakSelf.presentAlert(message: error)
+                                })
+                            }
+                            
+                        })
+                    }
+                }
             }
         }
     }
@@ -132,7 +141,7 @@ class SignUpVC: UIViewController, SignUpViewDelegate, UIImagePickerControllerDel
         }
         self.dismiss(animated: true, completion: nil)
     }
-        
+    
     
     deinit {
         print("object \( String(describing: (self))) dealloced")

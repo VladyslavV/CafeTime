@@ -14,7 +14,6 @@ import SDWebImage
 
 class AuthenticatedUserVC: UIViewController, AuthenticatedUserMainViewDelegate, UserProfileInfoViewDelegate {
     
-    private let authManager = AuthManager.shared
     private var jellyAnimator: JellyAnimator?
     
     private lazy var mainView: AuthenticatedUserMainView = {
@@ -56,9 +55,11 @@ class AuthenticatedUserVC: UIViewController, AuthenticatedUserMainViewDelegate, 
     // update view
     override func viewWillAppear(_ animated: Bool) {
         self.tabBarController?.tabBar.isHidden = false
-        authManager.observeCurrentUser { [weak self] (user) in
-            guard let weakSelf = self else { return }
         
+        let remoteCustomer = Remote.anyAccess().customer
+        remoteCustomer.fetchCurrentCustomer { [weak self] (user) in
+            guard let weakSelf = self else { return }
+            
             weakSelf.navigationItem.title =  user?.name
             weakSelf.userProfileView.userNameLabel.text = user?.name
             weakSelf.userProfileView.userCountryLabel.text = user?.country
@@ -69,7 +70,6 @@ class AuthenticatedUserVC: UIViewController, AuthenticatedUserMainViewDelegate, 
         }
     }
     
-  
     //MARK: Main View Delegate
     
     func logOutButtonPressed() {
@@ -77,13 +77,14 @@ class AuthenticatedUserVC: UIViewController, AuthenticatedUserMainViewDelegate, 
     }
     
     func deleteUserButtonPressed() {
-        authManager.deleteCurrentUser { (error, success) in
-            
-            if !success {
-                self.presentAlert(message: error)
-            }
-            else {
-                self.logOutUser()
+        if let remoteCustomer = Remote.onlineAccess()?.customer {
+            remoteCustomer.deleteCurrentUser { (error, success) in
+                if !success {
+                    self.presentAlert(message: error)
+                }
+                else {
+                    self.logOutUser()
+                }
             }
         }
     }
@@ -91,9 +92,10 @@ class AuthenticatedUserVC: UIViewController, AuthenticatedUserMainViewDelegate, 
     // MARK: Private Funcs
     
     private func logOutUser() {
-        authManager.logOutUser()
-        let nav = UINavigationController(rootViewController: LoginVC())
-        self.present(nav, animated: true, completion: nil)
+        if let auth = Remote.onlineAccess()?.auth {
+            auth.logOutUser()
+            self.presentInNav(vcs: [self, LoginVC()])
+        }
     }
     
     // MARK: Actions

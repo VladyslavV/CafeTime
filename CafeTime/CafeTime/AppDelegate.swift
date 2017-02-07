@@ -36,18 +36,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             window.makeKeyAndVisible()
         }
         
-        let authManager = AuthManager.shared
+        let auth = Remote.anyAccess().auth
         
-        guard let localCredentials = authManager.userCredentials() else {
+        guard let localCredentials = auth.userCredentials() else {
             perform(#selector(presentLoginVC), with: nil, afterDelay: 0.01)
             return true
         }
         
-        authManager.authenticateUser(email: localCredentials.email, password: localCredentials.password, rememberUser: true, completion: { (error, success) in
+        auth.authenticateUser(email: localCredentials.email, password: localCredentials.password, rememberUser: true, completion: { (error, success) in
             if success {
                 return
             }
         })
+        
         
         return true
     }

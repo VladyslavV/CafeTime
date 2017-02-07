@@ -10,7 +10,7 @@ import Foundation
 import RealmSwift
 import FirebaseDatabase
 
-class DAO {
+class UserDAO {
     
     private let realm = try! Realm()
     

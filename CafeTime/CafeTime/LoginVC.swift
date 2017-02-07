@@ -25,7 +25,7 @@ class LoginVC: UIViewController, LoginViewDelegate {
         mainView.delegate = self
         
         self.navigationController?.navigationBar.topItem?.title = NSLocalizedString("loginvc.navigation.title", comment: "")
-
+        
         mainView.snp.makeConstraints { (make) -> Void in
             make.left.right.bottom.equalTo(self.view)
             make.top.equalTo(self.topLayoutGuide.snp.bottom)
@@ -43,29 +43,34 @@ class LoginVC: UIViewController, LoginViewDelegate {
         
         let errorString = stringsChecker.checkLoginDetails(email: email, password: password)
         
-         if let error = errorString {
+        if let error = errorString {
             self.presentAlert(message: error)
             return
         }
         
         HUD.show(.progress)
-
-        AuthManager.shared.authenticateUser(email: email, password: password, rememberUser: mainView.autoLoginCheckBox.isChecked()) { [weak self] (error, success) in
-            
-            guard let weakSelf = self else { return }
-            
-            if success {
-                HUD.flash(.success,delay: 1)
-                weakSelf.dismiss(animated: true, completion: nil)
-            }
+        
+        
+        if let auth = Remote.onlineAccess()?.auth {
+            auth.authenticateUser(email: email, password: password, rememberUser: mainView.autoLoginCheckBox.isChecked()) { [weak self] (error, success) in
                 
-            else {
-                HUD.flash(.error, onView: self?.view, delay: 0.2, completion: { (end) in
-                    weakSelf.presentAlert(message: error)
-                })
+                guard let weakSelf = self else { return }
+                
+                if success {
+                    HUD.flash(.success,delay: 1)
+                    weakSelf.dismiss(animated: true, completion: nil)
+                }
+                    
+                else {
+                    HUD.flash(.error, onView: self?.view, delay: 0.2, completion: { (end) in
+                        weakSelf.presentAlert(message: error)
+                    })
+                }
             }
         }
     }
+    
+    // MARK: Actions
     
     func signUpButtonPressed() {
         self.navigationController?.pushViewController(SignUpVC(), animated: true)
