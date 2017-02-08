@@ -12,7 +12,7 @@ import Jelly
 class UserProfileVC: UIViewController, UserProfileInfoViewDelegate {
     
     private var jellyAnimator: JellyAnimator?
-
+    
     private lazy var mainView: UserProfileMainView = {
         let myVar = UserProfileMainView(forLocalUser: false)
         return myVar
@@ -36,29 +36,33 @@ class UserProfileVC: UIViewController, UserProfileInfoViewDelegate {
             make.left.right.bottom.equalTo(self.view)
             make.top.equalTo(self.topLayoutGuide.snp.bottom)
         }
+        
+        self.loadUserProfile()
     }
     
+    var uid: String?
     init(withUID uid: String) {
-        print(uid)
         super.init(nibName: nil, bundle: nil)
-        self.loadUserProfile(withUID: uid)
+        self.uid = uid
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func loadUserProfile(withUID uid: String) {
+    func loadUserProfile() {
         
-        Remote.anyAccess().customer.fetchCustomer(withUID: uid) { [weak self] (customer) in
-            guard let weakSelf = self else { return }
-            
-            weakSelf.navigationItem.title =  customer?.name
-            weakSelf.userProfileView.userNameLabel.text = customer?.name
-            weakSelf.userProfileView.userCountryLabel.text = customer?.country
-            
-            if let imageURLString = customer?.profileImageURL {
-                weakSelf.userProfileView.userImageView.sd_setImage(with: URL(string: imageURLString), placeholderImage: UIImage.init(named: "image_placeholder"))
+        if let userUID = self.uid {
+            Remote.anyAccess().customer.fetchCustomer(withUID: userUID) { [weak self] (customer) in
+                guard let weakSelf = self else { return }
+                
+                weakSelf.navigationItem.title =  customer?.name
+                weakSelf.userProfileView.userNameLabel.text = customer?.name
+                weakSelf.userProfileView.userCountryLabel.text = customer?.country
+                
+                if let imageURLString = customer?.profileImageURL {
+                    weakSelf.userProfileView.userImageView.sd_setImage(with: URL(string: imageURLString), placeholderImage: UIImage.init(named: "image_placeholder"))
+                }
             }
         }
     }

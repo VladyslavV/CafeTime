@@ -15,7 +15,7 @@ protocol UsersListMainViewDelegate: class {
 }
 
 class UsersListMainView: UIView, UITableViewDelegate , UITableViewDataSource {
-
+    
     weak var delegate: UsersListMainViewDelegate?
     
     var customers : [Customer] = [Customer]() {
@@ -64,7 +64,7 @@ class UsersListMainView: UIView, UITableViewDelegate , UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-    
+        
         cell.textLabel?.text = customers[indexPath.row].name
         let imageURLString = customers[indexPath.row].profileImageURL
         cell.imageView?.sd_setImage(with: URL(string: imageURLString), placeholderImage: UIImage.init(named: "image_placeholder"))
@@ -73,7 +73,7 @@ class UsersListMainView: UIView, UITableViewDelegate , UITableViewDataSource {
     }
     
     
-    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-       // delegate?.showProfile(forCustomerWithUID: customers[indexPath.row].uid)
+    @objc(tableView:didSelectRowAtIndexPath:) func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
+        delegate?.showProfile(forCustomerWithUID: customers[indexPath.row].uid)
     }
 }
