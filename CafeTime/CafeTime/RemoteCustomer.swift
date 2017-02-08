@@ -16,8 +16,8 @@ class RemoteCustomer {
     
     // MARK: Server References
     
-    private var customersRef = FIRDatabase.database().reference(fromURL: "https://cafetime-6651e.firebaseio.com/").child("Customers")
-    private var dataBaseStorageRef = FIRStorage.storage().reference(forURL: "gs://cafetime-6651e.appspot.com/")
+    private var customersRef = FIRDatabase.database().reference().child(Constants.Remote.References.Customers)
+    private var dataBaseStorageRef = FIRStorage.storage().reference()
     
     
     // MARK: Getter
@@ -57,7 +57,8 @@ class RemoteCustomer {
             guard let weakSelf = self else { return }
             
             userReference = weakSelf.customersRef.child(uid)
-            values = ["name" : customer.name, "country" : customer.country, "email" : customer.email, "profileImageURL" : imageURL.absoluteString]
+            let Values = Constants.Remote.Values.self
+            values = [Values.Name : customer.name, Values.Country : customer.country, Values.Email : customer.email, Values.ProfileImageURL : imageURL.absoluteString]
             
             if let val = values, let ref = userReference {
                 ref.updateChildValues(val) { (error, ref) in

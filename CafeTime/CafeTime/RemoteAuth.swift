@@ -14,10 +14,10 @@ class RemoteAuth {
     
     private let dao = ManagerDAO.access
     private var customersRef: FIRDatabaseReference {
-        return FIRDatabase.database().reference(fromURL: "https://cafetime-6651e.firebaseio.com/").child("Customers")
+        return FIRDatabase.database().reference().child(Constants.Remote.References.Customers)
     }
     private var cafesRef: FIRDatabaseReference {
-        return FIRDatabase.database().reference(fromURL: "https://cafetime-6651e.firebaseio.com/").child("Cafes")
+        return FIRDatabase.database().reference().child(Constants.Remote.References.Cafes)
     }
     
     // MARK: Create

@@ -102,7 +102,9 @@ class SignUpVC: UIViewController, SignUpViewDelegate, UIImagePickerControllerDel
                 guard let weakSelf = self else { return }
                 
                 if let err = error {
-                    weakSelf.presentAlert(message: err)
+                    HUD.flash(.error, onView: self?.view, delay: 0.1, completion: { (end) in
+                        weakSelf.presentAlert(message: err)
+                    })
                 }
                 
                 if let uid = userUID, error == nil  {

@@ -11,13 +11,13 @@ import Firebase
 import FirebaseDatabase
 
 class RemoteCafe {
-
+    
     private let daoCafe = ManagerDAO.access.cafe
-
+    
     // MARK: Server References
     
-    private var cafesRef = FIRDatabase.database().reference(fromURL: "https://cafetime-6651e.firebaseio.com/").child("Cafes")
-    private var dataBaseStorageRef = FIRStorage.storage().reference(forURL: "gs://cafetime-6651e.appspot.com/")
+    private var cafesRef = FIRDatabase.database().reference().child(Constants.Remote.References.Cafes)
+    private var dataBaseStorageRef = FIRStorage.storage().reference()
     
     
     // MARK: Getter
@@ -57,8 +57,9 @@ class RemoteCafe {
             guard let weakSelf = self else { return }
             
             userReference = weakSelf.cafesRef.child(uid)
-            values = ["name" : cafe.name, "country" : cafe.country, "email" : cafe.email, "foodType" : cafe.foodtype,
-                      "numberOfTables" : cafe.numberOfTables, "profileImageURL" : imageURL.absoluteString]
+            let Values = Constants.Remote.Values.self
+            values = [Values.Name : cafe.name, Values.Country : cafe.country, Values.Email : cafe.email, Values.FoodType : cafe.foodtype,
+                      Values.NumberOfTables : cafe.numberOfTables, Values.ProfileImageURL  : imageURL.absoluteString]
             
             if let val = values, let ref = userReference {
                 ref.updateChildValues(val) { (error, ref) in

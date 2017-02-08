@@ -23,12 +23,13 @@ class CafeDAO  {
             try! realm.write {
                 let user = CafeRealm()
                 user.uid = uid
-                user.foodType = firebaseDic["foodType"] as? String
-                user.numberOfTables = firebaseDic["numberOfTables"] as? String
-                user.profileImageURL = firebaseDic["profileImageURL"] as? String
-                user.name = firebaseDic["name"] as? String
-                user.email = firebaseDic["email"] as? String
-                user.country = firebaseDic["country"] as? String
+                let Values = Constants.Remote.Values.self
+                user.foodType = firebaseDic[Values.FoodType] as? String
+                user.numberOfTables = firebaseDic[Values.NumberOfTables] as? String
+                user.profileImageURL = firebaseDic[Values.ProfileImageURL] as? String
+                user.name = firebaseDic[Values.Name] as? String
+                user.email = firebaseDic[Values.Email] as? String
+                user.country = firebaseDic[Values.Country] as? String
                 realm.add(user, update: true)
             }
         } else {

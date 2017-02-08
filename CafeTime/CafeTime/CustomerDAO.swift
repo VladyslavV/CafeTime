@@ -23,10 +23,11 @@ class CustomerDAO {
             try! realm.write {
                 let user = CustomerRealm()
                 user.uid = uid
-                user.profileImageURL = firebaseDic["profileImageURL"] as? String
-                user.name = firebaseDic["name"] as? String
-                user.email = firebaseDic["email"] as? String
-                user.country = firebaseDic["country"] as? String
+                let Values = Constants.Remote.Values.self
+                user.profileImageURL = firebaseDic[Values.ProfileImageURL] as? String
+                user.name = firebaseDic[Values.Name] as? String
+                user.email = firebaseDic[Values.Email] as? String
+                user.country = firebaseDic[Values.Country] as? String
                 realm.add(user, update: true)
             }
         } else {

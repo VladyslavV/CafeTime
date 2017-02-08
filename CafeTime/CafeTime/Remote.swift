@@ -56,7 +56,7 @@ class Remote {
     
     private func setUpStateListener() {
         
-        connectedRef = FIRDatabase.database().reference(withPath: ".info/connected")
+        connectedRef = FIRDatabase.database().reference(withPath: Constants.Remote.References.Connected)
         connectionStateListener = connectedRef?.observe(.value, with: { [weak self] snapshot in
             guard let weakSelf = self else { return }
             if let connected = snapshot.value as? Bool, connected {
