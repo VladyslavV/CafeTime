@@ -59,7 +59,7 @@ class RemoteCafe {
             userReference = weakSelf.cafesRef.child(uid)
             let Values = Constants.Remote.Values.self
             values = [Values.Name : cafe.name, Values.Country : cafe.country, Values.Email : cafe.email, Values.FoodType : cafe.foodtype,
-                      Values.NumberOfTables : cafe.numberOfTables, Values.ProfileImageURL  : imageURL.absoluteString]
+                      Values.NumberOfTables : cafe.numberOfTables, Values.ProfileImageURL  : imageURL.absoluteString,  Values.UID : uid]
             
             if let val = values, let ref = userReference {
                 ref.updateChildValues(val) { (error, ref) in

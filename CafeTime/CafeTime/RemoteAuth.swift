@@ -32,13 +32,14 @@ class RemoteAuth {
             return
         }
         
-        RemoteUtils.shared.checkUserExists(ref: customersRef, name: user.name, orderBy: "name") { [weak self] (exists) in
+        RemoteUtils.shared.checkUserExists(ref: customersRef, name: user.name, orderBy: "name") { [weak self] (error) in
             
             guard let weakSelf = self else { return }
             
-            if exists {
-                completion("User with this name already exists", "")
+            if let err = error {
+                completion(err, "")
             }
+                
             else {
                 FIRAuth.auth()?.createUser(withEmail: user.email, password: user.password, completion: { (firUser, error) in
                     

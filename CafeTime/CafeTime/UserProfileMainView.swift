@@ -10,14 +10,14 @@ import UIKit
 import SnapKit
 import FirebaseAuth
 
-protocol AuthenticatedUserMainViewDelegate : class {
+protocol UserProfileMainViewDelegate : class {
     func logOutButtonPressed()
     func deleteUserButtonPressed()
 }
 
-class AuthenticatedUserMainView: UIView {
+class UserProfileMainView: UIView {
     
-    weak var delegate : AuthenticatedUserMainViewDelegate?
+    weak var delegate : UserProfileMainViewDelegate?
     
     // MARK: Vars
     
@@ -45,6 +45,15 @@ class AuthenticatedUserMainView: UIView {
     
     
     // MARK: Init
+    
+    convenience init(forLocalUser localUser: Bool) {
+        self.init()
+        
+        if !localUser {
+            self.deleteUserButton.isHidden = true
+            self.logOutButton.isHidden = true
+        }
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)

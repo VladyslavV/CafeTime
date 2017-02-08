@@ -10,13 +10,12 @@ import UIKit
 
 class User: NSObject {
 
-    //required
+    var uid: String = ""
     var name: String = ""
     var email: String = ""
     var password: String = ""
-    
-    // optional
     var country: String = ""
+    var profileImageURL: String = ""
 
     //image
     var myImageData: Data? = nil

@@ -15,16 +15,17 @@ class RemoteUtils {
   
     static let shared = RemoteUtils()
 
-    func checkUserExists(ref: FIRDatabaseReference, name: String, orderBy: String, compleion: @escaping (Bool) -> ()) {
+    func checkUserExists(ref: FIRDatabaseReference, name: String, orderBy: String, completion: @escaping (String?) -> ()) {
         
         ref.queryOrdered(byChild: orderBy).queryEqual(toValue: name).observeSingleEvent(of: .value, with: { (snapshot) in
             if snapshot.exists() {
-                compleion(true)
+                completion("User with this name already exists")
             } else {
-                compleion(false)
+                completion(nil)
             }
         }) { (error) in
             print(error.localizedDescription)
+            completion(error.localizedDescription)
         }
     }
     

@@ -13,8 +13,8 @@ struct Constants {
     struct Remote {
         
         struct References {
-            static let Cafes = "Cafe"
-            static let Customers = "Customer"
+            static let Cafes = "Cafes"
+            static let Customers = "Customers"
             static let Connected = ".info/connected"
 
         }
@@ -26,7 +26,7 @@ struct Constants {
             static let Email = "email"
             static let ProfileImageURL = "profileImageURL"
             static let FoodType = "foodType"
-
+            static let UID = "uid"
         }
 
     }

@@ -1,36 +1,26 @@
 //
-//  AuthenticatedUserVC.swift
+//  UserProfileVC.swift
 //  CafeTime
 //
-//  Created by Vladysalv Vyshnevksyy on 1/25/17.
+//  Created by Vladysalv Vyshnevksyy on 2/8/17.
 //  Copyright © 2017 Vladysalv Vyshnevksyy. All rights reserved.
 //
 
 import UIKit
-import SnapKit
-import FirebaseAuth
 import Jelly
-import SDWebImage
-import PKHUD
 
-class AuthenticatedUserVC: UIViewController, AuthenticatedUserMainViewDelegate, UserProfileInfoViewDelegate {
+class UserProfileVC: UIViewController, UserProfileInfoViewDelegate {
     
     private var jellyAnimator: JellyAnimator?
-    
-    private lazy var mainView: AuthenticatedUserMainView = {
-        let myVar = AuthenticatedUserMainView()
-        myVar.delegate = self
+
+    private lazy var mainView: UserProfileMainView = {
+        let myVar = UserProfileMainView(forLocalUser: false)
         return myVar
     }()
     
     private lazy var userProfileView: UserProfileInfoView = {
         let myVar = self.mainView.userProfileInfoView
         myVar.delegate = self
-        return myVar
-    }()
-    
-    private lazy var navBarButtonRight : UIBarButtonItem = {
-        let myVar = UIBarButtonItem(image: UIImage.init(named: "editprofilebutton_image"), style: .plain, target: self, action: #selector(AuthenticatedUserVC.editProfile))
         return myVar
     }()
     
@@ -46,19 +36,21 @@ class AuthenticatedUserVC: UIViewController, AuthenticatedUserMainViewDelegate, 
             make.left.right.bottom.equalTo(self.view)
             make.top.equalTo(self.topLayoutGuide.snp.bottom)
         }
-        
-        let tabBarImage = UIImage.init(named: "profile_tabbarimage")
-        self.tabBarItem = UITabBarItem(title: NSLocalizedString("authenticateduservc.tabbar.name", comment: ""), image: tabBarImage , selectedImage: tabBarImage)
-        
-        self.navigationItem.rightBarButtonItem = navBarButtonRight
     }
     
-    // update view
-    override func viewWillAppear(_ animated: Bool) {
-        self.tabBarController?.tabBar.isHidden = false
+    init(withUID uid: String) {
+        print(uid)
+        super.init(nibName: nil, bundle: nil)
+        self.loadUserProfile(withUID: uid)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    func loadUserProfile(withUID uid: String) {
         
-        let remoteCustomer = Remote.anyAccess().customer
-        remoteCustomer.fetchCurrentCustomer { [weak self] (customer) in
+        Remote.anyAccess().customer.fetchCustomer(withUID: uid) { [weak self] (customer) in
             guard let weakSelf = self else { return }
             
             weakSelf.navigationItem.title =  customer?.name
@@ -69,59 +61,6 @@ class AuthenticatedUserVC: UIViewController, AuthenticatedUserMainViewDelegate, 
                 weakSelf.userProfileView.userImageView.sd_setImage(with: URL(string: imageURLString), placeholderImage: UIImage.init(named: "image_placeholder"))
             }
         }
-    }
-    
-    //MARK: Main View Delegate
-    
-    func logOutButtonPressed() {
-        self.logOutUser()
-    }
-    
-    func deleteUserButtonPressed() {
-        
-        if let auth = Remote.onlineAccess()?.auth {
-            
-            self.presenetAlertWithCredentialFields { (email, password) in
-                HUD.show(.progress)
-                
-                auth.authenticateUser(email: email, password: password, rememberUser: false, completion: { (error, success) in
-                    
-                    
-                    if success {
-                        if let auth = Remote.onlineAccess()?.auth {
-                            auth.deleteCurrentUser(customer: true) { (error, success) in
-                                if !success {
-                                    self.presentAlert(message: error)
-                                }
-                                else {
-                                    HUD.flash(.success, delay: 0.4)
-                                    self.logOutUser()
-                                }
-                            }
-                        }
-                    }
-                    else {
-                        HUD.hide()
-                        self.presentAlert(message: error)
-                    }
-                })
-            }
-        }
-    }
-    
-    // MARK: Private Funcs
-    
-    private func logOutUser() {
-        if let auth = Remote.onlineAccess()?.auth {
-            auth.logOutUser()
-            self.presentInNav(vcs: [self, LoginVC()])
-        }
-    }
-    
-    // MARK: Actions
-    
-    @objc private func editProfile() {
-        self.navigationController?.pushViewController(ChatVC(), animated: true)
     }
     
     //MARK: User Profile View Delegate

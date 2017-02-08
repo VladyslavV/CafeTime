@@ -20,7 +20,7 @@ class RemoteCustomer {
     private var dataBaseStorageRef = FIRStorage.storage().reference()
     
     
-    // MARK: Getter
+    // MARK: Getters
     
     func fetchCurrentCustomer(completion: @escaping (CustomerRealm?) -> Void) {
         
@@ -33,7 +33,7 @@ class RemoteCustomer {
             customersRef.child(user.uid).observeSingleEvent(of: .value , with: { [weak self] (snapshot) in
                 
                 guard let weakSelf = self else { return }
-                                
+                
                 if snapshot.key == user.uid {
                     completion(weakSelf.daoCustomer.saveFromSnapshot(snapshot: snapshot, uid: user.uid))
                 }
@@ -41,6 +41,44 @@ class RemoteCustomer {
                     weakSelf.daoCustomer.delete(withUID: user.uid)
                 }
             })
+        }
+    }
+    
+    func fetchCustomer(withUID uid: String, completion: @escaping (Customer?) -> Void) {
+        
+        if (FIRAuth.auth()?.currentUser) != nil {
+            customersRef.child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
+                
+                if let dict = snapshot.value as? [String : AnyObject] {
+                    let customer = Customer()
+                    customer.setValuesForKeys(dict)
+                    completion(customer)
+                }
+            })
+        }
+    }
+    
+    private var customersObserver : FIRDatabaseHandle?
+    func fetchAllCustomers(completion: @escaping ([Customer]?) -> ()) {
+        
+        var customersArray = [Customer]()
+        if (FIRAuth.auth()?.currentUser) != nil {
+            
+            customersObserver = customersRef.observe(.childAdded, with: { (snapshot) in
+                
+                if let dict = snapshot.value as? [String : AnyObject] {
+                    let customer = Customer()
+                    customer.setValuesForKeys(dict)
+                    customersArray.append(customer)
+                    completion(customersArray)
+                }
+            })
+        }
+    }
+    
+    func removeCustomersObserver() {
+        if let observer = customersObserver {
+            customersRef.removeObserver(withHandle: observer)
         }
     }
     
@@ -58,7 +96,7 @@ class RemoteCustomer {
             
             userReference = weakSelf.customersRef.child(uid)
             let Values = Constants.Remote.Values.self
-            values = [Values.Name : customer.name, Values.Country : customer.country, Values.Email : customer.email, Values.ProfileImageURL : imageURL.absoluteString]
+            values = [Values.Name : customer.name, Values.Country : customer.country, Values.Email : customer.email, Values.ProfileImageURL : imageURL.absoluteString, Values.UID : uid]
             
             if let val = values, let ref = userReference {
                 ref.updateChildValues(val) { (error, ref) in

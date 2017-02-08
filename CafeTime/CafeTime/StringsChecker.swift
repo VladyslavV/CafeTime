@@ -32,7 +32,7 @@ class StringsChecker {
     // sign up details
     func checkSignUpFieldsForUser(user: User) -> String? {
         
-        var errorString = self.checkEmptyFieldsForUser(fields: user.requiredFields)
+        var errorString = self.checkEmptyFieldsForUser(fields: user.requiredFields )
         if let err = errorString  { return err }
     
         errorString = checkBasicCredentials(email: user.email, password: user.password)

@@ -6,8 +6,9 @@
 //  Copyright © 2017 Vladysalv Vyshnevksyy. All rights reserved.
 //
 
-import UIKit
+
+import FirebaseDatabase
 
 class Customer: User {
-
+        
 }

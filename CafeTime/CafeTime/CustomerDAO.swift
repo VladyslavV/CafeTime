@@ -6,7 +6,6 @@
 //  Copyright © 2017 Vladysalv Vyshnevksyy. All rights reserved.
 //
 
-import UIKit
 import RealmSwift
 import FirebaseDatabase
 
@@ -22,12 +21,8 @@ class CustomerDAO {
         if let firebaseDic = snapshot.value as? [String: AnyObject] {
             try! realm.write {
                 let user = CustomerRealm()
-                user.uid = uid
-                let Values = Constants.Remote.Values.self
-                user.profileImageURL = firebaseDic[Values.ProfileImageURL] as? String
-                user.name = firebaseDic[Values.Name] as? String
-                user.email = firebaseDic[Values.Email] as? String
-                user.country = firebaseDic[Values.Country] as? String
+                user.uid = snapshot.key
+                user.setValuesForKeys(firebaseDic)
                 realm.add(user, update: true)
             }
         } else {

@@ -21,10 +21,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FIRApp.configure()
         //FIRDatabase.database().persistenceEnabled = true
         
-        let authVC = AuthenticatedUserVC()
-        let nav = UINavigationController(rootViewController: authVC)
+        let authVC = CurrentUserProfileVC()
+        let tabBarImage = UIImage.init(named: "profile_tabbarimage")
+        authVC.tabBarItem = UITabBarItem(title: NSLocalizedString("authenticateduservc.tabbar.name", comment: ""), image: tabBarImage , selectedImage: tabBarImage)
         
-        let vcs = [nav, UIViewController()]
+        // create vcs
+        let navProfile = UINavigationController(rootViewController: authVC)
+        let navUsers = UINavigationController(rootViewController: UsersListVC())
+
+        let vcs = [navUsers, navProfile]
         
         let tabBarVC = UITabBarController()
         tabBarVC.setViewControllers(vcs, animated: true)
@@ -37,7 +42,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         let auth = Remote.anyAccess().auth
-        
         guard let localCredentials = auth.userCredentials() else {
             perform(#selector(presentLoginVC), with: nil, afterDelay: 0.01)
             return true

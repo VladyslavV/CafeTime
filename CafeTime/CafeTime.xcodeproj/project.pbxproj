@@ -42,10 +42,13 @@
 		315828CC1E39F17000EBD20E /* SignUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 315828CB1E39F17000EBD20E /* SignUpVC.swift */; };
 		315828CE1E39F17D00EBD20E /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 315828CD1E39F17D00EBD20E /* LoginVC.swift */; };
 		316B51831E4B1D5E000EF798 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316B51821E4B1D5E000EF798 /* Constants.swift */; };
+		316B51861E4B302B000EF798 /* UsersListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316B51851E4B302B000EF798 /* UsersListVC.swift */; };
+		316B51891E4B32C0000EF798 /* UsersListMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316B51881E4B32C0000EF798 /* UsersListMainView.swift */; };
+		316B518B1E4B9784000EF798 /* UserProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316B518A1E4B9784000EF798 /* UserProfileVC.swift */; };
 		319DB38D1E3FAC280036640D /* UserProfileInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 319DB38C1E3FAC280036640D /* UserProfileInfoView.swift */; };
 		31DD520A1E38D4B600DB9ABC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 31DD52091E38D4B600DB9ABC /* GoogleService-Info.plist */; };
-		31DD520C1E38D57900DB9ABC /* AuthenticatedUserVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31DD520B1E38D57900DB9ABC /* AuthenticatedUserVC.swift */; };
-		31DD52131E39028400DB9ABC /* AuthenticatedUserMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31DD52121E39028400DB9ABC /* AuthenticatedUserMainView.swift */; };
+		31DD520C1E38D57900DB9ABC /* CurrentUserProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31DD520B1E38D57900DB9ABC /* CurrentUserProfileVC.swift */; };
+		31DD52131E39028400DB9ABC /* UserProfileMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31DD52121E39028400DB9ABC /* UserProfileMainView.swift */; };
 		31E58F551E37AD7F00CE4FE1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31E58F541E37AD7F00CE4FE1 /* AppDelegate.swift */; };
 		31E58F5C1E37AD7F00CE4FE1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 31E58F5B1E37AD7F00CE4FE1 /* Assets.xcassets */; };
 		954B95F16CAEF1827CBBFFE9 /* Pods_CafeTime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D8D817E0BDFBA2A6E70BA43 /* Pods_CafeTime.framework */; };
@@ -92,10 +95,13 @@
 		315828CB1E39F17000EBD20E /* SignUpVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpVC.swift; sourceTree = "<group>"; };
 		315828CD1E39F17D00EBD20E /* LoginVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		316B51821E4B1D5E000EF798 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		316B51851E4B302B000EF798 /* UsersListVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsersListVC.swift; sourceTree = "<group>"; };
+		316B51881E4B32C0000EF798 /* UsersListMainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsersListMainView.swift; sourceTree = "<group>"; };
+		316B518A1E4B9784000EF798 /* UserProfileVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileVC.swift; sourceTree = "<group>"; };
 		319DB38C1E3FAC280036640D /* UserProfileInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileInfoView.swift; sourceTree = "<group>"; };
 		31DD52091E38D4B600DB9ABC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		31DD520B1E38D57900DB9ABC /* AuthenticatedUserVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticatedUserVC.swift; sourceTree = "<group>"; };
-		31DD52121E39028400DB9ABC /* AuthenticatedUserMainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticatedUserMainView.swift; sourceTree = "<group>"; };
+		31DD520B1E38D57900DB9ABC /* CurrentUserProfileVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentUserProfileVC.swift; sourceTree = "<group>"; };
+		31DD52121E39028400DB9ABC /* UserProfileMainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileMainView.swift; sourceTree = "<group>"; };
 		31E58F511E37AD7F00CE4FE1 /* CafeTime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CafeTime.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		31E58F541E37AD7F00CE4FE1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		31E58F5B1E37AD7F00CE4FE1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -140,7 +146,7 @@
 		310B75401E40BD6B008ADF62 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				31DD52121E39028400DB9ABC /* AuthenticatedUserMainView.swift */,
+				31DD52121E39028400DB9ABC /* UserProfileMainView.swift */,
 				319DB38C1E3FAC280036640D /* UserProfileInfoView.swift */,
 			);
 			name = Views;
@@ -158,7 +164,7 @@
 			name = Realm;
 			sourceTree = "<group>";
 		};
-		310B754D1E4257A9008ADF62 /* Model */ = {
+		310B754D1E4257A9008ADF62 /* Dynamic Model */ = {
 			isa = PBXGroup;
 			children = (
 				310B754E1E428B8F008ADF62 /* User.swift */,
@@ -166,7 +172,7 @@
 				310B754B1E425768008ADF62 /* Cafe.swift */,
 				3139118C1E3F642B00EDAD40 /* Countries.swift */,
 			);
-			name = Model;
+			name = "Dynamic Model";
 			sourceTree = "<group>";
 		};
 		313532A61E474F7700BA039C /* Chat */ = {
@@ -235,7 +241,8 @@
 			isa = PBXGroup;
 			children = (
 				31DD52081E38B05900DB9ABC /* SignUp + Login */,
-				31DD52141E39028900DB9ABC /* Authenticated User */,
+				31DD52141E39028900DB9ABC /* User Profile */,
+				316B51871E4B3037000EF798 /* Users List */,
 				313532A61E474F7700BA039C /* Chat */,
 			);
 			name = VCs;
@@ -246,7 +253,6 @@
 			children = (
 				315828CB1E39F17000EBD20E /* SignUpVC.swift */,
 				315828C71E39EE5400EBD20E /* SignUpView.swift */,
-				310B754D1E4257A9008ADF62 /* Model */,
 			);
 			name = "Sign Up";
 			sourceTree = "<group>";
@@ -268,6 +274,15 @@
 			name = Constants;
 			sourceTree = "<group>";
 		};
+		316B51871E4B3037000EF798 /* Users List */ = {
+			isa = PBXGroup;
+			children = (
+				316B51851E4B302B000EF798 /* UsersListVC.swift */,
+				316B51881E4B32C0000EF798 /* UsersListMainView.swift */,
+			);
+			name = "Users List";
+			sourceTree = "<group>";
+		};
 		31DD52081E38B05900DB9ABC /* SignUp + Login */ = {
 			isa = PBXGroup;
 			children = (
@@ -278,13 +293,14 @@
 			name = "SignUp + Login";
 			sourceTree = "<group>";
 		};
-		31DD52141E39028900DB9ABC /* Authenticated User */ = {
+		31DD52141E39028900DB9ABC /* User Profile */ = {
 			isa = PBXGroup;
 			children = (
-				31DD520B1E38D57900DB9ABC /* AuthenticatedUserVC.swift */,
+				31DD520B1E38D57900DB9ABC /* CurrentUserProfileVC.swift */,
+				316B518A1E4B9784000EF798 /* UserProfileVC.swift */,
 				310B75401E40BD6B008ADF62 /* Views */,
 			);
-			name = "Authenticated User";
+			name = "User Profile";
 			sourceTree = "<group>";
 		};
 		31E58F481E37AD7F00CE4FE1 = {
@@ -310,6 +326,7 @@
 			children = (
 				3139117F1E3E186700EDAD40 /* Helper Classes */,
 				313911971E3F927100EDAD40 /* VCs */,
+				310B754D1E4257A9008ADF62 /* Dynamic Model */,
 				316B51841E4B1D64000EF798 /* Constants */,
 				310B75381E4088CD008ADF62 /* Network + DAO */,
 				31E58F661E37ADE200CE4FE1 /* Supporting Files */,
@@ -472,8 +489,9 @@
 				31E58F551E37AD7F00CE4FE1 /* AppDelegate.swift in Sources */,
 				3139117E1E3E182D00EDAD40 /* ImageVC.swift in Sources */,
 				310B75511E4387FF008ADF62 /* Utils.swift in Sources */,
+				316B51861E4B302B000EF798 /* UsersListVC.swift in Sources */,
 				313911881E3E190600EDAD40 /* UITraitCollection+MKAdditions.m in Sources */,
-				31DD52131E39028400DB9ABC /* AuthenticatedUserMainView.swift in Sources */,
+				31DD52131E39028400DB9ABC /* UserProfileMainView.swift in Sources */,
 				313532BA1E49E04E00BA039C /* CafeRealm.swift in Sources */,
 				313532B01E49BEFE00BA039C /* Remote.swift in Sources */,
 				313532A51E474E8A00BA039C /* ChatVC.swift in Sources */,
@@ -482,9 +500,11 @@
 				313532B81E49DF1F00BA039C /* RemoteCafe.swift in Sources */,
 				3139117C1E3E12AA00EDAD40 /* UIAlertAction+Extension.swift in Sources */,
 				313532A81E47519400BA039C /* ChatMainView.swift in Sources */,
+				316B518B1E4B9784000EF798 /* UserProfileVC.swift in Sources */,
 				3139117A1E3BCC1600EDAD40 /* UIView+Extension.swift in Sources */,
 				313532B61E49C64E00BA039C /* RemoteUtils.swift in Sources */,
 				310B75371E4088C9008ADF62 /* ManagerDAO.swift in Sources */,
+				316B51891E4B32C0000EF798 /* UsersListMainView.swift in Sources */,
 				310B753A1E4088E6008ADF62 /* CustomerRealm.swift in Sources */,
 				310B753C1E40B5B5008ADF62 /* CurrentUserCredentialsRealm.swift in Sources */,
 				313532B21E49BFD800BA039C /* RemoteAuth.swift in Sources */,
@@ -498,7 +518,7 @@
 				3139118F1E3F6C5100EDAD40 /* UITextField+Extensions.swift in Sources */,
 				3139118A1E3E4FC500EDAD40 /* StringsChecker.swift in Sources */,
 				313532C51E49EF5B00BA039C /* Customer.swift in Sources */,
-				31DD520C1E38D57900DB9ABC /* AuthenticatedUserVC.swift in Sources */,
+				31DD520C1E38D57900DB9ABC /* CurrentUserProfileVC.swift in Sources */,
 				313532C31E49E7E100BA039C /* CredentialsDAO.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
