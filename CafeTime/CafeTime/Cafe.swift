@@ -13,8 +13,9 @@ class Cafe: User {
     var foodtype: String = ""
     var numberOfTables: String = ""
     
-    override var requiredFields : [String] {
+    override func requiredFields() -> [String] {
         return [name, email, password, numberOfTables]
     }
+
 
 }

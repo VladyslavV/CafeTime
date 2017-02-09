@@ -11,26 +11,26 @@ import SnapKit
 import FirebaseAuth
 import Jelly
 import SDWebImage
+import PKHUD
 
-class AuthenticatedUserVC: UIViewController, AuthenticatedUserMainViewDelegate, UserProfileInfoViewDelegate {
+class CurrentUserProfileVC: UIViewController  {
     
-    private let authManager = AuthManager.shared
-    private var jellyAnimator: JellyAnimator?
+    internal var jellyAnimator: JellyAnimator?
     
-    private lazy var mainView: AuthenticatedUserMainView = {
-        let myVar = AuthenticatedUserMainView()
+    private lazy var mainView: UserProfileMainView = {
+        let myVar = UserProfileMainView()
         myVar.delegate = self
         return myVar
     }()
     
-    private lazy var userProfileView: UserProfileInfoView = {
+    internal lazy var userProfileView: UserProfileInfoView = {
         let myVar = self.mainView.userProfileInfoView
         myVar.delegate = self
         return myVar
     }()
     
     private lazy var navBarButtonRight : UIBarButtonItem = {
-        let myVar = UIBarButtonItem(image: UIImage.init(named: "editprofilebutton_image"), style: .plain, target: self, action: #selector(AuthenticatedUserVC.editProfile))
+        let myVar = UIBarButtonItem(image: UIImage.init(named: "editprofilebutton_image"), style: .plain, target: self, action: #selector(CurrentUserProfileVC.editProfile))
         return myVar
     }()
     
@@ -46,54 +46,49 @@ class AuthenticatedUserVC: UIViewController, AuthenticatedUserMainViewDelegate, 
             make.left.right.bottom.equalTo(self.view)
             make.top.equalTo(self.topLayoutGuide.snp.bottom)
         }
-        
-        let tabBarImage = UIImage.init(named: "profile_tabbarimage")
-        self.tabBarItem = UITabBarItem(title: NSLocalizedString("authenticateduservc.tabbar.name", comment: ""), image: tabBarImage , selectedImage: tabBarImage)
-        
         self.navigationItem.rightBarButtonItem = navBarButtonRight
+    }
+    
+    //MARK: Init
+    
+    init() {
+        super.init(nibName:nil, bundle:nil)
+    }
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("")
     }
     
     // update view
     override func viewWillAppear(_ animated: Bool) {
         self.tabBarController?.tabBar.isHidden = false
-        authManager.observeCurrentUser { [weak self] (user) in
+        self.showCurrentUserProfile()
+    }
+    
+    func showCurrentUserProfile() {
+        Remote.anyAccess().customer.fetchCurrentCustomer { [weak self] (customer) in
             guard let weakSelf = self else { return }
-        
-            weakSelf.navigationItem.title =  user?.name
-            weakSelf.userProfileView.userNameLabel.text = user?.name
-            weakSelf.userProfileView.userCountryLabel.text = user?.country
             
-            if let imageURLString = user?.profileImageURL {
+            weakSelf.navigationItem.title =  customer?.name
+            weakSelf.userProfileView.userNameLabel.text = customer?.name
+            weakSelf.userProfileView.userCountryLabel.text = customer?.country
+            
+            if let imageURLString = customer?.profileImageURL {
                 weakSelf.userProfileView.userImageView.sd_setImage(with: URL(string: imageURLString), placeholderImage: UIImage.init(named: "image_placeholder"))
             }
         }
     }
     
-  
-    //MARK: Main View Delegate
-    
-    func logOutButtonPressed() {
-        self.logOutUser()
-    }
-    
-    func deleteUserButtonPressed() {
-        authManager.deleteCurrentUser { (error, success) in
-            
-            if !success {
-                self.presentAlert(message: error)
-            }
-            else {
-                self.logOutUser()
-            }
-        }
-    }
-    
+   
     // MARK: Private Funcs
     
-    private func logOutUser() {
-        authManager.logOutUser()
-        let nav = UINavigationController(rootViewController: LoginVC())
-        self.present(nav, animated: true, completion: nil)
+    internal func logOutUser() {
+        if let auth = Remote.serverAccess()?.auth {
+            auth.logOutUser()
+            self.presentInNav(vcs: [self, LoginVC()])
+        }
+        else {
+            self.presentAlert(message: NSLocalizedString("allert.title.no.internet", comment: ""))
+        }
     }
     
     // MARK: Actions
@@ -101,7 +96,57 @@ class AuthenticatedUserVC: UIViewController, AuthenticatedUserMainViewDelegate, 
     @objc private func editProfile() {
         self.navigationController?.pushViewController(ChatVC(), animated: true)
     }
+}
+
+
+extension CurrentUserProfileVC: UserProfileMainViewDelegate {
     
+    //MARK: Main View Delegate
+    
+    func logOutButtonPressed() {
+        self.logOutUser()
+    }
+    
+    func deleteUserButtonPressed() {
+        
+        if let auth = Remote.serverAccess()?.auth {
+            
+            self.presenetAlertWithCredentialFields { (email, password) in
+                HUD.show(.progress)
+                
+                auth.authenticateUser(email: email, password: password, rememberUser: false, completion: { (error, success) in
+                    
+                    
+                    if success {
+                        if let auth = Remote.serverAccess()?.auth {
+                            auth.deleteCurrentUser(customer: true) { [weak self] (error, success) in
+                                guard let weakSelf = self else { return }
+                                if !success {
+                                    HUD.flash(.error, onView: self?.view, delay: 0.1, completion: { (end) in
+                                        weakSelf.presentAlert(message: error)
+                                    })
+                                }
+                                else {
+                                    HUD.flash(.success, delay: 0.4)
+                                    weakSelf.logOutUser()
+                                }
+                            }
+                        }
+                    }
+                    else {
+                        HUD.hide()
+                        self.presentAlert(message: error)
+                    }
+                })
+            }
+        }
+        else {
+            self.presentAlert(message: NSLocalizedString("allert.title.no.internet", comment: ""))
+        }
+    }
+}
+
+extension CurrentUserProfileVC: UserProfileInfoViewDelegate {
     //MARK: User Profile View Delegate
     
     func imageTapped() {

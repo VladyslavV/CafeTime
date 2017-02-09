@@ -9,7 +9,7 @@
 import Foundation
 import SnapKit
 
-class ChatVC: UIViewController, ChatInputComponentsViewDelegate {
+class ChatVC: UIViewController {
     
     // MARK: Vars
     
@@ -19,7 +19,7 @@ class ChatVC: UIViewController, ChatInputComponentsViewDelegate {
         return myVar
     }()
     
-    private lazy var chatInputComponentsView: ChatInputComponentsView = {
+    internal lazy var chatInputComponentsView: ChatInputComponentsView = {
         let myVar = self.mainView.chatInputComponentsView
         return myVar
     }()
@@ -48,14 +48,16 @@ class ChatVC: UIViewController, ChatInputComponentsViewDelegate {
         }
     }
     
+    deinit {
+        print("object \( String(describing: (self))) dealloced")
+    }
+}
+
+extension ChatVC: ChatInputComponentsViewDelegate {
     
     // MARK: Input components view Delegate
     
     func sendMessage(message: String) {
         print(message)
-    }
-    
-    deinit {
-        print("object \( String(describing: (self))) dealloced")
     }
 }

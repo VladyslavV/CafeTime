@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		310B75371E4088C9008ADF62 /* DAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310B75361E4088C9008ADF62 /* DAO.swift */; };
-		310B753A1E4088E6008ADF62 /* UserRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310B75391E4088E6008ADF62 /* UserRealm.swift */; };
+		310B75371E4088C9008ADF62 /* ManagerDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310B75361E4088C9008ADF62 /* ManagerDAO.swift */; };
+		310B753A1E4088E6008ADF62 /* CustomerRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310B75391E4088E6008ADF62 /* CustomerRealm.swift */; };
 		310B753C1E40B5B5008ADF62 /* CurrentUserCredentialsRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310B753B1E40B5B5008ADF62 /* CurrentUserCredentialsRealm.swift */; };
 		310B75471E414201008ADF62 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 313911761E3BBF1800EDAD40 /* Localizable.strings */; };
 		310B754C1E425768008ADF62 /* Cafe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310B754B1E425768008ADF62 /* Cafe.swift */; };
@@ -17,14 +17,23 @@
 		313532A51E474E8A00BA039C /* ChatVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313532A41E474E8A00BA039C /* ChatVC.swift */; };
 		313532A81E47519400BA039C /* ChatMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313532A71E47519400BA039C /* ChatMainView.swift */; };
 		313532AA1E4752A500BA039C /* ChatInputComponentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313532A91E4752A500BA039C /* ChatInputComponentsView.swift */; };
-		313532AC1E48ACDB00BA039C /* AuthManager+Extension_DeleteObjectsFromServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313532AB1E48ACDB00BA039C /* AuthManager+Extension_DeleteObjectsFromServer.swift */; };
 		313532AE1E48E62B00BA039C /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313532AD1E48E62B00BA039C /* UIViewController+Extension.swift */; };
+		313532B01E49BEFE00BA039C /* Remote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313532AF1E49BEFE00BA039C /* Remote.swift */; };
+		313532B21E49BFD800BA039C /* RemoteAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313532B11E49BFD800BA039C /* RemoteAuth.swift */; };
+		313532B41E49BFED00BA039C /* RemoteCustomer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313532B31E49BFED00BA039C /* RemoteCustomer.swift */; };
+		313532B61E49C64E00BA039C /* RemoteUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313532B51E49C64E00BA039C /* RemoteUtils.swift */; };
+		313532B81E49DF1F00BA039C /* RemoteCafe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313532B71E49DF1F00BA039C /* RemoteCafe.swift */; };
+		313532BA1E49E04E00BA039C /* CafeRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313532B91E49E04E00BA039C /* CafeRealm.swift */; };
+		313532BC1E49E17300BA039C /* CustomerDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313532BB1E49E17300BA039C /* CustomerDAO.swift */; };
+		313532BE1E49E18500BA039C /* CafeDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313532BD1E49E18500BA039C /* CafeDAO.swift */; };
+		313532C31E49E7E100BA039C /* CredentialsDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313532C21E49E7E100BA039C /* CredentialsDAO.swift */; };
+		313532C51E49EF5B00BA039C /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313532C41E49EF5B00BA039C /* Customer.swift */; };
 		313911711E3BBC5500EDAD40 /* M13Checkbox+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313911701E3BBC5500EDAD40 /* M13Checkbox+Extensions.swift */; };
 		3139117A1E3BCC1600EDAD40 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313911791E3BCC1600EDAD40 /* UIView+Extension.swift */; };
 		3139117C1E3E12AA00EDAD40 /* UIAlertAction+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3139117B1E3E12AA00EDAD40 /* UIAlertAction+Extension.swift */; };
 		3139117E1E3E182D00EDAD40 /* ImageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3139117D1E3E182D00EDAD40 /* ImageVC.swift */; };
 		313911881E3E190600EDAD40 /* UITraitCollection+MKAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 313911871E3E190600EDAD40 /* UITraitCollection+MKAdditions.m */; };
-		3139118A1E3E4FC500EDAD40 /* StringsChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313911891E3E4FC500EDAD40 /* StringsChecker.swift */; };
+		3139118A1E3E4FC500EDAD40 /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313911891E3E4FC500EDAD40 /* Validator.swift */; };
 		3139118D1E3F642B00EDAD40 /* Countries.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3139118C1E3F642B00EDAD40 /* Countries.swift */; };
 		3139118F1E3F6C5100EDAD40 /* UITextField+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3139118E1E3F6C5100EDAD40 /* UITextField+Extensions.swift */; };
 		313911911E3F78BB00EDAD40 /* CountriesPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313911901E3F78BB00EDAD40 /* CountriesPickerView.swift */; };
@@ -32,24 +41,24 @@
 		315828CA1E39EE5F00EBD20E /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 315828C91E39EE5F00EBD20E /* LoginView.swift */; };
 		315828CC1E39F17000EBD20E /* SignUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 315828CB1E39F17000EBD20E /* SignUpVC.swift */; };
 		315828CE1E39F17D00EBD20E /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 315828CD1E39F17D00EBD20E /* LoginVC.swift */; };
-		315828D41E3A3CE400EBD20E /* GlobalStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 315828D31E3A3CE400EBD20E /* GlobalStrings.swift */; };
-		315828DA1E3A80D700EBD20E /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 315828D91E3A80D700EBD20E /* AuthManager.swift */; };
-		315828E81E3B8CD300EBD20E /* GlobalSaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 315828E71E3B8CD300EBD20E /* GlobalSaver.swift */; };
+		316B51831E4B1D5E000EF798 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316B51821E4B1D5E000EF798 /* Constants.swift */; };
+		316B51861E4B302B000EF798 /* UsersListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316B51851E4B302B000EF798 /* UsersListVC.swift */; };
+		316B51891E4B32C0000EF798 /* UsersListMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316B51881E4B32C0000EF798 /* UsersListMainView.swift */; };
+		316B518B1E4B9784000EF798 /* UserProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316B518A1E4B9784000EF798 /* UserProfileVC.swift */; };
 		319DB38D1E3FAC280036640D /* UserProfileInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 319DB38C1E3FAC280036640D /* UserProfileInfoView.swift */; };
 		31DD520A1E38D4B600DB9ABC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 31DD52091E38D4B600DB9ABC /* GoogleService-Info.plist */; };
-		31DD520C1E38D57900DB9ABC /* AuthenticatedUserVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31DD520B1E38D57900DB9ABC /* AuthenticatedUserVC.swift */; };
-		31DD52131E39028400DB9ABC /* AuthenticatedUserMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31DD52121E39028400DB9ABC /* AuthenticatedUserMainView.swift */; };
+		31DD520C1E38D57900DB9ABC /* CurrentUserProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31DD520B1E38D57900DB9ABC /* CurrentUserProfileVC.swift */; };
+		31DD52131E39028400DB9ABC /* UserProfileMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31DD52121E39028400DB9ABC /* UserProfileMainView.swift */; };
 		31E58F551E37AD7F00CE4FE1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31E58F541E37AD7F00CE4FE1 /* AppDelegate.swift */; };
 		31E58F5C1E37AD7F00CE4FE1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 31E58F5B1E37AD7F00CE4FE1 /* Assets.xcassets */; };
-		31F024BA1E4486E900A3B7EC /* AuthManager+Extension_SaveUserOnServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F024B91E4486E900A3B7EC /* AuthManager+Extension_SaveUserOnServer.swift */; };
 		954B95F16CAEF1827CBBFFE9 /* Pods_CafeTime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D8D817E0BDFBA2A6E70BA43 /* Pods_CafeTime.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		1D8D817E0BDFBA2A6E70BA43 /* Pods_CafeTime.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CafeTime.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B3BEDDD52F16FA96C91297A /* Pods-CafeTime.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CafeTime.release.xcconfig"; path = "Pods/Target Support Files/Pods-CafeTime/Pods-CafeTime.release.xcconfig"; sourceTree = "<group>"; };
-		310B75361E4088C9008ADF62 /* DAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DAO.swift; sourceTree = "<group>"; };
-		310B75391E4088E6008ADF62 /* UserRealm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserRealm.swift; sourceTree = "<group>"; };
+		310B75361E4088C9008ADF62 /* ManagerDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManagerDAO.swift; sourceTree = "<group>"; };
+		310B75391E4088E6008ADF62 /* CustomerRealm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomerRealm.swift; sourceTree = "<group>"; };
 		310B753B1E40B5B5008ADF62 /* CurrentUserCredentialsRealm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentUserCredentialsRealm.swift; sourceTree = "<group>"; };
 		310B754B1E425768008ADF62 /* Cafe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cafe.swift; sourceTree = "<group>"; };
 		310B754E1E428B8F008ADF62 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -57,8 +66,17 @@
 		313532A41E474E8A00BA039C /* ChatVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatVC.swift; sourceTree = "<group>"; };
 		313532A71E47519400BA039C /* ChatMainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatMainView.swift; sourceTree = "<group>"; };
 		313532A91E4752A500BA039C /* ChatInputComponentsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatInputComponentsView.swift; sourceTree = "<group>"; };
-		313532AB1E48ACDB00BA039C /* AuthManager+Extension_DeleteObjectsFromServer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AuthManager+Extension_DeleteObjectsFromServer.swift"; sourceTree = "<group>"; };
 		313532AD1E48E62B00BA039C /* UIViewController+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
+		313532AF1E49BEFE00BA039C /* Remote.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Remote.swift; sourceTree = "<group>"; };
+		313532B11E49BFD800BA039C /* RemoteAuth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteAuth.swift; sourceTree = "<group>"; };
+		313532B31E49BFED00BA039C /* RemoteCustomer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteCustomer.swift; sourceTree = "<group>"; };
+		313532B51E49C64E00BA039C /* RemoteUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteUtils.swift; sourceTree = "<group>"; };
+		313532B71E49DF1F00BA039C /* RemoteCafe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteCafe.swift; sourceTree = "<group>"; };
+		313532B91E49E04E00BA039C /* CafeRealm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CafeRealm.swift; sourceTree = "<group>"; };
+		313532BB1E49E17300BA039C /* CustomerDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomerDAO.swift; sourceTree = "<group>"; };
+		313532BD1E49E18500BA039C /* CafeDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CafeDAO.swift; sourceTree = "<group>"; };
+		313532C21E49E7E100BA039C /* CredentialsDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CredentialsDAO.swift; sourceTree = "<group>"; };
+		313532C41E49EF5B00BA039C /* Customer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Customer.swift; sourceTree = "<group>"; };
 		313911701E3BBC5500EDAD40 /* M13Checkbox+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "M13Checkbox+Extensions.swift"; sourceTree = "<group>"; };
 		313911751E3BBF1800EDAD40 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		313911771E3BBF6000EDAD40 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -68,7 +86,7 @@
 		313911851E3E190500EDAD40 /* CafeTime-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CafeTime-Bridging-Header.h"; sourceTree = "<group>"; };
 		313911861E3E190600EDAD40 /* UITraitCollection+MKAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITraitCollection+MKAdditions.h"; sourceTree = "<group>"; };
 		313911871E3E190600EDAD40 /* UITraitCollection+MKAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITraitCollection+MKAdditions.m"; sourceTree = "<group>"; };
-		313911891E3E4FC500EDAD40 /* StringsChecker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringsChecker.swift; sourceTree = "<group>"; };
+		313911891E3E4FC500EDAD40 /* Validator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Validator.swift; sourceTree = "<group>"; };
 		3139118C1E3F642B00EDAD40 /* Countries.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Countries.swift; sourceTree = "<group>"; };
 		3139118E1E3F6C5100EDAD40 /* UITextField+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextField+Extensions.swift"; sourceTree = "<group>"; };
 		313911901E3F78BB00EDAD40 /* CountriesPickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountriesPickerView.swift; sourceTree = "<group>"; };
@@ -76,18 +94,19 @@
 		315828C91E39EE5F00EBD20E /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		315828CB1E39F17000EBD20E /* SignUpVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpVC.swift; sourceTree = "<group>"; };
 		315828CD1E39F17D00EBD20E /* LoginVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
-		315828D31E3A3CE400EBD20E /* GlobalStrings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalStrings.swift; sourceTree = "<group>"; };
-		315828D91E3A80D700EBD20E /* AuthManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
-		315828E71E3B8CD300EBD20E /* GlobalSaver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalSaver.swift; sourceTree = "<group>"; };
+		316B51821E4B1D5E000EF798 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		316B51851E4B302B000EF798 /* UsersListVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsersListVC.swift; sourceTree = "<group>"; };
+		316B51881E4B32C0000EF798 /* UsersListMainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsersListMainView.swift; sourceTree = "<group>"; };
+		316B518A1E4B9784000EF798 /* UserProfileVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileVC.swift; sourceTree = "<group>"; };
+		316B51901E4C966F000EF798 /* CafeTime.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CafeTime.entitlements; sourceTree = "<group>"; };
 		319DB38C1E3FAC280036640D /* UserProfileInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileInfoView.swift; sourceTree = "<group>"; };
 		31DD52091E38D4B600DB9ABC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		31DD520B1E38D57900DB9ABC /* AuthenticatedUserVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticatedUserVC.swift; sourceTree = "<group>"; };
-		31DD52121E39028400DB9ABC /* AuthenticatedUserMainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticatedUserMainView.swift; sourceTree = "<group>"; };
+		31DD520B1E38D57900DB9ABC /* CurrentUserProfileVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentUserProfileVC.swift; sourceTree = "<group>"; };
+		31DD52121E39028400DB9ABC /* UserProfileMainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileMainView.swift; sourceTree = "<group>"; };
 		31E58F511E37AD7F00CE4FE1 /* CafeTime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CafeTime.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		31E58F541E37AD7F00CE4FE1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		31E58F5B1E37AD7F00CE4FE1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		31E58F601E37AD7F00CE4FE1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		31F024B91E4486E900A3B7EC /* AuthManager+Extension_SaveUserOnServer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AuthManager+Extension_SaveUserOnServer.swift"; sourceTree = "<group>"; };
 		EFF040301D71AC265B556F52 /* Pods-CafeTime.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CafeTime.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CafeTime/Pods-CafeTime.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -115,9 +134,7 @@
 		310B75381E4088CD008ADF62 /* Network + DAO */ = {
 			isa = PBXGroup;
 			children = (
-				315828D91E3A80D700EBD20E /* AuthManager.swift */,
-				31F024B91E4486E900A3B7EC /* AuthManager+Extension_SaveUserOnServer.swift */,
-				313532AB1E48ACDB00BA039C /* AuthManager+Extension_DeleteObjectsFromServer.swift */,
+				316B518D1E4C6D15000EF798 /* Remote */,
 				310B75481E41FAC5008ADF62 /* Realm */,
 			);
 			name = "Network + DAO";
@@ -126,7 +143,7 @@
 		310B75401E40BD6B008ADF62 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				31DD52121E39028400DB9ABC /* AuthenticatedUserMainView.swift */,
+				31DD52121E39028400DB9ABC /* UserProfileMainView.swift */,
 				319DB38C1E3FAC280036640D /* UserProfileInfoView.swift */,
 			);
 			name = Views;
@@ -135,21 +152,21 @@
 		310B75481E41FAC5008ADF62 /* Realm */ = {
 			isa = PBXGroup;
 			children = (
-				310B75361E4088C9008ADF62 /* DAO.swift */,
-				310B75391E4088E6008ADF62 /* UserRealm.swift */,
-				310B753B1E40B5B5008ADF62 /* CurrentUserCredentialsRealm.swift */,
+				310B75361E4088C9008ADF62 /* ManagerDAO.swift */,
+				313532C21E49E7E100BA039C /* CredentialsDAO.swift */,
+				313532BB1E49E17300BA039C /* CustomerDAO.swift */,
+				313532BD1E49E18500BA039C /* CafeDAO.swift */,
 			);
 			name = Realm;
 			sourceTree = "<group>";
 		};
-		310B754D1E4257A9008ADF62 /* Model */ = {
+		310B754D1E4257A9008ADF62 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				310B754E1E428B8F008ADF62 /* User.swift */,
-				310B754B1E425768008ADF62 /* Cafe.swift */,
-				3139118C1E3F642B00EDAD40 /* Countries.swift */,
+				316B518C1E4C6CDC000EF798 /* Simple */,
+				313532C11E49E3E000BA039C /* Realm */,
 			);
-			name = Model;
+			name = Models;
 			sourceTree = "<group>";
 		};
 		313532A61E474F7700BA039C /* Chat */ = {
@@ -162,13 +179,23 @@
 			name = Chat;
 			sourceTree = "<group>";
 		};
+		313532C11E49E3E000BA039C /* Realm */ = {
+			isa = PBXGroup;
+			children = (
+				310B753B1E40B5B5008ADF62 /* CurrentUserCredentialsRealm.swift */,
+				310B75391E4088E6008ADF62 /* CustomerRealm.swift */,
+				313532B91E49E04E00BA039C /* CafeRealm.swift */,
+			);
+			name = Realm;
+			sourceTree = "<group>";
+		};
 		3139117F1E3E186700EDAD40 /* Helper Classes */ = {
 			isa = PBXGroup;
 			children = (
 				313911841E3E18C900EDAD40 /* Objc Extensions */,
 				3139118B1E3EA6E000EDAD40 /* Extensions */,
 				3139117D1E3E182D00EDAD40 /* ImageVC.swift */,
-				313911891E3E4FC500EDAD40 /* StringsChecker.swift */,
+				313911891E3E4FC500EDAD40 /* Validator.swift */,
 				310B75501E4387FF008ADF62 /* Utils.swift */,
 			);
 			name = "Helper Classes";
@@ -208,7 +235,8 @@
 			isa = PBXGroup;
 			children = (
 				31DD52081E38B05900DB9ABC /* SignUp + Login */,
-				31DD52141E39028900DB9ABC /* Authenticated User */,
+				31DD52141E39028900DB9ABC /* User Profile */,
+				316B51871E4B3037000EF798 /* Users List */,
 				313532A61E474F7700BA039C /* Chat */,
 			);
 			name = VCs;
@@ -219,7 +247,6 @@
 			children = (
 				315828CB1E39F17000EBD20E /* SignUpVC.swift */,
 				315828C71E39EE5400EBD20E /* SignUpView.swift */,
-				310B754D1E4257A9008ADF62 /* Model */,
 			);
 			name = "Sign Up";
 			sourceTree = "<group>";
@@ -233,33 +260,64 @@
 			name = Login;
 			sourceTree = "<group>";
 		};
-		315828E91E3B91C200EBD20E /* Globals */ = {
+		316B51841E4B1D64000EF798 /* Constants */ = {
 			isa = PBXGroup;
 			children = (
-				315828E71E3B8CD300EBD20E /* GlobalSaver.swift */,
-				315828D31E3A3CE400EBD20E /* GlobalStrings.swift */,
+				316B51821E4B1D5E000EF798 /* Constants.swift */,
 			);
-			name = Globals;
+			name = Constants;
+			sourceTree = "<group>";
+		};
+		316B51871E4B3037000EF798 /* Users List */ = {
+			isa = PBXGroup;
+			children = (
+				316B51851E4B302B000EF798 /* UsersListVC.swift */,
+				316B51881E4B32C0000EF798 /* UsersListMainView.swift */,
+			);
+			name = "Users List";
+			sourceTree = "<group>";
+		};
+		316B518C1E4C6CDC000EF798 /* Simple */ = {
+			isa = PBXGroup;
+			children = (
+				310B754E1E428B8F008ADF62 /* User.swift */,
+				313532C41E49EF5B00BA039C /* Customer.swift */,
+				310B754B1E425768008ADF62 /* Cafe.swift */,
+				3139118C1E3F642B00EDAD40 /* Countries.swift */,
+			);
+			name = Simple;
+			sourceTree = "<group>";
+		};
+		316B518D1E4C6D15000EF798 /* Remote */ = {
+			isa = PBXGroup;
+			children = (
+				313532AF1E49BEFE00BA039C /* Remote.swift */,
+				313532B11E49BFD800BA039C /* RemoteAuth.swift */,
+				313532B31E49BFED00BA039C /* RemoteCustomer.swift */,
+				313532B71E49DF1F00BA039C /* RemoteCafe.swift */,
+				313532B51E49C64E00BA039C /* RemoteUtils.swift */,
+			);
+			name = Remote;
 			sourceTree = "<group>";
 		};
 		31DD52081E38B05900DB9ABC /* SignUp + Login */ = {
 			isa = PBXGroup;
 			children = (
 				313911921E3F7B2300EDAD40 /* Reusable Views */,
-				315828E91E3B91C200EBD20E /* Globals */,
 				315828D01E39F29600EBD20E /* Login */,
 				315828CF1E39F28E00EBD20E /* Sign Up */,
 			);
 			name = "SignUp + Login";
 			sourceTree = "<group>";
 		};
-		31DD52141E39028900DB9ABC /* Authenticated User */ = {
+		31DD52141E39028900DB9ABC /* User Profile */ = {
 			isa = PBXGroup;
 			children = (
-				31DD520B1E38D57900DB9ABC /* AuthenticatedUserVC.swift */,
+				31DD520B1E38D57900DB9ABC /* CurrentUserProfileVC.swift */,
+				316B518A1E4B9784000EF798 /* UserProfileVC.swift */,
 				310B75401E40BD6B008ADF62 /* Views */,
 			);
-			name = "Authenticated User";
+			name = "User Profile";
 			sourceTree = "<group>";
 		};
 		31E58F481E37AD7F00CE4FE1 = {
@@ -283,9 +341,12 @@
 		31E58F531E37AD7F00CE4FE1 /* CafeTime */ = {
 			isa = PBXGroup;
 			children = (
+				316B51901E4C966F000EF798 /* CafeTime.entitlements */,
 				3139117F1E3E186700EDAD40 /* Helper Classes */,
 				313911971E3F927100EDAD40 /* VCs */,
+				316B51841E4B1D64000EF798 /* Constants */,
 				310B75381E4088CD008ADF62 /* Network + DAO */,
+				310B754D1E4257A9008ADF62 /* Models */,
 				31E58F661E37ADE200CE4FE1 /* Supporting Files */,
 			);
 			path = CafeTime;
@@ -349,6 +410,11 @@
 						DevelopmentTeam = 5HYBF2ZF8V;
 						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -437,37 +503,46 @@
 			buildActionMask = 2147483647;
 			files = (
 				313532AE1E48E62B00BA039C /* UIViewController+Extension.swift in Sources */,
-				31F024BA1E4486E900A3B7EC /* AuthManager+Extension_SaveUserOnServer.swift in Sources */,
 				310B754F1E428B8F008ADF62 /* User.swift in Sources */,
+				313532BC1E49E17300BA039C /* CustomerDAO.swift in Sources */,
+				313532B41E49BFED00BA039C /* RemoteCustomer.swift in Sources */,
 				319DB38D1E3FAC280036640D /* UserProfileInfoView.swift in Sources */,
 				313532AA1E4752A500BA039C /* ChatInputComponentsView.swift in Sources */,
 				315828CC1E39F17000EBD20E /* SignUpVC.swift in Sources */,
 				31E58F551E37AD7F00CE4FE1 /* AppDelegate.swift in Sources */,
 				3139117E1E3E182D00EDAD40 /* ImageVC.swift in Sources */,
 				310B75511E4387FF008ADF62 /* Utils.swift in Sources */,
+				316B51861E4B302B000EF798 /* UsersListVC.swift in Sources */,
 				313911881E3E190600EDAD40 /* UITraitCollection+MKAdditions.m in Sources */,
-				31DD52131E39028400DB9ABC /* AuthenticatedUserMainView.swift in Sources */,
+				31DD52131E39028400DB9ABC /* UserProfileMainView.swift in Sources */,
+				313532BA1E49E04E00BA039C /* CafeRealm.swift in Sources */,
+				313532B01E49BEFE00BA039C /* Remote.swift in Sources */,
 				313532A51E474E8A00BA039C /* ChatVC.swift in Sources */,
 				315828CA1E39EE5F00EBD20E /* LoginView.swift in Sources */,
-				315828D41E3A3CE400EBD20E /* GlobalStrings.swift in Sources */,
 				313911911E3F78BB00EDAD40 /* CountriesPickerView.swift in Sources */,
+				313532B81E49DF1F00BA039C /* RemoteCafe.swift in Sources */,
 				3139117C1E3E12AA00EDAD40 /* UIAlertAction+Extension.swift in Sources */,
-				315828DA1E3A80D700EBD20E /* AuthManager.swift in Sources */,
 				313532A81E47519400BA039C /* ChatMainView.swift in Sources */,
+				316B518B1E4B9784000EF798 /* UserProfileVC.swift in Sources */,
 				3139117A1E3BCC1600EDAD40 /* UIView+Extension.swift in Sources */,
-				310B75371E4088C9008ADF62 /* DAO.swift in Sources */,
-				310B753A1E4088E6008ADF62 /* UserRealm.swift in Sources */,
+				313532B61E49C64E00BA039C /* RemoteUtils.swift in Sources */,
+				310B75371E4088C9008ADF62 /* ManagerDAO.swift in Sources */,
+				316B51891E4B32C0000EF798 /* UsersListMainView.swift in Sources */,
+				310B753A1E4088E6008ADF62 /* CustomerRealm.swift in Sources */,
 				310B753C1E40B5B5008ADF62 /* CurrentUserCredentialsRealm.swift in Sources */,
-				315828E81E3B8CD300EBD20E /* GlobalSaver.swift in Sources */,
+				313532B21E49BFD800BA039C /* RemoteAuth.swift in Sources */,
 				3139118D1E3F642B00EDAD40 /* Countries.swift in Sources */,
+				313532BE1E49E18500BA039C /* CafeDAO.swift in Sources */,
 				310B754C1E425768008ADF62 /* Cafe.swift in Sources */,
 				315828CE1E39F17D00EBD20E /* LoginVC.swift in Sources */,
 				315828C81E39EE5400EBD20E /* SignUpView.swift in Sources */,
+				316B51831E4B1D5E000EF798 /* Constants.swift in Sources */,
 				313911711E3BBC5500EDAD40 /* M13Checkbox+Extensions.swift in Sources */,
-				313532AC1E48ACDB00BA039C /* AuthManager+Extension_DeleteObjectsFromServer.swift in Sources */,
 				3139118F1E3F6C5100EDAD40 /* UITextField+Extensions.swift in Sources */,
-				3139118A1E3E4FC500EDAD40 /* StringsChecker.swift in Sources */,
-				31DD520C1E38D57900DB9ABC /* AuthenticatedUserVC.swift in Sources */,
+				3139118A1E3E4FC500EDAD40 /* Validator.swift in Sources */,
+				313532C51E49EF5B00BA039C /* Customer.swift in Sources */,
+				31DD520C1E38D57900DB9ABC /* CurrentUserProfileVC.swift in Sources */,
+				313532C31E49E7E100BA039C /* CredentialsDAO.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -586,6 +661,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = CafeTime/CafeTime.entitlements;
 				DEVELOPMENT_TEAM = 5HYBF2ZF8V;
 				INFOPLIST_FILE = CafeTime/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -604,6 +680,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = CafeTime/CafeTime.entitlements;
 				DEVELOPMENT_TEAM = 5HYBF2ZF8V;
 				INFOPLIST_FILE = CafeTime/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

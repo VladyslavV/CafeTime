@@ -1,5 +1,5 @@
 //
-//  StringsChecker.swift
+//  Validator.swift
 //  CafeTime
 //
 //  Created by Vladysalv Vyshnevksyy on 1/29/17.
@@ -9,9 +9,9 @@
 import UIKit
 import SwiftCop
 
-class StringsChecker {
+class Validator {
     
-    static let shared = StringsChecker()
+    static let shared = Validator()
     
     // MARK: Pulic Funcs
     
@@ -32,7 +32,7 @@ class StringsChecker {
     // sign up details
     func checkSignUpFieldsForUser(user: User) -> String? {
         
-        var errorString = self.checkEmptyFieldsForUser(fields: user.requiredFields)
+        var errorString = self.checkEmptyFieldsForUser(fields: user.requiredFields() )
         if let err = errorString  { return err }
     
         errorString = checkBasicCredentials(email: user.email, password: user.password)

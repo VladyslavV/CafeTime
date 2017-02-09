@@ -10,14 +10,15 @@ import UIKit
 import SnapKit
 import FirebaseAuth
 
-protocol AuthenticatedUserMainViewDelegate : class {
+protocol UserProfileMainViewDelegate : class {
     func logOutButtonPressed()
     func deleteUserButtonPressed()
 }
 
-class AuthenticatedUserMainView: UIView {
+
+class UserProfileMainView: UIView {
     
-    weak var delegate : AuthenticatedUserMainViewDelegate?
+    weak var delegate : UserProfileMainViewDelegate?
     
     // MARK: Vars
     
@@ -46,6 +47,15 @@ class AuthenticatedUserMainView: UIView {
     
     // MARK: Init
     
+    convenience init(forLocalUser localUser: Bool) {
+        self.init()
+        if !localUser {
+            self.deleteUserButton.isHidden = true
+            self.logOutButton.isHidden = true
+            self.userProfileInfoView.sendMessageButton.isHidden = false
+        }
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.setUp()
@@ -56,7 +66,7 @@ class AuthenticatedUserMainView: UIView {
     }
     
     private func setUp() {
-        //self.backgroundColor = UIColor.blue
+        self.backgroundColor = UIColor.white
         
         self.addSubviews([logOutButton, userProfileInfoView, deleteUserButton])
         
@@ -85,6 +95,7 @@ class AuthenticatedUserMainView: UIView {
         }
     }
     
+    // MARK: Actions
     
     @objc private func logOut() {
         self.delegate?.logOutButtonPressed()
@@ -95,3 +106,6 @@ class AuthenticatedUserMainView: UIView {
     }
     
 }
+
+
+

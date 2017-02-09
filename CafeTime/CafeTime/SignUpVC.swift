@@ -11,13 +11,13 @@ import SnapKit
 import FirebaseAuth
 import PKHUD
 
-class SignUpVC: UIViewController, SignUpViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class SignUpVC: UIViewController {
     
     // MARK: Vars
     
-    private let mainView = SignUpView()
-    private let stringsChecker = StringsChecker.shared
-
+    internal let mainView = SignUpView()
+    private let validator = Validator.shared
+    
     //image picker
     private lazy var libraryImagePicker : UIImagePickerController = {
         let myVar = UIImagePickerController()
@@ -36,7 +36,7 @@ class SignUpVC: UIViewController, SignUpViewDelegate, UIImagePickerControllerDel
     }()
     
     //action sheet
-    private lazy var logoActionSheet : UIAlertController = {
+    internal lazy var logoActionSheet : UIAlertController = {
         let myVar = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
         let viewPhoto = UIAlertAction(title: NSLocalizedString("sighnpvc.actionsheet.viewphoto", comment: ""), style: .default, handler: { [weak self] (action) in
@@ -88,54 +88,108 @@ class SignUpVC: UIViewController, SignUpViewDelegate, UIImagePickerControllerDel
         }
     }
     
-    //MARK: Main View Delegate
-    
-    func signUpUser(user: User) {
-    
-        let errorString = stringsChecker.checkSignUpFieldsForUser(user: user)
-        
-        if let err = errorString {
-            self.presentAlert(message: err)
-            return
-        }
-        
-        HUD.show(.progress)
-    
-        user.myImageData = Utils.shared.imageToJpegCompressed(image: mainView.cafeLogo.image)
-                
-        AuthManager.shared.createUser(user: user, rememberUser: mainView.autoLoginCheckBox.isChecked()) { [weak self] (error, success) in
-            
-            guard let weakSelf = self else { return }
-            
-            if success {
-                HUD.flash(.success,delay: 1)
-                weakSelf.dismiss(animated: true, completion:nil)
-            }
-            else {
-               // HUD.flash(.error, delay: 0.2)
-                HUD.flash(.error, onView: self?.view, delay: 0.1, completion: { (end) in
-                    weakSelf.presentAlert(message: error)
-                })
-            }
-        }
-    }
-    
-    func chooseLogoTapped() {
-        self.present(logoActionSheet, animated: true, completion: nil)
-    }
-    
-    //MARK: Image Picker Delegate
-    
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        if let image = info[UIImagePickerControllerEditedImage] as? UIImage {
-            mainView.cafeLogo.image = image
-        }
-        self.dismiss(animated: true, completion: nil)
-    }
-        
     
     deinit {
         print("object \( String(describing: (self))) dealloced")
     }
     
 }
+
+
+extension SignUpVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    //MARK: Image Picker Delegate
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        if let image = info[UIImagePickerControllerEditedImage] as? UIImage {
+            mainView.cafeLogo.image = image
+            mainView.cafeLogo.image?.accessibilityIdentifier = "custom"
+        }
+        self.dismiss(animated: true, completion: nil)
+    }
+}
+
+
+
+extension SignUpVC: SignUpViewDelegate {
+    
+    //MARK: Main View Delegate
+    
+    func signUpUser(user: User) {
+        
+        var imageData: Data? = nil
+        if mainView.cafeLogo.image?.accessibilityIdentifier == "custom" {
+            imageData = Utils.shared.imageToJpegCompressed(image: mainView.cafeLogo.image)!
+        }
+        
+        if let auth = Remote.serverAccess()?.auth {
+            HUD.show(.progress)
+            
+            auth.createUser(user: user, rememberUser: mainView.autoLoginCheckBox.isChecked()) { [weak self] (error, userUID) in
+                
+                guard let weakSelf = self else { return }
+                
+                if let err = error {
+                    HUD.flash(.error, onView: self?.view, delay: 0.1, completion: { (end) in
+                        weakSelf.presentAlert(message: err)
+                    })
+                }
+                
+                if let uid = userUID, error == nil  {
+                    if let newUser = user as? Customer {
+                        weakSelf.saveCustomer(customer: newUser, imageData: imageData, withUID: uid)
+                    }
+                    else if user is Cafe {
+                        weakSelf.saveCafe(cafe: user as! Cafe, imageData: imageData, withUID: uid)
+                    }
+                }
+            }
+        }
+        else {
+            self.presentAlert(message: NSLocalizedString("allert.title.no.internet", comment: ""))
+        }
+    }
+    
+    private func saveCafe(cafe: Cafe, imageData: Data?, withUID uid: String) {
+        if let remoteCafe = Remote.serverAccess()?.cafe {
+            remoteCafe.saveCafeToFirebase(cafe: cafe, imageData: imageData, uid: uid, completion: { [weak self] (success) in
+                guard let weakSelf = self else { return }
+                if success {
+                    HUD.flash(.success,delay: 1)
+                    weakSelf.dismiss(animated: true, completion:nil)
+                }
+                else {
+                    // HUD.flash(.error, delay: 0.2)
+                    HUD.flash(.error, onView: self?.view, delay: 0.1, completion: { (end) in
+                        weakSelf.presentAlert(message: "Error")
+                    })
+                }
+            })
+        }
+    }
+    
+    
+    private func saveCustomer(customer: Customer, imageData: Data?, withUID uid: String) {
+        if let remoteCustomer = Remote.serverAccess()?.customer {
+            remoteCustomer.saveCustomerToFirebase(customer: customer, imageData: imageData, uid: uid, completion: { [weak self] (success) in
+                guard let weakSelf = self else { return }
+                if success {
+                    HUD.flash(.success,delay: 1)
+                    weakSelf.dismiss(animated: true, completion:nil)
+                }
+                else {
+                    // HUD.flash(.error, delay: 0.2)
+                    HUD.flash(.error, onView: self?.view, delay: 0.1, completion: { (end) in
+                        weakSelf.presentAlert(message: "Error")
+                    })
+                }
+            })
+        }
+    }
+    
+    
+    func chooseLogoTapped() {
+        self.present(logoActionSheet, animated: true, completion: nil)
+    }
+}
+

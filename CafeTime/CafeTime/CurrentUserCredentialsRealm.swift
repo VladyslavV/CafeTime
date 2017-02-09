@@ -13,5 +13,5 @@ class CurrentUserCredentialsRealm: Object {
 
     dynamic var email = ""
     dynamic var password = ""
-    
+
 }
