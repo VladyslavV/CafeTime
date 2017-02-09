@@ -9,7 +9,7 @@
 import UIKit
 import SnapKit
 
-class UsersListVC: UIViewController, UsersListMainViewDelegate {
+class UsersListVC: UIViewController {
 
     private lazy var mainView: UsersListMainView = {
         let myVar = UsersListMainView()
@@ -37,8 +37,7 @@ class UsersListVC: UIViewController, UsersListMainViewDelegate {
         }
     }
 
-    
-    // MARK: Fetch Customers
+    // MARK: Fetch Customers 
     
     override func viewWillAppear(_ animated: Bool) {
         Remote.anyAccess().customer.fetchAllCustomers(completion: { [weak self] (customers) in
@@ -54,12 +53,12 @@ class UsersListVC: UIViewController, UsersListMainViewDelegate {
     override func viewWillDisappear(_ animated: Bool) {
         Remote.anyAccess().customer.removeCustomersObserver()
     }
-    
-    // MARK: Main View Delegate
-    
-    func showProfile(forCustomerWithUID uid: String) {
-        let profileVC = UserProfileVC(withUID: uid)
+}
+
+extension UsersListVC: UsersListMainViewDelegate {
+    //MARK: Main View Delegate
+    func showProfile(forCustomer customer: Customer) {
+        let profileVC = UserProfileVC(withCustomer: customer)
         self.navigationController?.pushViewController(profileVC, animated: true)
     }
 }
-

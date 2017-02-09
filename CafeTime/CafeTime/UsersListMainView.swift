@@ -11,7 +11,7 @@ import UIKit
 import SDWebImage
 
 protocol UsersListMainViewDelegate: class {
-    func showProfile(forCustomerWithUID uid: String)
+    func showProfile(forCustomer customer: Customer)
 }
 
 class UsersListMainView: UIView, UITableViewDelegate , UITableViewDataSource {
@@ -67,6 +67,7 @@ class UsersListMainView: UIView, UITableViewDelegate , UITableViewDataSource {
         
         cell.textLabel?.text = customers[indexPath.row].name
         let imageURLString = customers[indexPath.row].profileImageURL
+        cell.imageView?.contentMode = .scaleAspectFill
         cell.imageView?.sd_setImage(with: URL(string: imageURLString), placeholderImage: UIImage.init(named: "image_placeholder"))
         
         return cell
@@ -74,6 +75,6 @@ class UsersListMainView: UIView, UITableViewDelegate , UITableViewDataSource {
     
     
     @objc(tableView:didSelectRowAtIndexPath:) func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
-        delegate?.showProfile(forCustomerWithUID: customers[indexPath.row].uid)
+        delegate?.showProfile(forCustomer: customers[indexPath.row])
     }
 }

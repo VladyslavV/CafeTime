@@ -21,14 +21,13 @@ class CustomerDAO {
         if let firebaseDic = snapshot.value as? [String: AnyObject] {
             try! realm.write {
                 let user = CustomerRealm()
-                user.uid = snapshot.key
                 user.setValuesForKeys(firebaseDic)
                 realm.add(user, update: true)
             }
         } else {
             self.delete(withUID: uid)
         }
-        return self.getByUid(uid: uid)
+         return self.getByUid(uid: uid)
     }
     
     func delete(withUID uid: String) {

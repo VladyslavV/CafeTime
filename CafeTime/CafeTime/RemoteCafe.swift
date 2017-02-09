@@ -46,20 +46,22 @@ class RemoteCafe {
     
     // MARK: Save Cafe
     
-    func saveCafeToFirebase(cafe: Cafe, uid: String ,completion: @escaping (Bool) -> Void) {
+    func saveCafeToFirebase(cafe: Cafe, imageData: Data?, uid: String ,completion: @escaping (Bool) -> Void) {
         
         var userReference: FIRDatabaseReference?
         var values: [AnyHashable : Any]?
         
         //upload media to server
-        RemoteUtils.shared.saveImageToFirebase(storageRef: dataBaseStorageRef.child("profile_images"), data: cafe.myImageData) { [weak self] (imageURL) in
+        RemoteUtils.shared.saveImageToFirebase(storageRef: dataBaseStorageRef.child("profile_images"), data: imageData) { [weak self] (imageURL) in
             
             guard let weakSelf = self else { return }
             
             userReference = weakSelf.cafesRef.child(uid)
-            let Values = Constants.Remote.Values.self
-            values = [Values.Name : cafe.name, Values.Country : cafe.country, Values.Email : cafe.email, Values.FoodType : cafe.foodtype,
-                      Values.NumberOfTables : cafe.numberOfTables, Values.ProfileImageURL  : imageURL.absoluteString,  Values.UID : uid]
+            cafe.uid = uid
+            if let imageurl = imageURL?.absoluteString {
+                cafe.profileImageURL = imageurl
+            }
+            values = Utils.shared.getDictFromUser(user: cafe)
             
             if let val = values, let ref = userReference {
                 ref.updateChildValues(val) { (error, ref) in

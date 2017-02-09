@@ -22,14 +22,7 @@ class CafeDAO  {
         if let firebaseDic = snapshot.value as? [String: AnyObject] {
             try! realm.write {
                 let user = CafeRealm()
-                user.uid = uid
-                let Values = Constants.Remote.Values.self
-                user.foodType = firebaseDic[Values.FoodType] as? String
-                user.numberOfTables = firebaseDic[Values.NumberOfTables] as? String
-                user.profileImageURL = firebaseDic[Values.ProfileImageURL] as? String
-                user.name = firebaseDic[Values.Name] as? String
-                user.email = firebaseDic[Values.Email] as? String
-                user.country = firebaseDic[Values.Country] as? String
+                user.setValuesForKeys(firebaseDic)
                 realm.add(user, update: true)
             }
         } else {

@@ -10,8 +10,10 @@ import UIKit
 import SnapKit
 import Jelly
 
-protocol UserProfileInfoViewDelegate: class {
+@objc protocol UserProfileInfoViewDelegate: class {
     func imageTapped()
+    
+    @objc optional func sendMessage()
 }
 
 class UserProfileInfoView: UIView {
@@ -20,6 +22,8 @@ class UserProfileInfoView: UIView {
     
     let userImagePercentOfWidth: CGFloat = 0.4
     
+    //MARK: Vars
+
     let userNameLabel : UILabel = {
         let myVar = UILabel()
         myVar.backgroundColor = UIColor.red
@@ -38,7 +42,14 @@ class UserProfileInfoView: UIView {
         return myVar
     }()
     
-    //MARK: Vars
+    lazy var sendMessageButton : UIButton = {
+        let myVar = UIButton(type: .system)
+        myVar.addTarget(self, action: #selector(sendMessage), for: .touchUpInside)
+        myVar.backgroundColor = UIColor.red
+        myVar.setTitle( "Send Message" , for: .normal)
+        return myVar
+    }()
+    
     lazy var userImageView : UIImageView = {
         let myVar = UIImageView()
         myVar.isUserInteractionEnabled = true
@@ -61,12 +72,14 @@ class UserProfileInfoView: UIView {
     
     }
     
+    
     //MARK: Init
     
     override init(frame: CGRect) {
         super.init(frame: CGRect.zero)
         
-        self.addSubviews([userImageView, userNameLabel, userCountryLabel])
+        self.addSubviews([userImageView, userNameLabel, userCountryLabel, sendMessageButton])
+        self.sendMessageButton.isHidden = true
 
         self.setUp()
     }
@@ -74,7 +87,6 @@ class UserProfileInfoView: UIView {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
     
     private func setUp() {
         
@@ -99,12 +111,22 @@ class UserProfileInfoView: UIView {
             make.centerX.equalTo(userImageView.snp.centerX)
         }
         
+        sendMessageButton.snp.remakeConstraints { (make) in
+            make.top.equalTo(userCountryLabel.snp.bottom).offset(5)
+            make.width.equalTo(self.snp.width).multipliedBy(0.6)
+            make.height.equalTo(self.snp.height).multipliedBy(0.1)
+            make.centerX.equalTo(userImageView.snp.centerX)
+        }
     }
     
     // MARK: Actions
     
     @objc private func imageTapped() {
         self.delegate?.imageTapped()
+    }
+    
+    @objc private func sendMessage() {
+        self.delegate?.sendMessage!()
     }
     
 }

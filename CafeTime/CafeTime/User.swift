@@ -16,13 +16,8 @@ class User: NSObject {
     var password: String = ""
     var country: String = ""
     var profileImageURL: String = ""
-
-    //image
-    var myImageData: Data? = nil
     
-    var requiredFields : [String] {
+    func requiredFields() -> [String] {
         return [name, email, password]
     }
-    
-    
 }

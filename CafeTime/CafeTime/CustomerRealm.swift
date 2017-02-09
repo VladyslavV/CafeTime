@@ -14,6 +14,7 @@ class CustomerRealm: Object {
     dynamic var uid: String? = ""
     dynamic var name: String? = ""
     dynamic var email: String? = ""
+    dynamic var password: String? = ""
     dynamic var country: String? = ""
     dynamic var profileImageURL: String? = ""
 

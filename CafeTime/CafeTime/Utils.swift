@@ -42,4 +42,25 @@ class Utils: NSObject {
         return nil
     }
     
+    // turn properties into dict
+    func getDictFromUser(user: User) -> [String : AnyObject] {
+        
+        var dict = [String : AnyObject]()
+        let mirroredObject = Mirror(reflecting: user)
+        let superMirroredObject = mirroredObject.superclassMirror
+        
+        for (_, attr) in mirroredObject.children.enumerated() {
+            if let propertyName = attr.label as String! {
+                dict[propertyName] = attr.value as AnyObject?
+            }
+        }
+        
+        for (_, attr) in (superMirroredObject?.children.enumerated())! {
+            if let property_name = attr.label as String! {
+                dict[property_name] = attr.value as AnyObject?
+            }
+        }
+        return dict
+    }
+
 }

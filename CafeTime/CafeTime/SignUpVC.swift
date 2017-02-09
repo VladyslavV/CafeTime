@@ -11,12 +11,12 @@ import SnapKit
 import FirebaseAuth
 import PKHUD
 
-class SignUpVC: UIViewController, SignUpViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class SignUpVC: UIViewController {
     
     // MARK: Vars
     
-    private let mainView = SignUpView()
-    private let stringsChecker = StringsChecker.shared
+    internal let mainView = SignUpView()
+    private let validator = Validator.shared
     
     //image picker
     private lazy var libraryImagePicker : UIImagePickerController = {
@@ -36,7 +36,7 @@ class SignUpVC: UIViewController, SignUpViewDelegate, UIImagePickerControllerDel
     }()
     
     //action sheet
-    private lazy var logoActionSheet : UIAlertController = {
+    internal lazy var logoActionSheet : UIAlertController = {
         let myVar = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
         let viewPhoto = UIAlertAction(title: NSLocalizedString("sighnpvc.actionsheet.viewphoto", comment: ""), style: .default, handler: { [weak self] (action) in
@@ -88,15 +88,43 @@ class SignUpVC: UIViewController, SignUpViewDelegate, UIImagePickerControllerDel
         }
     }
     
+    
+    deinit {
+        print("object \( String(describing: (self))) dealloced")
+    }
+    
+}
+
+
+extension SignUpVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    //MARK: Image Picker Delegate
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        if let image = info[UIImagePickerControllerEditedImage] as? UIImage {
+            mainView.cafeLogo.image = image
+            mainView.cafeLogo.image?.accessibilityIdentifier = "custom"
+        }
+        self.dismiss(animated: true, completion: nil)
+    }
+}
+
+
+
+extension SignUpVC: SignUpViewDelegate {
+    
     //MARK: Main View Delegate
     
     func signUpUser(user: User) {
         
-        user.myImageData = Utils.shared.imageToJpegCompressed(image: mainView.cafeLogo.image)
+        var imageData: Data? = nil
+        if mainView.cafeLogo.image?.accessibilityIdentifier == "custom" {
+            imageData = Utils.shared.imageToJpegCompressed(image: mainView.cafeLogo.image)!
+        }
         
-        if let auth = Remote.onlineAccess()?.auth {
+        if let auth = Remote.serverAccess()?.auth {
             HUD.show(.progress)
-
+            
             auth.createUser(user: user, rememberUser: mainView.autoLoginCheckBox.isChecked()) { [weak self] (error, userUID) in
                 
                 guard let weakSelf = self else { return }
@@ -109,19 +137,22 @@ class SignUpVC: UIViewController, SignUpViewDelegate, UIImagePickerControllerDel
                 
                 if let uid = userUID, error == nil  {
                     if let newUser = user as? Customer {
-                        weakSelf.saveCustomer(customer: newUser, withUID: uid)
+                        weakSelf.saveCustomer(customer: newUser, imageData: imageData, withUID: uid)
                     }
                     else if user is Cafe {
-                        weakSelf.saveCafe(cafe: user as! Cafe, withUID: uid)
+                        weakSelf.saveCafe(cafe: user as! Cafe, imageData: imageData, withUID: uid)
                     }
                 }
             }
         }
+        else {
+            self.presentAlert(message: NSLocalizedString("allert.title.no.internet", comment: ""))
+        }
     }
     
-    private func saveCafe(cafe: Cafe, withUID uid: String) {
-        if let remoteCafe = Remote.onlineAccess()?.cafe {
-            remoteCafe.saveCafeToFirebase(cafe: cafe, uid: uid, completion: { [weak self] (success) in
+    private func saveCafe(cafe: Cafe, imageData: Data?, withUID uid: String) {
+        if let remoteCafe = Remote.serverAccess()?.cafe {
+            remoteCafe.saveCafeToFirebase(cafe: cafe, imageData: imageData, uid: uid, completion: { [weak self] (success) in
                 guard let weakSelf = self else { return }
                 if success {
                     HUD.flash(.success,delay: 1)
@@ -138,9 +169,9 @@ class SignUpVC: UIViewController, SignUpViewDelegate, UIImagePickerControllerDel
     }
     
     
-    private func saveCustomer(customer: Customer, withUID uid: String) {
-        if let remoteCustomer = Remote.onlineAccess()?.customer {
-            remoteCustomer.saveCustomerToFirebase(customer: customer, uid: uid, completion: { [weak self] (success) in
+    private func saveCustomer(customer: Customer, imageData: Data?, withUID uid: String) {
+        if let remoteCustomer = Remote.serverAccess()?.customer {
+            remoteCustomer.saveCustomerToFirebase(customer: customer, imageData: imageData, uid: uid, completion: { [weak self] (success) in
                 guard let weakSelf = self else { return }
                 if success {
                     HUD.flash(.success,delay: 1)
@@ -160,19 +191,5 @@ class SignUpVC: UIViewController, SignUpViewDelegate, UIImagePickerControllerDel
     func chooseLogoTapped() {
         self.present(logoActionSheet, animated: true, completion: nil)
     }
-    
-    //MARK: Image Picker Delegate
-    
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        if let image = info[UIImagePickerControllerEditedImage] as? UIImage {
-            mainView.cafeLogo.image = image
-        }
-        self.dismiss(animated: true, completion: nil)
-    }
-    
-    
-    deinit {
-        print("object \( String(describing: (self))) dealloced")
-    }
-    
 }
+

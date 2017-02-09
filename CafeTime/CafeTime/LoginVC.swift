@@ -39,9 +39,10 @@ class LoginVC: UIViewController, LoginViewDelegate {
         let email = mainView.emailTextField.text!
         let password = mainView.passwordTextField.text!
         
-        HUD.show(.progress)
         
-        if let auth = Remote.onlineAccess()?.auth {
+        if let auth = Remote.serverAccess()?.auth {
+            HUD.show(.progress)
+
             auth.authenticateUser(email: email, password: password, rememberUser: mainView.autoLoginCheckBox.isChecked()) { [weak self] (error, success) in
                 
                 guard let weakSelf = self else { return }
@@ -57,6 +58,9 @@ class LoginVC: UIViewController, LoginViewDelegate {
                     })
                 }
             }
+        }
+        else {
+            self.presentAlert(message: NSLocalizedString("allert.title.no.internet", comment: ""))
         }
     }
     

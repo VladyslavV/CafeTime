@@ -15,6 +15,7 @@ protocol UserProfileMainViewDelegate : class {
     func deleteUserButtonPressed()
 }
 
+
 class UserProfileMainView: UIView {
     
     weak var delegate : UserProfileMainViewDelegate?
@@ -48,10 +49,10 @@ class UserProfileMainView: UIView {
     
     convenience init(forLocalUser localUser: Bool) {
         self.init()
-        
         if !localUser {
             self.deleteUserButton.isHidden = true
             self.logOutButton.isHidden = true
+            self.userProfileInfoView.sendMessageButton.isHidden = false
         }
     }
     
@@ -65,7 +66,7 @@ class UserProfileMainView: UIView {
     }
     
     private func setUp() {
-        //self.backgroundColor = UIColor.blue
+        self.backgroundColor = UIColor.white
         
         self.addSubviews([logOutButton, userProfileInfoView, deleteUserButton])
         
@@ -94,6 +95,7 @@ class UserProfileMainView: UIView {
         }
     }
     
+    // MARK: Actions
     
     @objc private func logOut() {
         self.delegate?.logOutButtonPressed()
@@ -104,3 +106,6 @@ class UserProfileMainView: UIView {
     }
     
 }
+
+
+

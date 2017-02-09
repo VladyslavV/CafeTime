@@ -61,9 +61,8 @@ class RemoteCustomer {
     private var customersObserver : FIRDatabaseHandle?
     func fetchAllCustomers(completion: @escaping ([Customer]?) -> ()) {
         
-        var customersArray = [Customer]()
         if (FIRAuth.auth()?.currentUser) != nil {
-            
+            var customersArray = [Customer]()
             customersObserver = customersRef.observe(.childAdded, with: { (snapshot) in
                 
                 if let dict = snapshot.value as? [String : AnyObject] {
@@ -84,19 +83,22 @@ class RemoteCustomer {
     
     // MARK: Save user
     
-    func saveCustomerToFirebase(customer: Customer, uid: String ,completion: @escaping (Bool) -> Void) {
+    func saveCustomerToFirebase(customer: Customer, imageData : Data?, uid: String ,completion: @escaping (Bool) -> Void) {
         
         var userReference: FIRDatabaseReference?
         var values: [AnyHashable : Any]?
         
         //upload media to server
-        RemoteUtils.shared.saveImageToFirebase(storageRef: dataBaseStorageRef.child("profile_images"), data: customer.myImageData) { [weak self] (imageURL) in
+        RemoteUtils.shared.saveImageToFirebase(storageRef: dataBaseStorageRef.child("profile_images"), data: imageData) { [weak self] (imageURL) in
             
             guard let weakSelf = self else { return }
             
             userReference = weakSelf.customersRef.child(uid)
-            let Values = Constants.Remote.Values.self
-            values = [Values.Name : customer.name, Values.Country : customer.country, Values.Email : customer.email, Values.ProfileImageURL : imageURL.absoluteString, Values.UID : uid]
+            customer.uid = uid
+            if let imageurl = imageURL?.absoluteString {
+                customer.profileImageURL = imageurl
+            }
+            values = Utils.shared.getDictFromUser(user: customer)
             
             if let val = values, let ref = userReference {
                 ref.updateChildValues(val) { (error, ref) in
@@ -112,3 +114,4 @@ class RemoteCustomer {
         }
     }
 }
+

@@ -103,7 +103,7 @@ class ImageVC: UIViewController, UIGestureRecognizerDelegate, UIScrollViewDelega
         if self.traitCollection.mk_matchesPhonePortrait() {
             scrollView.snp.remakeConstraints { (make) -> Void in
                 make.width.equalTo(self.view.snp.width)
-                make.height.equalTo(self.view.snp.height).multipliedBy(0.5)
+                make.height.equalTo(self.view.snp.height).multipliedBy(0.65)
                 make.centerY.equalTo(self.view.snp.centerY)
             }
             

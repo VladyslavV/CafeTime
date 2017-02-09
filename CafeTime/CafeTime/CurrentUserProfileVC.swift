@@ -13,9 +13,9 @@ import Jelly
 import SDWebImage
 import PKHUD
 
-class CurrentUserProfileVC: UIViewController, UserProfileMainViewDelegate, UserProfileInfoViewDelegate {
+class CurrentUserProfileVC: UIViewController  {
     
-    private var jellyAnimator: JellyAnimator?
+    internal var jellyAnimator: JellyAnimator?
     
     private lazy var mainView: UserProfileMainView = {
         let myVar = UserProfileMainView()
@@ -23,7 +23,7 @@ class CurrentUserProfileVC: UIViewController, UserProfileMainViewDelegate, UserP
         return myVar
     }()
     
-    private lazy var userProfileView: UserProfileInfoView = {
+    internal lazy var userProfileView: UserProfileInfoView = {
         let myVar = self.mainView.userProfileInfoView
         myVar.delegate = self
         return myVar
@@ -78,6 +78,29 @@ class CurrentUserProfileVC: UIViewController, UserProfileMainViewDelegate, UserP
         }
     }
     
+   
+    // MARK: Private Funcs
+    
+    internal func logOutUser() {
+        if let auth = Remote.serverAccess()?.auth {
+            auth.logOutUser()
+            self.presentInNav(vcs: [self, LoginVC()])
+        }
+        else {
+            self.presentAlert(message: NSLocalizedString("allert.title.no.internet", comment: ""))
+        }
+    }
+    
+    // MARK: Actions
+    
+    @objc private func editProfile() {
+        self.navigationController?.pushViewController(ChatVC(), animated: true)
+    }
+}
+
+
+extension CurrentUserProfileVC: UserProfileMainViewDelegate {
+    
     //MARK: Main View Delegate
     
     func logOutButtonPressed() {
@@ -86,7 +109,7 @@ class CurrentUserProfileVC: UIViewController, UserProfileMainViewDelegate, UserP
     
     func deleteUserButtonPressed() {
         
-        if let auth = Remote.onlineAccess()?.auth {
+        if let auth = Remote.serverAccess()?.auth {
             
             self.presenetAlertWithCredentialFields { (email, password) in
                 HUD.show(.progress)
@@ -95,7 +118,7 @@ class CurrentUserProfileVC: UIViewController, UserProfileMainViewDelegate, UserP
                     
                     
                     if success {
-                        if let auth = Remote.onlineAccess()?.auth {
+                        if let auth = Remote.serverAccess()?.auth {
                             auth.deleteCurrentUser(customer: true) { [weak self] (error, success) in
                                 guard let weakSelf = self else { return }
                                 if !success {
@@ -117,23 +140,13 @@ class CurrentUserProfileVC: UIViewController, UserProfileMainViewDelegate, UserP
                 })
             }
         }
-    }
-    
-    // MARK: Private Funcs
-    
-    private func logOutUser() {
-        if let auth = Remote.onlineAccess()?.auth {
-            auth.logOutUser()
-            self.presentInNav(vcs: [self, LoginVC()])
+        else {
+            self.presentAlert(message: NSLocalizedString("allert.title.no.internet", comment: ""))
         }
     }
-    
-    // MARK: Actions
-    
-    @objc private func editProfile() {
-        self.navigationController?.pushViewController(ChatVC(), animated: true)
-    }
-    
+}
+
+extension CurrentUserProfileVC: UserProfileInfoViewDelegate {
     //MARK: User Profile View Delegate
     
     func imageTapped() {

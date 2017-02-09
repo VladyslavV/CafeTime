@@ -69,6 +69,8 @@
 // allert
 
 //general
+"allert.title.no.internet" = "Check Your Internet Connection";
+
 "allert.title.error" = "Error";
 
 "allert.button.ok" = "OK";

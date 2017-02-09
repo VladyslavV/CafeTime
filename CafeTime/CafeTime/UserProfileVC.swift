@@ -9,16 +9,19 @@
 import UIKit
 import Jelly
 
-class UserProfileVC: UIViewController, UserProfileInfoViewDelegate {
+class UserProfileVC: UIViewController {
     
-    private var jellyAnimator: JellyAnimator?
+    internal var jellyAnimator: JellyAnimator?
+    
+    private let customer: Customer!
     
     private lazy var mainView: UserProfileMainView = {
-        let myVar = UserProfileMainView(forLocalUser: false)
+        let localUser = Remote.anyAccess().auth.isLocalUser(withUID: self.customer.uid)
+        let myVar = UserProfileMainView(forLocalUser: localUser)
         return myVar
     }()
     
-    private lazy var userProfileView: UserProfileInfoView = {
+    internal lazy var userProfileView: UserProfileInfoView = {
         let myVar = self.mainView.userProfileInfoView
         myVar.delegate = self
         return myVar
@@ -36,36 +39,42 @@ class UserProfileVC: UIViewController, UserProfileInfoViewDelegate {
             make.left.right.bottom.equalTo(self.view)
             make.top.equalTo(self.topLayoutGuide.snp.bottom)
         }
-        
-        self.loadUserProfile()
     }
     
-    var uid: String?
-    init(withUID uid: String) {
+    init(withCustomer customer: Customer) {
+        self.customer = customer
         super.init(nibName: nil, bundle: nil)
-        self.uid = uid
+        self.showUserProfile()
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func loadUserProfile() {
+    func showUserProfile() {
         
-        if let userUID = self.uid {
-            Remote.anyAccess().customer.fetchCustomer(withUID: userUID) { [weak self] (customer) in
-                guard let weakSelf = self else { return }
-                
-                weakSelf.navigationItem.title =  customer?.name
-                weakSelf.userProfileView.userNameLabel.text = customer?.name
-                weakSelf.userProfileView.userCountryLabel.text = customer?.country
-                
-                if let imageURLString = customer?.profileImageURL {
-                    weakSelf.userProfileView.userImageView.sd_setImage(with: URL(string: imageURLString), placeholderImage: UIImage.init(named: "image_placeholder"))
-                }
+        self.navigationItem.title = customer.name
+        self.userProfileView.userNameLabel.text = customer.name
+        self.userProfileView.userCountryLabel.text = customer.country
+        self.userProfileView.userImageView.sd_setImage(with: URL(string: customer.profileImageURL), placeholderImage: UIImage.init(named: "image_placeholder"))
+        
+        
+        Remote.anyAccess().customer.fetchCustomer(withUID: customer.uid) { [weak self] (customer) in
+            
+            guard let weakSelf = self else { return }
+            
+            weakSelf.navigationItem.title = customer?.name
+            weakSelf.userProfileView.userNameLabel.text = customer?.name
+            weakSelf.userProfileView.userCountryLabel.text = customer?.country
+            if let imageURL = customer?.profileImageURL {
+                 weakSelf.userProfileView.userImageView.sd_setImage(with: URL(string: imageURL), placeholderImage: UIImage.init(named: "image_placeholder"))
             }
         }
     }
+}
+
+
+extension UserProfileVC: UserProfileInfoViewDelegate {
     
     //MARK: User Profile View Delegate
     
@@ -93,4 +102,9 @@ class UserProfileVC: UIViewController, UserProfileInfoViewDelegate {
         self.jellyAnimator?.prepare(viewController: imageVC)
         self.present(imageVC, animated: true, completion: nil)
     }
+    
+    func sendMessage() {
+        print("send me")    
+    }
 }
+

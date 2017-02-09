@@ -16,6 +16,7 @@ class CafeRealm: Object {
     dynamic var email: String? = ""
     dynamic var country: String? = ""
     dynamic var foodType: String? = ""
+    dynamic var password: String? = ""
     dynamic var numberOfTables: String? = ""
     dynamic var profileImageURL: String? = ""
     

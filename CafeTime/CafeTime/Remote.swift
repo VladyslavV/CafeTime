@@ -20,7 +20,7 @@ class Remote {
     var cafe = RemoteCafe()
     var auth = RemoteAuth()
     
-    class func onlineAccess() -> Remote? {
+    class func serverAccess() -> Remote? {
         if Remote.shared.isFirebaseConnectionActive {
             return Remote.shared
         }
@@ -42,16 +42,8 @@ class Remote {
     private var isUserConnected = false
     private var isFirebaseConnectionActive = false
     
-    
-    
     private init() {
-        self.setUp()
         self.setUpStateListener()
-    }
-    
-    private func setUp() {
-        
-        
     }
     
     private func setUpStateListener() {
@@ -94,7 +86,4 @@ class Remote {
             FIRAuth.auth()?.removeStateDidChangeListener(listener)
         }
     }
-    
-    
-    
 }

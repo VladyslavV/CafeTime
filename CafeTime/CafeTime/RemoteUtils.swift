@@ -30,7 +30,7 @@ class RemoteUtils {
     }
     
     // MARK: Save Media
-    func saveImageToFirebase(storageRef:FIRStorageReference, data: Data?, completion: @escaping (URL) -> () ) {
+    func saveImageToFirebase(storageRef:FIRStorageReference, data: Data?, completion: @escaping (URL?) -> () ) {
         
         if let newData = data {
             
@@ -46,6 +46,10 @@ class RemoteUtils {
                     completion(imageURL)
                 }
             })
+        }
+        else {
+            completion(nil)
+            return
         }
     }
     

@@ -23,9 +23,9 @@ class RemoteAuth {
     // MARK: Create
     func createUser(user : User, rememberUser: Bool, completion: @escaping (_ error: String?, _ uid: String?) -> Void) {
         
-        let stringsChecker = StringsChecker.shared
+        let validator = Validator.shared
 
-        let errorString = stringsChecker.checkSignUpFieldsForUser(user: user)
+        let errorString = validator.checkSignUpFieldsForUser(user: user)
         
         if let err = errorString {
             completion(err,nil)
@@ -60,14 +60,13 @@ class RemoteAuth {
         }
     }
     
-    
     // MARK: Sign In
     
     func authenticateUser(email: String, password: String, rememberUser: Bool, completion: @escaping (_ error: String, _ success: Bool) -> Void) {
         
-        let stringsChecker = StringsChecker.shared
+        let validator = Validator.shared
         
-        let errorString = stringsChecker.checkLoginDetails(email: email, password: password)
+        let errorString = validator.checkLoginDetails(email: email, password: password)
         
         if let error = errorString {
             completion(error,false)
@@ -108,6 +107,18 @@ class RemoteAuth {
     // MARK: Get Credentials
     func userCredentials() -> CurrentUserCredentialsRealm? {
         return dao.credentials.getLocalUserCredentials()
+    }
+    
+    // MARK: Check if local user
+    func isLocalUser(withUID uid: String) -> Bool {
+        
+        if let currentUser = FIRAuth.auth()?.currentUser {
+            if uid == currentUser.uid {
+                return true
+            }
+        }
+        
+        return false
     }
     
     
