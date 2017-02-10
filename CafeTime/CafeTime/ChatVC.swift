@@ -12,6 +12,7 @@ import SnapKit
 class ChatVC: UIViewController {
     
     // MARK: Vars
+    private var customer: Customer!
     
     private lazy var mainView: ChatMainView = {
         let myVar = ChatMainView()
@@ -30,8 +31,18 @@ class ChatVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setUp()
+        self.setUpNavBar()
     }
     
+    
+    init(customer: Customer) {
+        super.init(nibName: nil, bundle: nil)
+        self.customer = customer
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     private func setUp() {
         self.view.backgroundColor = UIColor.white
@@ -40,12 +51,20 @@ class ChatVC: UIViewController {
         
         chatInputComponentsView.delegate = self
         
-        self.navigationItem.title = "Chat"
-
+        
         mainView.snp.remakeConstraints { (make) -> Void in
             make.left.right.bottom.equalTo(self.view)
             make.top.equalTo(self.topLayoutGuide.snp.bottom)
         }
+    }
+    
+    func setUpNavBar() {
+        self.navigationController?.navigationBar.topItem?.title = ""
+        self.navigationItem.titleView = NavBarTitleView(withURLString: customer.profileImageURL, name: customer.name)
+    }
+  
+    override func viewWillDisappear(_ animated: Bool) {
+        self.tabBarController?.tabBar.isHidden = false
     }
     
     deinit {

@@ -113,7 +113,7 @@ class Validator {
     
     private func checkUserName(name: String) -> String? {
         do {
-            let regex = try NSRegularExpression(pattern: "^[0-9a-zA-Z\\_]{2,18}$", options: .caseInsensitive)
+            let regex = try NSRegularExpression(pattern: "^[0-9a-zA-Z\\_]{2,15}$", options: .caseInsensitive)
             if regex.matches(in: name, options: [], range: NSMakeRange(0, name.characters.count)).count > 0 {
                 return nil
             }

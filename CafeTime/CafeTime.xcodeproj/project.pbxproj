@@ -45,6 +45,8 @@
 		316B51861E4B302B000EF798 /* UsersListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316B51851E4B302B000EF798 /* UsersListVC.swift */; };
 		316B51891E4B32C0000EF798 /* UsersListMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316B51881E4B32C0000EF798 /* UsersListMainView.swift */; };
 		316B518B1E4B9784000EF798 /* UserProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316B518A1E4B9784000EF798 /* UserProfileVC.swift */; };
+		316B51921E4DBD26000EF798 /* NavBarTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316B51911E4DBD26000EF798 /* NavBarTitleView.swift */; };
+		3183FE6D1E4DD63100CC1492 /* ChatMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3183FE6C1E4DD63000CC1492 /* ChatMessageCell.swift */; };
 		319DB38D1E3FAC280036640D /* UserProfileInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 319DB38C1E3FAC280036640D /* UserProfileInfoView.swift */; };
 		31DD520A1E38D4B600DB9ABC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 31DD52091E38D4B600DB9ABC /* GoogleService-Info.plist */; };
 		31DD520C1E38D57900DB9ABC /* CurrentUserProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31DD520B1E38D57900DB9ABC /* CurrentUserProfileVC.swift */; };
@@ -99,6 +101,8 @@
 		316B51881E4B32C0000EF798 /* UsersListMainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsersListMainView.swift; sourceTree = "<group>"; };
 		316B518A1E4B9784000EF798 /* UserProfileVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileVC.swift; sourceTree = "<group>"; };
 		316B51901E4C966F000EF798 /* CafeTime.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CafeTime.entitlements; sourceTree = "<group>"; };
+		316B51911E4DBD26000EF798 /* NavBarTitleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavBarTitleView.swift; sourceTree = "<group>"; };
+		3183FE6C1E4DD63000CC1492 /* ChatMessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatMessageCell.swift; sourceTree = "<group>"; };
 		319DB38C1E3FAC280036640D /* UserProfileInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileInfoView.swift; sourceTree = "<group>"; };
 		31DD52091E38D4B600DB9ABC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		31DD520B1E38D57900DB9ABC /* CurrentUserProfileVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentUserProfileVC.swift; sourceTree = "<group>"; };
@@ -173,8 +177,7 @@
 			isa = PBXGroup;
 			children = (
 				313532A41E474E8A00BA039C /* ChatVC.swift */,
-				313532A71E47519400BA039C /* ChatMainView.swift */,
-				313532A91E4752A500BA039C /* ChatInputComponentsView.swift */,
+				3183FE6B1E4DD61900CC1492 /* Views */,
 			);
 			name = Chat;
 			sourceTree = "<group>";
@@ -227,6 +230,7 @@
 			isa = PBXGroup;
 			children = (
 				313911901E3F78BB00EDAD40 /* CountriesPickerView.swift */,
+				316B51911E4DBD26000EF798 /* NavBarTitleView.swift */,
 			);
 			name = "Reusable Views";
 			sourceTree = "<group>";
@@ -234,9 +238,10 @@
 		313911971E3F927100EDAD40 /* VCs */ = {
 			isa = PBXGroup;
 			children = (
+				313911921E3F7B2300EDAD40 /* Reusable Views */,
 				31DD52081E38B05900DB9ABC /* SignUp + Login */,
-				31DD52141E39028900DB9ABC /* User Profile */,
 				316B51871E4B3037000EF798 /* Users List */,
+				31DD52141E39028900DB9ABC /* User Profile */,
 				313532A61E474F7700BA039C /* Chat */,
 			);
 			name = VCs;
@@ -300,10 +305,19 @@
 			name = Remote;
 			sourceTree = "<group>";
 		};
+		3183FE6B1E4DD61900CC1492 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				313532A71E47519400BA039C /* ChatMainView.swift */,
+				313532A91E4752A500BA039C /* ChatInputComponentsView.swift */,
+				3183FE6C1E4DD63000CC1492 /* ChatMessageCell.swift */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
 		31DD52081E38B05900DB9ABC /* SignUp + Login */ = {
 			isa = PBXGroup;
 			children = (
-				313911921E3F7B2300EDAD40 /* Reusable Views */,
 				315828D01E39F29600EBD20E /* Login */,
 				315828CF1E39F28E00EBD20E /* Sign Up */,
 			);
@@ -512,6 +526,7 @@
 				31E58F551E37AD7F00CE4FE1 /* AppDelegate.swift in Sources */,
 				3139117E1E3E182D00EDAD40 /* ImageVC.swift in Sources */,
 				310B75511E4387FF008ADF62 /* Utils.swift in Sources */,
+				3183FE6D1E4DD63100CC1492 /* ChatMessageCell.swift in Sources */,
 				316B51861E4B302B000EF798 /* UsersListVC.swift in Sources */,
 				313911881E3E190600EDAD40 /* UITraitCollection+MKAdditions.m in Sources */,
 				31DD52131E39028400DB9ABC /* UserProfileMainView.swift in Sources */,
@@ -542,6 +557,7 @@
 				3139118A1E3E4FC500EDAD40 /* Validator.swift in Sources */,
 				313532C51E49EF5B00BA039C /* Customer.swift in Sources */,
 				31DD520C1E38D57900DB9ABC /* CurrentUserProfileVC.swift in Sources */,
+				316B51921E4DBD26000EF798 /* NavBarTitleView.swift in Sources */,
 				313532C31E49E7E100BA039C /* CredentialsDAO.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

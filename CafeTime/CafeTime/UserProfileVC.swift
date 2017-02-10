@@ -13,7 +13,7 @@ class UserProfileVC: UIViewController {
     
     internal var jellyAnimator: JellyAnimator?
     
-    private let customer: Customer!
+    internal let customer: Customer!
     
     private lazy var mainView: UserProfileMainView = {
         let localUser = Remote.anyAccess().auth.isLocalUser(withUID: self.customer.uid)
@@ -104,7 +104,8 @@ extension UserProfileVC: UserProfileInfoViewDelegate {
     }
     
     func sendMessage() {
-        print("send me")    
+        self.navigationController?.pushViewController(ChatVC(customer: self.customer), animated: true)
     }
+    
 }
 

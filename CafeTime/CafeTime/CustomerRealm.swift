@@ -21,4 +21,6 @@ class CustomerRealm: Object {
     override static func primaryKey() -> String? {
         return "uid"
     }
+    
+    
 }
