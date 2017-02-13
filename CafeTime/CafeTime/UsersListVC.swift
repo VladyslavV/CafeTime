@@ -11,7 +11,7 @@ import SnapKit
 
 class UsersListVC: UIViewController {
 
-    private lazy var mainView: UsersListMainView = {
+   private lazy var mainView: UsersListMainView = {
         let myVar = UsersListMainView()
         myVar.delegate = self
         return myVar
@@ -19,7 +19,13 @@ class UsersListVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.revealViewController().panGestureRecognizer()
+        self.revealViewController().tapGestureRecognizer()
         self.setUp()
+    }
+    
+    func showMenu() {
+        self.revealViewController().revealToggle(animated: true)
     }
 
     private func setUp() {
@@ -30,7 +36,9 @@ class UsersListVC: UIViewController {
         self.tabBarItem = UITabBarItem(title: NSLocalizedString("Users", comment: ""), image: tabBarImage , selectedImage: tabBarImage)
         
         self.navigationItem.title = "Users"
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(showMenu))
 
+        
         mainView.snp.remakeConstraints { (make) -> Void in
             make.left.right.bottom.equalTo(self.view)
             make.top.equalTo(self.topLayoutGuide.snp.bottom)

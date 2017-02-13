@@ -53,6 +53,9 @@ class CurrentUserProfileVC: UIViewController  {
     
     init() {
         super.init(nibName:nil, bundle:nil)
+        
+        let tabBarImage = UIImage.init(named: "profile_tabbarimage")
+        self.tabBarItem = UITabBarItem(title: NSLocalizedString("authenticateduservc.tabbar.name", comment: ""), image: tabBarImage , selectedImage: tabBarImage)
     }
     required init?(coder aDecoder: NSCoder) {
         fatalError("")
