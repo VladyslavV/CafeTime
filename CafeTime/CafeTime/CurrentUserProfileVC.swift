@@ -94,7 +94,7 @@ class CurrentUserProfileVC: UIViewController  {
     // MARK: Actions
     
     @objc private func editProfile() {
-        self.navigationController?.pushViewController(ChatVC(), animated: true)
+        print("Edit profile")
     }
 }
 

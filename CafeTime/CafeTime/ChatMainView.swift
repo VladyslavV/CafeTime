@@ -19,7 +19,7 @@ class ChatMainView: UIView {
     internal let cellID = "cell"
     lazy var collectionView : UICollectionView = {
         let myVar = UICollectionView(frame: CGRect.zero, collectionViewLayout:  UICollectionViewFlowLayout())
-        myVar.register(UICollectionViewCell.self, forCellWithReuseIdentifier: self.cellID)
+        myVar.register(ChatMessageCell.self, forCellWithReuseIdentifier: self.cellID)
         myVar.delegate = self
         myVar.dataSource = self
         return myVar
@@ -66,7 +66,6 @@ extension ChatMainView: UICollectionViewDelegate, UICollectionViewDataSource, UI
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath)
-        cell.backgroundColor = UIColor.red
         
         return cell
     }
