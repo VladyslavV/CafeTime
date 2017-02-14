@@ -57,6 +57,7 @@ PODS:
     - RealmSwift (~> 2.2)
     - RxSwift (~> 3.1)
   - RxSwift (3.2.0)
+  - SABlurImageView (3.0.0)
   - SDWebImage (4.0.0):
     - SDWebImage/Core (= 4.0.0)
   - SDWebImage/Core (4.0.0)
@@ -73,6 +74,7 @@ DEPENDENCIES:
   - PKHUD
   - RealmSwift
   - RxRealm
+  - SABlurImageView
   - SDWebImage
   - SnapKit
   - SwiftCop
@@ -96,10 +98,11 @@ SPEC CHECKSUMS:
   RealmSwift: 9556c0fe0f0cfecacfb755ae9e68ff379fc6bead
   RxRealm: c80d17d42fc362f4d8af4ac62de360b014be5c3f
   RxSwift: 46574f70d416b7923c237195939cc488a7fbf3a0
+  SABlurImageView: 7003ca28ded502c984846374a117f88a287d9faf
   SDWebImage: 76a6348bdc74eb5a55dd08a091ef298e56b55e41
   SnapKit: 12b24f569cb7c143acc9c22b9d91b23e7b1c84a2
   SwiftCop: 5ae17ee59ea702b662072495588ace8540571bef
 
-PODFILE CHECKSUM: 2f66c719413c6b73c5d998acb0ad81fe12559b74
+PODFILE CHECKSUM: 95f33ef77e9e4e6793d04e7644f760e4033a6195
 
 COCOAPODS: 1.2.0

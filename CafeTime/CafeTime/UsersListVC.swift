@@ -19,6 +19,7 @@ class UsersListVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.revealViewController().delegate = self
         self.revealViewController().panGestureRecognizer()
         self.revealViewController().tapGestureRecognizer()
         self.setUp()
@@ -61,7 +62,16 @@ class UsersListVC: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         Remote.anyAccess().customer.removeCustomersObserver()
     }
+    
+    
 }
+
+//extension UsersListVC: SWRevealViewControllerDelegate {
+//    func revealControllerPanGestureShouldBegin(_ revealController: SWRevealViewController!) -> Bool {
+//        return false
+//    }
+//    
+//}
 
 extension UsersListVC: UsersListMainViewDelegate {
     //MARK: Main View Delegate

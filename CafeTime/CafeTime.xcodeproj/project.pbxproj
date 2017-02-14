@@ -35,7 +35,7 @@
 		313532C51E49EF5B00BA039C /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313532C41E49EF5B00BA039C /* Customer.swift */; };
 		313911711E3BBC5500EDAD40 /* M13Checkbox+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313911701E3BBC5500EDAD40 /* M13Checkbox+Extensions.swift */; };
 		3139117A1E3BCC1600EDAD40 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313911791E3BCC1600EDAD40 /* UIView+Extension.swift */; };
-		3139117C1E3E12AA00EDAD40 /* UIAlertAction+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3139117B1E3E12AA00EDAD40 /* UIAlertAction+Extension.swift */; };
+		3139117C1E3E12AA00EDAD40 /* UIAlertAction+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3139117B1E3E12AA00EDAD40 /* UIAlertAction+Extensions.swift */; };
 		3139117E1E3E182D00EDAD40 /* ImageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3139117D1E3E182D00EDAD40 /* ImageVC.swift */; };
 		313911881E3E190600EDAD40 /* UITraitCollection+MKAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 313911871E3E190600EDAD40 /* UITraitCollection+MKAdditions.m */; };
 		3139118A1E3E4FC500EDAD40 /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313911891E3E4FC500EDAD40 /* Validator.swift */; };
@@ -54,8 +54,10 @@
 		3183FE6D1E4DD63100CC1492 /* ChatMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3183FE6C1E4DD63000CC1492 /* ChatMessageCell.swift */; };
 		319DB38D1E3FAC280036640D /* UserProfileInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 319DB38C1E3FAC280036640D /* UserProfileInfoView.swift */; };
 		31BE83661E51D47500B9FA34 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31BE83651E51D47500B9FA34 /* SWRevealViewController.m */; };
-		31BE836C1E51DE4E00B9FA34 /* TabBarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31BE836B1E51DE4E00B9FA34 /* TabBarVC.swift */; };
+		31BE836C1E51DE4E00B9FA34 /* NewsTabBarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31BE836B1E51DE4E00B9FA34 /* NewsTabBarVC.swift */; };
 		31BE836F1E521BFE00B9FA34 /* CustomVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31BE836E1E521BFE00B9FA34 /* CustomVC.swift */; };
+		31BE83721E52FCDC00B9FA34 /* UIImageView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31BE83711E52FCDC00B9FA34 /* UIImageView+Extensions.swift */; };
+		31BE83741E530F6A00B9FA34 /* UIDevice+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31BE83731E530F6A00B9FA34 /* UIDevice+Extensions.swift */; };
 		31DD520A1E38D4B600DB9ABC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 31DD52091E38D4B600DB9ABC /* GoogleService-Info.plist */; };
 		31DD520C1E38D57900DB9ABC /* CurrentUserProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31DD520B1E38D57900DB9ABC /* CurrentUserProfileVC.swift */; };
 		31DD52131E39028400DB9ABC /* UserProfileMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31DD52121E39028400DB9ABC /* UserProfileMainView.swift */; };
@@ -96,7 +98,7 @@
 		313911751E3BBF1800EDAD40 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		313911771E3BBF6000EDAD40 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		313911791E3BCC1600EDAD40 /* UIView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
-		3139117B1E3E12AA00EDAD40 /* UIAlertAction+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIAlertAction+Extension.swift"; sourceTree = "<group>"; };
+		3139117B1E3E12AA00EDAD40 /* UIAlertAction+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIAlertAction+Extensions.swift"; sourceTree = "<group>"; };
 		3139117D1E3E182D00EDAD40 /* ImageVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageVC.swift; sourceTree = "<group>"; };
 		313911851E3E190500EDAD40 /* CafeTime-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CafeTime-Bridging-Header.h"; sourceTree = "<group>"; };
 		313911861E3E190600EDAD40 /* UITraitCollection+MKAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITraitCollection+MKAdditions.h"; sourceTree = "<group>"; };
@@ -119,8 +121,10 @@
 		319DB38C1E3FAC280036640D /* UserProfileInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileInfoView.swift; sourceTree = "<group>"; };
 		31BE83641E51D47500B9FA34 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		31BE83651E51D47500B9FA34 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
-		31BE836B1E51DE4E00B9FA34 /* TabBarVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarVC.swift; sourceTree = "<group>"; };
+		31BE836B1E51DE4E00B9FA34 /* NewsTabBarVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsTabBarVC.swift; sourceTree = "<group>"; };
 		31BE836E1E521BFE00B9FA34 /* CustomVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomVC.swift; sourceTree = "<group>"; };
+		31BE83711E52FCDC00B9FA34 /* UIImageView+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extensions.swift"; sourceTree = "<group>"; };
+		31BE83731E530F6A00B9FA34 /* UIDevice+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIDevice+Extensions.swift"; sourceTree = "<group>"; };
 		31DD52091E38D4B600DB9ABC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		31DD520B1E38D57900DB9ABC /* CurrentUserProfileVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentUserProfileVC.swift; sourceTree = "<group>"; };
 		31DD52121E39028400DB9ABC /* UserProfileMainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileMainView.swift; sourceTree = "<group>"; };
@@ -190,7 +194,7 @@
 			name = Models;
 			sourceTree = "<group>";
 		};
-		3133C4FF1E4F5FCE0060ED60 /* Menu VC  */ = {
+		3133C4FF1E4F5FCE0060ED60 /* Main Menu VC  */ = {
 			isa = PBXGroup;
 			children = (
 				3133C4FD1E4F5FC00060ED60 /* MenuVC.swift */,
@@ -198,7 +202,7 @@
 				3110A3241E509BDC00D90AC8 /* UserMenuOptionsView.swift */,
 				3110A3261E50A79D00D90AC8 /* UserMenuOptionsCell.swift */,
 			);
-			name = "Menu VC ";
+			name = "Main Menu VC ";
 			sourceTree = "<group>";
 		};
 		313532A61E474F7700BA039C /* Chat */ = {
@@ -245,10 +249,12 @@
 			isa = PBXGroup;
 			children = (
 				313911701E3BBC5500EDAD40 /* M13Checkbox+Extensions.swift */,
+				31BE83731E530F6A00B9FA34 /* UIDevice+Extensions.swift */,
+				31BE83711E52FCDC00B9FA34 /* UIImageView+Extensions.swift */,
 				313532AD1E48E62B00BA039C /* UIViewController+Extension.swift */,
 				3139118E1E3F6C5100EDAD40 /* UITextField+Extensions.swift */,
 				313911791E3BCC1600EDAD40 /* UIView+Extension.swift */,
-				3139117B1E3E12AA00EDAD40 /* UIAlertAction+Extension.swift */,
+				3139117B1E3E12AA00EDAD40 /* UIAlertAction+Extensions.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -267,9 +273,8 @@
 			isa = PBXGroup;
 			children = (
 				31DD52081E38B05900DB9ABC /* SignUp + Login */,
-				3133C4FF1E4F5FCE0060ED60 /* Menu VC  */,
-				31BE836D1E51DE6000B9FA34 /* Tab Bar VC */,
 				31BE83701E521C0300B9FA34 /* User Menu VCs */,
+				31BE836D1E51DE6000B9FA34 /* Tab Bar VC */,
 				316B51871E4B3037000EF798 /* Users List */,
 				31DD52141E39028900DB9ABC /* User Profile */,
 				313532A61E474F7700BA039C /* Chat */,
@@ -367,7 +372,7 @@
 		31BE836D1E51DE6000B9FA34 /* Tab Bar VC */ = {
 			isa = PBXGroup;
 			children = (
-				31BE836B1E51DE4E00B9FA34 /* TabBarVC.swift */,
+				31BE836B1E51DE4E00B9FA34 /* NewsTabBarVC.swift */,
 			);
 			name = "Tab Bar VC";
 			sourceTree = "<group>";
@@ -375,6 +380,7 @@
 		31BE83701E521C0300B9FA34 /* User Menu VCs */ = {
 			isa = PBXGroup;
 			children = (
+				3133C4FF1E4F5FCE0060ED60 /* Main Menu VC  */,
 				31BE836E1E521BFE00B9FA34 /* CustomVC.swift */,
 			);
 			name = "User Menu VCs";
@@ -605,20 +611,22 @@
 				313911911E3F78BB00EDAD40 /* CountriesPickerView.swift in Sources */,
 				31BE83661E51D47500B9FA34 /* SWRevealViewController.m in Sources */,
 				313532B81E49DF1F00BA039C /* RemoteCafe.swift in Sources */,
-				3139117C1E3E12AA00EDAD40 /* UIAlertAction+Extension.swift in Sources */,
+				3139117C1E3E12AA00EDAD40 /* UIAlertAction+Extensions.swift in Sources */,
 				313532A81E47519400BA039C /* ChatMainView.swift in Sources */,
 				316B518B1E4B9784000EF798 /* UserProfileVC.swift in Sources */,
+				31BE83721E52FCDC00B9FA34 /* UIImageView+Extensions.swift in Sources */,
 				3139117A1E3BCC1600EDAD40 /* UIView+Extension.swift in Sources */,
 				313532B61E49C64E00BA039C /* RemoteUtils.swift in Sources */,
 				310B75371E4088C9008ADF62 /* ManagerDAO.swift in Sources */,
 				316B51891E4B32C0000EF798 /* UsersListMainView.swift in Sources */,
-				31BE836C1E51DE4E00B9FA34 /* TabBarVC.swift in Sources */,
+				31BE836C1E51DE4E00B9FA34 /* NewsTabBarVC.swift in Sources */,
 				310B753A1E4088E6008ADF62 /* CustomerRealm.swift in Sources */,
 				3133C5011E4F60CB0060ED60 /* MainView.swift in Sources */,
 				310B753C1E40B5B5008ADF62 /* CurrentUserCredentialsRealm.swift in Sources */,
 				313532B21E49BFD800BA039C /* RemoteAuth.swift in Sources */,
 				3139118D1E3F642B00EDAD40 /* Countries.swift in Sources */,
 				313532BE1E49E18500BA039C /* CafeDAO.swift in Sources */,
+				31BE83741E530F6A00B9FA34 /* UIDevice+Extensions.swift in Sources */,
 				310B754C1E425768008ADF62 /* Cafe.swift in Sources */,
 				315828CE1E39F17D00EBD20E /* LoginVC.swift in Sources */,
 				315828C81E39EE5400EBD20E /* SignUpView.swift in Sources */,

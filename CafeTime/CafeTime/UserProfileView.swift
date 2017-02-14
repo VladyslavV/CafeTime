@@ -9,24 +9,25 @@
 import UIKit
 import SnapKit
 import SDWebImage
+import SABlurImageView
 
 class UserProfileView: UIView {
 
-    let profileImageViewBackground : UIImageView = {
-        let myVar = UIImageView()
-        myVar.image = UIImage.init(named: "image")        
+    var profileImageViewBackground : SABlurImageView = {
+        let myVar = SABlurImageView()
+        myVar.image = UIImage.init(named: "image_placeholder")
         return myVar
     }()
     
-    let profileImageViewFront: UIImageView = {
+    var profileImageViewFront: UIImageView = {
         let myVar = UIImageView()
         myVar.clipsToBounds = true
         myVar.contentMode = .scaleAspectFill
-        myVar.image = UIImage.init(named: "image")
+        myVar.image = UIImage.init(named: "image_placeholder")
         return myVar
     }()
     
-    let nameLabel: UILabel = {
+    var nameLabel: UILabel = {
         let myVar = UILabel()
         myVar.text = "Name_Placeholder"
         myVar.textColor = UIColor.white
@@ -34,17 +35,11 @@ class UserProfileView: UIView {
         return myVar
     }()
     
-    private let blurView: UIVisualEffectView = {
-        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.regular)
-        let myVar = UIVisualEffectView(effect: blurEffect)
-        return myVar
-    }()
     
     // MARK: Init
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.addSubviews([profileImageViewBackground, profileImageViewFront, nameLabel])
-        self.profileImageViewBackground.addSubview(blurView)
         self.setUp()
     }
     
@@ -70,26 +65,29 @@ class UserProfileView: UIView {
             make.edges.equalTo(self)
         }
         
-        blurView.snp.remakeConstraints { (make) in
-            make.edges.equalTo(self)
-        }
-        
         profileImageViewFront.snp.remakeConstraints { (make) in
             make.center.equalTo(profileImageViewBackground.snp.center)
-            make.width.height.equalTo(self.snp.height).multipliedBy(0.5)
+            make.width.height.equalTo(self.snp.height).multipliedBy(0.65)
         }
         
         nameLabel.snp.remakeConstraints { (make) in
             make.centerX.equalTo(profileImageViewFront.snp.centerX)
             make.leading.trailing.equalTo(self)
-            make.top.equalTo(profileImageViewFront.snp.bottom).offset(10)
-            make.bottom.equalTo(self.snp.bottom).offset(-10)
+            make.top.equalTo(profileImageViewFront.snp.bottom).offset(4)
         }
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
         profileImageViewFront.layer.cornerRadius = profileImageViewFront.frame.size.width / 2
-    }
+        
+        if Utils.shared.isBlurEnabled() {
+            profileImageViewBackground.addBlurEffect()
+        }
+        else {
+            profileImageViewBackground.addBlurEffect(profileImageViewBackground.frame.size.width / 2 ,times: 3)
+        }
 
+    }
 }
+

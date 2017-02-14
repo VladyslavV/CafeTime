@@ -11,7 +11,8 @@ import SnapKit
 
 class MainView: UIView {
     
-    let userProfileInfoView : UserProfileView = {
+    let userProfileView : UserProfileView = {
+        
         let myVar = UserProfileView()
         return myVar
     }()
@@ -26,7 +27,7 @@ class MainView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = UIColor.white
-        self.addSubviews([userProfileInfoView, userMenuOptionsView])
+        self.addSubviews([userProfileView, userMenuOptionsView])
         self.setUp()
     }
     
@@ -37,13 +38,13 @@ class MainView: UIView {
 
     private func setUp() {
         
-        userProfileInfoView.snp.remakeConstraints { (make) in
+        userProfileView.snp.remakeConstraints { (make) in
             make.leading.trailing.top.equalTo(self)
             make.height.equalTo(self.snp.height).multipliedBy(0.3)
         }
         
         userMenuOptionsView.snp.makeConstraints { (make) in
-            make.top.equalTo(userProfileInfoView.snp.bottom)
+            make.top.equalTo(userProfileView.snp.bottom)
             make.leading.trailing.bottom.equalTo(self)
         }
     }

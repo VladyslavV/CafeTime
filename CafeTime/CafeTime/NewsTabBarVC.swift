@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TabBarVC: UITabBarController {
+class NewsTabBarVC: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

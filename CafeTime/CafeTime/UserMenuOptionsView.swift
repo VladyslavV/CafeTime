@@ -36,13 +36,15 @@ class UserMenuOptionsView: UIView, UITableViewDelegate, UITableViewDataSource {
         let myVar = UITableView()
         myVar.register(UserMenuOptionsCell.self, forCellReuseIdentifier: "cell")
         myVar.tableFooterView = UIView()
-        let headerView =  UIView.init(frame: CGRect(x: 0, y: 0, width: 100, height: 20))
-        headerView.backgroundColor = UIColor.red
-        myVar.tableHeaderView = headerView
+        //  let headerView =  UIView.init(frame: CGRect(x: 0, y: 0, width: 100, height: 20))
+        //  headerView.backgroundColor = UIColor.red
+        //  myVar.tableHeaderView = headerView
         myVar.separatorStyle = .none
         myVar.separatorInset = UIEdgeInsets.zero
-//        myVar.rowHeight = UITableViewAutomaticDimension
-//        myVar.estimatedRowHeight = 150
+        
+        //  myVar.bounces = false
+        //  myVar.rowHeight = UITableViewAutomaticDimension
+        //  myVar.estimatedRowHeight = 150
         myVar.delegate = self
         myVar.dataSource = self
         return myVar
@@ -67,11 +69,11 @@ class UserMenuOptionsView: UIView, UITableViewDelegate, UITableViewDataSource {
     }
     
     // MARK: Table View Delegate
-
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return UserMenuOptions.allValues.count
     }
-  
+    
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! UserMenuOptionsCell

@@ -106,6 +106,11 @@ extension UserProfileVC: UserProfileInfoViewDelegate {
     func sendMessage() {
         self.navigationController?.pushViewController(ChatVC(customer: self.customer), animated: true)
     }
+}
+
+extension UserProfileVC: UINavigationControllerDelegate {
+    
+    
     
 }
 

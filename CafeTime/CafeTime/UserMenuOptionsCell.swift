@@ -26,7 +26,6 @@ class UserMenuOptionsCell: UITableViewCell {
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
         self.addSubviews([optionImageView, optionTextLabel])
         self.setUp()
     }
@@ -36,7 +35,8 @@ class UserMenuOptionsCell: UITableViewCell {
     }
     
     private func setUp() {
-        
+        self.selectionStyle = .gray
+
         optionImageView.snp.remakeConstraints { (make) in
             make.centerY.equalTo(self.snp.centerY)
             make.leading.equalTo(self.snp.leading).offset(20)
@@ -52,5 +52,4 @@ class UserMenuOptionsCell: UITableViewCell {
 
        
     }
-    
 }

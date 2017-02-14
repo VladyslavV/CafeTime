@@ -23,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //FIRDatabase.database().persistenceEnabled = true
                 
         let menuVC = MenuVC()
-        let tabBarVC = TabBarVC()
+        let tabBarVC = NewsTabBarVC()
         
         let revealVC = SWRevealViewController(rearViewController: menuVC, frontViewController: tabBarVC)
         revealVC?.view.backgroundColor = UIColor.white
