@@ -17,6 +17,6 @@ target 'CafeTime' do
   pod 'PKHUD'
   pod 'Jelly'
   pod 'RxRealm'
-
+  pod 'SABlurImageView'
 
 end

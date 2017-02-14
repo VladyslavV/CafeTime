@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '7173E6B1CE50FE1965D0DC8EADE91931'
-               BlueprintName = 'Realm'
+               BlueprintIdentifier = 'F748A6C12F555A060F26AF72CD8E736A'
+               BlueprintName = 'SABlurImageView'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'Realm.framework'>
+               BuildableName = 'SABlurImageView.framework'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

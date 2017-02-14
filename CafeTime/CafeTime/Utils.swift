@@ -62,5 +62,14 @@ class Utils: NSObject {
         }
         return dict
     }
+    
+    func isBlurEnabled() -> Bool {
+        let device = UIDevice()
+        if  device.MO_isBlurAvailable() {
+            return true
+        }
+        return false
+    }
+    
 
 }

@@ -8,8 +8,7 @@
 
 import UIKit
 import Firebase
-import SwiftCop
-import RealmSwift
+
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -18,32 +17,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
+        window = UIWindow(frame: UIScreen.main.bounds)
+        
         FIRApp.configure()
         //FIRDatabase.database().persistenceEnabled = true
+                
+        let menuVC = MenuVC()
+        let tabBarVC = NewsTabBarVC()
         
-        let authVC = CurrentUserProfileVC()
-        let tabBarImage = UIImage.init(named: "profile_tabbarimage")
-        authVC.tabBarItem = UITabBarItem(title: NSLocalizedString("authenticateduservc.tabbar.name", comment: ""), image: tabBarImage , selectedImage: tabBarImage)
+        let revealVC = SWRevealViewController(rearViewController: menuVC, frontViewController: tabBarVC)
+        revealVC?.view.backgroundColor = UIColor.white
         
-        // create vcs
-        let navProfile = UINavigationController(rootViewController: authVC)
-        let navUsers = UINavigationController(rootViewController: UsersListVC())
-
-        let vcs = [navUsers, navProfile]
-        
-        let tabBarVC = UITabBarController()
-        tabBarVC.setViewControllers(vcs, animated: true)
-        
-        window = UIWindow(frame: UIScreen.main.bounds)
         if let window = window {
-            window.rootViewController = tabBarVC
+            revealVC?.rearViewRevealWidth = window.frame.size.width * 0.9
+
+            window.rootViewController = revealVC
             window.backgroundColor = UIColor.white
             window.makeKeyAndVisible()
         }
         
+        
+        
         let auth = Remote.anyAccess().auth
         guard let localCredentials = auth.userCredentials() else {
-            perform(#selector(presentLoginVC), with: nil, afterDelay: 0.01)
+            perform(#selector(presentLoginVC), with: nil, afterDelay: 0.1)
             return true
         }
         
@@ -61,6 +58,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let nav = UINavigationController(rootViewController: LoginVC())
         window?.rootViewController?.present(nav, animated: true, completion: nil)
     }
+    
     
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

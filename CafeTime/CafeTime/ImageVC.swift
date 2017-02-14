@@ -85,18 +85,18 @@ class ImageVC: UIViewController, UIGestureRecognizerDelegate, UIScrollViewDelega
         
     }
     
-    override func viewDidLayoutSubviews() {
-        if self.traitCollection.mk_matchesPhonePortrait() {
-            scrollView.layer.cornerRadius  = scrollView.frame.size.width * 0.1
-            myImageView.layer.cornerRadius = scrollView.frame.size.width * 0.1
-        }
-        else if self.traitCollection.mk_matchesPhoneLandscape() {
-            scrollView.layer.cornerRadius  = scrollView.frame.size.height * 0.1
-            myImageView.layer.cornerRadius = scrollView.frame.size.height * 0.1
-        }
-        scrollView.clipsToBounds = true
-        myImageView.clipsToBounds = true
-    }
+//    override func viewDidLayoutSubviews() {
+//        if self.traitCollection.mk_matchesPhonePortrait() {
+//            scrollView.layer.cornerRadius  = scrollView.frame.size.width * 0.1
+//            myImageView.layer.cornerRadius = scrollView.frame.size.width * 0.1
+//        }
+//        else if self.traitCollection.mk_matchesPhoneLandscape() {
+//            scrollView.layer.cornerRadius  = scrollView.frame.size.height * 0.1
+//            myImageView.layer.cornerRadius = scrollView.frame.size.height * 0.1
+//        }
+//        scrollView.clipsToBounds = true
+//        myImageView.clipsToBounds = true
+//    }
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
 
