@@ -71,5 +71,8 @@ class Utils: NSObject {
         return false
     }
     
+    func screenSize() -> CGSize {
+        return UIScreen.main.bounds.size
+    }
 
 }

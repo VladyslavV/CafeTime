@@ -21,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         FIRApp.configure()
         //FIRDatabase.database().persistenceEnabled = true
-                
+        
         let menuVC = MenuVC()
         let tabBarVC = NewsTabBarVC()
         

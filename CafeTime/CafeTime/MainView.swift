@@ -11,9 +11,8 @@ import SnapKit
 
 class MainView: UIView {
     
-    let userProfileView : UserProfileView = {
-        
-        let myVar = UserProfileView()
+    let userProfileView : ReusableUserProfileView = {
+        let myVar = ReusableUserProfileView()
         return myVar
     }()
     
@@ -48,5 +47,4 @@ class MainView: UIView {
             make.leading.trailing.bottom.equalTo(self)
         }
     }
-    
 }

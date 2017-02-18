@@ -2,21 +2,21 @@
 # platform :ios, '9.0'
 
 target 'CafeTime' do
-  # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
-  use_frameworks!
-  
-  pod 'Firebase/Core'
-  pod 'Firebase/Auth'
-  pod 'Firebase/Database'
-  pod 'Firebase/Storage'
-  pod 'SnapKit'
-  pod 'M13Checkbox'
-  pod 'SwiftCop'
-  pod 'RealmSwift'
-  pod 'SDWebImage'
-  pod 'PKHUD'
-  pod 'Jelly'
-  pod 'RxRealm'
-  pod 'SABlurImageView'
-
+    # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
+    use_frameworks!
+    
+    pod 'Firebase/Core'
+    pod 'Firebase/Auth'
+    pod 'Firebase/Database'
+    pod 'Firebase/Storage'
+    pod 'SnapKit'
+    pod 'M13Checkbox'
+    pod 'SwiftCop'
+    pod 'RealmSwift'
+    pod 'SDWebImage'
+    pod 'PKHUD'
+    pod 'Jelly'
+    pod 'RxRealm'
+    pod 'SABlurImageView'
+        
 end

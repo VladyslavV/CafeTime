@@ -39,11 +39,11 @@ class MenuVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         Remote.anyAccess().customer.fetchCurrentCustomer { [weak self] (customer) in
             guard let weakSelf = self else { return }
-    
+            
             weakSelf.mainView.userProfileView.nameLabel.text = customer?.name
             if let imageURLString = customer?.profileImageURL {
                 weakSelf.mainView.userProfileView.profileImageViewFront.sd_setImage(with: URL(string: imageURLString), placeholderImage: UIImage.init(named: "image_placeholder"))
-                 weakSelf.mainView.userProfileView.profileImageViewBackground.sd_setImage(with: URL(string: imageURLString), placeholderImage: UIImage.init(named: "image_placeholder"))
+                weakSelf.mainView.userProfileView.profileImageViewBackground.sd_setImage(with: URL(string: imageURLString), placeholderImage: UIImage.init(named: "image_placeholder"))
             }
         }
     }
@@ -62,15 +62,15 @@ extension MenuVC: UserMenuOptionsDelegate {
             if let tabbarvc = self.newsTabBarVC {
                 self.revealViewController().pushFrontViewController(tabbarvc, animated: false)
                 self.revealViewController().setFrontViewPosition(.leftSideMost, animated: true)
+                self.previousOptionClicked = userMenuOptions
                 return
             }
         }
         
-        var vc = UIViewController()
+        var vc: UIViewController? = nil
         switch userMenuOptions {
         case .myProfile:
-            vc = CustomVC()
-            print("myProfile chosen")
+            vc = MyUserProfileVC()
         case .settings:
             print("settings chosen")
         case .myComments:
@@ -87,9 +87,12 @@ extension MenuVC: UserMenuOptionsDelegate {
             return
         }
         
-        self.revealViewController().pushFrontViewController(vc, animated: false)
-        self.revealViewController().setFrontViewPosition(.leftSideMost, animated: true)
-        self.previousOptionClicked = userMenuOptions
+        if let newVC = vc {
+            let nav = UINavigationController(rootViewController: newVC)
+            self.revealViewController().pushFrontViewController(nav, animated: false)
+            self.revealViewController().setFrontViewPosition(.leftSideMost, animated: true)
+            self.previousOptionClicked = userMenuOptions
+        }
     }
     
 }

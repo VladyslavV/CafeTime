@@ -17,7 +17,7 @@ extension UIViewController {
         alertController.addAction(defaultAction)
         present(alertController, animated: true, completion: nil)
     }
-    
+
     func presentInNav(vcs: [UIViewController]) {
         let nav = UINavigationController(rootViewController: vcs[1])
         vcs[0].present(nav, animated: true, completion: nil)

@@ -19,7 +19,7 @@ class UsersListVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.revealViewController().delegate = self
+        //self.revealViewController().delegate = self
         self.revealViewController().panGestureRecognizer()
         self.revealViewController().tapGestureRecognizer()
         self.setUp()
@@ -76,7 +76,7 @@ class UsersListVC: UIViewController {
 extension UsersListVC: UsersListMainViewDelegate {
     //MARK: Main View Delegate
     func showProfile(forCustomer customer: Customer) {
-        let profileVC = UserProfileVC(withCustomer: customer)
+        let profileVC = OldUserProfileVC(withCustomer: customer)
         self.navigationController?.pushViewController(profileVC, animated: true)
     }
 }

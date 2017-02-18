@@ -17,7 +17,6 @@ class UserMenuOptionsCell: UITableViewCell {
         return myVar
     }()
     
-    
     let optionTextLabel: UILabel = {
         let myVar = UILabel()
         myVar.font = UIFont.systemFont(ofSize: 20)
@@ -49,7 +48,5 @@ class UserMenuOptionsCell: UITableViewCell {
             make.height.equalTo(self.snp.height).multipliedBy(0.9)
             make.trailing.equalTo(self.snp.trailing)
         }
-
-       
     }
 }
