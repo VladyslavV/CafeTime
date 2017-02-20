@@ -26,7 +26,6 @@ class MyUserProfileMainView: UIView {
     
     let myUserProfileView: MyUserProfileView = {
         let myVar = MyUserProfileView()
-    
         return myVar
     }()
     

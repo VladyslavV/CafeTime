@@ -13,7 +13,7 @@ class HomeTabCell: UITableViewCell {
     
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
-        self.cellSelected = false
+        showingDetails = false
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.contentView.addSubview(mainContainerView)
         self.backgroundColor = UIColor.lightGray
@@ -21,48 +21,57 @@ class HomeTabCell: UITableViewCell {
         self.setUp()
     }
     
-    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    //MARK: States
+    // MARK: Vars
+    private let normalHeight = Utils.shared.screenSize().height * 0.2
+    private let detailsHeight = Utils.shared.screenSize().height * 0.4
     
-    var cellSelected: Bool {
+    var showingDetails: Bool {
         didSet {
-            if isSelected {
-                self.mainContainerView.setUpSelectedState()
-            } else {
-                self.mainContainerView.setUpDeselectedState()
+            if showingDetails {
+                installDetailsConstraints()
+                mainContainerView.showDetails()
+            }
+            else {
+                installNormalConstraints()
+                mainContainerView.showNormalState()
             }
         }
     }
     
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-        if selected && self.cellSelected {
-            self.isSelected = false
-        }
-        else if selected {
-            self.cellSelected = true
-        }
-        else {
-            self.cellSelected = false
-        }
-    }
+  
     
     //MARK: Vars
     
-    let mainContainerView: MainContainerView = {
-        let myVar = MainContainerView()
+    lazy var mainContainerView: MainContainerView = {
+        let myVar = MainContainerView(topH: self.normalHeight, btmH: self.detailsHeight - self.normalHeight)
         return myVar
     }()
     
     private func setUp() {
+        installNormalConstraints()
+    }
+    
+    private func installNormalConstraints() {
+        
         mainContainerView.snp.remakeConstraints { (make) in
-            make.edges.equalTo(self).inset(UIEdgeInsetsMake(10, 10, 10, 10))
+            make.edges.equalTo(self.contentView).inset(UIEdgeInsetsMake(10, 10, 10, 10))
+            make.height.equalTo(normalHeight)
         }
     }
+    
+    private func installDetailsConstraints() {
+        
+        mainContainerView.snp.remakeConstraints { (make) in
+            make.edges.equalTo(self.contentView).inset(UIEdgeInsetsMake(10, 10, 10, 10))
+            make.height.equalTo(detailsHeight)
+        }
+    }
+    
+    
 }
 
 

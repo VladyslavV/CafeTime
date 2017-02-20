@@ -8,14 +8,8 @@
 
 import UIKit
 
-protocol CellTopDetailsContainerViewDelegate: class {
-    func likeTapped()
-}
-
 class CellTopDetailsContainerView: ReusableCellContainerView {
-    
-    weak var delegate: CellTopDetailsContainerViewDelegate?
-    
+        
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.addSubviews([discountLabel, likeLabel])
@@ -30,15 +24,8 @@ class CellTopDetailsContainerView: ReusableCellContainerView {
     
     // MARK: VARS
     
-    let showDetailsButton: UIButton = {
-        let myVar = UIButton(type: .system)
-        
-        return myVar
-    }()
-    
-    @objc private func likeTappedFunc() {
-        print("here")
-        self.delegate?.likeTapped()
+    var likeImageView: UIImageView {
+        return rightImageView
     }
     
     let likeLabel: UILabel = {
@@ -54,10 +41,10 @@ class CellTopDetailsContainerView: ReusableCellContainerView {
         return myVar
     }()
     
+    
     // MARK: Constraints
     
     private func setUp() {
-        
         myImageView.image = UIImage(named: "image")
         rightImageView.image = UIImage(named: "heart")
         
@@ -72,11 +59,5 @@ class CellTopDetailsContainerView: ReusableCellContainerView {
             make.width.equalTo(rightImageView.snp.width)
             make.centerX.equalTo(rightImageView.snp.centerX)
         }
-    }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        self.layer.cornerRadius = self.frame.size.width / 27
-        myImageView.layer.cornerRadius = myImageView.frame.size.width / 2
     }
 }

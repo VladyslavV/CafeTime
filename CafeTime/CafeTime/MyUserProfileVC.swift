@@ -8,34 +8,40 @@
 
 import UIKit
 import SnapKit
+
 class MyUserProfileVC: UIViewController {
    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.automaticallyAdjustsScrollViewInsets = false
-
-        self.view.backgroundColor = UIColor.gray
-        
-        let pageMenu = ReusableMenuCollectionView(withTitles: ["Details", "Favorites", "Comments"], andSliderAnimationDuration: 0.75)
-        self.view.addSubview(pageMenu)
-        
-        pageMenu.snp.makeConstraints { (make) in
-            make.leading.trailing.equalTo(self.view)
-            make.center.equalTo(self.view.center)
-            make.height.equalTo(self.view.snp.height).multipliedBy(0.2)
-        }
         
         self.view.addSubview(mainView)
         self.setUp()
+        
+        self.view.backgroundColor = UIColor.lightGray
+        
+//        let pageMenu = ReusableMenuCollectionView(withTitles: ["Details", "Favorites", "Comments"], andSliderAnimationDuration: 0.75)
+//        self.mainView.myUserProfileView.addSubview(pageMenu)
+//        
+//        pageMenu.snp.makeConstraints { (make) in
+//            make.leading.trailing.equalTo(mainView.myUserProfileView)
+//            make.bottom.equalTo(mainView.myUserProfileView.snp.bottom).offset(-10)
+//            make.height.equalTo(mainView.myUserProfileView.snp.height).multipliedBy(0.2)
+//        }
+
     }
 
     // MARK: Vars
     
-    let mainView: MyUserProfileMainView = {
+    internal lazy var mainView: MyUserProfileMainView = {
         let myVar = MyUserProfileMainView()
+        myVar.myUserProfileView.delegate = self
         return myVar
     }()
+    
+    internal var myUserProfileView: MyUserProfileView  {
+        return mainView.myUserProfileView
+    }
     
     private func setUp() {
      
@@ -46,4 +52,12 @@ class MyUserProfileVC: UIViewController {
             make.top.equalTo(self.topLayoutGuide.snp.bottom)
         }
     }
+}
+
+extension MyUserProfileVC: MyUserProfileViewDelegate {
+    
+    func starButtonPressed() {
+        print("star")
+    }
+    
 }

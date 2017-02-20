@@ -13,7 +13,7 @@ class CustomMenuCollectionViewCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = UIColor.blue
+        self.backgroundColor = UIColor.clear
         self.addSubview(titleLabel)
     }
     
@@ -26,6 +26,7 @@ class CustomMenuCollectionViewCell: UICollectionViewCell {
     let titleLabel: UILabel = {
         let myVar = UILabel()
         myVar.font = UIFont.systemFont(ofSize: 14)
+        myVar.textColor = UIColor.white
         myVar.textAlignment = NSTextAlignment.center
         myVar.text = "Title"
         return myVar

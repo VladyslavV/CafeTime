@@ -34,31 +34,42 @@ class MainContainerView: UIView {
         return myVar
     }()
     
+    private var topContainerHeight: CGFloat!
+    private var btmContainerHeight: CGFloat!
+    
+    convenience init(topH: CGFloat, btmH: CGFloat) {
+        self.init(frame: .zero)
+        self.topContainerHeight = topH
+        self.btmContainerHeight = btmH
+        self.showNormalState()
+    }
+    
     // MARK: Constraints
     
-    func setUpSelectedState() {
+    func showDetails() {
         
         detailContainerView.snp.remakeConstraints { (make) in
-            make.top.equalTo(topContainerView.snp.bottom)
+            make.top.equalTo(self.snp.top).offset(topContainerHeight)
             make.leading.trailing.bottom.equalTo(self)
         }
     }
     
-    func setUpDeselectedState() {
+    func showNormalState() {
+        
+        topContainerView.snp.makeConstraints { (make) in
+            make.leading.equalTo(self.snp.leading)
+            make.top.equalTo(self.snp.top)
+            make.trailing.equalTo(self.snp.trailing)
+            make.height.equalTo(topContainerHeight)
+        }
         
         detailContainerView.snp.remakeConstraints { (make) in
-            make.width.height.equalTo(0)
+            make.height.equalTo(0)
         }
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
         self.layer.cornerRadius = self.frame.size.width / 27
-        
-        let height = self.frame.size.height
-        topContainerView.snp.makeConstraints { (make) in
-            make.top.leading.trailing.equalTo(self)
-            make.height.equalTo(height - 10)
-        }
     }
 }

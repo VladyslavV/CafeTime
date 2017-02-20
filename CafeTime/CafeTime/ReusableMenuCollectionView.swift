@@ -50,7 +50,7 @@ class ReusableMenuCollectionView: UIView {
         let layout = UICollectionViewFlowLayout()
         layout.sectionInset = UIEdgeInsetsMake(0, self.padding, 0, self.padding)
         let myVar = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        myVar.backgroundColor = UIColor.green
+        myVar.backgroundColor = UIColor.clear
         myVar.delegate = self
         myVar.dataSource = self
         myVar.isScrollEnabled = false

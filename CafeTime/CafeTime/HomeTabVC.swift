@@ -13,7 +13,7 @@ class HomeTabVC: UIViewController {
 
     private lazy var mainView: HomeTabMainView = {
         let myVar = HomeTabMainView()
-//        myVar.delegate = self
+        myVar.delegate = self
         return myVar
     }()
     
@@ -36,9 +36,16 @@ class HomeTabVC: UIViewController {
         self.navigationItem.title = "News"
         
         mainView.snp.remakeConstraints { (make) -> Void in
-            make.left.right.equalTo(self.view)
+            make.leading.trailing.equalTo(self.view)
             make.bottom.equalTo(self.bottomLayoutGuide.snp.top)
             make.top.equalTo(self.topLayoutGuide.snp.bottom)
         }
+    }
+}
+
+extension HomeTabVC: HomeTabMainViewDelegate {
+    
+    func cellTapped(inRow row: Int) {
+        print(row)
     }
 }

@@ -9,8 +9,14 @@
 import UIKit
 import SnapKit
 
+protocol MyUserProfileViewDelegate: class {
+    func starButtonPressed()
+}
+
 class MyUserProfileView: ReusableUserProfileView {
 
+    weak var delegate: MyUserProfileViewDelegate?
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.addSubviews([starButton, chatButton])
@@ -26,6 +32,7 @@ class MyUserProfileView: ReusableUserProfileView {
     let starButton: UIButton = {
         let myVar = UIButton(type: .system)
         myVar.backgroundColor = UIColor.green
+        myVar.addTarget(self, action: #selector(starPessed), for: .touchUpInside)
         return myVar
     }()
     
@@ -39,6 +46,14 @@ class MyUserProfileView: ReusableUserProfileView {
     
     private func setUp() {
         
+        
+        profileImageViewFront.snp.remakeConstraints { (make) in
+            make.centerX.equalTo(self.snp.centerX)
+            make.width.height.equalTo(self.snp.height).multipliedBy(0.4)
+            make.top.equalTo(self.snp.top).offset(30)
+        }
+        
+        
         let starButtonHelpView = UIView()
         self.addSubview(starButtonHelpView)
         
@@ -50,7 +65,7 @@ class MyUserProfileView: ReusableUserProfileView {
         starButton.snp.makeConstraints { (make) in
             make.centerX.equalTo(starButtonHelpView.snp.centerX)
             make.centerY.equalTo(profileImageViewFront.snp.centerY)
-            make.width.height.equalTo(profileImageViewFront.snp.height).multipliedBy(0.2)
+            make.width.height.equalTo(profileImageViewFront.snp.height).multipliedBy(0.4)
         }
         
         let chatButtonHelpView = UIView()
@@ -64,8 +79,14 @@ class MyUserProfileView: ReusableUserProfileView {
         chatButton.snp.makeConstraints { (make) in
             make.centerX.equalTo(chatButtonHelpView.snp.centerX)
             make.centerY.equalTo(profileImageViewFront.snp.centerY)
-            make.width.height.equalTo(profileImageViewFront.snp.height).multipliedBy(0.2)
+            make.width.height.equalTo(profileImageViewFront.snp.height).multipliedBy(0.4)
         }
     }
     
+    
+    // MARK: Actions
+    
+    func starPessed() {
+        self.delegate?.starButtonPressed()
+    }
 }
