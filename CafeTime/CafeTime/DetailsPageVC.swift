@@ -9,12 +9,29 @@
 import UIKit
 
 class DetailsPageVC: UIViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        self.view.backgroundColor = UIColor.red
+        self.view.addSubview(mainView)
     }
-
-
+    
+    private let mainView: DetailsPageMainView = {
+        let myVar = DetailsPageMainView()
+        return myVar
+    }()
+    
+    // MARK: Set up
+    
+    private func setUp() {
+        
+        mainView.snp.makeConstraints { (make) in
+            make.edges.equalTo(self.view)
+        }
+    }
+    
+    override func viewDidLayoutSubviews() {
+        self.setUp()
+    }
+    
+    
 }

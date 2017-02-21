@@ -43,11 +43,25 @@ class HomeTabMainView: UIView {
     
     internal var selectedCellIndexPath: IndexPath?
     
+    private lazy var tableViewTapGesture: UITapGestureRecognizer = {
+        let myVar = UITapGestureRecognizer(target: self, action: #selector(tapEdit(_:)))
+        self.tableView.addGestureRecognizer(myVar)
+        return myVar
+    }()
+    
     private func setUp() {
+        tableViewTapGesture.isEnabled = true
         tableView.snp.remakeConstraints { (make) in
             make.edges.equalTo(self)
         }
-        tableView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tapEdit(_ :))))
+    }
+    
+    func disableTableViewTapRecognizer() {
+        tableViewTapGesture.isEnabled = false
+    }
+    
+    func enableTableViewTapRecognizer() {
+        tableViewTapGesture.isEnabled = true
     }
     
     func tapEdit(_ recognizer: UITapGestureRecognizer)  {
@@ -60,11 +74,11 @@ class HomeTabMainView: UIView {
 
                     let convertedPoint = self.tableView.convert(tapLocation, to: tappedCell.mainContainerView.topContainerView)
                     
-                    if tappedCell.showingDetails {
-                        self.delegate?.cellTapped(inRow: tapIndexPath.row)
-                    }
-                    else if likeImageView.frame.contains(convertedPoint) {
+                    if likeImageView.frame.contains(convertedPoint) {
                         self.handleLikeTapped(tappedCell: tappedCell, tapIndexPath: tapIndexPath)
+                    }
+                    else if tappedCell.showingDetails {
+                        self.delegate?.cellTapped(inRow: tapIndexPath.row)
                     }
                     else if detailTextLabel.frame.contains(convertedPoint) {
                         self.handleDetailsLabelTap(tappedCell: tappedCell, tapIndexPath: tapIndexPath)

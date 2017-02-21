@@ -9,7 +9,7 @@
 import UIKit
 import SnapKit
 
-class CustomMenuCollectionViewCell: UICollectionViewCell {
+class SegmentedMenuCollectionViewCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -38,15 +38,10 @@ class CustomMenuCollectionViewCell: UICollectionViewCell {
             make.height.equalTo(self.snp.height).multipliedBy(0.7)
             make.centerY.equalTo(self.snp.centerY)
         }
-        
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
         self.setUp()
     }
-    
-    
-    
-    
 }

@@ -9,7 +9,7 @@
 import UIKit
 import SnapKit
 
-class ReusableCellContainerView: UIView {
+class ReusableCellContainerView: ReusableEmtpyCellContainer {
 
     override init(frame: CGRect) {
         super.init(frame: frame)

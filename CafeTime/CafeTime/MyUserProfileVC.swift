@@ -10,27 +10,31 @@ import UIKit
 import SnapKit
 
 class MyUserProfileVC: UIViewController {
-   
+        
+    private let vcsList = [["Details" : DetailsPageVC()], ["Favorites" : FavoritesPageVC()], ["Comments" : CommentsPageVC()]] as [Any]
+    
+    private lazy var pagesContainerVC: ReusablePagesVC = {
+        let myVar = ReusablePagesVC(vcsList: self.vcsList as! [[String : UIViewController]])
+
+        myVar.titlesFont = UIFont.boldSystemFont(ofSize: 16)
+        myVar.sliderHeight = 3
+        return myVar
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.automaticallyAdjustsScrollViewInsets = false
         
         self.view.addSubview(mainView)
-        self.setUp()
-        
         self.view.backgroundColor = UIColor.lightGray
         
-//        let pageMenu = ReusableMenuCollectionView(withTitles: ["Details", "Favorites", "Comments"], andSliderAnimationDuration: 0.75)
-//        self.mainView.myUserProfileView.addSubview(pageMenu)
-//        
-//        pageMenu.snp.makeConstraints { (make) in
-//            make.leading.trailing.equalTo(mainView.myUserProfileView)
-//            make.bottom.equalTo(mainView.myUserProfileView.snp.bottom).offset(-10)
-//            make.height.equalTo(mainView.myUserProfileView.snp.height).multipliedBy(0.2)
-//        }
-
+        self.addChildViewController(pagesContainerVC)
+        self.view.addSubview(pagesContainerVC.view)
+        pagesContainerVC.didMove(toParentViewController: self)
+        
+        self.setUp()
     }
-
+    
     // MARK: Vars
     
     internal lazy var mainView: MyUserProfileMainView = {
@@ -44,8 +48,13 @@ class MyUserProfileVC: UIViewController {
     }
     
     private func setUp() {
-     
+        
         self.navigationItem.title = "My Profile"
+        
+        pagesContainerVC.view.snp.makeConstraints { (make) in
+            make.leading.trailing.bottom.equalTo(self.view)
+            make.top.equalTo(self.view.snp.centerY).offset(-30)
+        }
         
         mainView.snp.makeConstraints { (make) -> Void in
             make.left.right.bottom.equalTo(self.view)

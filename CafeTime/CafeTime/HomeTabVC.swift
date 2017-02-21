@@ -10,8 +10,8 @@ import UIKit
 import SnapKit
 
 class HomeTabVC: UIViewController {
-
-    private lazy var mainView: HomeTabMainView = {
+    
+    internal lazy var mainView: HomeTabMainView = {
         let myVar = HomeTabMainView()
         myVar.delegate = self
         return myVar
@@ -20,6 +20,7 @@ class HomeTabVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.addSubview(mainView)
+        self.revealViewController().delegate = self
         self.revealViewController().panGestureRecognizer()
         self.revealViewController().tapGestureRecognizer()
         self.setUp()
@@ -27,12 +28,12 @@ class HomeTabVC: UIViewController {
     
     private func setUp() {
         self.automaticallyAdjustsScrollViewInsets = false
-
+        
         let tabBarImage = UIImage.init(named: "users_list_tabbarimage")
         self.tabBarItem = UITabBarItem(title: nil, image: tabBarImage , selectedImage: tabBarImage)
         
         self.navigationController?.navigationBar.barTintColor = UIColor.green;
-
+        
         self.navigationItem.title = "News"
         
         mainView.snp.remakeConstraints { (make) -> Void in
@@ -41,6 +42,27 @@ class HomeTabVC: UIViewController {
             make.top.equalTo(self.topLayoutGuide.snp.bottom)
         }
     }
+    
+}
+
+
+extension HomeTabVC: SWRevealViewControllerDelegate {
+    
+    func revealController(_ revealController: SWRevealViewController!, tapGestureRecognizerShouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer!) -> Bool {
+        return true
+    }
+    
+    
+    func revealController(_ revealController: SWRevealViewController!, willMoveTo position: FrontViewPosition) {
+        switch position {
+            
+        case FrontViewPosition.right:
+            self.mainView.disableTableViewTapRecognizer()
+        default:
+            self.mainView.enableTableViewTapRecognizer()
+        }
+    }
+    
 }
 
 extension HomeTabVC: HomeTabMainViewDelegate {
