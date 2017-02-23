@@ -24,16 +24,18 @@ class MyUserProfileVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.automaticallyAdjustsScrollViewInsets = false
-        
+        self.revealViewController().delegate = self
+
         self.view.addSubview(mainView)
         self.view.backgroundColor = UIColor.lightGray
         
         self.addChildViewController(pagesContainerVC)
         self.view.addSubview(pagesContainerVC.view)
         pagesContainerVC.didMove(toParentViewController: self)
-        
         self.setUp()
+
     }
+    
     
     // MARK: Vars
     
@@ -53,7 +55,7 @@ class MyUserProfileVC: UIViewController {
         
         pagesContainerVC.view.snp.makeConstraints { (make) in
             make.leading.trailing.bottom.equalTo(self.view)
-            make.top.equalTo(self.view.snp.centerY).offset(-30)
+            make.height.equalTo(self.view.snp.height).multipliedBy(0.6)
         }
         
         mainView.snp.makeConstraints { (make) -> Void in

@@ -9,13 +9,19 @@
 import UIKit
 import SnapKit
 
-class ReusableCellContainerView: ReusableEmtpyCellContainer {
+enum CellState {
+    case normal
+    case deleting
+    case editing
+}
 
+class ReusableCellContainerView: ReusableEmtpyCellContainer {
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = UIColor.white
-        self.addSubviews([myImageView, titleLabel, detailLabel, rightImageView])
-        self.setUp()
+        self.addSubviews([helpView, myImageView, titleLabel, detailLabel, rightImageView, deleteButton])
+        self.setUpNormalState()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -24,11 +30,37 @@ class ReusableCellContainerView: ReusableEmtpyCellContainer {
     
     // MARK: Vars
     
+    var cellState: CellState = .normal {
+        didSet {
+            switch cellState {
+            case .normal:
+                self.setUpNormalState()
+            case .deleting:
+                self.setUpDeletingState()
+            case .editing:
+                self.setUpEditingState()
+            }
+        }
+    }
+    
+    let deleteButton: UIButton = {
+        let myVar = UIButton(type: .system)
+        myVar.backgroundColor = UIColor.blue
+        return myVar
+    }()
+    
+    let helpView: UIImageView = {
+        let myVar = UIImageView()
+        myVar.backgroundColor = UIColor.clear
+        return myVar
+    }()
+    
+    
     let myImageView: UIImageView = {
         let myVar = UIImageView()
         myVar.backgroundColor = UIColor.green
         myVar.clipsToBounds = true
-        myVar.contentMode = .scaleToFill
+        myVar.contentMode = .scaleAspectFill
         return myVar
     }()
     
@@ -59,37 +91,115 @@ class ReusableCellContainerView: ReusableEmtpyCellContainer {
     
     // MARK: Set UP
     
-    private func setUp() {
+    func setUpNormalState() {
         
-        myImageView.snp.makeConstraints { (make) in
+        helpView.snp.makeConstraints { (make) in
             make.leading.equalTo(self.snp.leading).offset(10)
             make.height.width.equalTo(self.snp.height).multipliedBy(0.7)
             make.centerY.equalTo(self.snp.centerY)
         }
         
-        rightImageView.snp.makeConstraints { (make) in
-            make.centerY.equalTo(myImageView.snp.centerY)
-            make.width.height.equalTo(self.snp.height).multipliedBy(0.5)
-            make.trailing.equalTo(self.snp.trailing).offset(-20)
+        
+        myImageView.snp.remakeConstraints { (make) in
+            make.leading.equalTo(self.snp.leading).offset(10)
+            make.height.width.equalTo(self.snp.height).multipliedBy(0.7)
+            make.centerY.equalTo(self.snp.centerY)
         }
         
-        titleLabel.snp.makeConstraints { (make) in
-            make.top.equalTo(myImageView.snp.top)
-            make.height.equalTo(myImageView.snp.height).multipliedBy(0.25)
+        rightImageView.snp.remakeConstraints { (make) in
+            make.trailing.equalTo(self.snp.trailing).offset(-10)
+            make.height.equalTo(self.snp.height).multipliedBy(0.7)
+            make.width.equalTo(self.snp.width).multipliedBy(0.05)
+            make.centerY.equalTo(self.snp.centerY)
+        }
+        
+        titleLabel.snp.remakeConstraints { (make) in
+            
+            //help view
+            make.top.equalTo(helpView.snp.top)
+            
+            make.height.equalTo(self.snp.height).multipliedBy(0.2)
             make.leading.equalTo(myImageView.snp.trailing).offset(10)
+            make.trailing.lessThanOrEqualTo(rightImageView.snp.leading).offset(-3)
         }
         
-        detailLabel.snp.makeConstraints { (make) in
+        detailLabel.snp.remakeConstraints { (make) in
+            
+            //help view
+            make.bottom.lessThanOrEqualTo(helpView.snp.bottom)
+            
             make.top.equalTo(titleLabel.snp.bottom).offset(5)
-            make.trailing.equalTo(rightImageView.snp.leading).offset(-10)
             make.leading.equalTo(myImageView.snp.trailing).offset(10)
-            make.bottom.lessThanOrEqualTo(myImageView.snp.bottom)
+            make.trailing.lessThanOrEqualTo(rightImageView.snp.leading).offset(-3)
         }
+        
+        deleteButton.snp.remakeConstraints { (make) in
+            make.leading.equalTo(self.snp.trailing).offset(100)
+            make.centerY.equalTo(self.snp.centerY)
+            make.height.width.equalTo(self.snp.height).multipliedBy(0.7)
+        }
+    }
+    
+    func setUpDeletingState() {
+        
+        myImageView.snp.remakeConstraints { (make) in
+            make.trailing.equalTo(self.snp.leading).offset(-100)
+            make.centerY.equalTo(self.snp.centerY)
+            make.height.width.equalTo(self.snp.height).multipliedBy(0.7)
+        }
+        
+        titleLabel.snp.remakeConstraints { (make) in
+            
+            //help view
+            make.top.equalTo(helpView.snp.top)
+            
+            make.height.equalTo(self.snp.height).multipliedBy(0.2)
+            make.leading.equalTo(self.snp.leading).offset(10)
+            make.trailing.lessThanOrEqualTo(rightImageView.snp.leading).offset(-3)
+        }
+        
+        detailLabel.snp.remakeConstraints { (make) in
+            
+            //help view
+            make.bottom.lessThanOrEqualTo(rightImageView.snp.bottom)
+            
+            make.top.equalTo(titleLabel.snp.bottom).offset(5)
+            make.leading.equalTo(self.snp.leading).offset(10)
+            make.trailing.lessThanOrEqualTo(rightImageView.snp.leading).offset(-3)
+        }
+        
+        deleteButton.snp.remakeConstraints { (make) in
+            make.trailing.equalTo(self.snp.trailing).offset(-10)
+            make.height.width.equalTo(self.snp.height).multipliedBy(0.6)
+            make.centerY.equalTo(self.snp.centerY)
+        }
+        
+        rightImageView.snp.remakeConstraints { (make) in
+            make.trailing.equalTo(deleteButton.snp.leading).offset(-10)
+            make.height.equalTo(self.snp.height).multipliedBy(0.7)
+            make.width.equalTo(self.snp.width).multipliedBy(0.05)
+            make.centerY.equalTo(self.snp.centerY)
+        }
+    }
+    
+    private func setUpEditingState() {
+        
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        self.layer.cornerRadius = self.frame.size.width / 27
+        
+        switch self.cellState {
+        case .normal:
+            self.layer.cornerRadius = self.frame.size.width / 27
+        case .deleting:
+            self.layer.cornerRadius = 0
+            self.roundCorners(corners: [.topRight, .bottomRight], radius: Double(self.frame.size.width / 27))
+        case .editing:
+            break
+        }
+        
         myImageView.layer.cornerRadius = myImageView.frame.size.width / 2
+        deleteButton.layer.cornerRadius = deleteButton.frame.size.width / 2
     }
 }

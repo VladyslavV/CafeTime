@@ -155,12 +155,7 @@ extension ReusableMenuCollectionView:  UICollectionViewDelegate, UICollectionVie
         self.updateSliderConstraints(width: titleWidth, centerX: cell.titleLabel)
     }
     
-    private func animateConstraintsTransition() {
-        UIView.animate(withDuration: sliderAnimation!, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
-            self.layoutIfNeeded()
-        }, completion: nil)
-    }
-    
+   
     fileprivate func updateSliderConstraints(width: CGFloat, centerX: ConstraintRelatableTarget){
         
         slider.snp.remakeConstraints({ (make) in
@@ -169,7 +164,7 @@ extension ReusableMenuCollectionView:  UICollectionViewDelegate, UICollectionVie
             make.bottom.equalTo(self.snp.bottom)
             make.height.equalTo(sliderHeight)
         })
-        self.animateConstraintsTransition()
+        self.animateConstraintsTransition(withDuration: sliderAnimation!)
     }
 }
 

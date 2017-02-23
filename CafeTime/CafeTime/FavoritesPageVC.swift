@@ -12,9 +12,19 @@ class FavoritesPageVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        self.view.backgroundColor = UIColor.orange
+        self.view.backgroundColor = UIColor.clear
+        self.view.addSubview(mainView)
+        self.setUp()
     }
 
- 
+    private let mainView: FavoritesPageMainView = {
+        let myVar = FavoritesPageMainView()
+        return myVar
+    }()
+        
+    private func setUp() {
+        mainView.snp.makeConstraints { (make) in
+            make.edges.equalTo(self.view)
+        }
+    }
 }

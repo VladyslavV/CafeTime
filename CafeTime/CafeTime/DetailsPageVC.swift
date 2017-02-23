@@ -23,7 +23,6 @@ class DetailsPageVC: UIViewController {
     // MARK: Set up
     
     private func setUp() {
-        
         mainView.snp.makeConstraints { (make) in
             make.edges.equalTo(self.view)
         }

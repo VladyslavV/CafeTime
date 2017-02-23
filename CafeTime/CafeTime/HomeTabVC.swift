@@ -42,31 +42,9 @@ class HomeTabVC: UIViewController {
             make.top.equalTo(self.topLayoutGuide.snp.bottom)
         }
     }
-    
-}
-
-
-extension HomeTabVC: SWRevealViewControllerDelegate {
-    
-    func revealController(_ revealController: SWRevealViewController!, tapGestureRecognizerShouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer!) -> Bool {
-        return true
-    }
-    
-    
-    func revealController(_ revealController: SWRevealViewController!, willMoveTo position: FrontViewPosition) {
-        switch position {
-            
-        case FrontViewPosition.right:
-            self.mainView.disableTableViewTapRecognizer()
-        default:
-            self.mainView.enableTableViewTapRecognizer()
-        }
-    }
-    
 }
 
 extension HomeTabVC: HomeTabMainViewDelegate {
-    
     func cellTapped(inRow row: Int) {
         print(row)
     }

@@ -28,7 +28,7 @@ class MyUserProfileMainView: UIView {
         let myVar = MyUserProfileView()
         return myVar
     }()
-    
+        
     // MARK: Set Up
     
     private func setUp() {

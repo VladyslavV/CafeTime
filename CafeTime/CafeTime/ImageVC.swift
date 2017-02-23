@@ -10,7 +10,7 @@ import UIKit
 import SnapKit
 import SDWebImage
 
-class ImageVC: UIViewController, UIGestureRecognizerDelegate, UIScrollViewDelegate {
+class ImageVC: UIViewController, UIScrollViewDelegate, UIGestureRecognizerDelegate {
     
     //MARK : Variables
     

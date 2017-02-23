@@ -53,7 +53,7 @@ class ReusablePagesMainView: UIView {
     
     private func setUp() {
         
-        collectionView.backgroundColor = UIColor.red
+        collectionView.backgroundColor = UIColor.clear
         
         menuBar.snp.makeConstraints { (make) in
             make.leading.trailing.top.equalTo(self)

@@ -28,30 +28,10 @@ enum UserMenuOptions: String {
 }
 
 
-class UserMenuOptionsView: UIView, UITableViewDelegate, UITableViewDataSource {
+class UserMenuOptionsView: UIView {
     
-    weak var delegate: UserMenuOptionsDelegate?
-    
-    private lazy var tableView: UITableView = {
-        let myVar = UITableView()
-        myVar.register(UserMenuOptionsCell.self, forCellReuseIdentifier: "cell")
-        myVar.tableFooterView = UIView()
-        //  let headerView =  UIView.init(frame: CGRect(x: 0, y: 0, width: 100, height: 20))
-        //  headerView.backgroundColor = UIColor.red
-        //  myVar.tableHeaderView = headerView
-        myVar.separatorStyle = .none
-        myVar.separatorInset = UIEdgeInsets.zero
-        
-        //  myVar.bounces = false
-        //  myVar.rowHeight = UITableViewAutomaticDimension
-        //  myVar.estimatedRowHeight = 150
-        myVar.delegate = self
-        myVar.dataSource = self
-        return myVar
-    }()
-    
-    
-    
+    // MARK: Init
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.addSubview(tableView)
@@ -62,12 +42,40 @@ class UserMenuOptionsView: UIView, UITableViewDelegate, UITableViewDataSource {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: Vars
+    
+    weak var delegate: UserMenuOptionsDelegate?
+    
+    fileprivate let cellID = "cell"
+    private lazy var tableView: UITableView = {
+        let myVar = UITableView()
+        myVar.register(UserMenuOptionsCell.self, forCellReuseIdentifier: self.cellID)
+        myVar.tableFooterView = UIView()
+        //  let headerView =  UIView.init(frame: CGRect(x: 0, y: 0, width: 100, height: 20))
+        //  headerView.backgroundColor = UIColor.red
+        //  myVar.tableHeaderView = headerView
+        myVar.separatorStyle = .none
+        myVar.separatorInset = UIEdgeInsets.zero
+        myVar.estimatedRowHeight = 70
+        myVar.rowHeight = UITableViewAutomaticDimension
+        //  myVar.bounces = false
+        //  myVar.rowHeight = UITableViewAutomaticDimension
+        //  myVar.estimatedRowHeight = 150
+        myVar.delegate = self
+        myVar.dataSource = self
+        return myVar
+    }()
+    
+    // MARK: Set Up
+
     private func setUp() {
         tableView.snp.remakeConstraints { (make) in
             make.edges.equalTo(self)
         }
     }
-    
+}
+
+extension UserMenuOptionsView: UITableViewDelegate, UITableViewDataSource {
     // MARK: Table View Delegate
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -76,7 +84,7 @@ class UserMenuOptionsView: UIView, UITableViewDelegate, UITableViewDataSource {
     
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! UserMenuOptionsCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: self.cellID, for: indexPath) as! UserMenuOptionsCell
         
         cell.optionTextLabel.text = UserMenuOptions.allValues[indexPath.row].rawValue
         cell.optionImageView.image = UIImage.init(named: "image")
@@ -88,7 +96,5 @@ class UserMenuOptionsView: UIView, UITableViewDelegate, UITableViewDataSource {
         self.delegate?.optionClicked(userMenuOptions: UserMenuOptions.allValues[indexPath.row])
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return self.frame.size.height * 0.15
-    }
+
 }

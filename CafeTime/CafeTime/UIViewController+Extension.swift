@@ -8,6 +8,20 @@
 
 import UIKit
 
+extension UIViewController: SWRevealViewControllerDelegate {
+    
+    public func revealController(_ revealController: SWRevealViewController!, willMoveTo position: FrontViewPosition) {
+        
+        switch position {
+            
+        case FrontViewPosition.right:
+            self.view.isUserInteractionEnabled = false
+        default:
+            self.view.isUserInteractionEnabled = true
+        }
+    }
+}
+
 extension UIViewController {
     
     // error

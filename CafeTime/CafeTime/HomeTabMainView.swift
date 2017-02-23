@@ -41,7 +41,7 @@ class HomeTabMainView: UIView {
         return myVar
     }()
     
-    internal var selectedCellIndexPath: IndexPath?
+    private var previousCell: HomeTabCell?
     
     private lazy var tableViewTapGesture: UITapGestureRecognizer = {
         let myVar = UITapGestureRecognizer(target: self, action: #selector(tapEdit(_:)))
@@ -56,68 +56,60 @@ class HomeTabMainView: UIView {
         }
     }
     
-    func disableTableViewTapRecognizer() {
-        tableViewTapGesture.isEnabled = false
-    }
-    
-    func enableTableViewTapRecognizer() {
-        tableViewTapGesture.isEnabled = true
-    }
+    // MARK: Actions
     
     func tapEdit(_ recognizer: UITapGestureRecognizer)  {
-        if recognizer.state == UIGestureRecognizerState.ended {
-            let tapLocation = recognizer.location(in: self.tableView)
-            if let tapIndexPath = self.tableView.indexPathForRow(at: tapLocation) {
-                if let tappedCell = self.tableView.cellForRow(at: tapIndexPath) as? HomeTabCell {
-                    let detailTextLabel = tappedCell.mainContainerView.topContainerView.detailLabel
-                    let likeImageView = tappedCell.mainContainerView.topContainerView.likeImageView
-
-                    let convertedPoint = self.tableView.convert(tapLocation, to: tappedCell.mainContainerView.topContainerView)
-                    
-                    if likeImageView.frame.contains(convertedPoint) {
-                        self.handleLikeTapped(tappedCell: tappedCell, tapIndexPath: tapIndexPath)
-                    }
-                    else if tappedCell.showingDetails {
-                        self.delegate?.cellTapped(inRow: tapIndexPath.row)
-                    }
-                    else if detailTextLabel.frame.contains(convertedPoint) {
-                        self.handleDetailsLabelTap(tappedCell: tappedCell, tapIndexPath: tapIndexPath)
-                    }
-                    else {
-                        tappedCell.showingDetails = false
-                        self.delegate?.cellTapped(inRow: tapIndexPath.row)
-                    }
-                }
+        
+        self.tableView.tapInCell(recognizer: recognizer) { (tappedCell, tapIndexPath, tapLocation) in
+            
+            let homeTabCell = self.tableView.cellForRow(at: tapIndexPath) as! HomeTabCell
+            
+            let detailTextLabel = homeTabCell.mainContainerView.topContainerView.detailLabel
+            let likeImageView = homeTabCell.mainContainerView.topContainerView.likeImageView
+            
+            let convertedPoint = self.tableView.convert(tapLocation, to: homeTabCell.mainContainerView.topContainerView)
+            
+            if likeImageView.frame.contains(convertedPoint) {
+                self.handleLikeTapped(tapIndexPath: tapIndexPath)
             }
+            else if homeTabCell.showingDetails {
+                self.delegate?.cellTapped(inRow: tapIndexPath.row)
+            }
+            else if detailTextLabel.frame.contains(convertedPoint) {
+                self.handleDetailsLabelTap(tapIndexPath: tapIndexPath)
+            }
+            else {
+                homeTabCell.showingDetails = false
+                self.delegate?.cellTapped(inRow: tapIndexPath.row)
+            }
+            
         }
     }
     
-    private func handleLikeTapped(tappedCell: HomeTabCell, tapIndexPath: IndexPath) {
+    private func handleLikeTapped(tapIndexPath: IndexPath) {
         print("like tapped")
     }
     
-    private func handleDetailsLabelTap(tappedCell: HomeTabCell, tapIndexPath: IndexPath) {
-        // hide details for previous cell
-        if let indexPath = selectedCellIndexPath {
-            let previousCell = self.tableView.cellForRow(at: indexPath) as? HomeTabCell
-            previousCell?.showingDetails = false
-        }
-        // show current cell details
-        tappedCell.showingDetails = true
+    private func handleDetailsLabelTap(tapIndexPath: IndexPath) {
         
-        if selectedCellIndexPath != nil && selectedCellIndexPath?.row == tapIndexPath.row {
-            selectedCellIndexPath = nil
-        } else {
-            selectedCellIndexPath = tapIndexPath as IndexPath?
+        let currentCell = self.tableView.cellForRow(at: tapIndexPath) as! HomeTabCell
+        
+        if let prevCell = previousCell {
+            if prevCell.isEqual(currentCell)  {
+                return
+            }
+            else {
+                prevCell.showingDetails = false
+            }
         }
+        
+        currentCell.showingDetails = true
+        previousCell = currentCell
         
         tableView.beginUpdates()
         tableView.endUpdates()
         
-        if selectedCellIndexPath != nil {
-            // This ensures, that the cell is fully visible once expanded
-            tableView.scrollToRow(at: tapIndexPath, at: .none, animated: true)
-        }
+        tableView.scrollToRow(at: tapIndexPath, at: .middle, animated: true)
     }
     
 }
@@ -128,7 +120,7 @@ class HomeTabMainView: UIView {
 extension HomeTabMainView: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return 10
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

@@ -42,7 +42,9 @@ class HomeTabCell: UITableViewCell {
         }
     }
     
-  
+    override func prepareForReuse() {
+        self.showingDetails = false
+    }
     
     //MARK: Vars
     

@@ -8,12 +8,19 @@
 
 import UIKit
 
-extension UIView {    
+extension UIView {
+    
     func addSubviews(_ subviews:[UIView]){
         
         for subview in subviews{
             subview.translatesAutoresizingMaskIntoConstraints = false
             self.addSubview(subview)
         }
+    }
+    
+    func animateConstraintsTransition(withDuration dur: TimeInterval) {
+        UIView.animate(withDuration: dur, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+            self.layoutIfNeeded()
+        }, completion: nil)
     }
 }

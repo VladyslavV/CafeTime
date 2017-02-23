@@ -25,7 +25,7 @@ class UserMenuOptionsCell: UITableViewCell {
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        self.addSubviews([optionImageView, optionTextLabel])
+        self.contentView.addSubviews([optionImageView, optionTextLabel])
         self.setUp()
     }
     
@@ -35,18 +35,25 @@ class UserMenuOptionsCell: UITableViewCell {
     
     private func setUp() {
         self.selectionStyle = .gray
-
+        
+        self.contentView.snp.remakeConstraints { (make) in
+            make.height.equalTo(Utils.shared.screenSize().height * 0.15)
+            make.leading.trailing.equalTo(self)
+            make.top.equalTo(self.snp.top).offset(10)
+            make.bottom.equalTo(self.snp.bottom).offset(-10)
+        }
+        
         optionImageView.snp.remakeConstraints { (make) in
-            make.centerY.equalTo(self.snp.centerY)
+            make.width.height.equalTo(self.snp.height).multipliedBy(0.7)
             make.leading.equalTo(self.snp.leading).offset(20)
-            make.height.width.equalTo(self.snp.height).multipliedBy(0.7)
+            make.centerY.equalTo(self.snp.centerY)
         }
         
         optionTextLabel.snp.remakeConstraints { (make) in
             make.leading.equalTo(optionImageView.snp.trailing).offset(10)
-            make.centerY.equalTo(self.snp.centerY)
-            make.height.equalTo(self.snp.height).multipliedBy(0.9)
-            make.trailing.equalTo(self.snp.trailing)
+            make.centerY.equalTo(optionImageView.snp.centerY)
+            make.height.equalTo(optionImageView.snp.height).multipliedBy(0.8)
+            make.trailing.lessThanOrEqualTo(self.snp.trailing).offset(-5)
         }
     }
 }
