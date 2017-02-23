@@ -7,14 +7,26 @@
 //
 
 import UIKit
+import SnapKit
 
 class CommentsPageVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        self.view.backgroundColor = UIColor.green
+        self.view.addSubview(mainView)
+        self.setUp()
     }
 
+    private let mainView: CommentsPageMainView = {
+        let myVar = CommentsPageMainView()
+        return myVar
+    }()
+    
+    private func setUp() {
+        
+        mainView.snp.makeConstraints { (make) in
+            make.edges.equalTo(self.view)
+        }
+    }
     
 }

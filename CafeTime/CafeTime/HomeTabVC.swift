@@ -20,10 +20,17 @@ class HomeTabVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.addSubview(mainView)
-        self.revealViewController().delegate = self
         self.revealViewController().panGestureRecognizer()
         self.revealViewController().tapGestureRecognizer()
         self.setUp()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.revealViewController().delegate = self
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        self.revealViewController().delegate = nil
     }
     
     private func setUp() {

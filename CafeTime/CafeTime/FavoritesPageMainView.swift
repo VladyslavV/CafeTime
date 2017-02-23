@@ -25,7 +25,7 @@ class FavoritesPageMainView: UIView {
     
     // MARK: Vars
     
-    fileprivate let cellID = "cell"
+    internal let cellID = "cell"
     private lazy var tableView: UITableView = {
         let myVar = UITableView()
         myVar.register(FavoritesPageCell.self, forCellReuseIdentifier: self.cellID)
@@ -60,7 +60,7 @@ class FavoritesPageMainView: UIView {
     
     func tapEdit(_ recognizer: UITapGestureRecognizer)  {
         
-        self.tableView.tapInCell(recognizer: recognizer) { (tappedCell, tapIndexPath, tapLocation) in
+        self.tableView.tapInCell(recognizer: recognizer) { (tapIndexPath, tapLocation) in
             
             let favPageCell = self.tableView.cellForRow(at: tapIndexPath) as! FavoritesPageCell
             
@@ -79,18 +79,25 @@ class FavoritesPageMainView: UIView {
         
         let currentCell = self.tableView.cellForRow(at: tapIndexPath) as! FavoritesPageCell
         
+        // handle previous cell
         if let prevCell = previousCell {
-            if prevCell.isEqual(currentCell)  {
+            if prevCell.isEqual(currentCell) {
+                currentCell.editingState = (false, true)
+                previousCell = nil
                 return
             }
             else {
-                prevCell.editingState = false
+                prevCell.editingState = (false,true)
             }
         }
         
-        currentCell.editingState = true
-        tableView.scrollToRow(at: tapIndexPath, at: .middle, animated: true)
+        if currentCell.editingState.0 {
+            currentCell.editingState = (false, true)
+            return
+        }
         
+        currentCell.editingState = (true,true)
+        tableView.scrollToRow(at: tapIndexPath, at: .none, animated: true)
         previousCell = currentCell
     }
 }

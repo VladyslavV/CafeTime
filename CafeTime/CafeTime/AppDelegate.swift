@@ -37,7 +37,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         
-        
         let auth = Remote.anyAccess().auth
         guard let localCredentials = auth.userCredentials() else {
             perform(#selector(presentLoginVC), with: nil, afterDelay: 0.1)
@@ -49,7 +48,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 return
             }
         })
-        
         
         return true
     }

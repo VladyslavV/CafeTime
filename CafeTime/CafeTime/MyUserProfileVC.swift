@@ -23,6 +23,11 @@ class MyUserProfileVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.navigationItem.title = "My Profile"
+        self.navigationController?.navigationBar.transparentNavigationBar()
+
+        
         self.automaticallyAdjustsScrollViewInsets = false
         self.revealViewController().delegate = self
 
@@ -33,7 +38,6 @@ class MyUserProfileVC: UIViewController {
         self.view.addSubview(pagesContainerVC.view)
         pagesContainerVC.didMove(toParentViewController: self)
         self.setUp()
-
     }
     
     
@@ -51,16 +55,13 @@ class MyUserProfileVC: UIViewController {
     
     private func setUp() {
         
-        self.navigationItem.title = "My Profile"
-        
         pagesContainerVC.view.snp.makeConstraints { (make) in
             make.leading.trailing.bottom.equalTo(self.view)
             make.height.equalTo(self.view.snp.height).multipliedBy(0.6)
         }
         
         mainView.snp.makeConstraints { (make) -> Void in
-            make.left.right.bottom.equalTo(self.view)
-            make.top.equalTo(self.topLayoutGuide.snp.bottom)
+            make.top.leading.trailing.bottom.equalTo(self.view)
         }
     }
 }

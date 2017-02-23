@@ -24,6 +24,7 @@ class MenuVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.addSubview(mainView)
+
         self.newsTabBarVC = self.revealViewController().frontViewController as! NewsTabBarVC?
         self.setUp()
     }
@@ -83,6 +84,8 @@ extension MenuVC: UserMenuOptionsDelegate {
             print("near me chosen")
         case .myRestaurants:
             print("my restaurants chosen")
+        case .logOut:
+            self.logOutUser()
         default:
             return
         }
@@ -92,6 +95,17 @@ extension MenuVC: UserMenuOptionsDelegate {
             self.revealViewController().pushFrontViewController(nav, animated: false)
             self.revealViewController().setFrontViewPosition(.leftSideMost, animated: true)
             self.previousOptionClicked = userMenuOptions
+        }
+    }
+    
+    
+    fileprivate func logOutUser() {
+        if let auth = Remote.serverAccess()?.auth {
+            auth.logOutUser()
+            self.presentInNav(vcs: [self, LoginVC()])
+        }
+        else {
+            self.presentAlert(message: NSLocalizedString("allert.title.no.internet", comment: ""))
         }
     }
     

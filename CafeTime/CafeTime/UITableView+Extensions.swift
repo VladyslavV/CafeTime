@@ -11,13 +11,13 @@ import Foundation
 extension UITableView {
     
     
-    func tapInCell(recognizer: UITapGestureRecognizer, completion: (_ cell: UITableViewCell, _ indexPath: IndexPath, _ tapLocation: CGPoint) -> () ) {
+    func tapInCell(recognizer: UITapGestureRecognizer, completion: (_ indexPath: IndexPath, _ tapLocation: CGPoint) -> () ) {
         
         if recognizer.state == UIGestureRecognizerState.ended {
             let tapLocation = recognizer.location(in: self)
             if let tapIndexPath = self.indexPathForRow(at: tapLocation) {
                 if let tappedCell = self.cellForRow(at: tapIndexPath) {
-                    completion(tappedCell, tapIndexPath, tapLocation)
+                    completion(tapIndexPath, tapLocation)
                 }
             }
         }

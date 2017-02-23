@@ -46,11 +46,10 @@ class MyUserProfileView: ReusableUserProfileView {
     
     private func setUp() {
         
-        
         profileImageViewFront.snp.remakeConstraints { (make) in
             make.centerX.equalTo(self.snp.centerX)
             make.width.height.equalTo(self.snp.height).multipliedBy(0.4)
-            make.top.equalTo(self.snp.top).offset(30)
+            make.centerY.equalTo(self.snp.centerY).offset(-30)
         }
         
         

@@ -16,6 +16,7 @@ class LoginVC: UIViewController, LoginViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
         self.setUp()
     }
     

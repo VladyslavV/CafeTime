@@ -39,6 +39,8 @@
 		31345F0B1E5DB4B30016979E /* FavoritesPageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31345F0A1E5DB4B30016979E /* FavoritesPageCell.swift */; };
 		31345F0D1E5DDDDB0016979E /* UITableView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31345F0C1E5DDDDB0016979E /* UITableView+Extensions.swift */; };
 		31345F0F1E5EDF920016979E /* UUID+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31345F0E1E5EDF920016979E /* UUID+Extension.swift */; };
+		31345F111E5F28C30016979E /* CommentsPageMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31345F101E5F28C20016979E /* CommentsPageMainView.swift */; };
+		31345F131E5F2E200016979E /* UINavigationBar+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31345F121E5F2E200016979E /* UINavigationBar+Extension.swift */; };
 		313532A51E474E8A00BA039C /* ChatVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313532A41E474E8A00BA039C /* ChatVC.swift */; };
 		313532A81E47519400BA039C /* ChatMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313532A71E47519400BA039C /* ChatMainView.swift */; };
 		313532AA1E4752A500BA039C /* ChatInputComponentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313532A91E4752A500BA039C /* ChatInputComponentsView.swift */; };
@@ -130,6 +132,8 @@
 		31345F0A1E5DB4B30016979E /* FavoritesPageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesPageCell.swift; sourceTree = "<group>"; };
 		31345F0C1E5DDDDB0016979E /* UITableView+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+Extensions.swift"; sourceTree = "<group>"; };
 		31345F0E1E5EDF920016979E /* UUID+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UUID+Extension.swift"; sourceTree = "<group>"; };
+		31345F101E5F28C20016979E /* CommentsPageMainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentsPageMainView.swift; sourceTree = "<group>"; };
+		31345F121E5F2E200016979E /* UINavigationBar+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINavigationBar+Extension.swift"; sourceTree = "<group>"; };
 		313532A41E474E8A00BA039C /* ChatVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatVC.swift; sourceTree = "<group>"; };
 		313532A71E47519400BA039C /* ChatMainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatMainView.swift; sourceTree = "<group>"; };
 		313532A91E4752A500BA039C /* ChatInputComponentsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatInputComponentsView.swift; sourceTree = "<group>"; };
@@ -318,6 +322,7 @@
 			isa = PBXGroup;
 			children = (
 				3121D0EE1E58719400E2CC0C /* CommentsPageVC.swift */,
+				31345F101E5F28C20016979E /* CommentsPageMainView.swift */,
 			);
 			name = Comments;
 			sourceTree = "<group>";
@@ -403,6 +408,7 @@
 				31BE83711E52FCDC00B9FA34 /* UIImageView+Extensions.swift */,
 				313532AD1E48E62B00BA039C /* UIViewController+Extension.swift */,
 				31345F0C1E5DDDDB0016979E /* UITableView+Extensions.swift */,
+				31345F121E5F2E200016979E /* UINavigationBar+Extension.swift */,
 				3139118E1E3F6C5100EDAD40 /* UITextField+Extensions.swift */,
 				313911791E3BCC1600EDAD40 /* UIView+Extension.swift */,
 				3139117B1E3E12AA00EDAD40 /* UIAlertAction+Extensions.swift */,
@@ -843,6 +849,7 @@
 				31BE83761E549DE400B9FA34 /* HomeTabVC.swift in Sources */,
 				31BE836C1E51DE4E00B9FA34 /* NewsTabBarVC.swift in Sources */,
 				310B753A1E4088E6008ADF62 /* CustomerRealm.swift in Sources */,
+				31345F131E5F2E200016979E /* UINavigationBar+Extension.swift in Sources */,
 				31345F0F1E5EDF920016979E /* UUID+Extension.swift in Sources */,
 				31345F021E5C446B0016979E /* DetailsPageBottomContainerView.swift in Sources */,
 				3133C5011E4F60CB0060ED60 /* MainView.swift in Sources */,
@@ -858,6 +865,7 @@
 				310610E21E56F7D6005A533D /* ReusableCellContainerView.swift in Sources */,
 				3121D0EC1E58716E00E2CC0C /* FavoritesPageVC.swift in Sources */,
 				315828CE1E39F17D00EBD20E /* LoginVC.swift in Sources */,
+				31345F111E5F28C30016979E /* CommentsPageMainView.swift in Sources */,
 				315828C81E39EE5400EBD20E /* SignUpView.swift in Sources */,
 				31A48B521E56FFB9007C2F28 /* MyUserProfileView.swift in Sources */,
 				316B51831E4B1D5E000EF798 /* Constants.swift in Sources */,

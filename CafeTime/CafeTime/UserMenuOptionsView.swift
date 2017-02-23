@@ -22,8 +22,9 @@ enum UserMenuOptions: String {
     case favorite = "Favorite"
     case nearMe = "Near Me"
     case myRestaurants = "My Restaurants"
+    case logOut = "Log Out"
     
-    static let allValues = [myProfile, settings, news, myComments, chat, favorite, nearMe, myRestaurants]
+    static let allValues = [myProfile, settings, news, myComments, chat, favorite, nearMe, myRestaurants, logOut]
     
 }
 

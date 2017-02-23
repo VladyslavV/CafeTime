@@ -32,14 +32,21 @@ class FavoritesPageCell: UITableViewCell {
     
     let containerView = ReusableCellContainerView()
     
-    var editingState: Bool = false {
+    
+    var editingState: (Bool,Bool) = (false, false) {
         didSet {
-            if editingState {
+            if editingState.0 {
+    
                 self.setUpDeletingStateConstraints()
             }
             else {
                 self.setUpNormalStateConstraints()
             }
+            
+            if editingState.1 {
+                self.animateConstraintsTransition(withDuration: 0.75)
+            }
+
         }
     }
     
@@ -58,7 +65,6 @@ class FavoritesPageCell: UITableViewCell {
      
         containerView.cellState = .normal
         
-        //self.animateConstraintsTransition(withDuration: 0.75)
     }
     
     private func setUpDeletingStateConstraints() {
@@ -71,7 +77,6 @@ class FavoritesPageCell: UITableViewCell {
         
         containerView.cellState = .deleting
         
-        self.animateConstraintsTransition(withDuration: 0.75)
     }
 
     

@@ -84,7 +84,7 @@ class CurrentUserProfileVC: UIViewController  {
    
     // MARK: Private Funcs
     
-    internal func logOutUser() {
+    fileprivate func logOutUser() {
         if let auth = Remote.serverAccess()?.auth {
             auth.logOutUser()
             self.presentInNav(vcs: [self, LoginVC()])

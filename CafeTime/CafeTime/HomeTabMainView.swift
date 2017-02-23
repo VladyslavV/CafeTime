@@ -60,7 +60,7 @@ class HomeTabMainView: UIView {
     
     func tapEdit(_ recognizer: UITapGestureRecognizer)  {
         
-        self.tableView.tapInCell(recognizer: recognizer) { (tappedCell, tapIndexPath, tapLocation) in
+        self.tableView.tapInCell(recognizer: recognizer) { (tapIndexPath, tapLocation) in
             
             let homeTabCell = self.tableView.cellForRow(at: tapIndexPath) as! HomeTabCell
             
@@ -109,7 +109,7 @@ class HomeTabMainView: UIView {
         tableView.beginUpdates()
         tableView.endUpdates()
         
-        tableView.scrollToRow(at: tapIndexPath, at: .middle, animated: true)
+        tableView.scrollToRow(at: tapIndexPath, at: .none, animated: true)
     }
     
 }
