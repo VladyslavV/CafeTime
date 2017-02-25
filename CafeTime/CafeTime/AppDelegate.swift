@@ -25,6 +25,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let menuVC = MenuVC()
         let tabBarVC = NewsTabBarVC()
         
+       // let tabBarVC = CurrentUserProfileVC()
+
         let revealVC = SWRevealViewController(rearViewController: menuVC, frontViewController: tabBarVC)
         revealVC?.view.backgroundColor = UIColor.white
         

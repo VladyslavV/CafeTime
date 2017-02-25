@@ -15,6 +15,7 @@ class CommentsPageMainView: FavoritesPageMainView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -37,6 +38,7 @@ extension CommentsPageMainView {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath) as! FavoritesPageCell
         
+        cell.delegate = self
         cell.containerView.titleLabel.text = "Comments"
         cell.containerView.detailLabel.text = "Some comments leaved by this particular customer for a specific restaurant"
         

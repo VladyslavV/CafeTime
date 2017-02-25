@@ -19,11 +19,11 @@ class DetailsPageBottomContainerView: ReusableEmtpyCellContainer {
         
         self.setUpConstraints()
         
-        self.setUpValues(image: nil, email: "Email placeholder", editButton: nil, forContainer: nameContainerView)
+        self.setUpValues(image: nil, email: "Name placeholder", editButton: nil, forContainer: nameContainerView)
         
         self.setUpValues(image: nil, email: "Email placeholder", editButton: nil, forContainer: emailContainerView)
         
-        self.setUpValues(image: nil, email: "Email placeholder", editButton: nil, forContainer: locationContainerView)
+        self.setUpValues(image: nil, email: "Location placeholder", editButton: nil, forContainer: locationContainerView)
     }
     
     required init?(coder aDecoder: NSCoder) {

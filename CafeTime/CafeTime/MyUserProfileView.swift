@@ -13,6 +13,8 @@ protocol MyUserProfileViewDelegate: class {
     func starButtonPressed()
 }
 
+
+
 class MyUserProfileView: ReusableUserProfileView {
 
     weak var delegate: MyUserProfileViewDelegate?
@@ -20,7 +22,6 @@ class MyUserProfileView: ReusableUserProfileView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.addSubviews([starButton, chatButton])
-        self.setUp()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -44,14 +45,20 @@ class MyUserProfileView: ReusableUserProfileView {
     
     // MARK: Set Up
     
+    override func setNeedsLayout() {
+        super.setNeedsLayout()
+        self.setUp()
+    }
+    
     private func setUp() {
         
-        profileImageViewFront.snp.remakeConstraints { (make) in
-            make.centerX.equalTo(self.snp.centerX)
-            make.width.height.equalTo(self.snp.height).multipliedBy(0.4)
-            make.centerY.equalTo(self.snp.centerY).offset(-30)
+        if let parentVC = self.parentViewController as? MyUserProfileVC {
+            profileImageViewFront.snp.remakeConstraints { (make) in
+                make.centerX.equalTo(self.snp.centerX)
+                make.width.height.equalTo(self.snp.height).multipliedBy(0.4)
+                make.top.equalTo(parentVC.topLayoutGuide.snp.bottom).offset(10)
+            }
         }
-        
         
         let starButtonHelpView = UIView()
         self.addSubview(starButtonHelpView)

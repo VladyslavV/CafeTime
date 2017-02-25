@@ -82,8 +82,10 @@ class ImageVC: UIViewController, UIScrollViewDelegate, UIGestureRecognizerDelega
         myImageView.snp.makeConstraints { (make) -> Void in
             make.edges.width.height.equalTo(scrollView)
         }
-        
     }
+    
+    
+    
     
 //    override func viewDidLayoutSubviews() {
 //        if self.traitCollection.mk_matchesPhonePortrait() {

@@ -24,7 +24,7 @@ class MenuVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.addSubview(mainView)
-
+        
         self.newsTabBarVC = self.revealViewController().frontViewController as! NewsTabBarVC?
         self.setUp()
     }
@@ -77,6 +77,7 @@ extension MenuVC: UserMenuOptionsDelegate {
         case .myComments:
             print("comments chosen")
         case .chat:
+            vc = ChatVC(userID: "some id")
             print("chat chosen")
         case .favorite:
             print("favorite chosen")

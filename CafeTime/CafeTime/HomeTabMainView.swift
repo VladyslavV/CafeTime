@@ -96,6 +96,7 @@ class HomeTabMainView: UIView {
         
         if let prevCell = previousCell {
             if prevCell.isEqual(currentCell)  {
+                previousCell = nil
                 return
             }
             else {
@@ -118,6 +119,7 @@ class HomeTabMainView: UIView {
 // MARK: TableView Delegate
 
 extension HomeTabMainView: UITableViewDelegate, UITableViewDataSource {
+
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 10
@@ -125,6 +127,7 @@ extension HomeTabMainView: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
+      
         let cell = self.tableView.dequeueReusableCell(withIdentifier: "homeTabCell", for: indexPath) as! HomeTabCell
         
         cell.mainContainerView.topContainerView.titleLabel.text = "Title"

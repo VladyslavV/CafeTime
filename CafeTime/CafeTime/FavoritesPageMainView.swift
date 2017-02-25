@@ -25,9 +25,12 @@ class FavoritesPageMainView: UIView {
     
     // MARK: Vars
     
+    fileprivate var data = ["item 1", "item 2", "item 3", "item 4"]
+    
     internal let cellID = "cell"
-    private lazy var tableView: UITableView = {
+    fileprivate lazy var tableView: UITableView = {
         let myVar = UITableView()
+        myVar.backgroundColor = UIColor.lightGray
         myVar.register(FavoritesPageCell.self, forCellReuseIdentifier: self.cellID)
         myVar.tableFooterView = UIView()
         myVar.separatorStyle = .none
@@ -106,7 +109,7 @@ class FavoritesPageMainView: UIView {
 extension FavoritesPageMainView: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return data.count
     }
     
     
@@ -114,9 +117,25 @@ extension FavoritesPageMainView: UITableViewDelegate, UITableViewDataSource {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath) as! FavoritesPageCell
         
-        cell.containerView.titleLabel.text = "Burger King"
+        cell.delegate = self
+        cell.containerView.titleLabel.text = data[indexPath.row]
         cell.containerView.detailLabel.text = "Some description of Burger King. Some other text will go here for testing purposes!"
         
         return cell
     }
+}
+
+extension FavoritesPageMainView: FavoritesPageCellDelegate {
+    
+    func deleteCell(cell: FavoritesPageCell) {
+        print("delete")
+        let cellIndexPath = self.tableView.indexPath(for: cell)
+        if let indexPath = cellIndexPath {
+            data.remove(at: indexPath.row)
+            self.tableView.deleteRows(at: [indexPath], with: .automatic)
+        }
+        
+        
+    }
+    
 }

@@ -32,5 +32,4 @@ class DetailsPageVC: UIViewController {
         self.setUp()
     }
     
-    
 }

@@ -27,31 +27,38 @@ class CellBottomDetailsContainerView: UIView {
     
     let discountLabel: UILabel = {
         let myVar = UILabel()
-        myVar.backgroundColor = UIColor.green
+       // myVar.backgroundColor = UIColor.green
         myVar.text = "Dicsount on"
         return myVar
     }()
     
     let sandwichImageView: UIImageView = {
         let myVar = UIImageView()
+        myVar.contentMode = .scaleToFill
+        myVar.image = UIImage(named: "sandwich")
         myVar.backgroundColor = UIColor.green
         return myVar
     }()
     
     let saladImageView: UIImageView = {
         let myVar = UIImageView()
-        myVar.backgroundColor = UIColor.green
+        myVar.contentMode = .scaleToFill
+        myVar.image = UIImage(named: "salad")
+        //myVar.backgroundColor = UIColor.green
         return myVar
     }()
     
     let drinksImageView: UIImageView = {
         let myVar = UIImageView()
-        myVar.backgroundColor = UIColor.green
+        myVar.contentMode = .scaleToFill
+        myVar.image = UIImage(named: "cola")
+        //myVar.backgroundColor = UIColor.green
         return myVar
     }()
     
     let dishesImageView: UIImageView = {
         let myVar = UIImageView()
+        myVar.contentMode = .scaleToFill
         myVar.backgroundColor = UIColor.green
         return myVar
     }()
@@ -59,7 +66,7 @@ class CellBottomDetailsContainerView: UIView {
     let sandwichLabel: UILabel = {
         let myVar = UILabel()
         myVar.textAlignment = NSTextAlignment.center
-        myVar.backgroundColor = UIColor.green
+        //myVar.backgroundColor = UIColor.green
         myVar.adjustsFontSizeToFitWidth = true
         myVar.text = "Sandwiches"
         return myVar
@@ -68,7 +75,7 @@ class CellBottomDetailsContainerView: UIView {
     let saladLabel: UILabel = {
         let myVar = UILabel()
         myVar.textAlignment = NSTextAlignment.center
-        myVar.backgroundColor = UIColor.green
+        //myVar.backgroundColor = UIColor.green
         myVar.adjustsFontSizeToFitWidth = true
         myVar.text = "Salads"
         return myVar
@@ -77,7 +84,7 @@ class CellBottomDetailsContainerView: UIView {
     let drinksLabel: UILabel = {
         let myVar = UILabel()
         myVar.textAlignment = NSTextAlignment.center
-        myVar.backgroundColor = UIColor.green
+       //myVar.backgroundColor = UIColor.green
         myVar.adjustsFontSizeToFitWidth = true
         myVar.text = "Drinks"
         return myVar
@@ -86,7 +93,7 @@ class CellBottomDetailsContainerView: UIView {
     let dishesLabel: UILabel = {
         let myVar = UILabel()
         myVar.textAlignment = NSTextAlignment.center
-        myVar.backgroundColor = UIColor.green
+       // myVar.backgroundColor = UIColor.green
         myVar.adjustsFontSizeToFitWidth = true
         myVar.text = "Dishes"
         return myVar
@@ -167,11 +174,11 @@ class CellBottomDetailsContainerView: UIView {
 
         }
     }
-    
+       
     override func layoutSubviews() {
         super.layoutSubviews()
         self.layer.cornerRadius = self.frame.size.width / 27
-        
         self.setUp()
+
     }
 }

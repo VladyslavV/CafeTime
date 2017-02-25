@@ -14,8 +14,8 @@ class CellTopDetailsContainerView: ReusableCellContainerView {
         super.init(frame: frame)
         self.addSubviews([discountLabel, likeLabel])
         self.setUp()
-        titleLabel.backgroundColor = UIColor.green
-        detailLabel.backgroundColor = UIColor.red
+       // titleLabel.backgroundColor = UIColor.green
+       // detailLabel.backgroundColor = UIColor.red
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -45,7 +45,8 @@ class CellTopDetailsContainerView: ReusableCellContainerView {
     // MARK: Constraints
     
     private func setUp() {
-        myImageView.image = UIImage(named: "image")
+        myImageView.image = UIImage(named: "sandwich")
+        myImageView.contentMode = .scaleToFill  
         rightImageView.image = UIImage(named: "heart")
         
         rightImageView.snp.remakeConstraints { (make) in
@@ -59,5 +60,6 @@ class CellTopDetailsContainerView: ReusableCellContainerView {
             make.width.equalTo(rightImageView.snp.width)
             make.centerX.equalTo(rightImageView.snp.centerX)
         }
+
     }
 }

@@ -12,7 +12,7 @@ import SnapKit
 class ChatVC: UIViewController {
     
     // MARK: Vars
-    private var customer: Customer!
+    private var userID: String!
     
     private lazy var mainView: ChatMainView = {
         let myVar = ChatMainView()
@@ -30,14 +30,16 @@ class ChatVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.revealViewController().delegate = self
         self.setUp()
         self.setUpNavBar()
     }
+
     
     
-    init(customer: Customer) {
+    init(userID: String) {
         super.init(nibName: nil, bundle: nil)
-        self.customer = customer
+        self.userID = userID
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -60,7 +62,7 @@ class ChatVC: UIViewController {
     
     func setUpNavBar() {
         self.navigationController?.navigationBar.topItem?.title = ""
-        self.navigationItem.titleView = NavBarTitleView(withURLString: customer.profileImageURL, name: customer.name)
+        self.navigationItem.titleView = NavBarTitleView(withURLString: "http://ichef.bbci.co.uk/news/660/cpsprodpb/A2E4/production/_89400714_gettyimages-522829204.jpg", name: "Donald")
     }
   
     override func viewWillDisappear(_ animated: Bool) {

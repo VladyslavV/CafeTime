@@ -23,8 +23,8 @@ class DetailsPageMainView: UIView {
     }
     
     // MARK: Vars
-    private let topContainerView = DetailsPageTopContainerView()
-    private let btmContainerView = DetailsPageBottomContainerView()
+    let topContainerView = DetailsPageTopContainerView()
+    let btmContainerView = DetailsPageBottomContainerView()
 
     // MARK: SetUp
     

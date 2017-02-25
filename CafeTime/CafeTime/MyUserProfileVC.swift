@@ -64,6 +64,18 @@ class MyUserProfileVC: UIViewController {
             make.top.leading.trailing.bottom.equalTo(self.view)
         }
     }
+    
+    
+    // MARK: Assign Data From Server 
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        Remote.anyAccess().customer.fetchCurrentCustomer { [weak self] (customer) in
+            
+            guard let weakSelf = self else { return }
+            weakSelf.mainView.myUserProfileView.nameLabel.text = customer?.name
+        }
+    }
 }
 
 extension MyUserProfileVC: MyUserProfileViewDelegate {

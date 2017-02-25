@@ -9,9 +9,12 @@
 import UIKit
 import SnapKit
 
+protocol FavoritesPageCellDelegate: class {
+    func deleteCell(cell: FavoritesPageCell)
+}
+
 class FavoritesPageCell: UITableViewCell {
 
-    
     // MARK: Init
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
@@ -20,6 +23,8 @@ class FavoritesPageCell: UITableViewCell {
         self.selectionStyle = .none
         self.contentView.addSubview(containerView)
         self.setUpNormalStateConstraints()
+        
+        self.containerView.deleteButton.addTarget(self, action: #selector(deleteCell), for: .touchUpInside)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -28,10 +33,9 @@ class FavoritesPageCell: UITableViewCell {
     
     // MARK: Vars
     
-    public private(set) var id = UUID().uuidString
+    weak var delegate: FavoritesPageCellDelegate?
     
     let containerView = ReusableCellContainerView()
-    
     
     var editingState: (Bool,Bool) = (false, false) {
         didSet {
@@ -79,5 +83,10 @@ class FavoritesPageCell: UITableViewCell {
         
     }
 
+    // MARK: Actions
+    
+    @objc private func deleteCell() {
+        self.delegate?.deleteCell(cell: self)
+    }
     
 }

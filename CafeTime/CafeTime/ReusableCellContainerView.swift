@@ -17,6 +17,7 @@ enum CellState {
 
 class ReusableCellContainerView: ReusableEmtpyCellContainer {
     
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = UIColor.white
@@ -66,7 +67,7 @@ class ReusableCellContainerView: ReusableEmtpyCellContainer {
     
     let titleLabel: UILabel = {
         let myVar = UILabel()
-        myVar.backgroundColor = UIColor.green
+       // myVar.backgroundColor = UIColor.green
         myVar.adjustsFontSizeToFitWidth = true
         myVar.numberOfLines = 0
         return myVar
@@ -74,7 +75,7 @@ class ReusableCellContainerView: ReusableEmtpyCellContainer {
     
     let detailLabel: UILabel = {
         let myVar = UILabel()
-        myVar.backgroundColor = UIColor.green
+      //  myVar.backgroundColor = UIColor.green
         myVar.font = UIFont.systemFont(ofSize: 14)
         myVar.numberOfLines = 0
         return myVar
@@ -91,7 +92,7 @@ class ReusableCellContainerView: ReusableEmtpyCellContainer {
     
     // MARK: Set UP
     
-    func setUpNormalState() {
+    private func setUpNormalState() {
         
         helpView.snp.makeConstraints { (make) in
             make.leading.equalTo(self.snp.leading).offset(10)
@@ -140,7 +141,7 @@ class ReusableCellContainerView: ReusableEmtpyCellContainer {
         }
     }
     
-    func setUpDeletingState() {
+    private func setUpDeletingState() {
         
         myImageView.snp.remakeConstraints { (make) in
             make.trailing.equalTo(self.snp.leading).offset(-100)

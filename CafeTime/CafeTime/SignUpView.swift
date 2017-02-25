@@ -30,8 +30,7 @@ class SignUpView: UIView, UITextFieldDelegate {
     
     var customer = Customer()
     var cafe = Cafe()
-    
-    
+
     weak var delegate : SignUpViewDelegate?
     
     // MARK: Vars
