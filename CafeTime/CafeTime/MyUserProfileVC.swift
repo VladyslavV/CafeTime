@@ -10,8 +10,15 @@ import UIKit
 import SnapKit
 
 class MyUserProfileVC: UIViewController {
-        
-    private let vcsList = [["Details" : DetailsPageVC()], ["Favorites" : FavoritesPageVC()], ["Comments" : CommentsPageVC()]] as [Any]
+    
+    private let detailsPageVC = DetailsPageVC()
+    private let favoritesPageVC = FavoritesPageVC()
+    private let commentsPagePC = CommentsPageVC()
+
+    private lazy var vcsList: [Any] = {
+        let dict = [["Details" : self.detailsPageVC], ["Favorites" : self.favoritesPageVC], ["Comments" : self.commentsPagePC]] as [Any]
+        return dict
+    }()
     
     private lazy var pagesContainerVC: ReusablePagesVC = {
         let myVar = ReusablePagesVC(vcsList: self.vcsList as! [[String : UIViewController]])
@@ -74,6 +81,11 @@ class MyUserProfileVC: UIViewController {
             
             guard let weakSelf = self else { return }
             weakSelf.mainView.myUserProfileView.nameLabel.text = customer?.name
+            
+            // pass info to vc
+            weakSelf.detailsPageVC.mainView.btmContainerView.name = customer?.name
+            weakSelf.detailsPageVC.mainView.btmContainerView.email = customer?.email
+
         }
     }
 }

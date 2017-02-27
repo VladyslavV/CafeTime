@@ -32,6 +32,32 @@ class DetailsPageBottomContainerView: ReusableEmtpyCellContainer {
     
     // MARK: Vars
     
+    // MARK: Public
+
+    var name: String? = "" {
+        didSet {
+            let nameLabel = nameContainerView.midView as! UILabel
+            nameLabel.text = name
+        }
+    }
+    
+    var email: String? = "" {
+        didSet {
+            let emailLabel = emailContainerView.midView as! UILabel
+            emailLabel.text = email
+        }
+    }
+    
+    var location: String? = "" {
+        didSet {
+            let locationLabel = locationContainerView.midView as! UILabel
+            locationLabel.text = location
+        }
+    }
+
+    
+    // MARK: Private
+
     private let nameContainerView = Reusable_LeftView_MidView_RightView_Container(view1: UIImageView(), view2: UILabel(), view3: UIButton())
     private let emailContainerView = Reusable_LeftView_MidView_RightView_Container(view1: UIImageView(), view2: UILabel(), view3: UIButton())
     private let locationContainerView = Reusable_LeftView_MidView_RightView_Container(view1: UIImageView(), view2: UILabel(), view3: UIButton())

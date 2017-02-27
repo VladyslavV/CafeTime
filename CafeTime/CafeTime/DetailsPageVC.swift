@@ -15,7 +15,7 @@ class DetailsPageVC: UIViewController {
         self.view.addSubview(mainView)
     }
     
-    private let mainView: DetailsPageMainView = {
+    let mainView: DetailsPageMainView = {
         let myVar = DetailsPageMainView()
         return myVar
     }()
