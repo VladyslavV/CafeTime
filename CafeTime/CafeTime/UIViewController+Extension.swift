@@ -8,32 +8,27 @@
 
 import UIKit
 
-extension UIViewController: SWRevealViewControllerDelegate {
+extension BaseVC: SWRevealViewControllerDelegate, UIGestureRecognizerDelegate {
     
-//    public func revealController(_ revealController: SWRevealViewController!, tapGestureRecognizerShouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer!) -> Bool {
-//        return true
-//    }
-    
+    public func revealController(_ revealController: SWRevealViewController!, tapGestureRecognizerShouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer!) -> Bool {
+        return true
+    }
+   
     public func revealController(_ revealController: SWRevealViewController!, didMoveTo position: FrontViewPosition) {
         
         switch position {
             
-        case FrontViewPosition.right , .rightMost:
-            self.view.isUserInteractionEnabled = false
+        case FrontViewPosition.right :
+            self.shouldDisableUserInteraction = true
+            //self.view.isUserInteractionEnabled = false
+            break
+        case FrontViewPosition.left:
+            self.shouldDisableUserInteraction = false
+            //self.view.isUserInteractionEnabled = true
+            break
         default:
-            self.view.isUserInteractionEnabled = true
-        }
-    }
-    
-   
-    public func revealController(_ revealController: SWRevealViewController!, willMoveTo position: FrontViewPosition) {
-        
-        switch position {
-            
-        case FrontViewPosition.right , .rightMost:
-            self.view.isUserInteractionEnabled = false
-        default:
-            self.view.isUserInteractionEnabled = true
+            self.shouldDisableUserInteraction = false
+            //self.view.isUserInteractionEnabled = true
         }
     }
 }

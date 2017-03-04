@@ -85,8 +85,6 @@ class ImageVC: UIViewController, UIScrollViewDelegate, UIGestureRecognizerDelega
     }
     
     
-    
-    
 //    override func viewDidLayoutSubviews() {
 //        if self.traitCollection.mk_matchesPhonePortrait() {
 //            scrollView.layer.cornerRadius  = scrollView.frame.size.width * 0.1

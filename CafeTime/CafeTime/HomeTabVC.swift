@@ -9,9 +9,9 @@
 import UIKit
 import SnapKit
 
-class HomeTabVC: UIViewController {
+class HomeTabVC: BaseVC {
     
-    internal lazy var mainView: HomeTabMainView = {
+    fileprivate lazy var mainView: HomeTabMainView = {
         let myVar = HomeTabMainView()
         myVar.delegate = self
         return myVar
@@ -23,23 +23,22 @@ class HomeTabVC: UIViewController {
         self.revealViewController().panGestureRecognizer()
         self.revealViewController().tapGestureRecognizer()
         self.setUp()
+        
     }
-    
     override func viewWillAppear(_ animated: Bool) {
-        self.revealViewController().delegate = self
+        super.viewWillAppear(animated)
+        self.addNavBarBackgroundViewWithColor(color: UIColor.green)
     }
+
     
-    override func viewWillDisappear(_ animated: Bool) {
-        self.revealViewController().delegate = nil
-    }
+    // MARK: Set UP
     
     private func setUp() {
         self.automaticallyAdjustsScrollViewInsets = false
-        
+
         let tabBarImage = UIImage.init(named: "users_list_tabbarimage")
         self.tabBarItem = UITabBarItem(title: nil, image: tabBarImage , selectedImage: tabBarImage)
         
-        self.navigationController?.navigationBar.barTintColor = UIColor.green;
         
         self.navigationItem.title = "News"
         
@@ -49,10 +48,13 @@ class HomeTabVC: UIViewController {
             make.top.equalTo(self.topLayoutGuide.snp.bottom)
         }
     }
+    
+    
 }
 
 extension HomeTabVC: HomeTabMainViewDelegate {
     func cellTapped(inRow row: Int) {
+        self.navigationController?.pushViewController(CafeDetailsVC(), animated: true)
         print(row)
     }
 }

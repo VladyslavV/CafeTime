@@ -51,7 +51,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         })
         
+        self.setUpNavBarAppearance()
+        
         return true
+    }
+    
+    private func setUpNavBarAppearance() {
+        let navigationBarAppearance = UINavigationBar.appearance()
+        navigationBarAppearance.barStyle = .blackTranslucent
+        navigationBarAppearance.tintColor = UIColor.white
+       // navigationBarAppearance.barTintColor = UIColor.white
     }
     
     @objc private func presentLoginVC() {

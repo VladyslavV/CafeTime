@@ -9,7 +9,7 @@
 import Foundation
 import SnapKit
 
-class ChatVC: UIViewController {
+class ChatVC: BaseVC {
     
     // MARK: Vars
     private var userID: String!
@@ -61,7 +61,7 @@ class ChatVC: UIViewController {
     }
     
     func setUpNavBar() {
-        self.navigationController?.navigationBar.topItem?.title = ""
+        navBar?.topItem?.title = ""
         self.navigationItem.titleView = NavBarTitleView(withURLString: "http://ichef.bbci.co.uk/news/660/cpsprodpb/A2E4/production/_89400714_gettyimages-522829204.jpg", name: "Donald")
     }
   

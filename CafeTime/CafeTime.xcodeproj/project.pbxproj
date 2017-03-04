@@ -74,9 +74,12 @@
 		316B518B1E4B9784000EF798 /* OldUserProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316B518A1E4B9784000EF798 /* OldUserProfileVC.swift */; };
 		316B51921E4DBD26000EF798 /* NavBarTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316B51911E4DBD26000EF798 /* NavBarTitleView.swift */; };
 		3183FE6D1E4DD63100CC1492 /* ChatMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3183FE6C1E4DD63000CC1492 /* ChatMessageCell.swift */; };
+		3197B6C21E6ABD21002C30F0 /* BaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3197B6C11E6ABD21002C30F0 /* BaseVC.swift */; };
 		319DB38D1E3FAC280036640D /* UserProfileInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 319DB38C1E3FAC280036640D /* UserProfileInfoView.swift */; };
 		31A48B501E56FDE9007C2F28 /* MyUserProfileMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31A48B4F1E56FDE9007C2F28 /* MyUserProfileMainView.swift */; };
 		31A48B521E56FFB9007C2F28 /* MyUserProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31A48B511E56FFB9007C2F28 /* MyUserProfileView.swift */; };
+		31B960221E64288C00B06ECC /* CafeDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31B960211E64288C00B06ECC /* CafeDetailsVC.swift */; };
+		31B960251E6428CE00B06ECC /* CellDetailsMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31B960241E6428CE00B06ECC /* CellDetailsMainView.swift */; };
 		31BE83661E51D47500B9FA34 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31BE83651E51D47500B9FA34 /* SWRevealViewController.m */; };
 		31BE836C1E51DE4E00B9FA34 /* NewsTabBarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31BE836B1E51DE4E00B9FA34 /* NewsTabBarVC.swift */; };
 		31BE83721E52FCDC00B9FA34 /* UIImageView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31BE83711E52FCDC00B9FA34 /* UIImageView+Extensions.swift */; };
@@ -172,9 +175,12 @@
 		316B51901E4C966F000EF798 /* CafeTime.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CafeTime.entitlements; sourceTree = "<group>"; };
 		316B51911E4DBD26000EF798 /* NavBarTitleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavBarTitleView.swift; sourceTree = "<group>"; };
 		3183FE6C1E4DD63000CC1492 /* ChatMessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatMessageCell.swift; sourceTree = "<group>"; };
+		3197B6C11E6ABD21002C30F0 /* BaseVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseVC.swift; sourceTree = "<group>"; };
 		319DB38C1E3FAC280036640D /* UserProfileInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileInfoView.swift; sourceTree = "<group>"; };
 		31A48B4F1E56FDE9007C2F28 /* MyUserProfileMainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyUserProfileMainView.swift; sourceTree = "<group>"; };
 		31A48B511E56FFB9007C2F28 /* MyUserProfileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyUserProfileView.swift; sourceTree = "<group>"; };
+		31B960211E64288C00B06ECC /* CafeDetailsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CafeDetailsVC.swift; sourceTree = "<group>"; };
+		31B960241E6428CE00B06ECC /* CellDetailsMainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellDetailsMainView.swift; sourceTree = "<group>"; };
 		31BE83641E51D47500B9FA34 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		31BE83651E51D47500B9FA34 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		31BE836B1E51DE4E00B9FA34 /* NewsTabBarVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsTabBarVC.swift; sourceTree = "<group>"; };
@@ -223,13 +229,13 @@
 		310610DF1E56F613005A533D /* MENU VCS */ = {
 			isa = PBXGroup;
 			children = (
-				310610E01E56F624005A533D /* User Profile */,
-				31BE836D1E51DE6000B9FA34 /* News Tab Bar VC */,
+				310610E01E56F624005A533D /* USER PROFILE */,
+				31BE836D1E51DE6000B9FA34 /* NEWS TABBAR */,
 			);
 			name = "MENU VCS";
 			sourceTree = "<group>";
 		};
-		310610E01E56F624005A533D /* User Profile */ = {
+		310610E01E56F624005A533D /* USER PROFILE */ = {
 			isa = PBXGroup;
 			children = (
 				310610DD1E56F5F7005A533D /* MyUserProfileVC.swift */,
@@ -237,7 +243,7 @@
 				31A48B511E56FFB9007C2F28 /* MyUserProfileView.swift */,
 				3121D0E91E58713B00E2CC0C /* User Pages VC */,
 			);
-			name = "User Profile";
+			name = "USER PROFILE";
 			sourceTree = "<group>";
 		};
 		310B75381E4088CD008ADF62 /* Network + DAO */ = {
@@ -432,6 +438,7 @@
 		313911971E3F927100EDAD40 /* VCs */ = {
 			isa = PBXGroup;
 			children = (
+				3197B6C11E6ABD21002C30F0 /* BaseVC.swift */,
 				31DD52081E38B05900DB9ABC /* SignUp + Login */,
 				31BE83701E521C0300B9FA34 /* Reveal Menu VC */,
 				310610DF1E56F613005A533D /* MENU VCS */,
@@ -510,6 +517,15 @@
 			name = Views;
 			sourceTree = "<group>";
 		};
+		31B960231E64288F00B06ECC /* Cafe Details VC */ = {
+			isa = PBXGroup;
+			children = (
+				31B960211E64288C00B06ECC /* CafeDetailsVC.swift */,
+				31B960241E6428CE00B06ECC /* CellDetailsMainView.swift */,
+			);
+			name = "Cafe Details VC";
+			sourceTree = "<group>";
+		};
 		31BE835D1E51D43E00B9FA34 /* Objc */ = {
 			isa = PBXGroup;
 			children = (
@@ -529,7 +545,7 @@
 			name = "Reveal VC";
 			sourceTree = "<group>";
 		};
-		31BE836D1E51DE6000B9FA34 /* News Tab Bar VC */ = {
+		31BE836D1E51DE6000B9FA34 /* NEWS TABBAR */ = {
 			isa = PBXGroup;
 			children = (
 				31BE836B1E51DE4E00B9FA34 /* NewsTabBarVC.swift */,
@@ -538,7 +554,7 @@
 				31BE837E1E549E7200B9FA34 /* Search */,
 				31BE837D1E549E6A00B9FA34 /* Favoirite */,
 			);
-			name = "News Tab Bar VC";
+			name = "NEWS TABBAR";
 			sourceTree = "<group>";
 		};
 		31BE83701E521C0300B9FA34 /* Reveal Menu VC */ = {
@@ -579,6 +595,7 @@
 				31BE83751E549DE400B9FA34 /* HomeTabVC.swift */,
 				31BE83811E54AA5800B9FA34 /* HomeTabMainView.swift */,
 				31BE838F1E55C18C00B9FA34 /* Cell View */,
+				31B960231E64288F00B06ECC /* Cafe Details VC */,
 			);
 			name = Home;
 			sourceTree = "<group>";
@@ -810,6 +827,7 @@
 				3110A3251E509BDC00D90AC8 /* UserMenuOptionsView.swift in Sources */,
 				31BE837A1E549E4C00B9FA34 /* SearchTabVC.swift in Sources */,
 				3121D0E51E5745F800E2CC0C /* SegmentedMenuCollectionViewCell.swift in Sources */,
+				31B960221E64288C00B06ECC /* CafeDetailsVC.swift in Sources */,
 				31A48B501E56FDE9007C2F28 /* MyUserProfileMainView.swift in Sources */,
 				31345F001E5B8FDF0016979E /* ReusableEmtpyCellContainer.swift in Sources */,
 				31BE838A1E55BE6900B9FA34 /* CellBottomDetailsContainerView.swift in Sources */,
@@ -850,6 +868,7 @@
 				31BE836C1E51DE4E00B9FA34 /* NewsTabBarVC.swift in Sources */,
 				310B753A1E4088E6008ADF62 /* CustomerRealm.swift in Sources */,
 				31345F131E5F2E200016979E /* UINavigationBar+Extension.swift in Sources */,
+				31B960251E6428CE00B06ECC /* CellDetailsMainView.swift in Sources */,
 				31345F0F1E5EDF920016979E /* UUID+Extension.swift in Sources */,
 				31345F021E5C446B0016979E /* DetailsPageBottomContainerView.swift in Sources */,
 				3133C5011E4F60CB0060ED60 /* MainView.swift in Sources */,
@@ -861,6 +880,7 @@
 				313532BE1E49E18500BA039C /* CafeDAO.swift in Sources */,
 				31BE83841E54AC8A00B9FA34 /* HomeTabCell.swift in Sources */,
 				31BE83741E530F6A00B9FA34 /* UIDevice+Extensions.swift in Sources */,
+				3197B6C21E6ABD21002C30F0 /* BaseVC.swift in Sources */,
 				310B754C1E425768008ADF62 /* Cafe.swift in Sources */,
 				310610E21E56F7D6005A533D /* ReusableCellContainerView.swift in Sources */,
 				3121D0EC1E58716E00E2CC0C /* FavoritesPageVC.swift in Sources */,

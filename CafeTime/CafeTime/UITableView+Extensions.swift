@@ -16,7 +16,7 @@ extension UITableView {
         if recognizer.state == UIGestureRecognizerState.ended {
             let tapLocation = recognizer.location(in: self)
             if let tapIndexPath = self.indexPathForRow(at: tapLocation) {
-                if let tappedCell = self.cellForRow(at: tapIndexPath) {
+                if self.cellForRow(at: tapIndexPath) != nil {
                     completion(tapIndexPath, tapLocation)
                 }
             }

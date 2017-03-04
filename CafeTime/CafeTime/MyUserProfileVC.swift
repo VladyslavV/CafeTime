@@ -9,7 +9,7 @@
 import UIKit
 import SnapKit
 
-class MyUserProfileVC: UIViewController {
+class MyUserProfileVC: BaseVC {
     
     private let detailsPageVC = DetailsPageVC()
     private let favoritesPageVC = FavoritesPageVC()
@@ -32,7 +32,7 @@ class MyUserProfileVC: UIViewController {
         super.viewDidLoad()
         
         self.navigationItem.title = "My Profile"
-        self.navigationController?.navigationBar.transparentNavigationBar()
+        navBar?.transparentNavigationBar()
 
         
         self.automaticallyAdjustsScrollViewInsets = false
@@ -76,7 +76,7 @@ class MyUserProfileVC: UIViewController {
     // MARK: Assign Data From Server 
     
     override func viewWillAppear(_ animated: Bool) {
-        
+        super.viewWillAppear(animated)
         Remote.anyAccess().customer.fetchCurrentCustomer { [weak self] (customer) in
             
             guard let weakSelf = self else { return }

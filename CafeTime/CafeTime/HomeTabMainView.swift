@@ -82,7 +82,6 @@ class HomeTabMainView: UIView {
                 homeTabCell.showingDetails = false
                 self.delegate?.cellTapped(inRow: tapIndexPath.row)
             }
-            
         }
     }
     
