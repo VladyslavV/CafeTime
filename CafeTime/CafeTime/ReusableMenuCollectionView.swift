@@ -28,14 +28,15 @@ class ReusableMenuCollectionView: UIView {
     }
     
     fileprivate var titlesArray = [String]()
-    
+
     convenience init(withTitles titles: [String]) {
         self.init(frame: .zero)
         self.titlesArray = titles
     }
     
-    // MARK: Vars
     
+    // MARK: Vars
+    var iconImages: [UIImage]?
     
     // MARK: Public API
     var sliderCornerRadiusPercentOfWidth: CGFloat = 0.03
@@ -60,7 +61,6 @@ class ReusableMenuCollectionView: UIView {
             self.collectionView.reloadData()
         }
     }
-    
     
     // MAKR: FilePrivate
     fileprivate let cellID = "cell"
@@ -111,13 +111,17 @@ class ReusableMenuCollectionView: UIView {
 
 extension ReusableMenuCollectionView:  UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout  {
     
-    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.titlesArray.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath) as! SegmentedMenuCollectionViewCell
+        
+        if let images = iconImages {
+            cell.iconImage = images[indexPath.row]
+        }
+        
         cell.titleLabel.text = titlesArray[indexPath.row]
         
         cell.titleLabel.font = titlesFont
@@ -157,13 +161,14 @@ extension ReusableMenuCollectionView:  UICollectionViewDelegate, UICollectionVie
     
    
     fileprivate func updateSliderConstraints(width: CGFloat, centerX: ConstraintRelatableTarget){
-        
+    
         slider.snp.remakeConstraints({ (make) in
             make.width.equalTo(width)
             make.centerX.equalTo(centerX)
             make.bottom.equalTo(self.snp.bottom)
             make.height.equalTo(sliderHeight)
         })
+        
         self.animateConstraintsTransition(withDuration: sliderAnimation!)
     }
 }

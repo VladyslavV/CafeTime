@@ -29,6 +29,12 @@ class ReusablePagesVC: UIViewController {
     
     // MARK: Public
     
+    var iconImages: [UIImage]? {
+        didSet {
+            self.mainView.menuBar.iconImages = (self.vcsList.count == iconImages?.count) ? iconImages : nil
+        }
+    }
+    
     var sliderCornerRadiusPercentOfWidth: CGFloat = 0.03 {
         didSet{
             self.mainView.menuBar.sliderCornerRadiusPercentOfWidth = sliderCornerRadiusPercentOfWidth
@@ -62,6 +68,12 @@ class ReusablePagesVC: UIViewController {
     var titlesTextColor: UIColor = UIColor.white {
         didSet {
             self.mainView.menuBar.titlesTextColor = titlesTextColor
+        }
+    }
+    
+    var menuBarHeightPercentOfViewsHeight: CGFloat = 0.1 {
+        didSet {
+            self.mainView.menuBarHeightPercentOfViewsHeight = menuBarHeightPercentOfViewsHeight
         }
     }
     

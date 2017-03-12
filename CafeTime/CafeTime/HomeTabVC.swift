@@ -17,6 +17,8 @@ class HomeTabVC: BaseVC {
         return myVar
     }()
     
+    // MARK: Life Cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.addSubview(mainView)
@@ -25,11 +27,11 @@ class HomeTabVC: BaseVC {
         self.setUp()
         
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.addNavBarBackgroundViewWithColor(color: UIColor.green)
+        self.setNavBarColor(color: UIColor.green)
     }
-
     
     // MARK: Set UP
     

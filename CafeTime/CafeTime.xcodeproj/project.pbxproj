@@ -75,6 +75,11 @@
 		316B51921E4DBD26000EF798 /* NavBarTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316B51911E4DBD26000EF798 /* NavBarTitleView.swift */; };
 		3183FE6D1E4DD63100CC1492 /* ChatMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3183FE6C1E4DD63000CC1492 /* ChatMessageCell.swift */; };
 		3197B6C21E6ABD21002C30F0 /* BaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3197B6C11E6ABD21002C30F0 /* BaseVC.swift */; };
+		3197B6C61E6B3DBD002C30F0 /* InfoDetailsContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3197B6C51E6B3DBD002C30F0 /* InfoDetailsContainerView.swift */; };
+		3197B6C81E6C73C5002C30F0 /* CafeDetailsMenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3197B6C71E6C73C4002C30F0 /* CafeDetailsMenuVC.swift */; };
+		3197B6CB1E6C73EA002C30F0 /* CafeDetailsMapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3197B6CA1E6C73EA002C30F0 /* CafeDetailsMapVC.swift */; };
+		3197B6CD1E6C7400002C30F0 /* CafeDetailsBookVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3197B6CC1E6C7400002C30F0 /* CafeDetailsBookVC.swift */; };
+		3197B6D21E6C7E10002C30F0 /* CafeDetailsMenuMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3197B6D11E6C7E10002C30F0 /* CafeDetailsMenuMainView.swift */; };
 		319DB38D1E3FAC280036640D /* UserProfileInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 319DB38C1E3FAC280036640D /* UserProfileInfoView.swift */; };
 		31A48B501E56FDE9007C2F28 /* MyUserProfileMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31A48B4F1E56FDE9007C2F28 /* MyUserProfileMainView.swift */; };
 		31A48B521E56FFB9007C2F28 /* MyUserProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31A48B511E56FFB9007C2F28 /* MyUserProfileView.swift */; };
@@ -98,12 +103,10 @@
 		31DD52131E39028400DB9ABC /* UserProfileMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31DD52121E39028400DB9ABC /* UserProfileMainView.swift */; };
 		31E58F551E37AD7F00CE4FE1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31E58F541E37AD7F00CE4FE1 /* AppDelegate.swift */; };
 		31E58F5C1E37AD7F00CE4FE1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 31E58F5B1E37AD7F00CE4FE1 /* Assets.xcassets */; };
-		954B95F16CAEF1827CBBFFE9 /* Pods_CafeTime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D8D817E0BDFBA2A6E70BA43 /* Pods_CafeTime.framework */; };
+		F7CB5FA87FAA5EFFC327F7A7 /* Pods_CafeTime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF89C72FC81B1ADE2A826F77 /* Pods_CafeTime.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1D8D817E0BDFBA2A6E70BA43 /* Pods_CafeTime.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CafeTime.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		2B3BEDDD52F16FA96C91297A /* Pods-CafeTime.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CafeTime.release.xcconfig"; path = "Pods/Target Support Files/Pods-CafeTime/Pods-CafeTime.release.xcconfig"; sourceTree = "<group>"; };
 		310610DD1E56F5F7005A533D /* MyUserProfileVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyUserProfileVC.swift; sourceTree = "<group>"; };
 		310610E11E56F7D6005A533D /* ReusableCellContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReusableCellContainerView.swift; sourceTree = "<group>"; };
 		310B75361E4088C9008ADF62 /* ManagerDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManagerDAO.swift; sourceTree = "<group>"; };
@@ -176,6 +179,11 @@
 		316B51911E4DBD26000EF798 /* NavBarTitleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavBarTitleView.swift; sourceTree = "<group>"; };
 		3183FE6C1E4DD63000CC1492 /* ChatMessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatMessageCell.swift; sourceTree = "<group>"; };
 		3197B6C11E6ABD21002C30F0 /* BaseVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseVC.swift; sourceTree = "<group>"; };
+		3197B6C51E6B3DBD002C30F0 /* InfoDetailsContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoDetailsContainerView.swift; sourceTree = "<group>"; };
+		3197B6C71E6C73C4002C30F0 /* CafeDetailsMenuVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CafeDetailsMenuVC.swift; sourceTree = "<group>"; };
+		3197B6CA1E6C73EA002C30F0 /* CafeDetailsMapVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CafeDetailsMapVC.swift; sourceTree = "<group>"; };
+		3197B6CC1E6C7400002C30F0 /* CafeDetailsBookVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CafeDetailsBookVC.swift; sourceTree = "<group>"; };
+		3197B6D11E6C7E10002C30F0 /* CafeDetailsMenuMainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CafeDetailsMenuMainView.swift; sourceTree = "<group>"; };
 		319DB38C1E3FAC280036640D /* UserProfileInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileInfoView.swift; sourceTree = "<group>"; };
 		31A48B4F1E56FDE9007C2F28 /* MyUserProfileMainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyUserProfileMainView.swift; sourceTree = "<group>"; };
 		31A48B511E56FFB9007C2F28 /* MyUserProfileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyUserProfileView.swift; sourceTree = "<group>"; };
@@ -202,7 +210,9 @@
 		31E58F541E37AD7F00CE4FE1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		31E58F5B1E37AD7F00CE4FE1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		31E58F601E37AD7F00CE4FE1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		EFF040301D71AC265B556F52 /* Pods-CafeTime.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CafeTime.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CafeTime/Pods-CafeTime.debug.xcconfig"; sourceTree = "<group>"; };
+		3E6DDB7D3B44C4CDB24E5423 /* Pods-CafeTime.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CafeTime.release.xcconfig"; path = "Pods/Target Support Files/Pods-CafeTime/Pods-CafeTime.release.xcconfig"; sourceTree = "<group>"; };
+		89C83501161F916A33C28CCA /* Pods-CafeTime.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CafeTime.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CafeTime/Pods-CafeTime.debug.xcconfig"; sourceTree = "<group>"; };
+		BF89C72FC81B1ADE2A826F77 /* Pods_CafeTime.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CafeTime.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -210,22 +220,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				954B95F16CAEF1827CBBFFE9 /* Pods_CafeTime.framework in Frameworks */,
+				F7CB5FA87FAA5EFFC327F7A7 /* Pods_CafeTime.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		19CDCBEB1C63386B711E9B26 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				EFF040301D71AC265B556F52 /* Pods-CafeTime.debug.xcconfig */,
-				2B3BEDDD52F16FA96C91297A /* Pods-CafeTime.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 		310610DF1E56F613005A533D /* MENU VCS */ = {
 			isa = PBXGroup;
 			children = (
@@ -517,11 +518,48 @@
 			name = Views;
 			sourceTree = "<group>";
 		};
+		3197B6C91E6C73C9002C30F0 /* PAGES */ = {
+			isa = PBXGroup;
+			children = (
+				3197B6CE1E6C7DE1002C30F0 /* Menu */,
+				3197B6CF1E6C7DE9002C30F0 /* Map */,
+				3197B6D01E6C7DF1002C30F0 /* Book */,
+			);
+			name = PAGES;
+			sourceTree = "<group>";
+		};
+		3197B6CE1E6C7DE1002C30F0 /* Menu */ = {
+			isa = PBXGroup;
+			children = (
+				3197B6C71E6C73C4002C30F0 /* CafeDetailsMenuVC.swift */,
+				3197B6D11E6C7E10002C30F0 /* CafeDetailsMenuMainView.swift */,
+			);
+			name = Menu;
+			sourceTree = "<group>";
+		};
+		3197B6CF1E6C7DE9002C30F0 /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				3197B6CA1E6C73EA002C30F0 /* CafeDetailsMapVC.swift */,
+			);
+			name = Map;
+			sourceTree = "<group>";
+		};
+		3197B6D01E6C7DF1002C30F0 /* Book */ = {
+			isa = PBXGroup;
+			children = (
+				3197B6CC1E6C7400002C30F0 /* CafeDetailsBookVC.swift */,
+			);
+			name = Book;
+			sourceTree = "<group>";
+		};
 		31B960231E64288F00B06ECC /* Cafe Details VC */ = {
 			isa = PBXGroup;
 			children = (
 				31B960211E64288C00B06ECC /* CafeDetailsVC.swift */,
 				31B960241E6428CE00B06ECC /* CellDetailsMainView.swift */,
+				3197B6C51E6B3DBD002C30F0 /* InfoDetailsContainerView.swift */,
+				3197B6C91E6C73C9002C30F0 /* PAGES */,
 			);
 			name = "Cafe Details VC";
 			sourceTree = "<group>";
@@ -635,8 +673,8 @@
 			children = (
 				31E58F531E37AD7F00CE4FE1 /* CafeTime */,
 				31E58F521E37AD7F00CE4FE1 /* Products */,
-				19CDCBEB1C63386B711E9B26 /* Pods */,
-				B85A4FEA7881EBE67AA51074 /* Frameworks */,
+				A2DF4E244EDD662EB2728D35 /* Pods */,
+				31F18B207420034F6A0FE208 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -675,12 +713,21 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		B85A4FEA7881EBE67AA51074 /* Frameworks */ = {
+		31F18B207420034F6A0FE208 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				1D8D817E0BDFBA2A6E70BA43 /* Pods_CafeTime.framework */,
+				BF89C72FC81B1ADE2A826F77 /* Pods_CafeTime.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A2DF4E244EDD662EB2728D35 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				89C83501161F916A33C28CCA /* Pods-CafeTime.debug.xcconfig */,
+				3E6DDB7D3B44C4CDB24E5423 /* Pods-CafeTime.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -690,12 +737,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 31E58F631E37AD7F00CE4FE1 /* Build configuration list for PBXNativeTarget "CafeTime" */;
 			buildPhases = (
-				A48F7BBC229BBFA5E1F9B38A /* [CP] Check Pods Manifest.lock */,
+				10C54D753E428D21E3E1FB20 /* [CP] Check Pods Manifest.lock */,
 				31E58F4D1E37AD7F00CE4FE1 /* Sources */,
 				31E58F4E1E37AD7F00CE4FE1 /* Frameworks */,
 				31E58F4F1E37AD7F00CE4FE1 /* Resources */,
-				A91FA5F9E3849E67AEE1004A /* [CP] Embed Pods Frameworks */,
-				62CF236806BA5CD54A2FA038 /* [CP] Copy Pods Resources */,
+				F359C498B3C9D209532D9AD4 /* [CP] Embed Pods Frameworks */,
+				84CB575D6EB98295839CAAA6 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -761,22 +808,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		62CF236806BA5CD54A2FA038 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CafeTime/Pods-CafeTime-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		A48F7BBC229BBFA5E1F9B38A /* [CP] Check Pods Manifest.lock */ = {
+		10C54D753E428D21E3E1FB20 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -791,7 +823,22 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		A91FA5F9E3849E67AEE1004A /* [CP] Embed Pods Frameworks */ = {
+		84CB575D6EB98295839CAAA6 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CafeTime/Pods-CafeTime-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F359C498B3C9D209532D9AD4 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -826,9 +873,11 @@
 				3139117E1E3E182D00EDAD40 /* ImageVC.swift in Sources */,
 				3110A3251E509BDC00D90AC8 /* UserMenuOptionsView.swift in Sources */,
 				31BE837A1E549E4C00B9FA34 /* SearchTabVC.swift in Sources */,
+				3197B6C81E6C73C5002C30F0 /* CafeDetailsMenuVC.swift in Sources */,
 				3121D0E51E5745F800E2CC0C /* SegmentedMenuCollectionViewCell.swift in Sources */,
 				31B960221E64288C00B06ECC /* CafeDetailsVC.swift in Sources */,
 				31A48B501E56FDE9007C2F28 /* MyUserProfileMainView.swift in Sources */,
+				3197B6D21E6C7E10002C30F0 /* CafeDetailsMenuMainView.swift in Sources */,
 				31345F001E5B8FDF0016979E /* ReusableEmtpyCellContainer.swift in Sources */,
 				31BE838A1E55BE6900B9FA34 /* CellBottomDetailsContainerView.swift in Sources */,
 				3121D0E81E58713900E2CC0C /* DetailsPageVC.swift in Sources */,
@@ -840,12 +889,14 @@
 				316B51861E4B302B000EF798 /* UsersListVC.swift in Sources */,
 				31BE838E1E55C13900B9FA34 /* MainContainerView.swift in Sources */,
 				313911881E3E190600EDAD40 /* UITraitCollection+MKAdditions.m in Sources */,
+				3197B6C61E6B3DBD002C30F0 /* InfoDetailsContainerView.swift in Sources */,
 				31345EFC1E5B8E6D0016979E /* DetailsPageMainView.swift in Sources */,
 				31DD52131E39028400DB9ABC /* UserProfileMainView.swift in Sources */,
 				313532BA1E49E04E00BA039C /* CafeRealm.swift in Sources */,
 				31345EFE1E5B8F5B0016979E /* DetailsPageTopContainerView.swift in Sources */,
 				313532B01E49BEFE00BA039C /* Remote.swift in Sources */,
 				313532A51E474E8A00BA039C /* ChatVC.swift in Sources */,
+				3197B6CD1E6C7400002C30F0 /* CafeDetailsBookVC.swift in Sources */,
 				315828CA1E39EE5F00EBD20E /* LoginView.swift in Sources */,
 				31345EF71E5B44310016979E /* ReusablePagesMainView.swift in Sources */,
 				313911911E3F78BB00EDAD40 /* CountriesPickerView.swift in Sources */,
@@ -873,6 +924,7 @@
 				31345F021E5C446B0016979E /* DetailsPageBottomContainerView.swift in Sources */,
 				3133C5011E4F60CB0060ED60 /* MainView.swift in Sources */,
 				31BE837C1E549E5D00B9FA34 /* FavoriteTabVC.swift in Sources */,
+				3197B6CB1E6C73EA002C30F0 /* CafeDetailsMapVC.swift in Sources */,
 				310B753C1E40B5B5008ADF62 /* CurrentUserCredentialsRealm.swift in Sources */,
 				31345F0D1E5DDDDB0016979E /* UITableView+Extensions.swift in Sources */,
 				313532B21E49BFD800BA039C /* RemoteAuth.swift in Sources */,
@@ -1014,7 +1066,7 @@
 		};
 		31E58F641E37AD7F00CE4FE1 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = EFF040301D71AC265B556F52 /* Pods-CafeTime.debug.xcconfig */;
+			baseConfigurationReference = 89C83501161F916A33C28CCA /* Pods-CafeTime.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -1033,7 +1085,7 @@
 		};
 		31E58F651E37AD7F00CE4FE1 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2B3BEDDD52F16FA96C91297A /* Pods-CafeTime.release.xcconfig */;
+			baseConfigurationReference = 3E6DDB7D3B44C4CDB24E5423 /* Pods-CafeTime.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;

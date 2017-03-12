@@ -15,6 +15,7 @@ class SegmentedMenuCollectionViewCell: UICollectionViewCell {
         super.init(frame: frame)
         self.backgroundColor = UIColor.clear
         self.addSubview(titleLabel)
+        self.setUp()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -32,8 +33,39 @@ class SegmentedMenuCollectionViewCell: UICollectionViewCell {
         return myVar
     }()
     
+    private let iconImageView: UIImageView = {
+        let myVar = UIImageView()
+        myVar.backgroundColor = UIColor.green
+        return myVar
+    }()
+    
+    var iconImage: UIImage? {
+        didSet {
+            iconImageView.image = iconImage
+            self.addSubview(iconImageView)
+            self.setUpWithImage()
+        }
+    }
+    
+    private func setUpWithImage() {
+        
+        iconImageView.snp.remakeConstraints { (make) in
+            make.top.equalTo(self.snp.top)
+            make.width.equalTo(self.snp.width).multipliedBy(0.4)
+            make.height.equalTo(self.snp.height).multipliedBy(0.5)
+            make.centerX.equalTo(self.snp.centerX)
+        }
+        
+        titleLabel.snp.remakeConstraints { (make) in
+            make.top.equalTo(iconImageView.snp.bottom).offset(5)
+            make.leading.trailing.equalTo(self)
+            make.height.equalTo(self.snp.height).multipliedBy(0.3)
+        }
+    }
+    
     private func setUp() {
-        titleLabel.snp.makeConstraints { (make) in
+
+        titleLabel.snp.remakeConstraints { (make) in
             make.leading.trailing.equalTo(self)
             make.height.equalTo(self.snp.height).multipliedBy(0.7)
             make.centerY.equalTo(self.snp.centerY)
@@ -42,6 +74,6 @@ class SegmentedMenuCollectionViewCell: UICollectionViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        self.setUp()
+     //   self.setUp()
     }
 }

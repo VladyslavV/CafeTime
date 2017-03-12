@@ -13,12 +13,12 @@ extension BaseVC: SWRevealViewControllerDelegate, UIGestureRecognizerDelegate {
     public func revealController(_ revealController: SWRevealViewController!, tapGestureRecognizerShouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer!) -> Bool {
         return true
     }
-   
+    
     public func revealController(_ revealController: SWRevealViewController!, didMoveTo position: FrontViewPosition) {
         
         switch position {
             
-        case FrontViewPosition.right :
+        case FrontViewPosition.right , .rightMost :
             self.shouldDisableUserInteraction = true
             //self.view.isUserInteractionEnabled = false
             break

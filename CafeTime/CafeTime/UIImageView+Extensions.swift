@@ -17,7 +17,18 @@ extension UIImageView {
         
         blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight] // for supporting device rotation
         self.addSubview(blurEffectView)
+    }
+    
+    func darken(percent: Float) {
         
-       
+        let opacityView = UIView()
+        opacityView.layer.backgroundColor = UIColor.black.cgColor
+        opacityView.layer.opacity = percent
+        
+        self.addSubview(opacityView)
+        
+        opacityView.snp.makeConstraints { (make) in
+            make.edges.equalTo(self)
+        }
     }
 }

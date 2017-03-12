@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class ReusablePagesMainView: UIView {
     
@@ -17,7 +18,7 @@ class ReusablePagesMainView: UIView {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-        
+    
     internal var numberOfElements: Int!
     convenience init(titles: [String], views: [UIView]) {
         self.init(frame: .zero)
@@ -49,15 +50,27 @@ class ReusablePagesMainView: UIView {
         return myVar
     }()
     
-    // MARK: Set Up
+    private var menuBarPercentOfViewsHeightConstraint: Constraint?
+
+    var menuBarHeightPercentOfViewsHeight: CGFloat = 0.1 {
+        didSet {
+            menuBar.snp.updateConstraints { (make) in
+                menuBarPercentOfViewsHeightConstraint = make.height.equalTo(self.snp.height).multipliedBy(menuBarHeightPercentOfViewsHeight).constraint
+                menuBarPercentOfViewsHeightConstraint?.activate()
+            }
+        }
+    }
     
+    
+    // MARK: Set Up
+
     private func setUp() {
         
         collectionView.backgroundColor = UIColor.clear
         
         menuBar.snp.makeConstraints { (make) in
             make.leading.trailing.top.equalTo(self)
-            make.height.equalTo(self.snp.height).multipliedBy(0.1)
+            menuBarPercentOfViewsHeightConstraint = make.height.equalTo(self.snp.height).multipliedBy(menuBarHeightPercentOfViewsHeight).constraint
         }
         
         collectionView.snp.makeConstraints { (make) in
@@ -83,8 +96,8 @@ extension ReusablePagesMainView: UICollectionViewDelegate, UICollectionViewDataS
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: self.cellID, for: indexPath) 
-                
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: self.cellID, for: indexPath)
+        
         let vcView = self.views[indexPath.row]
         
         cell.contentView.addSubview(vcView)

@@ -22,9 +22,9 @@ class MyUserProfileVC: BaseVC {
     
     private lazy var pagesContainerVC: ReusablePagesVC = {
         let myVar = ReusablePagesVC(vcsList: self.vcsList as! [[String : UIViewController]])
-
         myVar.titlesFont = UIFont.boldSystemFont(ofSize: 16)
         myVar.sliderHeight = 3
+        myVar.menuBarHeightPercentOfViewsHeight = 0.1
         return myVar
     }()
     
@@ -32,8 +32,6 @@ class MyUserProfileVC: BaseVC {
         super.viewDidLoad()
         
         self.navigationItem.title = "My Profile"
-        navBar?.transparentNavigationBar()
-
         
         self.automaticallyAdjustsScrollViewInsets = false
         self.revealViewController().delegate = self
@@ -73,10 +71,13 @@ class MyUserProfileVC: BaseVC {
     }
     
     
-    // MARK: Assign Data From Server 
+    // MARK: Assign Data From Server --- Life Cycle
     
     override func viewWillAppear(_ animated: Bool) {
+        
         super.viewWillAppear(animated)
+        navBar?.transparentNavigationBar()
+
         Remote.anyAccess().customer.fetchCurrentCustomer { [weak self] (customer) in
             
             guard let weakSelf = self else { return }
@@ -88,6 +89,7 @@ class MyUserProfileVC: BaseVC {
 
         }
     }
+    
 }
 
 extension MyUserProfileVC: MyUserProfileViewDelegate {

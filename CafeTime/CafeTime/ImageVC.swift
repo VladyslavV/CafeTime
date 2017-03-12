@@ -132,6 +132,7 @@ class ImageVC: UIViewController, UIScrollViewDelegate, UIGestureRecognizerDelega
     func imageDoubleTapped(_ tap: UITapGestureRecognizer) {
         if (scrollView.zoomScale > scrollView.minimumZoomScale) {
             scrollView.setZoomScale(scrollView.minimumZoomScale, animated: true)
+            
         } else {
             scrollView.setZoomScale(scrollView.maximumZoomScale, animated: true)
         }

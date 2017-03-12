@@ -36,7 +36,7 @@ class CellBottomDetailsContainerView: UIView {
         let myVar = UIImageView()
         myVar.contentMode = .scaleToFill
         myVar.image = UIImage(named: "sandwich")
-        myVar.backgroundColor = UIColor.green
+        //myVar.backgroundColor = UIColor.green
         return myVar
     }()
     

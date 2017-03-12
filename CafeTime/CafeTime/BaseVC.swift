@@ -33,9 +33,7 @@ class BaseVC: UIViewController {
         }
     }
     
-    fileprivate var navBarBackgroundView: UIView?
-    
-    // MARK: Publick
+    // MARK: Public
         
     var navBar: UINavigationBar? {
         return self.navigationController?.navigationBar
@@ -46,46 +44,27 @@ class BaseVC: UIViewController {
     
     // MARK: Life Cycle
     
-
-    override func viewWillAppear(_ animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.revealViewController().delegate = self
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        self.revealViewController().delegate = nil
         self.resetNavBar()
     }
-    
 }
 
 // nav bar
 extension BaseVC {
     
-    func addNavBarBackgroundViewWithColor(color: UIColor) {
-        
-        let view = UIView()
-
-        view.backgroundColor = color
-        navBar?.insertSubview(view, at: 0)
-        
-        view.snp.makeConstraints { (make) in
-            make.top.equalTo((navBar?.snp.top)!).offset(-UIApplication.shared.statusBarFrame.height)
-            make.leading.trailing.bottom.equalTo(navBar!)
-        }
-        
-        navBarBackgroundView = view
+    func setNavBarColor(color: UIColor) {
+        navigationController?.navigationBar.barTintColor = UIColor.green
     }
     
     func resetNavBar() {
         navBar?.resetToDefault()
-        if let view = navBarBackgroundView {
-            view.snp.removeConstraints()
-            view.removeFromSuperview()
-        }
     }
-    
 }
 
 
