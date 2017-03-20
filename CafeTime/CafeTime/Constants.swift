@@ -10,6 +10,8 @@ import UIKit
 
 struct Constants {
     
+    
+    
     struct Remote {
         
         struct References {
@@ -24,6 +26,19 @@ struct Constants {
 
     }
     
+    struct TableViewCells {
+        
+        struct IDs {
+            static let Default = "DefaultCell"
+            static let Primary = "CustomCell"
+        }
 
+        struct Size {
+            static let NormalHeight = Utils.shared.screenSize().height * 0.2
+            static let DetailsHeight = Utils.shared.screenSize().height * 0.4
+
+        }
+        
+    }
     
 }

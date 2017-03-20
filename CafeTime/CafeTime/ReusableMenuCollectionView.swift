@@ -28,7 +28,7 @@ class ReusableMenuCollectionView: UIView {
     }
     
     fileprivate var titlesArray = [String]()
-
+    
     convenience init(withTitles titles: [String]) {
         self.init(frame: .zero)
         self.titlesArray = titles
@@ -99,6 +99,7 @@ class ReusableMenuCollectionView: UIView {
         }
         
         let titleWidth = titlesArray[0].widthOfString(usingFont: self.titlesFont)
+        
         self.updateSliderConstraints(width: titleWidth, centerX: (itemWidth / 2 - titleWidth / 2) + titleWidth / 2 )
     }
     
@@ -131,6 +132,7 @@ extension ReusableMenuCollectionView:  UICollectionViewDelegate, UICollectionVie
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        self.setSliderWidthAtRow(row: indexPath.row)
         self.delegate?.pageSelectedAtRow(row: indexPath.row)
     }
     
@@ -159,9 +161,21 @@ extension ReusableMenuCollectionView:  UICollectionViewDelegate, UICollectionVie
         self.updateSliderConstraints(width: titleWidth, centerX: cell.titleLabel)
     }
     
-   
-    fileprivate func updateSliderConstraints(width: CGFloat, centerX: ConstraintRelatableTarget){
+    func getCurrentItem() -> Int {
+        
+        for index in 0..<titlesArray.count {
+            
+            if let cell = collectionView.cellForItem(at: IndexPath.init(row: index, section: 0)) as? SegmentedMenuCollectionViewCell {
+                if slider.center.x == cell.center.x {
+                    return index
+                }
+            }
+        }
+        return 0
+    }
     
+    fileprivate func updateSliderConstraints(width: CGFloat, centerX: ConstraintRelatableTarget){
+        
         slider.snp.remakeConstraints({ (make) in
             make.width.equalTo(width)
             make.centerX.equalTo(centerX)

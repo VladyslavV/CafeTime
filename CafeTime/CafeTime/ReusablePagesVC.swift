@@ -71,9 +71,9 @@ class ReusablePagesVC: UIViewController {
         }
     }
     
-    var menuBarHeightPercentOfViewsHeight: CGFloat = 0.1 {
+    var menuBarHeight: CGFloat = 30 {
         didSet {
-            self.mainView.menuBarHeightPercentOfViewsHeight = menuBarHeightPercentOfViewsHeight
+            self.mainView.menuBarHeight = menuBarHeight
         }
     }
     

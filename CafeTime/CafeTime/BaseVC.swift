@@ -51,6 +51,7 @@ class BaseVC: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        self.navigationController?.hidesBarsOnSwipe = false
         self.resetNavBar()
     }
 }

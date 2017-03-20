@@ -24,7 +24,7 @@ class MyUserProfileVC: BaseVC {
         let myVar = ReusablePagesVC(vcsList: self.vcsList as! [[String : UIViewController]])
         myVar.titlesFont = UIFont.boldSystemFont(ofSize: 16)
         myVar.sliderHeight = 3
-        myVar.menuBarHeightPercentOfViewsHeight = 0.1
+        myVar.menuBarHeight = 40
         return myVar
     }()
     

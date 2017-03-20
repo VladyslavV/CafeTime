@@ -52,10 +52,11 @@ class ReusablePagesMainView: UIView {
     
     private var menuBarPercentOfViewsHeightConstraint: Constraint?
 
-    var menuBarHeightPercentOfViewsHeight: CGFloat = 0.1 {
+    var menuBarHeight: CGFloat = 30 {
         didSet {
+            menuBarPercentOfViewsHeightConstraint?.deactivate()
             menuBar.snp.updateConstraints { (make) in
-                menuBarPercentOfViewsHeightConstraint = make.height.equalTo(self.snp.height).multipliedBy(menuBarHeightPercentOfViewsHeight).constraint
+                menuBarPercentOfViewsHeightConstraint = make.height.equalTo(menuBarHeight).constraint
                 menuBarPercentOfViewsHeightConstraint?.activate()
             }
         }
@@ -70,7 +71,7 @@ class ReusablePagesMainView: UIView {
         
         menuBar.snp.makeConstraints { (make) in
             make.leading.trailing.top.equalTo(self)
-            menuBarPercentOfViewsHeightConstraint = make.height.equalTo(self.snp.height).multipliedBy(menuBarHeightPercentOfViewsHeight).constraint
+            menuBarPercentOfViewsHeightConstraint = make.height.equalTo(menuBarHeight).constraint
         }
         
         collectionView.snp.makeConstraints { (make) in

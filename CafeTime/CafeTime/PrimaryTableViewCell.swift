@@ -9,14 +9,14 @@
 import UIKit
 import SnapKit
 
-class HomeTabCell: UITableViewCell {
+class PrimaryTableViewCell: UITableViewCell {
     
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         showingDetails = false
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.contentView.addSubview(mainContainerView)
-        self.backgroundColor = UIColor.lightGray
+        self.backgroundColor = Colors.Clear
         self.selectionStyle = .none
         self.setUp()
     }
@@ -26,10 +26,10 @@ class HomeTabCell: UITableViewCell {
     }
     
     // MARK: Vars
-    private let normalHeight = Utils.shared.screenSize().height * 0.2
-    private let detailsHeight = Utils.shared.screenSize().height * 0.4
+    private let normalHeight = Constants.TableViewCells.Size.NormalHeight
+    private let detailsHeight = Constants.TableViewCells.Size.DetailsHeight
     
-    var showingDetails: Bool {
+    var showingDetails: Bool = false {
         didSet {
             if showingDetails {
                 installDetailsConstraints()

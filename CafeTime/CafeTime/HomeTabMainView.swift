@@ -17,6 +17,7 @@ class HomeTabMainView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.addSubview(tableView)
+        self.backgroundColor = Colors.PrimaryGray   
         self.setUp()
     }
     
@@ -28,20 +29,14 @@ class HomeTabMainView: UIView {
     
     weak var delegate: HomeTabMainViewDelegate?
     
-    internal lazy var tableView: UITableView = {
-        let myVar = UITableView()
-        myVar.register(HomeTabCell.self, forCellReuseIdentifier: "homeTabCell")
-        myVar.tableFooterView = UIView()
-        myVar.separatorStyle = .none
-        myVar.separatorInset = UIEdgeInsets.zero
-        myVar.estimatedRowHeight = 200
-        myVar.rowHeight = UITableViewAutomaticDimension
+    internal lazy var tableView: BaseTableView = {
+        let myVar = BaseTableView()
         myVar.delegate = self
         myVar.dataSource = self
         return myVar
     }()
     
-    private var previousCell: HomeTabCell?
+    private var previousCell: PrimaryTableViewCell?
     
     private lazy var tableViewTapGesture: UITapGestureRecognizer = {
         let myVar = UITapGestureRecognizer(target: self, action: #selector(tapEdit(_:)))
@@ -62,7 +57,7 @@ class HomeTabMainView: UIView {
         
         self.tableView.tapInCell(recognizer: recognizer) { (tapIndexPath, tapLocation) in
             
-            let homeTabCell = self.tableView.cellForRow(at: tapIndexPath) as! HomeTabCell
+            let homeTabCell = self.tableView.cellForRow(at: tapIndexPath) as! PrimaryTableViewCell
             
             let detailTextLabel = homeTabCell.mainContainerView.topContainerView.detailLabel
             let likeImageView = homeTabCell.mainContainerView.topContainerView.likeImageView
@@ -91,7 +86,7 @@ class HomeTabMainView: UIView {
     
     private func handleDetailsLabelTap(tapIndexPath: IndexPath) {
         
-        let currentCell = self.tableView.cellForRow(at: tapIndexPath) as! HomeTabCell
+        let currentCell = self.tableView.cellForRow(at: tapIndexPath) as! PrimaryTableViewCell
         
         if let prevCell = previousCell {
             if prevCell.isEqual(currentCell)  {
@@ -127,7 +122,7 @@ extension HomeTabMainView: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
       
-        let cell = self.tableView.dequeueReusableCell(withIdentifier: "homeTabCell", for: indexPath) as! HomeTabCell
+        let cell = self.tableView.dequeueReusableCell(withIdentifier: Constants.TableViewCells.IDs.Primary, for: indexPath) as! PrimaryTableViewCell    
         
         cell.mainContainerView.topContainerView.titleLabel.text = "Title"
         cell.mainContainerView.topContainerView.detailLabel.text = "Many details will go here including lorem ipsum!!! details will go here including lorem ipsum details will go here including lorem ipsum will go here including lorem ipsum will go here including lorem ipsum will go here including lorem ipsum"

@@ -126,7 +126,6 @@ private class Separator: UIView {
     
     private func setUp() {
         
-
         greenCircleSeparator.snp.makeConstraints { (make) in
             make.height.width.equalTo(self.snp.height)
             make.center.equalTo(self.snp.center)

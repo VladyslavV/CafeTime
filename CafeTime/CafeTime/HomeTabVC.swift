@@ -30,7 +30,7 @@ class HomeTabVC: BaseVC {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.setNavBarColor(color: UIColor.green)
+        self.setNavBarColor(color: Colors.NavBar.Green)
     }
     
     // MARK: Set UP
