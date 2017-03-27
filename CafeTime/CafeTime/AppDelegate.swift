@@ -26,7 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let tabBarVC = NewsTabBarVC()
         
        // let tabBarVC = CurrentUserProfileVC()
-
+        
         let revealVC = SWRevealViewController(rearViewController: menuVC, frontViewController: tabBarVC)
         revealVC?.view.backgroundColor = UIColor.white
         
@@ -51,7 +51,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         })
         
-        self.setUpNavBarAppearance()
+
+        //self.setUpNavBarAppearance()
         
         return true
     }
@@ -60,7 +61,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let navigationBarAppearance = UINavigationBar.appearance()
         navigationBarAppearance.barStyle = .blackTranslucent
         navigationBarAppearance.tintColor = UIColor.white
-       // navigationBarAppearance.barTintColor = UIColor.white
     }
     
     @objc private func presentLoginVC() {

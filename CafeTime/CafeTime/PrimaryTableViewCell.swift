@@ -16,7 +16,7 @@ class PrimaryTableViewCell: UITableViewCell {
         showingDetails = false
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.contentView.addSubview(mainContainerView)
-        self.backgroundColor = Colors.Clear
+        self.backgroundColor = Colors.clear
         self.selectionStyle = .none
         self.setUp()
     }

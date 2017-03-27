@@ -14,11 +14,22 @@ class CafeDetailsVC: BaseVC {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.automaticallyAdjustsScrollViewInsets = false
-        self.view.backgroundColor = Colors.PrimaryGray
+        self.view.backgroundColor = colors.primaryGray
         self.view.addSubviews([mainView])
         self.setUp()
         
         self.pageSelectedAtRow(row: 0)
+        
+        self.tabBar?.barTintColor = colors.primaryGray
+        UITabBar.appearance().barTintColor = colors.primaryGray
+        
+        _ = self.setupLeftBackArrow(arrowColor: UIColor.white)
+        
+        self.navigationController?.interactivePopGestureRecognizer?.delegate = self
+    }
+    
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldBeRequiredToFailBy otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
     }
     
     // MARK: Vars
@@ -35,14 +46,15 @@ class CafeDetailsVC: BaseVC {
         return myVar
     }()
     
-    let menuDataSource = MenuViewModel()
-    let mapDataSource = MapViewModel()
-    
+    let menuViewModel = MenuViewModel()
+    let mapViewModel = MapViewModel()
+    let bookViewModel = BookViewModel()
+
     
     // MARK: Set Up
-    
-    private func setUp() {
 
+    private func setUp() {
+        
         self.navigationItem.title = "Restaurant"
         
         mainView.snp.makeConstraints { (make) in
@@ -55,7 +67,6 @@ class CafeDetailsVC: BaseVC {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navBar?.isHidden = false
         navBar?.transparentNavigationBar()
     }
     
@@ -67,12 +78,14 @@ extension CafeDetailsVC: ReusableMenuCollectionViewDelegate {
         
         switch row {
         case 0:
-            mainView.setDataSource(dataSource: menuDataSource, withScroll: false)
+            mainView.setDataSource(dataSource: menuViewModel, withScroll: false)
             break
         case 1:
-            mainView.setDataSource(dataSource: mapDataSource, withScroll: true)
+            mainView.setDataSource(dataSource: mapViewModel, withScroll: true)
             break
         case 2:
+            mainView.setDataSource(dataSource: bookViewModel, withScroll: true)
+            mainView.setDelegate(delegate: bookViewModel)
             break
         default: break
         }

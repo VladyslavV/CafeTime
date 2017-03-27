@@ -27,6 +27,7 @@ PODS:
   - FirebaseStorage (1.0.6):
     - FirebaseAnalytics (~> 3.7)
     - GTMSessionFetcher/Core (~> 1.1)
+  - FSCalendar (2.7.3)
   - GoogleToolboxForMac/DebugUtils (2.1.1):
     - GoogleToolboxForMac/Defines (= 2.1.1)
   - GoogleToolboxForMac/Defines (2.1.1)
@@ -62,6 +63,7 @@ DEPENDENCIES:
   - Firebase/Core
   - Firebase/Database
   - Firebase/Storage
+  - FSCalendar
   - Jelly
   - M13Checkbox
   - PKHUD
@@ -80,6 +82,7 @@ SPEC CHECKSUMS:
   FirebaseDatabase: 05c96d7b43a7368dc91c07791adb49683e1738d1
   FirebaseInstanceID: 2d0518b1378fe9d685ef40cbdd63d2fdc1125339
   FirebaseStorage: 63628572a5fde258f8e933b5fb42697468da0158
+  FSCalendar: 574388d70778c22719eed9341653e1743b345573
   GoogleToolboxForMac: 8e329f1b599f2512c6b10676d45736bcc2cbbeb0
   GTMSessionFetcher: 6f8d8b28b7e345549ac471071608170b31cb4977
   Jelly: b4ff439f4804c193424e922a6ac3d311fbd78d1f
@@ -94,6 +97,6 @@ SPEC CHECKSUMS:
   SnapKit: 1ca44df72cfa543218d177cb8aab029d10d86ea7
   SwiftCop: 5ae17ee59ea702b662072495588ace8540571bef
 
-PODFILE CHECKSUM: ae515acc46fc8581dfd9fde1522813d6cdee32fa
+PODFILE CHECKSUM: b36c316c97636079dca3fe8034ea1923a693beac
 
-COCOAPODS: 1.1.1
+COCOAPODS: 1.2.0

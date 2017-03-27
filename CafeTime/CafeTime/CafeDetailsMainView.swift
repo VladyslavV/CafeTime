@@ -32,9 +32,9 @@ class CafeDetailsMainView: UIView {
     }()
 
     fileprivate lazy var tableView: BaseTableView = {
-        let myVar = BaseTableView()
+        let myVar = BaseTableView(withStyle: .grouped)
         myVar.tableFooterView = UIView()
-        myVar.backgroundColor = Colors.Clear
+        myVar.backgroundColor = Colors.clear
         return myVar
     }()
     
@@ -60,23 +60,30 @@ class CafeDetailsMainView: UIView {
     // MARK: Public
     
     func setDataSource(dataSource: UITableViewDataSource, withScroll scroll: Bool) {
+        tableView.delegate = self
         tableView.dataSource = dataSource
         self.reloadTableView(tableView, scrollToFirstItem: scroll)
     }
     
-    func reloadTableView(_ tableView: UITableView, scrollToFirstItem scroll: Bool) {
+    func setDelegate(delegate: UITableViewDelegate) {
+        tableView.delegate = delegate
+        tableView.reloadData()
+    }
+    
+    private func reloadTableView(_ tableView: UITableView, scrollToFirstItem scroll: Bool) {
         let contentOffset = tableView.contentOffset
         tableView.reloadData()
         tableView.layoutIfNeeded()
         tableView.setContentOffset(contentOffset, animated: false)
         if scroll {
-            tableView.scrollToRow(at: IndexPath.init(row: 0, section: 0), at: .bottom, animated: true)
+            tableView.scrollToRow(at: IndexPath.init(row: 0, section: 0), at: .middle, animated: true)
         }
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
         
+        self.tableView.contentInset = UIEdgeInsetsMake(0, 0, -20, 0);
         let vc = self.parentViewController!
         
         tableView.snp.makeConstraints { (make) in
@@ -92,5 +99,16 @@ class CafeDetailsMainView: UIView {
         
         headerView.updateGrayViewConstraints()
     }
-        
 }
+
+extension CafeDetailsMainView: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        return UIView(frame: CGRect.zero)
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 0.01
+    }
+}
+

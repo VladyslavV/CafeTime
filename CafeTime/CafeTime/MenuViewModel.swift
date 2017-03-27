@@ -17,7 +17,7 @@ class MenuViewModel: NSObject, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Constants.TableViewCells.IDs.Primary, for: indexPath) as! PrimaryTableViewCell
         
-        cell.contentView.backgroundColor = Colors.PrimaryGray
+        cell.contentView.backgroundColor = Colors.primaryGray
         cell.mainContainerView.topContainerView.titleLabel.text = "Title"
         cell.mainContainerView.topContainerView.detailLabel.text = "Many details will go here including lorem ipsum!!! details will go here including lorem ipsum details will go here including lorem ipsum will go here including lorem ipsum will go here including lorem ipsum will go here including lorem ipsum"
 

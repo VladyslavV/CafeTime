@@ -80,6 +80,7 @@
 		3197B6C21E6ABD21002C30F0 /* BaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3197B6C11E6ABD21002C30F0 /* BaseVC.swift */; };
 		3197B6C61E6B3DBD002C30F0 /* InfoDetailsContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3197B6C51E6B3DBD002C30F0 /* InfoDetailsContainerView.swift */; };
 		319DB38D1E3FAC280036640D /* UserProfileInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 319DB38C1E3FAC280036640D /* UserProfileInfoView.swift */; };
+		31A33E2C1E818E2B0070D494 /* BookSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31A33E2B1E818E2B0070D494 /* BookSectionHeaderView.swift */; };
 		31A48B501E56FDE9007C2F28 /* MyUserProfileMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31A48B4F1E56FDE9007C2F28 /* MyUserProfileMainView.swift */; };
 		31A48B521E56FFB9007C2F28 /* MyUserProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31A48B511E56FFB9007C2F28 /* MyUserProfileView.swift */; };
 		31B960221E64288C00B06ECC /* CafeDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31B960211E64288C00B06ECC /* CafeDetailsVC.swift */; };
@@ -105,6 +106,8 @@
 		31E58F5C1E37AD7F00CE4FE1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 31E58F5B1E37AD7F00CE4FE1 /* Assets.xcassets */; };
 		31EEE8F51E7D7CF700928D2C /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31EEE8F41E7D7CF700928D2C /* Colors.swift */; };
 		31EEE8F71E7D80EE00928D2C /* BaseTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31EEE8F61E7D80EE00928D2C /* BaseTableView.swift */; };
+		AB6EBDF91E88753900539BB4 /* FSCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6EBDF81E88753900539BB4 /* FSCalendarView.swift */; };
+		ABB78C201E86858500F7AEFE /* UITabBar+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABB78C1F1E86858500F7AEFE /* UITabBar+Extensions.swift */; };
 		F7CB5FA87FAA5EFFC327F7A7 /* Pods_CafeTime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF89C72FC81B1ADE2A826F77 /* Pods_CafeTime.framework */; };
 /* End PBXBuildFile section */
 
@@ -186,6 +189,7 @@
 		3197B6C11E6ABD21002C30F0 /* BaseVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseVC.swift; sourceTree = "<group>"; };
 		3197B6C51E6B3DBD002C30F0 /* InfoDetailsContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoDetailsContainerView.swift; sourceTree = "<group>"; };
 		319DB38C1E3FAC280036640D /* UserProfileInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileInfoView.swift; sourceTree = "<group>"; };
+		31A33E2B1E818E2B0070D494 /* BookSectionHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookSectionHeaderView.swift; sourceTree = "<group>"; };
 		31A48B4F1E56FDE9007C2F28 /* MyUserProfileMainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyUserProfileMainView.swift; sourceTree = "<group>"; };
 		31A48B511E56FFB9007C2F28 /* MyUserProfileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyUserProfileView.swift; sourceTree = "<group>"; };
 		31B960211E64288C00B06ECC /* CafeDetailsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CafeDetailsVC.swift; sourceTree = "<group>"; };
@@ -216,6 +220,8 @@
 		31EEE8F61E7D80EE00928D2C /* BaseTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTableView.swift; sourceTree = "<group>"; };
 		3E6DDB7D3B44C4CDB24E5423 /* Pods-CafeTime.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CafeTime.release.xcconfig"; path = "Pods/Target Support Files/Pods-CafeTime/Pods-CafeTime.release.xcconfig"; sourceTree = "<group>"; };
 		89C83501161F916A33C28CCA /* Pods-CafeTime.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CafeTime.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CafeTime/Pods-CafeTime.debug.xcconfig"; sourceTree = "<group>"; };
+		AB6EBDF81E88753900539BB4 /* FSCalendarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FSCalendarView.swift; sourceTree = "<group>"; };
+		ABB78C1F1E86858500F7AEFE /* UITabBar+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITabBar+Extensions.swift"; sourceTree = "<group>"; };
 		BF89C72FC81B1ADE2A826F77 /* Pods_CafeTime.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CafeTime.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -421,6 +427,7 @@
 				313532AD1E48E62B00BA039C /* UIViewController+Extension.swift */,
 				31345F0C1E5DDDDB0016979E /* UITableView+Extensions.swift */,
 				31345F121E5F2E200016979E /* UINavigationBar+Extension.swift */,
+				ABB78C1F1E86858500F7AEFE /* UITabBar+Extensions.swift */,
 				3139118E1E3F6C5100EDAD40 /* UITextField+Extensions.swift */,
 				313911791E3BCC1600EDAD40 /* UIView+Extension.swift */,
 				3139117B1E3E12AA00EDAD40 /* UIAlertAction+Extensions.swift */,
@@ -484,6 +491,8 @@
 			isa = PBXGroup;
 			children = (
 				315266211E7B5BD700853C87 /* BookViewModel.swift */,
+				31A33E2B1E818E2B0070D494 /* BookSectionHeaderView.swift */,
+				AB6EBDF81E88753900539BB4 /* FSCalendarView.swift */,
 			);
 			name = Book;
 			sourceTree = "<group>";
@@ -560,9 +569,9 @@
 		31B960231E64288F00B06ECC /* Cafe Details VC */ = {
 			isa = PBXGroup;
 			children = (
+				3152661A1E7B459700853C87 /* Header */,
 				31B960211E64288C00B06ECC /* CafeDetailsVC.swift */,
 				31DFF41A1E79FB09002E3ABE /* CafeDetailsMainView.swift */,
-				3152661A1E7B459700853C87 /* Header */,
 				3152661F1E7B5A4900853C87 /* Menu  */,
 				315266201E7B5A5100853C87 /* Map */,
 				315266231E7B5BDB00853C87 /* Book */,
@@ -950,6 +959,7 @@
 				31BE83741E530F6A00B9FA34 /* UIDevice+Extensions.swift in Sources */,
 				3197B6C21E6ABD21002C30F0 /* BaseVC.swift in Sources */,
 				310B754C1E425768008ADF62 /* Cafe.swift in Sources */,
+				AB6EBDF91E88753900539BB4 /* FSCalendarView.swift in Sources */,
 				310610E21E56F7D6005A533D /* ReusableCellContainerView.swift in Sources */,
 				3121D0EC1E58716E00E2CC0C /* FavoritesPageVC.swift in Sources */,
 				315828CE1E39F17D00EBD20E /* LoginVC.swift in Sources */,
@@ -957,6 +967,7 @@
 				315828C81E39EE5400EBD20E /* SignUpView.swift in Sources */,
 				31A48B521E56FFB9007C2F28 /* MyUserProfileView.swift in Sources */,
 				316B51831E4B1D5E000EF798 /* Constants.swift in Sources */,
+				ABB78C201E86858500F7AEFE /* UITabBar+Extensions.swift in Sources */,
 				31BE83861E55B4CE00B9FA34 /* CellTopDetailsContainerView.swift in Sources */,
 				3110A3231E4F663900D90AC8 /* ReusableUserProfileView.swift in Sources */,
 				313911711E3BBC5500EDAD40 /* M13Checkbox+Extensions.swift in Sources */,
@@ -968,6 +979,7 @@
 				31345EF51E5B37370016979E /* Array+Extensions.swift in Sources */,
 				31DD520C1E38D57900DB9ABC /* CurrentUserProfileVC.swift in Sources */,
 				316B51921E4DBD26000EF798 /* NavBarTitleView.swift in Sources */,
+				31A33E2C1E818E2B0070D494 /* BookSectionHeaderView.swift in Sources */,
 				313532C31E49E7E100BA039C /* CredentialsDAO.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

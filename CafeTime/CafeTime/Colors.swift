@@ -12,14 +12,20 @@ import UIKit
 struct Colors {
     
     // General
-    static let PrimaryGray = UIColor.lightGray
+    static let black = UIColor.black
     
-    static let Clear = UIColor.clear
+    static let primaryGray = UIColor.init(red: 241.0/255.0,
+                                          green: 241.0/255.0,
+                                          blue: 241.0/255.0,
+                                          alpha: 1)
+    
+    static let clear = UIColor.clear
 
+    
     // Nav Bar
     struct NavBar {
         
-        static let Green = UIColor.green
+        static let green = UIColor.green
 
     }
 

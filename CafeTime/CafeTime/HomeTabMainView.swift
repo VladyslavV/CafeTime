@@ -17,7 +17,7 @@ class HomeTabMainView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.addSubview(tableView)
-        self.backgroundColor = Colors.PrimaryGray   
+        self.backgroundColor = Colors.primaryGray
         self.setUp()
     }
     
@@ -29,8 +29,8 @@ class HomeTabMainView: UIView {
     
     weak var delegate: HomeTabMainViewDelegate?
     
-    internal lazy var tableView: BaseTableView = {
-        let myVar = BaseTableView()
+    fileprivate lazy var tableView: BaseTableView = {
+        let myVar = BaseTableView(withStyle: .plain)
         myVar.delegate = self
         myVar.dataSource = self
         return myVar

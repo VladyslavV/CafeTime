@@ -19,4 +19,13 @@ extension UINavigationBar {
         self.shadowImage = nil
         self.isTranslucent = false
     }
+    
+    func setNavBarColor(_ color: UIColor = .green) {
+        self.barTintColor = color
+    }
+    
+    func setNavBarTitleColor(_ color: UIColor = .white) {
+        self.titleTextAttributes = [NSForegroundColorAttributeName : color]
+    }
+    
 }

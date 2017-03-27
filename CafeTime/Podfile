@@ -18,5 +18,6 @@ target 'CafeTime' do
     pod 'Jelly'
     pod 'RxRealm'
     pod 'SABlurImageView'
-        
+    pod 'FSCalendar'
+    
 end

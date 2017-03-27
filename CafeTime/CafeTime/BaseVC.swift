@@ -39,10 +39,21 @@ class BaseVC: UIViewController {
         return self.navigationController?.navigationBar
     }
     
+    var tabBar: UITabBar? {
+        return self.tabBarController?.tabBar
+    }
+    
+    typealias colors = Colors
+    
     // MARK: Funcs
     
     
     // MARK: Life Cycle
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navBar?.setNavBarTitleColor(.white)
+    }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -59,12 +70,30 @@ class BaseVC: UIViewController {
 // nav bar
 extension BaseVC {
     
-    func setNavBarColor(color: UIColor) {
-        navigationController?.navigationBar.barTintColor = UIColor.green
-    }
-    
     func resetNavBar() {
         navBar?.resetToDefault()
+    }
+    
+    func setupLeftBackArrow(arrowColor: UIColor)->UIBarButtonItem{
+        
+        let btnBack = UIButton(type: .custom)
+        btnBack.addTarget(self, action: #selector(dismiss as (Void) -> Void), for: UIControlEvents.touchUpInside)
+        
+        let image = UIImage(named: "leftArrow")
+      
+        btnBack.setImage(image, for: UIControlState())
+        btnBack.imageEdgeInsets = UIEdgeInsetsMake(0, -53, 0, 0)
+        btnBack.sizeToFit()
+        btnBack.frame.size.width = 60
+        
+        let backButton: UIBarButtonItem = UIBarButtonItem(customView: btnBack)
+        
+        self.navigationItem.leftBarButtonItem = backButton
+        return backButton
+    }
+
+    @objc private func dismiss() {
+        _ = self.navigationController?.popViewController(animated: true)
     }
 }
 

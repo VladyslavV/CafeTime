@@ -34,7 +34,8 @@ class CellDetailsHeaderView: UITableViewHeaderFooterView {
     
     lazy var menuBar: ReusableMenuCollectionView = {
         let myVar = ReusableMenuCollectionView(withTitles: ["Menu", "Map", "Book"])
-        myVar.titlesFont = UIFont.boldSystemFont(ofSize: 16)
+        myVar.titlesTextColor = Colors.black
+        myVar.titlesFont = UIFont.systemFont(ofSize: 14)
         myVar.sliderHeight = 3
         let imageArray = [UIImage(named: "sandwich"), UIImage(named: "sandwich"), UIImage(named: "sandwich")]
         myVar.iconImages = imageArray as? [UIImage]
@@ -50,7 +51,7 @@ class CellDetailsHeaderView: UITableViewHeaderFooterView {
     
     private let grayView: UIView = {
         let myVar = UIView()
-        myVar.backgroundColor = Colors.PrimaryGray
+        myVar.backgroundColor = Colors.primaryGray
         return myVar
     }()
     
