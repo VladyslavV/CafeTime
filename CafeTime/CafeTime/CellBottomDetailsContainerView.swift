@@ -14,9 +14,7 @@ class CellBottomDetailsContainerView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        self.addSubviews([discountLabel, drinksImageView, saladImageView, sandwichImageView, dishesImageView,
-                          drinksLabel, saladLabel, sandwichLabel, dishesLabel])
-        
+        self.addSubviews([discountLabel, drinksImageView, saladImageView, sandwichImageView, dishesImageView, drinksLabel, saladLabel, sandwichLabel, dishesLabel])
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -106,72 +104,69 @@ class CellBottomDetailsContainerView: UIView {
     
     private func setUp() {
         
-        if let containerWidth = superview?.frame.size.width {
+        if let containerWidth = superview?.frame.size.width, let containerHeight = superview?.frame.size.height {
             let totalDiscountedGoodsWidth = containerWidth * 0.2 * 4
             let spacing = (containerWidth - totalDiscountedGoodsWidth) / 4
           
-
-            discountLabel.snp.makeConstraints { (make) in
-                make.top.equalTo(self.snp.top).offset(5)
+            let topOffset = containerHeight * 0.05
+            
+            discountLabel.snp.remakeConstraints { (make) in
+                make.top.equalTo(self.snp.top).offset(topOffset)
                 make.trailing.equalTo(self.snp.trailing).offset(-10)
                 make.height.equalTo(self.snp.height).multipliedBy(0.15)
             }
             
             //MARK: ImageViews
-            drinksImageView.snp.makeConstraints { (make) in
-                make.top.equalTo(discountLabel.snp.bottom).offset(5)
+            drinksImageView.snp.remakeConstraints { (make) in
+                make.top.equalTo(discountLabel.snp.bottom).offset(topOffset)
                 make.leading.equalTo(self.snp.leading).offset(spacing / 2)
                 make.height.equalTo(self.snp.height).multipliedBy(0.5)
                 make.width.equalTo(self.snp.width).multipliedBy(0.2)
             }
             
-            saladImageView.snp.makeConstraints { (make) in
-                make.top.equalTo(discountLabel.snp.bottom).offset(5)
+            saladImageView.snp.remakeConstraints { (make) in
+                make.top.equalTo(drinksImageView.snp.top)
                 make.leading.equalTo(drinksImageView.snp.trailing).offset(spacing)
                 make.height.width.equalTo(drinksImageView)
             }
             
-            sandwichImageView.snp.makeConstraints { (make) in
-                make.top.equalTo(discountLabel.snp.bottom).offset(5)
+            sandwichImageView.snp.remakeConstraints { (make) in
+                make.top.equalTo(drinksImageView.snp.top)
                 make.leading.equalTo(saladImageView.snp.trailing).offset(spacing)
                 make.height.width.equalTo(drinksImageView)
             }
             
-            dishesImageView.snp.makeConstraints { (make) in
-                make.top.equalTo(discountLabel.snp.bottom).offset(5)
+            dishesImageView.snp.remakeConstraints { (make) in
+                make.top.equalTo(drinksImageView.snp.top)
                 make.leading.equalTo(sandwichImageView.snp.trailing).offset(spacing)
                 make.height.width.equalTo(drinksImageView)
             }
             
             //MARK: Labels
-            drinksLabel.snp.makeConstraints { (make) in
-                make.top.equalTo(drinksImageView.snp.bottom).offset(3)
+            drinksLabel.snp.remakeConstraints { (make) in
+                make.top.equalTo(drinksImageView.snp.bottom).offset(topOffset)
                 make.leading.trailing.equalTo(drinksImageView)
                 make.bottom.equalTo(self.snp.bottom).offset(-2)
             }
 
             
-            saladLabel.snp.makeConstraints { (make) in
-                make.top.equalTo(saladImageView.snp.bottom).offset(3)
-                make.leading.equalTo(saladImageView)
+            saladLabel.snp.remakeConstraints { (make) in
+                make.top.equalTo(saladImageView.snp.bottom).offset(topOffset)
                 make.leading.trailing.equalTo(saladImageView)
-                make.bottom.equalTo(self.snp.bottom).offset(-2)
+                make.bottom.equalTo(drinksLabel.snp.bottom).offset(-2)
             }
             
-            sandwichLabel.snp.makeConstraints { (make) in
-                make.top.equalTo(sandwichImageView.snp.bottom).offset(3)
-                make.leading.equalTo(sandwichImageView)
+            sandwichLabel.snp.remakeConstraints { (make) in
+                make.top.equalTo(sandwichImageView.snp.bottom).offset(topOffset)
                 make.leading.trailing.equalTo(sandwichImageView)
                 make.bottom.equalTo(self.snp.bottom).offset(-2)
             }
             
-            dishesLabel.snp.makeConstraints { (make) in
-                make.top.equalTo(dishesImageView.snp.bottom).offset(3)
-                make.leading.equalTo(dishesImageView)
+            dishesLabel.snp.remakeConstraints { (make) in
+                make.top.equalTo(dishesImageView.snp.bottom).offset(topOffset)
                 make.leading.trailing.equalTo(dishesImageView)
                 make.bottom.equalTo(self.snp.bottom).offset(-2)
             }
-
         }
     }
        
@@ -179,6 +174,5 @@ class CellBottomDetailsContainerView: UIView {
         super.layoutSubviews()
         self.layer.cornerRadius = self.frame.size.width / 27
         self.setUp()
-
     }
 }

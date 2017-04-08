@@ -11,7 +11,6 @@ import SnapKit
 
 class PrimaryTableViewCell: UITableViewCell {
     
-    
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         showingDetails = false
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -61,7 +60,7 @@ class PrimaryTableViewCell: UITableViewCell {
         
         mainContainerView.snp.remakeConstraints { (make) in
             make.edges.equalTo(self.contentView).inset(UIEdgeInsetsMake(10, 10, 10, 10))
-            make.height.equalTo(normalHeight)
+            make.height.equalTo(normalHeight).priority(750)
         }
     }
     
@@ -69,11 +68,9 @@ class PrimaryTableViewCell: UITableViewCell {
         
         mainContainerView.snp.remakeConstraints { (make) in
             make.edges.equalTo(self.contentView).inset(UIEdgeInsetsMake(10, 10, 10, 10))
-            make.height.equalTo(detailsHeight)
+            make.height.equalTo(detailsHeight).priority(750)
         }
     }
-    
-    
 }
 
 

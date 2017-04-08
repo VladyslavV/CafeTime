@@ -19,6 +19,7 @@ class CommentsPageVC: UIViewController {
 
     private let mainView: CommentsPageMainView = {
         let myVar = CommentsPageMainView()
+        myVar.translatesAutoresizingMaskIntoConstraints = false
         return myVar
     }()
     

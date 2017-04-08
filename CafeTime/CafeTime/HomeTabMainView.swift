@@ -45,8 +45,10 @@ class HomeTabMainView: UIView {
     }()
     
     private func setUp() {
+        
         tableViewTapGesture.isEnabled = true
-        tableView.snp.remakeConstraints { (make) in
+        
+        tableView.snp.makeConstraints { (make) in
             make.edges.equalTo(self)
         }
     }
@@ -106,7 +108,6 @@ class HomeTabMainView: UIView {
         
         tableView.scrollToRow(at: tapIndexPath, at: .none, animated: true)
     }
-    
 }
 
 
@@ -121,7 +122,6 @@ extension HomeTabMainView: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-      
         let cell = self.tableView.dequeueReusableCell(withIdentifier: Constants.TableViewCells.IDs.Primary, for: indexPath) as! PrimaryTableViewCell    
         
         cell.mainContainerView.topContainerView.titleLabel.text = "Title"

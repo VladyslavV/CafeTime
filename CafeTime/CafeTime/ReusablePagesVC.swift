@@ -12,6 +12,7 @@ class ReusablePagesVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.automaticallyAdjustsScrollViewInsets = false
         self.view.backgroundColor = UIColor.clear
         self.view.addSubview(mainView)
         self.setUp()
@@ -93,7 +94,8 @@ class ReusablePagesVC: UIViewController {
         
         // 2 manage vc's view
         let myVar = ReusablePagesMainView(titles: titles, views: views)
-        
+        myVar.translatesAutoresizingMaskIntoConstraints = false
+
         // 3 notify children
         for vc in vcsArray {
             vc.didMove(toParentViewController: self)

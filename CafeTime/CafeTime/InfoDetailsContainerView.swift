@@ -61,7 +61,7 @@ class InfoDetailsContainerView: ReusableEmtpyCellContainer {
         
         titleLabel.snp.makeConstraints { (make) in
             make.top.equalTo(self.snp.top).offset(10)
-            make.centerX.equalTo(self.snp.centerX)
+            make.centerX.equalTo(self.snp.centerX).priority(750)
             make.width.equalTo(self.snp.width).multipliedBy(0.9)
             make.height.equalTo(self.snp.height).multipliedBy(0.2)
         }
@@ -70,21 +70,21 @@ class InfoDetailsContainerView: ReusableEmtpyCellContainer {
             make.top.equalTo(titleLabel.snp.bottom).offset(5)
             make.width.equalTo(titleLabel.snp.width)
             make.height.equalTo(self.snp.height).multipliedBy(0.03)
-            make.centerX.equalTo(self.snp.centerX)
+            make.centerX.equalTo(self.snp.centerX).priority(250)
         }
         
         
         descriptionLabel.snp.makeConstraints { (make) in
             make.top.equalTo(separator.snp.bottom).offset(10)
             make.width.equalTo(titleLabel.snp.width)
-            make.centerX.equalTo(self.snp.centerX)
+            make.centerX.equalTo(self.snp.centerX).priority(750)
             make.bottom.lessThanOrEqualTo(stars.snp.top).offset(-10)
         }
         
         stars.backgroundColor = UIColor.green
         stars.snp.makeConstraints { (make) in
             make.bottom.equalTo(self.snp.bottom).offset(-20)
-            make.centerX.equalTo(self.snp.centerX)
+            make.centerX.equalTo(self.snp.centerX).priority(750)
             make.height.equalTo(self.snp.height).multipliedBy(0.1)
             make.width.equalTo(self.snp.width).multipliedBy(0.6)
         }
@@ -128,19 +128,19 @@ private class Separator: UIView {
         
         greenCircleSeparator.snp.makeConstraints { (make) in
             make.height.width.equalTo(self.snp.height)
-            make.center.equalTo(self.snp.center)
+            make.center.equalTo(self.snp.center).priority(750)
         }
         
         leftLineView.snp.makeConstraints { (make) in
             make.leading.equalTo(self.snp.leading)
-            make.trailing.equalTo(greenCircleSeparator.snp.leading).offset(-5)
+            make.trailing.equalTo(greenCircleSeparator.snp.leading).offset(-5).priority(750)
             make.height.equalTo(self.snp.height).multipliedBy(0.2)
             make.centerY.equalTo(self.snp.centerY)
         }
         
         rightLineView.snp.makeConstraints { (make) in
             make.trailing.equalTo(self.snp.trailing)
-            make.leading.equalTo(greenCircleSeparator.snp.trailing).offset(5)
+            make.leading.equalTo(greenCircleSeparator.snp.trailing).offset(5).priority(750)
             make.height.equalTo(self.snp.height).multipliedBy(0.2)
             make.centerY.equalTo(self.snp.centerY)
         }

@@ -19,6 +19,7 @@ class FavoritesPageVC: UIViewController {
 
     private let mainView: FavoritesPageMainView = {
         let myVar = FavoritesPageMainView()
+        myVar.translatesAutoresizingMaskIntoConstraints = false
         return myVar
     }()
         

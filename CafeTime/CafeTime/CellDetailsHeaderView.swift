@@ -12,13 +12,12 @@ import SnapKit
 class CellDetailsHeaderView: UITableViewHeaderFooterView {
     
     // MARK: Init
+    var view: UIImageView!
     
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
         self.contentView.addSubviews([topView, grayView, favoritesButton, chatButton, bookingsButton, infoContainerView, collectionView, menuBar])
         self.setUp()
-        
-
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -29,6 +28,7 @@ class CellDetailsHeaderView: UITableViewHeaderFooterView {
         super.layoutSubviews()
         collectionView.reloadData()
     }
+    
     
     // MARK: Vars
     
@@ -45,7 +45,7 @@ class CellDetailsHeaderView: UITableViewHeaderFooterView {
     
     private let topView: UIView = {
         let myVar = UIView()
-       // myVar.backgroundColor = UIColor.red
+        // myVar.backgroundColor = UIColor.red
         return myVar
     }()
     
@@ -81,7 +81,7 @@ class CellDetailsHeaderView: UITableViewHeaderFooterView {
         myVar.contentMode = .scaleToFill
         return myVar
     }()
-
+    
     private let interItemSpacing: CGFloat = 10.0
     fileprivate let cellID = "cellID"
     
@@ -146,21 +146,21 @@ class CellDetailsHeaderView: UITableViewHeaderFooterView {
             make.width.height.equalTo(screenWidth * 0.15)
             make.trailing.equalTo(self.snp.trailing).offset(-(screenWidth * 0.1))
         }
-
+        
         infoContainerView.snp.makeConstraints { (make) in
             make.top.equalTo(favoritesButton.snp.bottom).offset(15)
             make.width.equalTo(self.snp.width).multipliedBy(0.9)
             make.height.equalTo(screenHeight * 0.25)
-            make.centerX.equalTo(self.contentView.snp.centerX)
+            make.centerX.equalTo(self.contentView.snp.centerX).priority(750)
         }
-
+        
         collectionView.snp.makeConstraints { (make) in
-            make.top.equalTo(infoContainerView.snp.bottom).offset(15)
+            make.top.equalTo(infoContainerView.snp.bottom).offset(15).priority(750)
             make.leading.equalTo(infoContainerView.snp.leading)
             make.height.equalTo(screenHeight * 0.2)
             make.trailing.equalTo(self.snp.trailing)
         }
-
+        
         menuBar.snp.makeConstraints { (make) in
             make.top.equalTo(collectionView.snp.bottom).offset(15)
             make.width.equalTo(self.snp.width)
@@ -187,7 +187,7 @@ extension CellDetailsHeaderView: UICollectionViewDelegate, UICollectionViewDataS
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: frame.size.width * 0.65, height: frame.size.height)
+        return CGSize(width: self.collectionView.frame.size.width * 0.65, height: self.collectionView.frame.size.height)
     }
     
 }

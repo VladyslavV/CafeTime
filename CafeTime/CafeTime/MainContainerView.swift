@@ -48,24 +48,23 @@ class MainContainerView: UIView {
     
     func showDetails() {
         
+        self.addSubview(detailContainerView)
+        
         detailContainerView.snp.remakeConstraints { (make) in
             make.top.equalTo(self.snp.top).offset(topContainerHeight)
-            make.leading.trailing.bottom.equalTo(self)
+            make.leading.trailing.equalTo(self)
+            make.height.equalTo(btmContainerHeight)
         }
     }
     
     func showNormalState() {
         
         topContainerView.snp.makeConstraints { (make) in
-            make.leading.equalTo(self.snp.leading)
-            make.top.equalTo(self.snp.top)
-            make.trailing.equalTo(self.snp.trailing)
+            make.leading.top.trailing.equalTo(self)
             make.height.equalTo(topContainerHeight)
         }
         
-        detailContainerView.snp.remakeConstraints { (make) in
-            make.height.equalTo(0)
-        }
+        detailContainerView.removeFromSuperview()
     }
     
     override func layoutSubviews() {

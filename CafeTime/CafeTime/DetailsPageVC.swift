@@ -17,6 +17,7 @@ class DetailsPageVC: UIViewController {
     
     let mainView: DetailsPageMainView = {
         let myVar = DetailsPageMainView()
+        myVar.translatesAutoresizingMaskIntoConstraints = false
         return myVar
     }()
     

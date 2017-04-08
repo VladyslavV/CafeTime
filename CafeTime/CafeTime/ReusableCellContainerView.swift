@@ -9,7 +9,7 @@
 import UIKit
 import SnapKit
 
-enum CellState {
+enum ReusableCellState {
     case normal
     case deleting
     case editing
@@ -31,7 +31,7 @@ class ReusableCellContainerView: ReusableEmtpyCellContainer {
     
     // MARK: Vars
     
-    var cellState: CellState = .normal {
+    var cellState: ReusableCellState = .normal {
         didSet {
             switch cellState {
             case .normal:

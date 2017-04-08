@@ -95,7 +95,7 @@ class ReusableMenuCollectionView: UIView {
     private func setUp() {
         
         collectionView.snp.makeConstraints { (make) in
-            make.edges.equalTo(self)
+            make.edges.equalTo(self).priority(750)
         }
         
         let titleWidth = titlesArray[0].widthOfString(usingFont: self.titlesFont)
@@ -137,7 +137,7 @@ extension ReusableMenuCollectionView:  UICollectionViewDelegate, UICollectionVie
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: itemWidth, height: frame.height)
+        return CGSize(width: itemWidth, height: self.collectionView.frame.height)
     }
     
     // MARK: Helper

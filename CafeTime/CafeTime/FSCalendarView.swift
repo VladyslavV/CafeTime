@@ -22,25 +22,29 @@ class FSCalendarView: FSCalendar {
         
         self.firstWeekday = 2
         
+        //header
+                
         self.calendarHeaderView.backgroundColor = Colors.clear
         self.appearance.headerMinimumDissolvedAlpha = 0.0;
-        
         self.appearance.headerTitleColor = UIColor.black
+        
+        //main
+        
         self.appearance.weekdayTextColor = UIColor.black
-        self.appearance.todayColor = UIColor.green
-        self.appearance.selectionColor = UIColor.darkGray
+        self.appearance.selectionColor = UIColor.green
+        self.appearance.eventDefaultColor = UIColor.green
+        
         self.placeholderType = .fillHeadTail
         
+        self.appearance.todaySelectionColor = Colors.primaryGray
+        self.appearance.todayColor = Colors.primaryGray
+
+       // self.select(self.today)
+        
         self.addSubviews([leftHeaderButton, rightHeaderButton])
-        
         self.backgroundColor = Colors.primaryGray
-        
         self.setUp()
-        
     }
-    
-    
-    
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -97,4 +101,13 @@ extension FSCalendar: FSCalendarDelegate, FSCalendarDataSource {
     public func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
         print(date)
     }
+    
+    
+//    public func calendar(_ calendar: FSCalendar, hasEventFor date: Date) -> Bool {
+//        if self.today == date {
+//            return true
+//        }
+//        return false
+//    }
 }
+

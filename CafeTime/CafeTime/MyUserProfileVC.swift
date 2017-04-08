@@ -50,6 +50,7 @@ class MyUserProfileVC: BaseVC {
     
     internal lazy var mainView: MyUserProfileMainView = {
         let myVar = MyUserProfileMainView()
+        myVar.translatesAutoresizingMaskIntoConstraints = false
         myVar.myUserProfileView.delegate = self
         return myVar
     }()

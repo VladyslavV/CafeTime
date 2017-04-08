@@ -35,7 +35,7 @@ class FavoritesPageMainView: UIView {
         myVar.tableFooterView = UIView()
         myVar.separatorStyle = .none
         myVar.separatorInset = UIEdgeInsets.zero
-        myVar.estimatedRowHeight = 70
+        myVar.estimatedRowHeight = 2.0
         myVar.rowHeight = UITableViewAutomaticDimension
         myVar.delegate = self
         myVar.dataSource = self

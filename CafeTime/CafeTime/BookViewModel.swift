@@ -12,6 +12,11 @@ class BookViewModel: NSObject, UITableViewDataSource, UITableViewDelegate {
     
     override init() {
         super.init()
+
+        calendarView.reloadTableViewHandler = { [weak self] in
+            guard let weakSelf = self else { return }
+            weakSelf.reloadTableViewHandler!(Sections.date)
+        }
     }
     
     enum Sections: Int{
@@ -27,9 +32,10 @@ class BookViewModel: NSObject, UITableViewDataSource, UITableViewDelegate {
     }
     
     //MARK: Vars
+    var reloadTableViewHandler: ((Sections) -> ())?
     
-    //private let calendarView = CalendarControl()
-    private let calendarView = FSCalendarView()
+    //private let calendarView = FSCalendarView()
+    private let calendarView = CVCCalendarControl()
 
     //MARK: number of rows and section
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -80,10 +86,13 @@ class BookViewModel: NSObject, UITableViewDataSource, UITableViewDelegate {
         
         cell.selectionStyle = .none
         cell.backgroundColor = UIColor.orange
-        cell.contentView.snp.remakeConstraints { (make) in
-            make.leading.trailing.top.equalTo(cell)
-            make.height.equalTo(300)
-        }
+        
+//        cell.contentView.snp.remakeConstraints { (make) in
+////            make.leading.trailing.top.equalTo(cell)
+////            make.height.equalTo(300)
+//            
+//            make.edges.equalTo(cell)
+//        }
         
         return cell
     }
@@ -124,4 +133,5 @@ class BookViewModel: NSObject, UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 0.01
     }
+
 }

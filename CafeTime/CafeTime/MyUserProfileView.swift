@@ -14,7 +14,6 @@ protocol MyUserProfileViewDelegate: class {
 }
 
 
-
 class MyUserProfileView: ReusableUserProfileView {
 
     weak var delegate: MyUserProfileViewDelegate?

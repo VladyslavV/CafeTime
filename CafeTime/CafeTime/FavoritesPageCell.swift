@@ -14,7 +14,7 @@ protocol FavoritesPageCellDelegate: class {
 }
 
 class FavoritesPageCell: UITableViewCell {
-
+    
     // MARK: Init
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
@@ -40,7 +40,7 @@ class FavoritesPageCell: UITableViewCell {
     var editingState: (Bool,Bool) = (false, false) {
         didSet {
             if editingState.0 {
-    
+                
                 self.setUpDeletingStateConstraints()
             }
             else {
@@ -50,7 +50,7 @@ class FavoritesPageCell: UITableViewCell {
             if editingState.1 {
                 self.animateConstraintsTransition(withDuration: 0.75)
             }
-
+            
         }
     }
     
@@ -64,29 +64,25 @@ class FavoritesPageCell: UITableViewCell {
         
         containerView.snp.remakeConstraints { (make) in
             make.edges.equalTo(self.contentView).inset(UIEdgeInsetsMake(10, 10, 10, 10))
-            make.height.equalTo(Utils.shared.screenSize().height * 0.2)
+            make.height.equalTo(Utils.shared.screenSize().height * 0.2).priority(750)
         }
-     
-        containerView.cellState = .normal
         
+        containerView.cellState = .normal
     }
     
     private func setUpDeletingStateConstraints() {
         
         containerView.snp.remakeConstraints { (make) in
             make.edges.equalTo(self.contentView).inset(UIEdgeInsetsMake(10, 10, 10, 10))
-            make.leading.equalTo(self.snp.leading)
-            make.height.equalTo(Utils.shared.screenSize().height * 0.2)
+            make.height.equalTo(Utils.shared.screenSize().height * 0.2).priority(750)
         }
         
         containerView.cellState = .deleting
-        
     }
-
+    
     // MARK: Actions
     
     @objc private func deleteCell() {
         self.delegate?.deleteCell(cell: self)
     }
-    
 }

@@ -107,6 +107,7 @@
 		31EEE8F51E7D7CF700928D2C /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31EEE8F41E7D7CF700928D2C /* Colors.swift */; };
 		31EEE8F71E7D80EE00928D2C /* BaseTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31EEE8F61E7D80EE00928D2C /* BaseTableView.swift */; };
 		AB6EBDF91E88753900539BB4 /* FSCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6EBDF81E88753900539BB4 /* FSCalendarView.swift */; };
+		AB97A4FA1E92BC7F00967CDA /* CVCCalendarControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB97A4F91E92BC7F00967CDA /* CVCCalendarControl.swift */; };
 		ABB78C201E86858500F7AEFE /* UITabBar+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABB78C1F1E86858500F7AEFE /* UITabBar+Extensions.swift */; };
 		F7CB5FA87FAA5EFFC327F7A7 /* Pods_CafeTime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF89C72FC81B1ADE2A826F77 /* Pods_CafeTime.framework */; };
 /* End PBXBuildFile section */
@@ -221,6 +222,7 @@
 		3E6DDB7D3B44C4CDB24E5423 /* Pods-CafeTime.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CafeTime.release.xcconfig"; path = "Pods/Target Support Files/Pods-CafeTime/Pods-CafeTime.release.xcconfig"; sourceTree = "<group>"; };
 		89C83501161F916A33C28CCA /* Pods-CafeTime.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CafeTime.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CafeTime/Pods-CafeTime.debug.xcconfig"; sourceTree = "<group>"; };
 		AB6EBDF81E88753900539BB4 /* FSCalendarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FSCalendarView.swift; sourceTree = "<group>"; };
+		AB97A4F91E92BC7F00967CDA /* CVCCalendarControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CVCCalendarControl.swift; sourceTree = "<group>"; };
 		ABB78C1F1E86858500F7AEFE /* UITabBar+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITabBar+Extensions.swift"; sourceTree = "<group>"; };
 		BF89C72FC81B1ADE2A826F77 /* Pods_CafeTime.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CafeTime.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -369,7 +371,6 @@
 			isa = PBXGroup;
 			children = (
 				31EEE8F81E7D80F400928D2C /* Base Views */,
-				31345EF81E5B45B30016979E /* Reusable Page Controller */,
 				313911921E3F7B2300EDAD40 /* Reusable Views */,
 			);
 			name = Reusables;
@@ -493,6 +494,7 @@
 				315266211E7B5BD700853C87 /* BookViewModel.swift */,
 				31A33E2B1E818E2B0070D494 /* BookSectionHeaderView.swift */,
 				AB6EBDF81E88753900539BB4 /* FSCalendarView.swift */,
+				AB97A4F91E92BC7F00967CDA /* CVCCalendarControl.swift */,
 			);
 			name = Book;
 			sourceTree = "<group>";
@@ -732,6 +734,7 @@
 				31BE838D1E55C13900B9FA34 /* MainContainerView.swift */,
 				31BE83851E55B4CE00B9FA34 /* CellTopDetailsContainerView.swift */,
 				31BE83891E55BE6900B9FA34 /* CellBottomDetailsContainerView.swift */,
+				31345EF81E5B45B30016979E /* Reusable Page Controller */,
 			);
 			name = "Primary Cell";
 			sourceTree = "<group>";
@@ -964,6 +967,7 @@
 				3121D0EC1E58716E00E2CC0C /* FavoritesPageVC.swift in Sources */,
 				315828CE1E39F17D00EBD20E /* LoginVC.swift in Sources */,
 				31345F111E5F28C30016979E /* CommentsPageMainView.swift in Sources */,
+				AB97A4FA1E92BC7F00967CDA /* CVCCalendarControl.swift in Sources */,
 				315828C81E39EE5400EBD20E /* SignUpView.swift in Sources */,
 				31A48B521E56FFB9007C2F28 /* MyUserProfileView.swift in Sources */,
 				316B51831E4B1D5E000EF798 /* Constants.swift in Sources */,
@@ -1039,7 +1043,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -1083,7 +1087,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -1098,10 +1102,12 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = NO;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = CafeTime/CafeTime.entitlements;
 				DEVELOPMENT_TEAM = 5HYBF2ZF8V;
 				INFOPLIST_FILE = CafeTime/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.VV.CafeTime;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1117,10 +1123,12 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = NO;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = CafeTime/CafeTime.entitlements;
 				DEVELOPMENT_TEAM = 5HYBF2ZF8V;
 				INFOPLIST_FILE = CafeTime/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.VV.CafeTime;
 				PRODUCT_NAME = "$(TARGET_NAME)";

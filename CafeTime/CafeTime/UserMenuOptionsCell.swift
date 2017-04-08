@@ -37,7 +37,7 @@ class UserMenuOptionsCell: UITableViewCell {
         self.selectionStyle = .gray
         
         self.contentView.snp.remakeConstraints { (make) in
-            make.height.equalTo(Utils.shared.screenSize().height * 0.15)
+            make.height.equalTo(Utils.shared.screenSize().height * 0.15).priority(750)
             make.leading.trailing.equalTo(self)
             make.top.equalTo(self.snp.top).offset(10)
             make.bottom.equalTo(self.snp.bottom).offset(-10)

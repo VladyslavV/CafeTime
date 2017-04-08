@@ -21,6 +21,7 @@ class HomeTabVC: BaseVC {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.automaticallyAdjustsScrollViewInsets = false
         self.view.addSubview(mainView)
         self.revealViewController().panGestureRecognizer()
         self.revealViewController().tapGestureRecognizer()
@@ -41,7 +42,6 @@ class HomeTabVC: BaseVC {
         let tabBarImage = UIImage.init(named: "users_list_tabbarimage")
         self.tabBarItem = UITabBarItem(title: nil, image: tabBarImage , selectedImage: tabBarImage)
         
-        
         self.navigationItem.title = "News"
         
         mainView.snp.remakeConstraints { (make) -> Void in
@@ -50,8 +50,6 @@ class HomeTabVC: BaseVC {
             make.top.equalTo(self.topLayoutGuide.snp.bottom)
         }
     }
-    
-    
 }
 
 extension HomeTabVC: HomeTabMainViewDelegate {

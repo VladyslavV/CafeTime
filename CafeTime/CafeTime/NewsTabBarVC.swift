@@ -12,7 +12,8 @@ class NewsTabBarVC: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+        self.automaticallyAdjustsScrollViewInsets = false
+
         //self.view.backgroundColor = UIColor.white
         self.setUp()
     }

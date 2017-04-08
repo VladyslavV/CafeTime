@@ -14,6 +14,7 @@ class DetailsPageBottomContainerView: ReusableEmtpyCellContainer {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        self.translatesAutoresizingMaskIntoConstraints = false
         
         self.addSubviews([nameContainerView, emailContainerView, locationContainerView])
         

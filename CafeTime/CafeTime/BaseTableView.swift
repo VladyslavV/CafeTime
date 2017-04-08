@@ -27,7 +27,7 @@ class BaseTableView: UITableView {
         self.register(PrimaryTableViewCell.self, forCellReuseIdentifier: Constants.TableViewCells.IDs.Primary)
         
 
-        self.estimatedRowHeight = 100
+        self.estimatedRowHeight = 10
         self.rowHeight = UITableViewAutomaticDimension
         self.tableFooterView = UIView()
         self.backgroundColor = Colors.clear

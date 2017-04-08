@@ -26,6 +26,7 @@ class MyUserProfileMainView: UIView {
     
     let myUserProfileView: MyUserProfileView = {
         let myVar = MyUserProfileView()
+        myVar.translatesAutoresizingMaskIntoConstraints = false
         return myVar
     }()
         

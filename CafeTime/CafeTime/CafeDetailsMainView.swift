@@ -99,6 +99,11 @@ class CafeDetailsMainView: UIView {
         
         headerView.updateGrayViewConstraints()
     }
+    
+    func reload(section: Int?) {
+        guard let sec = section else { self.tableView.reloadData(); return }
+        tableView.reloadSections(IndexSet(integer: sec), with: .none)
+    }
 }
 
 extension CafeDetailsMainView: UITableViewDelegate {
