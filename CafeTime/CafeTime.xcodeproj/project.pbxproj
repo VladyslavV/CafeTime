@@ -106,6 +106,7 @@
 		31E58F5C1E37AD7F00CE4FE1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 31E58F5B1E37AD7F00CE4FE1 /* Assets.xcassets */; };
 		31EEE8F51E7D7CF700928D2C /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31EEE8F41E7D7CF700928D2C /* Colors.swift */; };
 		31EEE8F71E7D80EE00928D2C /* BaseTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31EEE8F61E7D80EE00928D2C /* BaseTableView.swift */; };
+		AB5454BB1E99462600C2F0D3 /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5454BA1E99462600C2F0D3 /* Date+Extensions.swift */; };
 		AB6EBDF91E88753900539BB4 /* FSCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6EBDF81E88753900539BB4 /* FSCalendarView.swift */; };
 		AB97A4FA1E92BC7F00967CDA /* CVCCalendarControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB97A4F91E92BC7F00967CDA /* CVCCalendarControl.swift */; };
 		ABB78C201E86858500F7AEFE /* UITabBar+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABB78C1F1E86858500F7AEFE /* UITabBar+Extensions.swift */; };
@@ -221,6 +222,7 @@
 		31EEE8F61E7D80EE00928D2C /* BaseTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTableView.swift; sourceTree = "<group>"; };
 		3E6DDB7D3B44C4CDB24E5423 /* Pods-CafeTime.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CafeTime.release.xcconfig"; path = "Pods/Target Support Files/Pods-CafeTime/Pods-CafeTime.release.xcconfig"; sourceTree = "<group>"; };
 		89C83501161F916A33C28CCA /* Pods-CafeTime.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CafeTime.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CafeTime/Pods-CafeTime.debug.xcconfig"; sourceTree = "<group>"; };
+		AB5454BA1E99462600C2F0D3 /* Date+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
 		AB6EBDF81E88753900539BB4 /* FSCalendarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FSCalendarView.swift; sourceTree = "<group>"; };
 		AB97A4F91E92BC7F00967CDA /* CVCCalendarControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CVCCalendarControl.swift; sourceTree = "<group>"; };
 		ABB78C1F1E86858500F7AEFE /* UITabBar+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITabBar+Extensions.swift"; sourceTree = "<group>"; };
@@ -419,19 +421,11 @@
 		3139118B1E3EA6E000EDAD40 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				313911701E3BBC5500EDAD40 /* M13Checkbox+Extensions.swift */,
-				31345EF41E5B37370016979E /* Array+Extensions.swift */,
-				3121D0E01E57312600E2CC0C /* String+Extensions.swift */,
 				31345F0E1E5EDF920016979E /* UUID+Extension.swift */,
-				31BE83731E530F6A00B9FA34 /* UIDevice+Extensions.swift */,
-				31BE83711E52FCDC00B9FA34 /* UIImageView+Extensions.swift */,
-				313532AD1E48E62B00BA039C /* UIViewController+Extension.swift */,
-				31345F0C1E5DDDDB0016979E /* UITableView+Extensions.swift */,
-				31345F121E5F2E200016979E /* UINavigationBar+Extension.swift */,
-				ABB78C1F1E86858500F7AEFE /* UITabBar+Extensions.swift */,
-				3139118E1E3F6C5100EDAD40 /* UITextField+Extensions.swift */,
-				313911791E3BCC1600EDAD40 /* UIView+Extension.swift */,
-				3139117B1E3E12AA00EDAD40 /* UIAlertAction+Extensions.swift */,
+				31345EF41E5B37370016979E /* Array+Extensions.swift */,
+				AB5454BA1E99462600C2F0D3 /* Date+Extensions.swift */,
+				3121D0E01E57312600E2CC0C /* String+Extensions.swift */,
+				AB5454BC1E99463D00C2F0D3 /* UI */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -756,6 +750,23 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		AB5454BC1E99463D00C2F0D3 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				313911701E3BBC5500EDAD40 /* M13Checkbox+Extensions.swift */,
+				31BE83731E530F6A00B9FA34 /* UIDevice+Extensions.swift */,
+				31BE83711E52FCDC00B9FA34 /* UIImageView+Extensions.swift */,
+				313532AD1E48E62B00BA039C /* UIViewController+Extension.swift */,
+				31345F0C1E5DDDDB0016979E /* UITableView+Extensions.swift */,
+				31345F121E5F2E200016979E /* UINavigationBar+Extension.swift */,
+				ABB78C1F1E86858500F7AEFE /* UITabBar+Extensions.swift */,
+				3139118E1E3F6C5100EDAD40 /* UITextField+Extensions.swift */,
+				313911791E3BCC1600EDAD40 /* UIView+Extension.swift */,
+				3139117B1E3E12AA00EDAD40 /* UIAlertAction+Extensions.swift */,
+			);
+			name = UI;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -979,6 +990,7 @@
 				3139118F1E3F6C5100EDAD40 /* UITextField+Extensions.swift in Sources */,
 				3139118A1E3E4FC500EDAD40 /* Validator.swift in Sources */,
 				313532C51E49EF5B00BA039C /* Customer.swift in Sources */,
+				AB5454BB1E99462600C2F0D3 /* Date+Extensions.swift in Sources */,
 				3121D0EF1E58719400E2CC0C /* CommentsPageVC.swift in Sources */,
 				31345EF51E5B37370016979E /* Array+Extensions.swift in Sources */,
 				31DD520C1E38D57900DB9ABC /* CurrentUserProfileVC.swift in Sources */,

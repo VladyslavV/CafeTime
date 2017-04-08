@@ -46,8 +46,6 @@ class CVCCalendarControl: UIView, CVCalendarViewDelegate, CVCalendarMenuViewDele
     let menuView = CVCalendarMenuView()
     let calendarView = CVCalendarView()
     
-    var reloadTableViewHandler: (() ->())?
-    
     // MARK: Set Up
     
     private func setUp() {
@@ -60,7 +58,7 @@ class CVCCalendarControl: UIView, CVCalendarViewDelegate, CVCalendarMenuViewDele
         calendarView.snp.makeConstraints { (make) in
             make.top.equalTo(menuView.snp.bottom)
             make.leading.trailing.bottom.equalTo(self)
-            make.height.equalTo(200)
+            make.height.equalTo(300)
         }
     }
     
@@ -75,7 +73,6 @@ class CVCCalendarControl: UIView, CVCalendarViewDelegate, CVCalendarMenuViewDele
     }
     
     func shouldAnimateResizing() -> Bool {
-        self.reloadTableViewHandler!()
         return true
     }
 }

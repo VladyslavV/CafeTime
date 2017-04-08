@@ -13,10 +13,6 @@ class BookViewModel: NSObject, UITableViewDataSource, UITableViewDelegate {
     override init() {
         super.init()
 
-        calendarView.reloadTableViewHandler = { [weak self] in
-            guard let weakSelf = self else { return }
-            weakSelf.reloadTableViewHandler!(Sections.date)
-        }
     }
     
     enum Sections: Int{
@@ -32,10 +28,9 @@ class BookViewModel: NSObject, UITableViewDataSource, UITableViewDelegate {
     }
     
     //MARK: Vars
-    var reloadTableViewHandler: ((Sections) -> ())?
     
-    //private let calendarView = FSCalendarView()
-    private let calendarView = CVCCalendarControl()
+    private let calendarView = FSCalendarView()
+    //private let calendarView = CVCCalendarControl()
 
     //MARK: number of rows and section
     func numberOfSections(in tableView: UITableView) -> Int {

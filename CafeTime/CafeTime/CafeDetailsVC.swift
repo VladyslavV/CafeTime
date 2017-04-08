@@ -26,11 +26,6 @@ class CafeDetailsVC: BaseVC {
         _ = self.setupLeftBackArrow(arrowColor: UIColor.white)
         
         self.navigationController?.interactivePopGestureRecognizer?.delegate = self
-        
-        bookViewModel.reloadTableViewHandler = { [weak self] in
-            guard let weakSelf = self else { return }
-            weakSelf.mainView.reload(section: $0.rawValue)
-        }
     }
     
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldBeRequiredToFailBy otherGestureRecognizer: UIGestureRecognizer) -> Bool {
