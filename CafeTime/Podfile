@@ -19,6 +19,5 @@ target 'CafeTime' do
     pod 'RxRealm'
     pod 'SABlurImageView'
     pod 'FSCalendar'
-    pod 'CVCalendar'
     
 end

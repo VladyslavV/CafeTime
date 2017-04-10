@@ -4,11 +4,6 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>CVCalendar.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>FSCalendar.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -87,17 +82,12 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>0F75E74306DCD762F04CCCE6FF041F7D</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>107A9565F9DF88517DFD3E28C05B2B96</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>1CD7DCEBCF8D0A08C4AD41AB989BC341</key>
+		<key>13B4EDF72980F3631507E6858EA50F30</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -107,32 +97,37 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>345D09C7ED4E0C6889C067E3615B16C2</key>
+		<key>388944D7B846659C1FEADC8C5F3B89F9</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>410A327A5DB232B09AA7C101E74592A8</key>
+		<key>55BF278F224EF12371905C5DBAA170A7</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>59B1122EF9DA3E1C88CC04AE8E3C7048</key>
+		<key>7E69D2139F3E1A6F9C52528C5D6C8BB9</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>9111CFE41267857E38858C6F61A479DA</key>
+		<key>819F6A1FA13E08AEAE85771EBA2FB26C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B19ED8AC41A1142A06758AF7D7211845</key>
+		<key>943E47D6874552C3C1516877620B0EF9</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>C052BEBFBD0AB5218CC64BA3450F6547</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C3A1B17D09AEDE790FF0EB7F38F699BC</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -152,17 +147,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>DC19345990D15C9EE1661C6893808BD1</key>
+		<key>E89B0340D9A700BB8F5C98832E234A23</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>E2EF0A874A01FFC4D77FBAEED4802A12</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>EE7A3C9A55EEE9B1B0DDC8471059CC51</key>
+		<key>ED980B6A6E29263195C8AFB12B64A988</key>
 		<dict>
 			<key>primary</key>
 			<true/>

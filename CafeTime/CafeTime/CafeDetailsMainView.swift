@@ -24,6 +24,11 @@ class CafeDetailsMainView: UIView {
     
     
     // MARK: Vars
+    
+    let menuViewModel = MenuViewModel()
+    let mapViewModel = MapViewModel()
+    let bookViewModel = BookViewModel()
+    
     private let topImageView: UIImageView = {
         let myVar = UIImageView()
         myVar.image = UIImage(named: "superSandwich")
@@ -40,7 +45,7 @@ class CafeDetailsMainView: UIView {
     
     lazy var headerView: CellDetailsHeaderView = {
         let myVar = CellDetailsHeaderView()
-        // myVar.delegate = self
+         myVar.menuBar.delegate = self
         return myVar
     }()
     
@@ -59,36 +64,32 @@ class CafeDetailsMainView: UIView {
     
     // MARK: Public
     
-    func setDataSource(dataSource: UITableViewDataSource, withScroll scroll: Bool) {
-        tableView.delegate = self
+    func setDataSource(delegate: UITableViewDelegate?, dataSource: UITableViewDataSource, withScroll scroll: Bool) {
+        tableView.delegate = delegate ?? self
         tableView.dataSource = dataSource
         self.reloadTableView(tableView, scrollToFirstItem: scroll)
     }
-    
-    func setDelegate(delegate: UITableViewDelegate) {
-        tableView.delegate = delegate
-        tableView.reloadData()
-    }
-    
+
     private func reloadTableView(_ tableView: UITableView, scrollToFirstItem scroll: Bool) {
         let contentOffset = tableView.contentOffset
         tableView.reloadData()
         tableView.layoutIfNeeded()
+       // self.setNeedsLayout()
         tableView.setContentOffset(contentOffset, animated: false)
         if scroll {
             tableView.scrollToRow(at: IndexPath.init(row: 0, section: 0), at: .middle, animated: true)
         }
     }
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
+    override func didMoveToWindow() {
+        super.didMoveToWindow()
         
         self.tableView.contentInset = UIEdgeInsetsMake(0, 0, -20, 0);
-        let vc = self.parentViewController!
+        //let vc = self.parentViewController!
         
         tableView.snp.makeConstraints { (make) in
-            make.top.equalTo(vc.topLayoutGuide.snp.bottom)
-            make.leading.trailing.bottom.equalTo(self)
+        //make.top.equalTo(vc.topLayoutGuide.snp.bottom)
+            make.leading.trailing.bottom.top.equalTo(self)
         }
         
         if (tableView.tableHeaderView == nil) {
@@ -98,6 +99,8 @@ class CafeDetailsMainView: UIView {
         }
         
         headerView.updateGrayViewConstraints()
+        
+        self.pageSelectedAtRow(row: 0)
     }
     
     func reload(section: Int?) {
@@ -114,6 +117,25 @@ extension CafeDetailsMainView: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 0.01
+    }
+}
+
+extension CafeDetailsMainView: ReusableMenuCollectionViewDelegate {
+ 
+    internal func pageSelectedAtRow(row: Int) {
+        
+        switch row {
+        case 0:
+            self.setDataSource(delegate: nil, dataSource: menuViewModel, withScroll: false)
+            break
+        case 1:
+            self.setDataSource(delegate: nil, dataSource: mapViewModel, withScroll: true)
+            break
+        case 2:
+            self.setDataSource(delegate: bookViewModel, dataSource: bookViewModel, withScroll: true)
+            break
+        default: break
+        }
     }
 }
 

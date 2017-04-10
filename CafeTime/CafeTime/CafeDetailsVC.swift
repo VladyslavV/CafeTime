@@ -13,19 +13,19 @@ class CafeDetailsVC: BaseVC {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.automaticallyAdjustsScrollViewInsets = false
+        //self.automaticallyAdjustsScrollViewInsets = false
         self.view.backgroundColor = colors.primaryGray
         self.view.addSubviews([mainView])
         self.setUp()
-        
-        self.pageSelectedAtRow(row: 0)
-        
+                
         self.tabBar?.barTintColor = colors.primaryGray
         UITabBar.appearance().barTintColor = colors.primaryGray
         
         _ = self.setupLeftBackArrow(arrowColor: UIColor.white)
         
         self.navigationController?.interactivePopGestureRecognizer?.delegate = self
+        
+        self.navigationController?.hidesBarsOnSwipe = true
     }
     
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldBeRequiredToFailBy otherGestureRecognizer: UIGestureRecognizer) -> Bool {
@@ -42,13 +42,9 @@ class CafeDetailsVC: BaseVC {
     
     fileprivate lazy var mainView: CafeDetailsMainView = {
         let myVar = CafeDetailsMainView()
-        myVar.headerView.menuBar.delegate = self
+      // myVar.headerView.menuBar.delegate = self
         return myVar
     }()
-    
-    let menuViewModel = MenuViewModel()
-    let mapViewModel = MapViewModel()
-    let bookViewModel = BookViewModel()
 
     
     // MARK: Set Up
@@ -68,26 +64,6 @@ class CafeDetailsVC: BaseVC {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navBar?.transparentNavigationBar()
-    }
-}
-
-extension CafeDetailsVC: ReusableMenuCollectionViewDelegate {
-    
-    internal func pageSelectedAtRow(row: Int) {
-        
-        switch row {
-        case 0:
-            mainView.setDataSource(dataSource: menuViewModel, withScroll: false)
-            break
-        case 1:
-            mainView.setDataSource(dataSource: mapViewModel, withScroll: true)
-            break
-        case 2:
-            mainView.setDataSource(dataSource: bookViewModel, withScroll: true)
-            mainView.setDelegate(delegate: bookViewModel)
-            break
-        default: break
-        }
     }
 }
 

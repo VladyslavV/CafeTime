@@ -1,5 +1,4 @@
 PODS:
-  - CVCalendar (1.4.1)
   - Firebase/Auth (3.13.0):
     - Firebase/Core
     - FirebaseAuth (= 3.1.1)
@@ -60,7 +59,6 @@ PODS:
   - SwiftCop (1.0.0)
 
 DEPENDENCIES:
-  - CVCalendar
   - Firebase/Auth
   - Firebase/Core
   - Firebase/Database
@@ -77,7 +75,6 @@ DEPENDENCIES:
   - SwiftCop
 
 SPEC CHECKSUMS:
-  CVCalendar: 61912eb5dc39c3bcfe22a731147a559a696fbc15
   Firebase: 5bc34d7b5ff5792e3386c8b28dc6265deeab0da4
   FirebaseAnalytics: 0d1b7d81d5021155be37702a94ba1ec16d45365d
   FirebaseAuth: cc8a1824170adbd351edb7f994490a3fb5c18be6
@@ -100,6 +97,6 @@ SPEC CHECKSUMS:
   SnapKit: 1ca44df72cfa543218d177cb8aab029d10d86ea7
   SwiftCop: 5ae17ee59ea702b662072495588ace8540571bef
 
-PODFILE CHECKSUM: b08f7eef2c41c9cf56e2a85b90a783ade4eb1990
+PODFILE CHECKSUM: b36c316c97636079dca3fe8034ea1923a693beac
 
 COCOAPODS: 1.2.0

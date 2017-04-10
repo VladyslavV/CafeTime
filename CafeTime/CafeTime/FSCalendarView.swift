@@ -19,35 +19,36 @@ class FSCalendarView: UIView {
         
         self.addSubview(calendarView)
         calendarView.addSubviews([leftHeaderButton, rightHeaderButton])
-
+        
         self.backgroundColor = Colors.primaryGray
         
         calendarView.appearance.calendar.bottomBorder.backgroundColor = Colors.clear
         calendarView.calendarHeaderView.backgroundColor = Colors.clear
-
+        
         calendarView.delegate = self
         calendarView.dataSource = self
+        calendarView.placeholderType = .fillHeadTail
         
         calendarView.firstWeekday = 2
         calendarView.pagingEnabled = true
         
         //header
-                
+        
         calendarView.appearance.headerMinimumDissolvedAlpha = 0.0;
         calendarView.appearance.headerTitleColor = UIColor.black
         calendarView.appearance.weekdayTextColor = UIColor.black
-
+        
         //main
-    //  calendarView.appearance.titleDefaultColor = UIColor.red
+        //  calendarView.appearance.titleDefaultColor = UIColor.red
         calendarView.appearance.selectionColor = UIColor.green
         calendarView.appearance.eventDefaultColor = UIColor.green
-        
-        calendarView.placeholderType = .fillHeadTail
+        calendarView.appearance.eventSelectionColor = UIColor.green
         
         // today
-       // calendarView.appearance.todaySelectionColor = UIColor.green
+        // calendarView.appearance.todaySelectionColor = UIColor.green
         calendarView.appearance.todayColor = Colors.primaryGray
         calendarView.appearance.titleTodayColor = UIColor.black
+        calendarView.select(calendarView.today)
         
         self.setUp()
     }
@@ -63,6 +64,7 @@ class FSCalendarView: UIView {
     
     lazy var leftHeaderButton: UIButton = {
         let myVar = UIButton(type: .system)
+        myVar.isHidden = true
         myVar.backgroundColor = UIColor.green
         myVar.addTarget(self, action: #selector(left), for: .touchUpInside)
         return myVar
@@ -108,44 +110,67 @@ class FSCalendarView: UIView {
             make.height.equalTo(300)
         }
     }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        self.calendarView.reloadData()
+    }
 }
 
 extension FSCalendarView: FSCalendarDelegate, FSCalendarDataSource {
     
     func calendar(_ calendar: FSCalendar, willDisplay cell: FSCalendarCell, for date: Date, at monthPosition: FSCalendarMonthPosition) {
-
-        let yesterday = NSCalendar.current.date(byAdding: .day, value: -1, to: Date())!
         
-        if  date < yesterday {
-            cell.isUserInteractionEnabled = false
-            cell.preferredTitleDefaultColor = UIColor.lightGray
-            cell.appearance.titleDefaultColor = UIColor.lightGray
+        //        let yesterday = NSCalendar.current.date(byAdding: .day, value: -1, to: Date())!
+        //        if  date < yesterday  {
+        //            cell.preferredTitleDefaultColor = UIColor.lightGray
+        //        }
+        
+        if !Date.compareDate(date1: date, date2: calendar.currentPage, byComponent: .month) {
+            cell.isSelected = false
         }
-        else {
-            cell.isUserInteractionEnabled = true
-            cell.appearance.titleDefaultColor = UIColor.black
-        }
-    
     }
-  
+    
     
     public func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
         print(date.currentTimeZoneDate())
-//        let calendar = Calendar.current
-//        let month = calendar.component(.month, from: date)
-//        let day = calendar.component(.day, from: date)
-
+        //        let calendar = Calendar.current
+        //        let month = calendar.component(.month, from: date)
+        //        let day = calendar.component(.day, from: date)
+        
+        
     }
     
-    func calendar(_ calendar: FSCalendar, boundingRectWillChange bounds: CGRect, animated: Bool) {
+    func calendar(_ calendar: FSCalendar, shouldSelect date: Date, at monthPosition: FSCalendarMonthPosition) -> Bool {
+        let yesterday = NSCalendar.current.date(byAdding: .day, value: -1, to: Date())!
+        if  date < yesterday || !Date.compareDate(date1: date, date2: calendar.currentPage, byComponent: .month) {
+          return false
+        }
+        return true
     }
     
-//    public func calendar(_ calendar: FSCalendar, hasEventFor date: Date) -> Bool {
-//        if self.today == date {
-//            return true
-//        }
-//        return false
-//    }
+    
+    func calendar(_ calendar: FSCalendar, boundingRectWillChange bounds: CGRect, animated: Bool) { }
+    
+    func minimumDate(for calendar: FSCalendar) -> Date {
+        return NSCalendar.current.date(byAdding: .month, value: 0, to: Date())!
+    }
+    
+    func maximumDate(for calendar: FSCalendar) -> Date {
+        return NSCalendar.current.date(byAdding: .month, value: 8, to: Date())!
+    }
+    
+    func calendarCurrentPageDidChange(_ calendar: FSCalendar) {
+        self.leftHeaderButton.isHidden = calendar.currentPage < calendar.minimumDate
+        self.rightHeaderButton.isHidden = Date.compareDate(date1: calendar.currentPage, date2: NSCalendar.current.date(byAdding: .month, value: 7, to: Date())!, byComponent: .month)
+    }
+    
+    
+    
+    public func calendar(_ calendar: FSCalendar, hasEventFor date: Date) -> Bool {
+        return Date.compareDate(date1: date, date2: Date(), byComponent: .day)
+    }
+    
 }
 
 

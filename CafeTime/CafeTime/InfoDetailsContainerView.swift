@@ -50,6 +50,10 @@ class InfoDetailsContainerView: ReusableEmtpyCellContainer {
     private var stars: UIImageView = {
         let myVar = UIImageView()
         myVar.backgroundColor = UIColor.green
+//        myVar.contentMode = .scaleAspectFit
+//        myVar.setImage(UIImage(named: "icon-favorite")?.withRenderingMode(.alwaysTemplate), for: .normal)
+//        myVar.tintColor = Colors.primaryGreen
+
         return myVar
     }()
     

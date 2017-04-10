@@ -37,7 +37,7 @@ class CellDetailsHeaderView: UITableViewHeaderFooterView {
         myVar.titlesTextColor = Colors.black
         myVar.titlesFont = UIFont.systemFont(ofSize: 14)
         myVar.sliderHeight = 3
-        let imageArray = [UIImage(named: "sandwich"), UIImage(named: "sandwich"), UIImage(named: "sandwich")]
+        let imageArray = [UIImage(named: "icon-menu"), UIImage(named: "icon-map"), UIImage(named: "icon-send")]
         myVar.iconImages = imageArray as? [UIImage]
         return myVar
     }()
@@ -57,22 +57,25 @@ class CellDetailsHeaderView: UITableViewHeaderFooterView {
     
     private let chatButton: UIButton = {
         let myVar = UIButton()
-        myVar.backgroundColor = UIColor.red
-        myVar.contentMode = .scaleToFill
+        myVar.contentMode = .scaleAspectFit
+        myVar.setImage(UIImage(named: "icon-text")?.withRenderingMode(.alwaysTemplate), for: .normal)
+        myVar.tintColor = UIColor.white
         return myVar
     }()
     
     private let bookingsButton: UIButton = {
-        let myVar = UIButton()
-        myVar.backgroundColor = UIColor.red
-        myVar.contentMode = .scaleToFill
+        let myVar = UIButton(type: .system)
+        myVar.contentMode = .scaleAspectFit
+        myVar.setImage(UIImage(named: "icon-pipl-rest")?.withRenderingMode(.alwaysTemplate), for: .normal)
+        myVar.tintColor = Colors.darkYellow
         return myVar
     }()
     
     private let favoritesButton: UIButton = {
         let myVar = UIButton()
-        myVar.backgroundColor = UIColor.red
-        myVar.contentMode = .scaleToFill
+        myVar.contentMode = .scaleAspectFit
+        myVar.setImage(UIImage(named: "icon-favorite")?.withRenderingMode(.alwaysTemplate), for: .normal)
+         myVar.tintColor = Colors.primaryGreen
         return myVar
     }()
     
@@ -104,9 +107,11 @@ class CellDetailsHeaderView: UITableViewHeaderFooterView {
         let vc = parentViewController!
         let navBarHeight = vc.navigationController?.navigationBar.frame.size.height
         topView.snp.makeConstraints { (make) in
-            make.top.equalTo(self.snp.top).offset(-navBarHeight!)
-            make.trailing.leading.equalTo(self)
-            make.height.equalTo(self.superview!.snp.height).multipliedBy(0.4)
+            if let h = navBarHeight {
+                make.top.equalTo(self.snp.top).offset(-h)
+                make.trailing.leading.equalTo(self)
+                make.height.equalTo(self.superview!.snp.height).multipliedBy(0.4)
+            }
         }
         
         grayView.snp.remakeConstraints { (make) in
@@ -130,7 +135,7 @@ class CellDetailsHeaderView: UITableViewHeaderFooterView {
         }
         
         favoritesButton.snp.makeConstraints { (make) in
-            make.top.equalTo(self.contentView.snp.top).offset(50)
+            make.top.equalTo(self.contentView.snp.top).offset(100)
             make.leading.equalTo(self.snp.leading).offset(screenWidth * 0.1)
             make.width.height.equalTo(screenWidth * 0.15)
         }
@@ -142,7 +147,7 @@ class CellDetailsHeaderView: UITableViewHeaderFooterView {
         }
         
         chatButton.snp.makeConstraints { (make) in
-            make.top.equalTo(self.contentView.snp.top).offset(50)
+            make.top.equalTo(self.contentView.snp.top).offset(100)
             make.width.height.equalTo(screenWidth * 0.15)
             make.trailing.equalTo(self.snp.trailing).offset(-(screenWidth * 0.1))
         }

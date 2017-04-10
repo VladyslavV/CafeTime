@@ -36,13 +36,15 @@ class SegmentedMenuCollectionViewCell: UICollectionViewCell {
     
     private let iconImageView: UIImageView = {
         let myVar = UIImageView()
-        myVar.backgroundColor = UIColor.green
+        myVar.contentMode = .scaleAspectFit
+        myVar.tintColor = Colors.primaryGreen
         return myVar
     }()
     
     var iconImage: UIImage? {
         didSet {
-            iconImageView.image = iconImage
+            let image = iconImage?.withRenderingMode(.alwaysTemplate)
+            iconImageView.image = image
             self.addSubview(iconImageView)
             self.setUpWithImage()
         }
