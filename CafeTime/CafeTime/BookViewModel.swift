@@ -12,7 +12,6 @@ class BookViewModel: NSObject, UITableViewDataSource, UITableViewDelegate {
     
     override init() {
         super.init()
-
     }
     
     enum Sections: Int{
@@ -28,10 +27,11 @@ class BookViewModel: NSObject, UITableViewDataSource, UITableViewDelegate {
     }
     
     //MARK: Vars
-    
-    private let calendarView = FSCalendarView()
-    //private let calendarView = CVCCalendarControl()
+    var tableScrolledToTop: ((Bool) -> ())!
 
+    private let calendarView = FSCalendarView()
+    private let circleTimer = CircleTimeSlider()
+    
     //MARK: number of rows and section
     func numberOfSections(in tableView: UITableView) -> Int {
         return Sections.allValues.count
@@ -57,6 +57,7 @@ class BookViewModel: NSObject, UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = UITableViewCell(style: .default, reuseIdentifier: "")
+        cell.contentView.backgroundColor = Colors.primaryGray
         
         if indexPath.section == Sections.date.rawValue {
             
@@ -67,7 +68,12 @@ class BookViewModel: NSObject, UITableViewDataSource, UITableViewDelegate {
         }
         
         if indexPath.section == Sections.time.rawValue {
-
+            
+            cell.contentView.addSubview(circleTimer)
+            circleTimer.snp.makeConstraints({ (make) in
+                make.edges.equalTo(cell.contentView)
+                make.height.equalTo(300)
+            })
         }
         
         if indexPath.section == Sections.numberOfGuests.rawValue {
@@ -81,36 +87,29 @@ class BookViewModel: NSObject, UITableViewDataSource, UITableViewDelegate {
         
         cell.selectionStyle = .none
         cell.backgroundColor = UIColor.orange
-        
-//        cell.contentView.snp.remakeConstraints { (make) in
-////            make.leading.trailing.top.equalTo(cell)
-////            make.height.equalTo(300)
-//            
-//            make.edges.equalTo(cell)
-//        }
+
         
         return cell
     }
-    
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
                 
         let header = BookSectionHeaderView()
         
         if section == Sections.date.rawValue {
-            header.titleLabel.text = "Date"
+            header.titleLabel.text = NSLocalizedString("cafedetails.book.date.section.title", comment: "Set the date")
         }
         
         if section == Sections.time.rawValue {
-            header.titleLabel.text = "Time"
+            header.titleLabel.text = NSLocalizedString("cafedetails.book.time.section.title", comment: "Set the time")
         }
         
         if section == Sections.numberOfGuests.rawValue {
-            header.titleLabel.text = "Number of guests"
+            header.titleLabel.text = NSLocalizedString("cafedetails.book.number.of.guests.section.title", comment: "Number of guests")
         }
         
         if section == Sections.comments.rawValue {
-            header.titleLabel.text = "Comments"
+            header.titleLabel.text = NSLocalizedString("cafedetails.book.comments.section.title", comment: "Comments")
         }
         
         return header
@@ -127,6 +126,10 @@ class BookViewModel: NSObject, UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 0.01
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        scrollView.contentOffset.y > 40 ? tableScrolledToTop(false) : tableScrolledToTop(true)
     }
 
 }

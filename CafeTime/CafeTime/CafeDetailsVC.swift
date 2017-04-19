@@ -25,7 +25,18 @@ class CafeDetailsVC: BaseVC {
         
         self.navigationController?.interactivePopGestureRecognizer?.delegate = self
         
-        self.navigationController?.hidesBarsOnSwipe = true
+        self.mainView.tableScrolledToTop = tableScrolledToTop
+        self.mainView.bookViewModel.tableScrolledToTop = tableScrolledToTop
+    }
+    
+    lazy var tableScrolledToTop: ((Bool) -> ()) = {
+        [weak self] atTop in
+        
+        guard let weakSelf = self else { return }
+        
+        UIView.animate(withDuration: 0.4, animations: {
+            weakSelf.navBar?.alpha = atTop ? 1 : 0
+        })
     }
     
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldBeRequiredToFailBy otherGestureRecognizer: UIGestureRecognizer) -> Bool {

@@ -104,14 +104,10 @@ class CellDetailsHeaderView: UITableViewHeaderFooterView {
     // MARK: Set Up
     func updateGrayViewConstraints() {
         
-        let vc = parentViewController!
-        let navBarHeight = vc.navigationController?.navigationBar.frame.size.height
         topView.snp.makeConstraints { (make) in
-            if let h = navBarHeight {
-                make.top.equalTo(self.snp.top).offset(-h)
+                make.top.equalTo(self.snp.top)
                 make.trailing.leading.equalTo(self)
                 make.height.equalTo(self.superview!.snp.height).multipliedBy(0.4)
-            }
         }
         
         grayView.snp.remakeConstraints { (make) in

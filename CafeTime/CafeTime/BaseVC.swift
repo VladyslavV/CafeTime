@@ -10,10 +10,6 @@ import UIKit
 
 class BaseVC: UIViewController {
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-    
     // MARK: Vars
     
     // MARK: Private
@@ -50,6 +46,10 @@ class BaseVC: UIViewController {
     
     // MARK: Life Cycle
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navBar?.setNavBarTitleColor(.white)
@@ -74,7 +74,7 @@ extension BaseVC {
         navBar?.resetToDefault()
     }
     
-    func setupLeftBackArrow(arrowColor: UIColor)->UIBarButtonItem{
+    func setupLeftBackArrow(arrowColor: UIColor)->UIBarButtonItem {
         
         let btnBack = UIButton(type: .custom)
         btnBack.addTarget(self, action: #selector(dismiss as (Void) -> Void), for: UIControlEvents.touchUpInside)

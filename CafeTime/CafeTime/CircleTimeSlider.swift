@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class CircleTimeSlider: UIView {
 
@@ -15,14 +16,14 @@ class CircleTimeSlider: UIView {
     
     override init(frame: CGRect) {
         
-        circle = Circle(frame: CGRect(x: 0, y: 0, width: frame.width, height: frame.height))
+        //circle = Circle(frame: CGRect(x: 0, y: 0, width: frame.width, height: frame.height))
         
         super.init(frame: frame)
         
         self.isUserInteractionEnabled = true
         
         self.addSubview(circle)
-        circle.backgroundColor = UIColor.white
+        circle.backgroundColor = UIColor.clear
         
         circle.addSubview(slider)
         slider.backgroundColor = UIColor.clear
@@ -30,31 +31,40 @@ class CircleTimeSlider: UIView {
         
         circle.addSubview(timeLabel)
         
-        placeSliderAtAngle(0)
-        adjustTimeToAngle(0)
+        circle.snp.makeConstraints { (make) in
+            make.height.equalTo(self.snp.width).multipliedBy(0.8)
+            make.width.equalTo(self.snp.width).multipliedBy(0.8)
+            make.center.equalTo(self.snp.center)
+        }
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        slider.frame = CGRect(x: 0, y: 0, width: self.circle.totalLineWidth + 20, height: self.circle.totalLineWidth + 20)
+        slider.isUserInteractionEnabled = true
+        
+        timeLabel.frame = CGRect(x: 0, y: 0, width: self.circle.frame.width, height: self.circle.frame.width)
+        
+        placeSliderAtAngle(0)
+        adjustTimeToAngle(0)
+    }
+    
     
     // MARK: Vars
     
-    let circle: Circle
-    
-    lazy var slider: Slider = {
-        let myVar = Slider(frame: CGRect(x: 0, y: 0, width: self.circle.totalLineWidth + 20, height: self.circle.totalLineWidth + 20))
-        myVar.isUserInteractionEnabled = true
-        return myVar
-    }()
+    let circle = Circle()
+    let slider = Slider()
     
     lazy var timeLabel: UILabel = {
         let myVar = UILabel()
         myVar.text = "8:15"
-        myVar.font = UIFont.boldSystemFont(ofSize: 40)
+        myVar.font = UIFont.boldSystemFont(ofSize: 45)
         myVar.textAlignment = NSTextAlignment.center
-        myVar.frame = CGRect(x: 0, y: 0, width: self.circle.frame.width, height: self.circle.frame.width)
         myVar.center = CGPoint(x: self.circle.frame.width/2, y: self.circle.frame.height/2)
         myVar.isUserInteractionEnabled = false
         return myVar

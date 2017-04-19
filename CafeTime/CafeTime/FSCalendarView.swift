@@ -18,7 +18,7 @@ class FSCalendarView: UIView {
         super.init(frame: frame)
         
         self.addSubview(calendarView)
-        calendarView.addSubviews([leftHeaderButton, rightHeaderButton])
+        calendarView.addSubviews([leftArrowButton, rightArrowButton])
         
         self.backgroundColor = Colors.primaryGray
         
@@ -62,15 +62,17 @@ class FSCalendarView: UIView {
     
     let calendarView = FSCalendar(frame: CGRect.zero)
     
-    lazy var leftHeaderButton: UIButton = {
+    lazy var leftArrowButton: UIButton = {
         let myVar = UIButton(type: .system)
         myVar.isHidden = true
-        myVar.backgroundColor = UIColor.green
+        let image = UIImage(named: "arrow")?.withRenderingMode(.alwaysTemplate)
+        myVar.setImage(image, for: .normal)
+        myVar.tintColor = UIColor.lightGray
         myVar.addTarget(self, action: #selector(left), for: .touchUpInside)
         return myVar
     }()
     
-    lazy var rightHeaderButton: UIButton = {
+    lazy var rightArrowButton: UIButton = {
         let myVar = UIButton(type: .system)
         myVar.backgroundColor = UIColor.green
         myVar.addTarget(self, action: #selector(right), for: .touchUpInside)
@@ -95,12 +97,14 @@ class FSCalendarView: UIView {
     // MARK: Set Up
     private func setUp() {
         
-        leftHeaderButton.snp.makeConstraints { (make) in
-            make.leading.top.bottom.equalTo(calendarView.calendarHeaderView)
-            make.width.equalTo(calendarView.calendarHeaderView.snp.width).multipliedBy(0.1)
+        leftArrowButton.snp.makeConstraints { (make) in
+            make.leading.equalTo(calendarView.calendarHeaderView.snp.leading).offset(30)
+            make.height.equalTo(calendarView.calendarHeaderView.snp.height).multipliedBy(0.3)
+            make.width.equalTo(9)
+            make.centerY.equalTo(calendarView.calendarHeaderView.snp.centerY).offset(5)
         }
         
-        rightHeaderButton.snp.makeConstraints { (make) in
+        rightArrowButton.snp.makeConstraints { (make) in
             make.trailing.top.bottom.equalTo(calendarView.calendarHeaderView)
             make.width.equalTo(calendarView.calendarHeaderView.snp.width).multipliedBy(0.1)
         }
@@ -161,11 +165,9 @@ extension FSCalendarView: FSCalendarDelegate, FSCalendarDataSource {
     }
     
     func calendarCurrentPageDidChange(_ calendar: FSCalendar) {
-        self.leftHeaderButton.isHidden = calendar.currentPage < calendar.minimumDate
-        self.rightHeaderButton.isHidden = Date.compareDate(date1: calendar.currentPage, date2: NSCalendar.current.date(byAdding: .month, value: 7, to: Date())!, byComponent: .month)
+        self.leftArrowButton.isHidden = calendar.currentPage < calendar.minimumDate
+        self.rightArrowButton.isHidden = Date.compareDate(date1: calendar.currentPage, date2: NSCalendar.current.date(byAdding: .month, value: 7, to: Date())!, byComponent: .month)
     }
-    
-    
     
     public func calendar(_ calendar: FSCalendar, hasEventFor date: Date) -> Bool {
         return Date.compareDate(date1: date, date2: Date(), byComponent: .day)

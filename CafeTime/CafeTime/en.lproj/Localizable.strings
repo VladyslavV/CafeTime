@@ -66,6 +66,19 @@
 
 "chatvc.input.textfield" = "Enter text...";
 
+// cafedetails vc
+
+// book
+
+"cafedetails.book.date.section.title" = "Set the date";
+
+"cafedetails.book.time.section.title" = "Set the time";
+
+"cafedetails.book.number.of.guests.section.title" = "Number of guests";
+
+"cafedetails.book.comments.section.title" = "Comments";
+
+
 // allert
 
 //general
@@ -82,4 +95,6 @@
 "allert.email.textfield" = "Email";
 
 "allert.password.textfield" = "Password";
+
+
 

@@ -29,6 +29,8 @@ class CafeDetailsMainView: UIView {
     let mapViewModel = MapViewModel()
     let bookViewModel = BookViewModel()
     
+    var tableScrolledToTop: ((Bool) -> ())!
+
     private let topImageView: UIImageView = {
         let myVar = UIImageView()
         myVar.image = UIImage(named: "superSandwich")
@@ -64,7 +66,7 @@ class CafeDetailsMainView: UIView {
     
     // MARK: Public
     
-    func setDataSource(delegate: UITableViewDelegate?, dataSource: UITableViewDataSource, withScroll scroll: Bool) {
+    func setDelegate(delegate: UITableViewDelegate?, dataSource: UITableViewDataSource, withScroll scroll: Bool) {
         tableView.delegate = delegate ?? self
         tableView.dataSource = dataSource
         self.reloadTableView(tableView, scrollToFirstItem: scroll)
@@ -74,10 +76,13 @@ class CafeDetailsMainView: UIView {
         let contentOffset = tableView.contentOffset
         tableView.reloadData()
         tableView.layoutIfNeeded()
+
        // self.setNeedsLayout()
         tableView.setContentOffset(contentOffset, animated: false)
+        let indexPath = IndexPath.init(row: 0, section: 0)
+        print(tableView.hasRowAtIndexPath(indexPath: indexPath as NSIndexPath))
         if scroll {
-            tableView.scrollToRow(at: IndexPath.init(row: 0, section: 0), at: .middle, animated: true)
+            tableView.scrollToRow(at: indexPath, at: .middle, animated: true)
         }
     }
     
@@ -107,6 +112,7 @@ class CafeDetailsMainView: UIView {
         guard let sec = section else { self.tableView.reloadData(); return }
         tableView.reloadSections(IndexSet(integer: sec), with: .none)
     }
+    
 }
 
 extension CafeDetailsMainView: UITableViewDelegate {
@@ -118,6 +124,10 @@ extension CafeDetailsMainView: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 0.01
     }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        scrollView.contentOffset.y > 40 ? tableScrolledToTop(false) : tableScrolledToTop(true)
+    }
 }
 
 extension CafeDetailsMainView: ReusableMenuCollectionViewDelegate {
@@ -126,16 +136,22 @@ extension CafeDetailsMainView: ReusableMenuCollectionViewDelegate {
         
         switch row {
         case 0:
-            self.setDataSource(delegate: nil, dataSource: menuViewModel, withScroll: false)
+            self.setDelegate(delegate: nil, dataSource: menuViewModel, withScroll: false)
             break
         case 1:
-            self.setDataSource(delegate: nil, dataSource: mapViewModel, withScroll: true)
+            self.setDelegate(delegate: nil, dataSource: mapViewModel, withScroll: true)
             break
         case 2:
-            self.setDataSource(delegate: bookViewModel, dataSource: bookViewModel, withScroll: true)
+            self.setDelegate(delegate: bookViewModel, dataSource: bookViewModel, withScroll: true)
             break
         default: break
         }
+    }
+}
+
+extension UITableView {
+    func hasRowAtIndexPath(indexPath: NSIndexPath) -> Bool {
+        return indexPath.section < self.numberOfSections && indexPath.row < self.numberOfRows(inSection: indexPath.section)
     }
 }
 
